@@ -76,863 +76,242 @@
   endcase
 %}
 
-{% if request.page_type == 'product' %}
-  {%- liquid
-    assign lux_product = closest.product | default: product
-    assign lux_images = lux_product.images
-    assign lux_first_image = lux_images | first
-    assign lux_second_image = lux_images | slice: 1, 1 | first
-    assign lux_remaining_images = lux_images | slice: 2, lux_images.size
-  -%}
-
-  <script
-    src="{{ 'dialog.js' | asset_url }}"
-    type="module"
-    fetchpriority="low"
-  ></script>
-
-  <div class="section-background color-{{ settings.color_scheme }}"></div>
+<div class="section-background color-{{ settings.color_scheme }}"></div>
+<div
+  class="product-information section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
+  style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
+  data-testid="product-information"
+>
+  {% if settings.desktop_media_position == 'left' and product_has_media and request.page_type == 'product' %}
+    {% assign product_href = '#ProductInformation-' | append: section_id %}
+    {% render 'skip-to-content-link', href: product_href, text: 'accessibility.skip_to_product_info' %}
+  {% endif %}
   <div
-    class="product-information section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative lux-pdp"
-    style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
-    data-testid="product-information"
+    class="{{ product_grid_class }}"
+    data-product-grid-content
   >
-    {% if settings.desktop_media_position == 'left' and product_has_media %}
-      {% assign product_href = '#ProductInformation-' | append: section_id %}
-      {% render 'skip-to-content-link', href: product_href, text: 'accessibility.skip_to_product_info' %}
-    {% endif %}
-
-    <div class="lux-pdp__top">
-      <div class="lux-pdp__media-column" data-testid="product-information-media">
-        <div class="lux-pdp__media-stack">
-          <div class="lux-pdp__attribute-stack" aria-label="Product attributes">
-            <dialog-component class="lux-pdp__attribute">
-              <button type="button" class="lux-pdp__attribute-btn" on:click="/showDialog">
-                <span class="lux-pdp__attribute-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 20H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M9 20V7.8a3 3 0 0 1 6 0V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M8.5 10.5H15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                <span class="lux-pdp__attribute-label">Style</span>
-              </button>
-              <dialog
-                ref="dialog"
-                class="lux-pdp__drawer"
-                scroll-lock
-                aria-labelledby="lux-pdp-drawer-heading-style-{{ section_id }}"
-              >
-                <div class="lux-pdp__drawer-header">
-                  <h2 id="lux-pdp-drawer-heading-style-{{ section_id }}" class="lux-pdp__drawer-title">STYLE</h2>
-                  <button
-                    type="button"
-                    class="lux-pdp__drawer-close"
-                    aria-label="{{ 'accessibility.close_dialog' | t }}"
-                    on:click="/closeDialog"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-close.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-                <div class="lux-pdp__drawer-body rte">
-                  {% if lux_product.metafields.custom.productStyle != blank %}
-                    {{ lux_product.metafields.custom.productStyle | metafield_tag }}
-                  {% else %}
-                    <p>No information available.</p>
-                  {% endif %}
-                </div>
-              </dialog>
-            </dialog-component>
-
-            <dialog-component class="lux-pdp__attribute">
-              <button type="button" class="lux-pdp__attribute-btn" on:click="/showDialog">
-                <span class="lux-pdp__attribute-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M7 7h10v10H7V7Z" stroke="currentColor" stroke-width="1.5" />
-                    <path d="M7 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M11 7v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                <span class="lux-pdp__attribute-label">Fabric</span>
-              </button>
-              <dialog
-                ref="dialog"
-                class="lux-pdp__drawer"
-                scroll-lock
-                aria-labelledby="lux-pdp-drawer-heading-fabric-{{ section_id }}"
-              >
-                <div class="lux-pdp__drawer-header">
-                  <h2 id="lux-pdp-drawer-heading-fabric-{{ section_id }}" class="lux-pdp__drawer-title">FABRIC</h2>
-                  <button
-                    type="button"
-                    class="lux-pdp__drawer-close"
-                    aria-label="{{ 'accessibility.close_dialog' | t }}"
-                    on:click="/closeDialog"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-close.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-                <div class="lux-pdp__drawer-body rte">
-                  {% if lux_product.metafields.custom.productFabric != blank %}
-                    {{ lux_product.metafields.custom.productFabric | metafield_tag }}
-                  {% else %}
-                    <p>No information available.</p>
-                  {% endif %}
-                </div>
-              </dialog>
-            </dialog-component>
-
-            <dialog-component class="lux-pdp__attribute">
-              <button type="button" class="lux-pdp__attribute-btn" on:click="/showDialog">
-                <span class="lux-pdp__attribute-icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 4h8l2 4-2 12H8L6 8l2-4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M9 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M10 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                </span>
-                <span class="lux-pdp__attribute-label">Fit</span>
-              </button>
-              <dialog
-                ref="dialog"
-                class="lux-pdp__drawer"
-                scroll-lock
-                aria-labelledby="lux-pdp-drawer-heading-fit-{{ section_id }}"
-              >
-                <div class="lux-pdp__drawer-header">
-                  <h2 id="lux-pdp-drawer-heading-fit-{{ section_id }}" class="lux-pdp__drawer-title">FIT</h2>
-                  <button
-                    type="button"
-                    class="lux-pdp__drawer-close"
-                    aria-label="{{ 'accessibility.close_dialog' | t }}"
-                    on:click="/closeDialog"
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-close.svg' | inline_asset_content -}}
-                    </span>
-                  </button>
-                </div>
-                <div class="lux-pdp__drawer-body rte">
-                  {% if lux_product.metafields.custom.productFit != blank %}
-                    {{ lux_product.metafields.custom.productFit | metafield_tag }}
-                  {% else %}
-                    <p>No information available.</p>
-                  {% endif %}
-                </div>
-              </dialog>
-            </dialog-component>
-          </div>
-
-          <div class="lux-pdp__gallery">
-            <div class="lux-pdp__first-two">
-              {% if lux_first_image %}
-                <div class="lux-pdp__image">
-                  <img
-                    src="{{ lux_first_image | image_url: width: 1800 }}"
-                    alt="{{ lux_first_image.alt | escape | default: lux_product.title | escape }}"
-                    width="{{ lux_first_image.width }}"
-                    height="{{ lux_first_image.height }}"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    sizes="(min-width: 750px) 32vw, 100vw"
-                  >
-                </div>
-              {% endif %}
-              {% if lux_second_image %}
-                <div class="lux-pdp__image">
-                  <img
-                    src="{{ lux_second_image | image_url: width: 1800 }}"
-                    alt="{{ lux_second_image.alt | escape | default: lux_product.title | escape }}"
-                    width="{{ lux_second_image.width }}"
-                    height="{{ lux_second_image.height }}"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                    sizes="(min-width: 750px) 32vw, 100vw"
-                  >
-                </div>
-              {% endif %}
-            </div>
-
-            {% if lux_remaining_images.size > 0 %}
-              <div class="lux-pdp__remaining">
-                {% capture lux_remaining_slides %}
-                  {% for image in lux_remaining_images %}
-                    <slideshow-slide
-                      class="lux-pdp__slide"
-                      slide-id="lux-media-{{ forloop.index0 }}"
-                      aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
-                      {% if forloop.first %}reveal{% endif %}
-                    >
-                      <div class="lux-pdp__slide-inner">
-                        <img
-                          src="{{ image | image_url: width: 1800 }}"
-                          alt="{{ image.alt | escape | default: lux_product.title | escape }}"
-                          width="{{ image.width }}"
-                          height="{{ image.height }}"
-                          loading="lazy"
-                          decoding="async"
-                          sizes="(min-width: 750px) 65vw, 100vw"
-                        >
-                      </div>
-                    </slideshow-slide>
-                  {% endfor %}
-                {% endcapture %}
-                {% render 'slideshow',
-                  slides: lux_remaining_slides,
-                  class: 'lux-pdp__slideshow',
-                  show_arrows: true,
-                  icon_style: 'chevron',
-                  icon_shape: 'none',
-                  infinite: false,
-                  auto_hide_controls: true,
-                  slide_count: lux_remaining_images.size,
-                  initial_slide: 0
-                %}
-              </div>
-            {% endif %}
-          </div>
-        </div>
+    {% assign render_order_array = render_order | split: ',' %}
+    {% capture media %}
+      <div
+        class="product-information__media"
+        data-testid="product-information-media"
+      >
+        {{ media_gallery }}
       </div>
+    {% endcapture %}
 
-      <div class="lux-pdp__whitespace" aria-hidden="true"></div>
-    </div>
-
-    <div class="lux-pdp__info" data-testid="product-information-details">
-      <div class="lux-pdp__info-inner">
+    {% for block in render_order_array %}
+      {% if block == 'media' and product_has_media %}
+        {{ media }}
+      {% elsif block == 'product-details' %}
         {{ product_details }}
-
-        <div class="lux-pdp__short-description rte">
-          {{ lux_product.description }}
-        </div>
-
-        <div class="lux-pdp__accordion" aria-label="Product information">
-          <details class="lux-pdp__accordion-item">
-            <summary class="lux-pdp__accordion-summary">
-              <span>Product Details</span>
-              <span class="lux-pdp__accordion-icon" aria-hidden="true"></span>
-            </summary>
-            <div class="lux-pdp__accordion-panel rte">
-              {{ lux_product.description }}
-            </div>
-          </details>
-
-          <details class="lux-pdp__accordion-item">
-            <summary class="lux-pdp__accordion-summary">
-              <span>Care &amp; Maintenance</span>
-              <span class="lux-pdp__accordion-icon" aria-hidden="true"></span>
-            </summary>
-            <div class="lux-pdp__accordion-panel rte">
-              <p>Please refer to the care label for instructions.</p>
-            </div>
-          </details>
-
-          <details class="lux-pdp__accordion-item">
-            <summary class="lux-pdp__accordion-summary">
-              <span>Shipping &amp; Returns</span>
-              <span class="lux-pdp__accordion-icon" aria-hidden="true"></span>
-            </summary>
-            <div class="lux-pdp__accordion-panel rte">
-              {% if shop.shipping_policy.body != blank %}
-                {{ shop.shipping_policy.body }}
-              {% endif %}
-              {% if shop.refund_policy.body != blank %}
-                {{ shop.refund_policy.body }}
-              {% endif %}
-              {% if shop.shipping_policy.body == blank and shop.refund_policy.body == blank %}
-                <p>Shipping &amp; returns details are available at checkout.</p>
-              {% endif %}
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-
-    {{ additional_blocks }}
+      {% endif %}
+    {% endfor %}
   </div>
 
-  {% stylesheet %}
-    /* Luxury PDP (Bottega-inspired) — scoped to .lux-pdp to avoid impacting other sections */
-    .lux-pdp {
-      --lux-primary: #0c4168;
-      --lux-text: #111111;
-      --lux-muted: #666666;
-      --lux-border: #e5e5e5;
-      --lux-font-primary: Helvetica, Arial, sans-serif;
-      --lux-font-secondary: Aptos, Helvetica, Arial, sans-serif;
-    }
+  {{ additional_blocks }}
+</div>
 
-    .lux-pdp :focus-visible {
-      outline: 2px solid var(--lux-primary);
-      outline-offset: 2px;
-    }
+{% stylesheet %}
+  .product-information {
+    gap: var(--gap) 0;
+  }
 
-    .lux-pdp__top {
-      display: grid;
-      grid-template-columns: 65% 35%;
-      gap: 0;
-      align-items: start;
-    }
+  /* Base grid layout */
+  .product-information__grid {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+  }
 
-    @media screen and (max-width: 749px) {
-      .lux-pdp__top {
-        grid-template-columns: 1fr;
-      }
+  /* Default column positions */
+  .product-details {
+    order: 1;
+  }
 
-      .lux-pdp__whitespace {
-        display: none;
-      }
-    }
+  .product-information__media {
+    order: 0;
+    width: 0;
+    min-width: 100%;
+  }
 
-    .lux-pdp__media-column {
-      min-width: 0;
-    }
+  .product-information__media .product-media-gallery__placeholder-image {
+    width: 100%;
+    height: 100%;
+  }
 
-    .lux-pdp__media-stack {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    .lux-pdp__attribute-stack {
-      grid-area: 1 / 1;
-      position: sticky;
-      top: 80px;
-      left: 0;
-      z-index: var(--layer-heightened);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding-left: 16px;
-      padding-top: 0;
-      width: max-content;
-      pointer-events: none;
-    }
-
-    .lux-pdp__attribute {
-      pointer-events: auto;
-    }
-
-    .lux-pdp__attribute-btn {
-      width: 72px;
-      height: 72px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(229, 229, 229, 0.8);
-      display: grid;
-      grid-template-rows: 1fr auto;
-      place-items: center;
-      gap: 6px;
-      padding: 10px 8px 8px;
-      color: var(--lux-text);
-      font-family: var(--lux-font-primary);
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .lux-pdp__attribute-icon {
-      color: var(--lux-text);
-      display: inline-flex;
-    }
-
-    .lux-pdp__gallery {
-      grid-area: 1 / 1;
-      position: relative;
-    }
-
-    .lux-pdp__first-two {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    @media screen and (max-width: 749px) {
-      .lux-pdp__attribute-stack {
-        top: 80px;
-        padding-left: 16px;
-      }
-
-      .lux-pdp__first-two {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-    }
-
-    .lux-pdp__image img,
-    .lux-pdp__slide-inner img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .lux-pdp__remaining {
-      margin-top: 28px;
-    }
-
-    .lux-pdp__slideshow slideshow-slides {
-      scroll-snap-type: x mandatory;
-    }
-
-    .lux-pdp__slide {
-      scroll-snap-align: center;
-    }
-
-    .lux-pdp__slide-inner {
-      width: 100%;
-    }
-
-    .lux-pdp__drawer {
-      width: 520px;
-      max-width: 100vw;
-      height: 100%;
-      border: 0;
-      padding: 0;
-      margin: 0 auto 0 0;
-      background: #ffffff;
-      color: var(--lux-text);
-    }
-
-    .lux-pdp__drawer::backdrop {
-      background: rgba(0, 0, 0, 0.5);
-    }
-
-    .lux-pdp__drawer[open] {
-      animation: luxDrawerIn 0.4s ease forwards;
-    }
-
-    .lux-pdp__drawer.dialog-closing {
-      animation: luxDrawerOut 0.4s ease forwards;
-    }
-
-    @keyframes luxDrawerIn {
-      from {
-        transform: translateX(-100%);
-      }
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes luxDrawerOut {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-100%);
-      }
-    }
-
-    @media screen and (max-width: 749px) {
-      .lux-pdp__drawer {
-        width: 100%;
-      }
-    }
-
-    .lux-pdp__drawer-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--lux-border);
-    }
-
-    .lux-pdp__drawer-title {
-      font-family: var(--lux-font-primary);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      margin: 0;
-    }
-
-    .lux-pdp__drawer-close {
-      width: 44px;
-      height: 44px;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      color: var(--lux-text);
-    }
-
-    .lux-pdp__drawer-body {
-      padding: 20px;
-      overflow: auto;
-      max-height: calc(100dvh - 72px);
-    }
-
-    .lux-pdp__info {
-      padding-top: 32px;
-    }
-
-    .lux-pdp__info-inner {
-      max-width: 720px;
-      color: var(--lux-text);
-    }
-
-    .lux-pdp__info-inner h1 {
-      font-family: var(--lux-font-primary);
-      font-size: 36px;
-      font-weight: 400;
-      color: var(--lux-text);
-      letter-spacing: -0.01em;
-      margin: 0 0 10px;
-    }
-
-    .lux-pdp__info-inner product-price {
-      font-family: var(--lux-font-primary);
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--lux-text);
-    }
-
-    .lux-pdp__info-inner .review,
-    .lux-pdp__info-inner .accordion {
-      display: none;
-    }
-
-    .lux-pdp__info-inner .product-details {
-      justify-content: flex-start;
-    }
-
-    .lux-pdp__info-inner .product-details.sticky-content--desktop {
-      position: static;
-      top: auto;
-    }
-
-    .lux-pdp__info-inner variant-picker {
-      --color-border: var(--lux-border);
-    }
-
-    .lux-pdp__info-inner variant-picker :is(button, input, select) {
-      border-color: var(--lux-border);
-    }
-
-    .lux-pdp__info-inner .add-to-cart-button {
-      width: 100%;
-      background: #000000;
-      color: #ffffff;
-      height: 56px;
-      border-radius: 0;
-      justify-content: center;
-    }
-
-    .lux-pdp__short-description {
-      margin-top: 16px;
-      color: var(--lux-muted);
-      font-family: var(--lux-font-secondary);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .lux-pdp__accordion {
-      margin-top: 18px;
-      border-top: 1px solid var(--lux-border);
-    }
-
-    .lux-pdp__accordion-item {
-      border-bottom: 1px solid var(--lux-border);
-    }
-
-    .lux-pdp__accordion-summary {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 0;
-      cursor: pointer;
-      font-family: var(--lux-font-primary);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--lux-text);
-    }
-
-    .lux-pdp__accordion-summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .lux-pdp__accordion-icon {
-      width: 18px;
-      height: 18px;
-      position: relative;
-      flex: 0 0 18px;
-    }
-
-    .lux-pdp__accordion-icon::before,
-    .lux-pdp__accordion-icon::after {
-      content: '';
-      position: absolute;
-      inset: 50% 0 auto 0;
-      height: 1.5px;
-      background: var(--lux-text);
-      transform: translateY(-50%);
-    }
-
-    .lux-pdp__accordion-icon::after {
-      inset: 0 auto 0 50%;
-      width: 1.5px;
-      height: 100%;
-      transform: translateX(-50%);
-    }
-
-    details[open] .lux-pdp__accordion-icon::after {
-      opacity: 0;
-    }
-
-    .lux-pdp__accordion-panel {
-      padding: 0 0 18px;
-      color: var(--lux-muted);
-      font-family: var(--lux-font-secondary);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-  {% endstylesheet %}
-{% else %}
-  <div class="section-background color-{{ settings.color_scheme }}"></div>
-  <div
-    class="product-information section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
-    style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
-    data-testid="product-information"
-  >
-    {% if settings.desktop_media_position == 'left' and product_has_media and request.page_type == 'product' %}
-      {% assign product_href = '#ProductInformation-' | append: section_id %}
-      {% render 'skip-to-content-link', href: product_href, text: 'accessibility.skip_to_product_info' %}
-    {% endif %}
-    <div
-      class="{{ product_grid_class }}"
-      data-product-grid-content
-    >
-      {% assign render_order_array = render_order | split: ',' %}
-      {% capture media %}
-        <div
-          class="product-information__media"
-          data-testid="product-information-media"
-        >
-          {{ media_gallery }}
-        </div>
-      {% endcapture %}
-
-      {% for block in render_order_array %}
-        {% if block == 'media' and product_has_media %}
-          {{ media }}
-        {% elsif block == 'product-details' %}
-          {{ product_details }}
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    {{ additional_blocks }}
-  </div>
-
-  {% stylesheet %}
-    .product-information {
-      gap: var(--gap) 0;
-    }
-
-    /* Base grid layout */
-    .product-information__grid {
-      display: grid;
-      grid-template-columns: subgrid;
+  /* Mobile styles */
+  @media screen and (max-width: 749px) {
+    .product-information__media {
       grid-column: 1 / -1;
     }
 
-    /* Default column positions */
     .product-details {
-      order: 1;
+      grid-column: 2 / 3;
+    }
+  }
+
+  /* Desktop styles */
+  @media screen and (min-width: 750px) {
+    .product-information__grid {
+      grid-column: 2;
     }
 
-    .product-information__media {
-      order: 0;
-      width: 0;
-      min-width: 100%;
-    }
-
-    .product-information__media .product-media-gallery__placeholder-image {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Mobile styles */
-    @media screen and (max-width: 749px) {
-      .product-information__media {
-        grid-column: 1 / -1;
-      }
-
+    /* Position when there is no media */
+    .product-information__grid.product-information--media-none {
       .product-details {
-        grid-column: 2 / 3;
+        width: var(--narrow-content-width);
+        margin: 0 auto;
       }
     }
 
-    /* Desktop styles */
-    @media screen and (min-width: 750px) {
-      .product-information__grid {
-        grid-column: 2;
-      }
+    /* Position when there is media */
+    .product-information__grid:not(.product-information--media-none) {
+      /* Media on the left side */
+      &.product-information--media-left {
+        grid-template-columns: 1fr min(50vw, var(--sidebar-width));
 
-      /* Position when there is no media */
-      .product-information__grid.product-information--media-none {
+        .product-information__media {
+          padding-right: calc(var(--gap, 0) / 2);
+        }
+
         .product-details {
-          width: var(--narrow-content-width);
-          margin: 0 auto;
+          padding-left: calc(var(--gap, 0) / 2);
+        }
+
+        &:has(.media-gallery--extend) {
+          grid-column: 1 / 3;
         }
       }
 
-      /* Position when there is media */
-      .product-information__grid:not(.product-information--media-none) {
-        /* Media on the left side */
-        &.product-information--media-left {
-          grid-template-columns: 1fr min(50vw, var(--sidebar-width));
+      /* Media on the right side */
+      &.product-information--media-right {
+        grid-template-columns: min(50vw, var(--sidebar-width)) 1fr;
 
+        .product-information__media {
+          padding-left: calc(var(--gap, 0) / 2);
+          order: 1;
+        }
+
+        .product-details {
+          padding-right: calc(var(--gap, 0) / 2);
+          order: 0;
+        }
+
+        &:has(.media-gallery--extend) {
+          grid-column: 2 / -1;
+        }
+      }
+
+      /* Equal width columns */
+      &.product-information__grid--half,
+      &.product-information__grid--half:has(.media-gallery--extend) {
+        grid-column: 1 / -1;
+        grid-template-columns:
+          var(--full-page-grid-margin) calc(var(--full-page-grid-central-column-width) / 2) calc(
+            var(--full-page-grid-central-column-width) / 2
+          )
+          var(--full-page-grid-margin);
+
+        &.product-information--media-left {
           .product-information__media {
-            padding-right: calc(var(--gap, 0) / 2);
+            grid-column: 2 / 3;
+
+            &:has(.media-gallery--extend) {
+              grid-column: 1 / 3;
+            }
           }
 
           .product-details {
-            padding-left: calc(var(--gap, 0) / 2);
+            grid-column: 3 / 4;
+          }
+        }
+
+        &.product-information--media-right {
+          .product-information__media {
+            grid-column: 3 / 4;
+
+            &:has(.media-gallery--extend) {
+              grid-column: 3 / -1;
+            }
           }
 
-          &:has(.media-gallery--extend) {
+          .product-details {
+            grid-column: 2 / 3;
+          }
+        }
+      }
+    }
+
+    /* Handle full width section */
+    .section--full-width {
+      .product-information__grid:not(.product-information--media-none) {
+        &.product-information--media-left,
+        &.product-information--media-right {
+          grid-column: 1 / -1;
+        }
+
+        &.product-information--media-left .product-details {
+          padding-inline-end: var(--padding-lg);
+        }
+
+        &.product-information--media-right .product-details {
+          padding-inline-start: var(--padding-lg);
+        }
+
+        &.product-information__grid--half.product-information--media-left {
+          .product-information__media {
+            grid-column: 1 / 3;
+          }
+
+          .product-details {
+            grid-column: 3 / -1;
+          }
+        }
+
+        &.product-information__grid--half.product-information--media-right {
+          .product-information__media {
+            grid-column: 3 / -1;
+          }
+
+          .product-details {
             grid-column: 1 / 3;
           }
         }
-
-        /* Media on the right side */
-        &.product-information--media-right {
-          grid-template-columns: min(50vw, var(--sidebar-width)) 1fr;
-
-          .product-information__media {
-            padding-left: calc(var(--gap, 0) / 2);
-            order: 1;
-          }
-
-          .product-details {
-            padding-right: calc(var(--gap, 0) / 2);
-            order: 0;
-          }
-
-          &:has(.media-gallery--extend) {
-            grid-column: 2 / -1;
-          }
-        }
-
-        /* Equal width columns */
-        &.product-information__grid--half,
-        &.product-information__grid--half:has(.media-gallery--extend) {
-          grid-column: 1 / -1;
-          grid-template-columns:
-            var(--full-page-grid-margin) calc(var(--full-page-grid-central-column-width) / 2) calc(
-              var(--full-page-grid-central-column-width) / 2
-            )
-            var(--full-page-grid-margin);
-
-          &.product-information--media-left {
-            .product-information__media {
-              grid-column: 2 / 3;
-
-              &:has(.media-gallery--extend) {
-                grid-column: 1 / 3;
-              }
-            }
-
-            .product-details {
-              grid-column: 3 / 4;
-            }
-          }
-
-          &.product-information--media-right {
-            .product-information__media {
-              grid-column: 3 / 4;
-
-              &:has(.media-gallery--extend) {
-                grid-column: 3 / -1;
-              }
-            }
-
-            .product-details {
-              grid-column: 2 / 3;
-            }
-          }
-        }
-      }
-
-      /* Handle full width section */
-      .section--full-width {
-        .product-information__grid:not(.product-information--media-none) {
-          &.product-information--media-left,
-          &.product-information--media-right {
-            grid-column: 1 / -1;
-          }
-
-          &.product-information--media-left .product-details {
-            padding-inline-end: var(--padding-lg);
-          }
-
-          &.product-information--media-right .product-details {
-            padding-inline-start: var(--padding-lg);
-          }
-
-          &.product-information__grid--half.product-information--media-left {
-            .product-information__media {
-              grid-column: 1 / 3;
-            }
-
-            .product-details {
-              grid-column: 3 / -1;
-            }
-          }
-
-          &.product-information__grid--half.product-information--media-right {
-            .product-information__media {
-              grid-column: 3 / -1;
-            }
-
-            .product-details {
-              grid-column: 1 / 3;
-            }
-          }
-        }
       }
     }
+  }
 
-    /* Wider sidebar for large screens */
-    @media screen and (min-width: 1200px) {
-      .product-information__grid:not(
-          .product-information__grid--half,
-          .product-information--media-none
-        ).product-information--media-left {
-        grid-template-columns: 2fr 1fr;
-      }
-
-      .product-information__grid:not(
-          .product-information__grid--half,
-          .product-information--media-none
-        ).product-information--media-right {
-        grid-template-columns: 1fr 2fr;
-      }
+  /* Wider sidebar for large screens */
+  @media screen and (min-width: 1200px) {
+    .product-information__grid:not(
+        .product-information__grid--half,
+        .product-information--media-none
+      ).product-information--media-left {
+      grid-template-columns: 2fr 1fr;
     }
 
+    .product-information__grid:not(
+        .product-information__grid--half,
+        .product-information--media-none
+      ).product-information--media-right {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  .product-information__grid--limit-details .product-details > .group-block {
+    --details-max-width: var(--sidebar-width);
+    max-width: var(--details-max-width);
+  }
+
+  @media screen and (min-width: 1600px) {
     .product-information__grid--limit-details .product-details > .group-block {
-      --details-max-width: var(--sidebar-width);
-      max-width: var(--details-max-width);
+      --details-max-width: 32rem;
     }
+  }
 
-    @media screen and (min-width: 1600px) {
-      .product-information__grid--limit-details .product-details > .group-block {
-        --details-max-width: 32rem;
-      }
-    }
-
-    /* If the header is sticky, make product details content stick underneath the header */
-    body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
-      --sticky-header-offset: var(--header-height);
-    }
-  {% endstylesheet %}
-{% endif %}
+  /* If the header is sticky, make product details content stick underneath the header */
+  body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
+    --sticky-header-offset: var(--header-height);
+  }
+{% endstylesheet %}
