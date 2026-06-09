@@ -643,6 +643,190 @@
         "padding-block-end": 0
       }
     },
+    "pdp_2_sections_H4af47": {
+      "type": "pdp-2-sections",
+      "blocks": {
+        "feature_RqjL8x": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/access_and_expandability.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
+        "feature_BRqRqj": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/internal_and_external_organization.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
+        "feature_dwLNjq": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/internal_and_external_organization.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
+        "feature_ngKqib": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/access_and_expandability.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
+        "feature_qb6c9w": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/bags-travel-backpack45L-black-dsc0117842629167165o43526802842o.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
+        "feature_9Ga7nW": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/bags-travel-backpack45L-black-MoS-PD_Final_Selects_High_Res_26_1.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        },
+        "feature_JmAC3Q": {
+          "type": "feature",
+          "settings": {
+            "image": "shopify://shop_images/bags-travel-backpack45L-black-MoS-PD_Final_Selects_High_Res_26_1.webp",
+            "title": "Feature Title",
+            "description": "Add feature description here.",
+            "button_link": "",
+            "button_text": "Learn More",
+            "card_bg": "#ffffff",
+            "card_hover_bg": "#f5f5f5",
+            "title_color": "#111111",
+            "description_color": "#666666",
+            "button_bg": "#111111",
+            "button_text_color": "#ffffff",
+            "image_width": 120,
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "desc_size_desktop": 16,
+            "desc_size_mobile": 14,
+            "content_alignment": "left"
+          }
+        }
+      },
+      "block_order": [
+        "feature_RqjL8x",
+        "feature_BRqRqj",
+        "feature_dwLNjq",
+        "feature_ngKqib",
+        "feature_qb6c9w",
+        "feature_9Ga7nW",
+        "feature_JmAC3Q"
+      ],
+      "name": "Feature Showcase",
+      "settings": {
+        "layout_style": "feature",
+        "heading": "Design Features",
+        "font_family": "sans_serif_n4",
+        "section_bg": "#ffffff",
+        "heading_color": "#111111",
+        "heading_size_desktop": 36,
+        "heading_size_mobile": 24,
+        "section_padding_top": 80,
+        "section_padding_bottom": 80,
+        "card_gap": 24,
+        "enable_slider": true,
+        "show_arrows": true,
+        "show_dots": true
+      }
+    },
     "product_recommendations_UeDczP": {
       "type": "product-recommendations",
       "blocks": {
@@ -976,190 +1160,6 @@
         "padding-block-end": 0
       }
     },
-    "pdp_2_sections_H4af47": {
-      "type": "pdp-2-sections",
-      "blocks": {
-        "feature_RqjL8x": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/access_and_expandability.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        },
-        "feature_BRqRqj": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/internal_and_external_organization.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        },
-        "feature_dwLNjq": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/internal_and_external_organization.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        },
-        "feature_ngKqib": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/access_and_expandability.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        },
-        "feature_qb6c9w": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/bags-travel-backpack45L-black-dsc0117842629167165o43526802842o.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        },
-        "feature_9Ga7nW": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/bags-travel-backpack45L-black-MoS-PD_Final_Selects_High_Res_26_1.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        },
-        "feature_JmAC3Q": {
-          "type": "feature",
-          "settings": {
-            "image": "shopify://shop_images/bags-travel-backpack45L-black-MoS-PD_Final_Selects_High_Res_26_1.webp",
-            "title": "Feature Title",
-            "description": "Add feature description here.",
-            "button_link": "",
-            "button_text": "Learn More",
-            "card_bg": "#ffffff",
-            "card_hover_bg": "#f5f5f5",
-            "title_color": "#111111",
-            "description_color": "#666666",
-            "button_bg": "#111111",
-            "button_text_color": "#ffffff",
-            "image_width": 120,
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "desc_size_desktop": 16,
-            "desc_size_mobile": 14,
-            "content_alignment": "left"
-          }
-        }
-      },
-      "block_order": [
-        "feature_RqjL8x",
-        "feature_BRqRqj",
-        "feature_dwLNjq",
-        "feature_ngKqib",
-        "feature_qb6c9w",
-        "feature_9Ga7nW",
-        "feature_JmAC3Q"
-      ],
-      "name": "Feature Showcase",
-      "settings": {
-        "layout_style": "feature",
-        "heading": "Design Features",
-        "font_family": "sans_serif_n4",
-        "section_bg": "#ffffff",
-        "heading_color": "#111111",
-        "heading_size_desktop": 36,
-        "heading_size_mobile": 24,
-        "section_padding_top": 80,
-        "section_padding_bottom": 80,
-        "card_gap": 24,
-        "enable_slider": true,
-        "show_arrows": true,
-        "show_dots": true
-      }
-    },
     "feature_gift_pdp_38caQd": {
       "type": "feature-gift-pdp",
       "blocks": {
@@ -1328,10 +1328,10 @@
   },
   "order": [
     "product-information",
-    "product_recommendations_UeDczP",
-    "collection_list_RGddHj",
     "pdp_2_sections_H4af47",
     "feature_gift_pdp_38caQd",
+    "product_recommendations_UeDczP",
+    "collection_list_RGddHj",
     "custom_bottom_bar_ABkAHw"
   ]
 }
