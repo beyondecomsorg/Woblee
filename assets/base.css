@@ -2104,6 +2104,7 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
 
   &:has(:checked):not(.variant-option__button-label--has-swatch, :has([data-option-available='false']))::before {
     border-color: var(--color-selected-variant-border);
+    background-color: #0c4168;
   }
 
   /* setting left/right accounts for variant buttons of different widths */
