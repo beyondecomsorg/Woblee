@@ -640,7 +640,7 @@
         "scrollbar_track": "#eaeaea",
         "scrollbar_thumb": "#0c4168",
         "padding_top": 60,
-        "padding_bottom": 80,
+        "padding_bottom": 60,
         "padding_top_mobile": 40,
         "padding_bottom_mobile": 40
       }
@@ -885,7 +885,7 @@
         "products_to_show": 24,
         "show_view_all": true,
         "button_label": "SHOP ALL",
-        "section_padding_top": 80,
+        "section_padding_top": 60,
         "section_padding_bottom": 40
       }
     },
