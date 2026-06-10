@@ -3002,6 +3002,7 @@ label:has(input[type='checkbox']:disabled) {
 /* Override for swatch labels to maintain block display */
 .variant-option__button-label--has-swatch:has(input[type='radio']) {
   display: block;
+  border-radius: 0;
 }
 
 /* Add to cart button */
