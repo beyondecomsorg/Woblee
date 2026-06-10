@@ -28,7 +28,11 @@
     </div>
     {% content_for 'blocks' %}
 
-        
+    
+  {% endcapture %}
+
+  {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
+      
 
 {% if product.description != blank %}
   <details>
@@ -56,9 +60,6 @@ Do not dry clean</div>
 
 {% endif %}
 
-  {% endcapture %}
-
-  {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
 </div>
 
 {% stylesheet %}
