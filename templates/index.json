@@ -1134,8 +1134,8 @@
       "settings": {
         "heading": "About us",
         "section_bg": "#ffffff",
-        "section_padding_top": 20,
-        "section_padding_bottom": 30,
+        "section_padding_top": 40,
+        "section_padding_bottom": 80,
         "heading_color": "#0c4168",
         "heading_size": 42,
         "tab_color": "#777777",
