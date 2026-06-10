@@ -2168,6 +2168,8 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   }
 }
 
+
+
 .variant-option__button-label__pill {
   background: var(--color-selected-variant-background);
   position: absolute;
