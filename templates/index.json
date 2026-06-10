@@ -173,9 +173,9 @@
             "card_bg_override": "",
             "heading_color_override": "",
             "accent_color_override": "",
-            "button_1_label": "Shop Now",
+            "button_1_label": "Men",
             "button_1_url": "",
-            "button_2_label": "",
+            "button_2_label": "Women",
             "button_2_url": ""
           }
         },
@@ -187,9 +187,9 @@
             "card_bg_override": "",
             "heading_color_override": "",
             "accent_color_override": "",
-            "button_1_label": "Shop Now",
+            "button_1_label": "Men",
             "button_1_url": "",
-            "button_2_label": "",
+            "button_2_label": "Women",
             "button_2_url": ""
           }
         }
