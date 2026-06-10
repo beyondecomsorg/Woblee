@@ -285,7 +285,7 @@
             "image_hover": "shopify://shop_images/Regular-Blue.png",
             "label": "Regular",
             "link": "",
-            "circle_bg": "#f0ece4"
+            "circle_bg": "#ffffff"
           }
         },
         "category_6dU3Bg": {
@@ -295,7 +295,7 @@
             "image_hover": "shopify://shop_images/Boxy-Blue.png",
             "label": "Boxy",
             "link": "",
-            "circle_bg": "#f0ece4"
+            "circle_bg": "#ffffff"
           }
         },
         "category_LP6wDc": {
@@ -305,7 +305,7 @@
             "image_hover": "shopify://shop_images/Oversized-Blue.png",
             "label": "Oversized",
             "link": "",
-            "circle_bg": "#f0ece4"
+            "circle_bg": "#ffffff"
           }
         },
         "category_Fgx9N4": {
@@ -315,7 +315,7 @@
             "image_hover": "shopify://shop_images/Relaxed-Blue.png",
             "label": "Relaxed",
             "link": "",
-            "circle_bg": "#f0ece4"
+            "circle_bg": "#ffffff"
           }
         }
       },
