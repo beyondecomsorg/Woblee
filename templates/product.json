@@ -376,7 +376,7 @@
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
                   "settings": {
-                    "heading": "DESIGN DETAILS",
+                    "heading": "WASH & CARE",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -385,7 +385,7 @@
                     "text_UbbHiR": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The supplier from which the garment is purchased.</p><h4>Denim Authority S.A</h4><p>Ras Jebel<br/>Tunisia<br/>Employees: 1000-2000<br/></p>",
+                        "text": "<ul><li>Machine wash cold, inside out</li><li>Wash with similar colours</li><li>Do not bleach</li><li>Tumble dry low or line dry</li><li>Cool iron inside out</li><li>Do not iron directly on print or embroidery</li><li>Do not dry clean</li></ul>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
