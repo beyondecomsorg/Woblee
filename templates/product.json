@@ -296,7 +296,7 @@
                 "accordion_row_TbgNUF": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Product Description",
+                    "heading": "PRODUCT OVERVIEW",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -305,7 +305,7 @@
                     "text_n6TMzy": {
                       "type": "text",
                       "settings": {
-                        "text": "{{ closest.product.description }}",
+                        "text": "<p>The <strong>STRIVE TO CONQUER GRAPHIC TEE</strong> is designed for individuals who embrace ambition, resilience, and the pursuit of excellence. Featuring elevated print and embroidery detailing, this statement piece blends contemporary design with everyday comfort. Created for those who lead from the front and build their own legacy, it delivers a premium look without compromising on wearability.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
