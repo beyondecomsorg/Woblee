@@ -409,78 +409,171 @@
 </style>
 
 <script>
-  (function () {
-    var sectionId = {{ section.id | json }};
-    var track = document.getElementById('fcs-track-' + sectionId);
-    var section = document.getElementById('fcs-' + sectionId);
-    if (!track || !section) return;
+(function () {
+  var sectionId = {{ section.id | json }};
+  var track = document.getElementById('fcs-track-' + sectionId);
+  var section = document.getElementById('fcs-' + sectionId);
 
-    var prevBtn = section.querySelector('.fcs-arrow--prev');
-    var nextBtn = section.querySelector('.fcs-arrow--next');
+  if (!track || !section) return;
 
-    var currentIndex = 0;
+  var prevBtn = section.querySelector('.fcs-arrow--prev');
+  var nextBtn = section.querySelector('.fcs-arrow--next');
+  var container = track.parentElement;
 
-    function getVisibleCount() {
-      var container = track.parentElement;
-      var containerW = container.offsetWidth;
-      var cardW = track.children[0] ? track.children[0].offsetWidth : 240;
-      var gap = parseInt(getComputedStyle(track).gap) || 16;
-      return Math.floor((containerW + gap) / (cardW + gap));
-    }
+  var currentIndex = 0;
 
-    function getTotalCards() {
-      return track.children.length;
-    }
+  function getVisibleCount() {
+    var containerW = container.offsetWidth;
+    var cardW = track.children[0] ? track.children[0].offsetWidth : 240;
+    var gap = parseInt(getComputedStyle(track).gap) || 16;
 
-    function getCardStep() {
-      var card = track.children[0];
-      if (!card) return 256;
-      var gap = parseInt(getComputedStyle(track).gap) || 16;
-      return card.offsetWidth + gap;
-    }
+    return Math.floor((containerW + gap) / (cardW + gap));
+  }
 
-    function clampIndex(idx) {
-      var visible = getVisibleCount();
-      var total = getTotalCards();
-      var max = Math.max(0, total - visible);
-      return Math.min(Math.max(idx, 0), max);
-    }
+  function getTotalCards() {
+    return track.children.length;
+  }
 
-    function updateSlider() {
-      currentIndex = clampIndex(currentIndex);
-      var step = getCardStep();
-      track.style.transform = 'translateX(-' + (currentIndex * step) + 'px)';
+  function getCardStep() {
+    var card = track.children[0];
 
-      var visible = getVisibleCount();
-      var total = getTotalCards();
+    if (!card) return 256;
 
-      if (prevBtn) prevBtn.classList.toggle('fcs-arrow--hidden', currentIndex === 0);
-      if (nextBtn) nextBtn.classList.toggle('fcs-arrow--hidden', currentIndex >= total - visible);
-    }
+    var gap = parseInt(getComputedStyle(track).gap) || 16;
+
+    return card.offsetWidth + gap;
+  }
+
+  function clampIndex(idx) {
+    var visible = getVisibleCount();
+    var total = getTotalCards();
+    var max = Math.max(0, total - visible);
+
+    return Math.min(Math.max(idx, 0), max);
+  }
+
+  function updateSlider() {
+    currentIndex = clampIndex(currentIndex);
+
+    var step = getCardStep();
+
+    track.style.transform =
+      'translateX(-' + currentIndex * step + 'px)';
+
+    var visible = getVisibleCount();
+    var total = getTotalCards();
 
     if (prevBtn) {
-      prevBtn.addEventListener('click', function () {
-        currentIndex -= 1;
-        updateSlider();
-      });
+      prevBtn.classList.toggle(
+        'fcs-arrow--hidden',
+        currentIndex === 0
+      );
     }
 
     if (nextBtn) {
-      nextBtn.addEventListener('click', function () {
-        currentIndex += 1;
-        updateSlider();
-      });
+      nextBtn.classList.toggle(
+        'fcs-arrow--hidden',
+        currentIndex >= total - visible
+      );
     }
+  }
 
-    // Init
-    updateSlider();
-    window.addEventListener('resize', function () {
-      currentIndex = 0;
+  // Arrow Navigation
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      currentIndex--;
       updateSlider();
     });
-  })();
-</script>
+  }
 
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      currentIndex++;
+      updateSlider();
+    });
+  }
+
+  // ======================
+  // Mouse Drag Support
+  // ======================
+
+  let isDragging = false;
+  let startX = 0;
+  let dragStartIndex = 0;
+
+  container.addEventListener('mousedown', function (e) {
+    isDragging = true;
+    startX = e.pageX;
+    dragStartIndex = currentIndex;
+
+    container.style.cursor = 'grabbing';
+  });
+
+  document.addEventListener('mouseup', function () {
+    isDragging = false;
+    container.style.cursor = 'grab';
+  });
+
+  document.addEventListener('mousemove', function (e) {
+    if (!isDragging) return;
+
+    const diff = e.pageX - startX;
+    const step = getCardStep();
+
+    if (Math.abs(diff) > step / 3) {
+      if (diff > 0) {
+        currentIndex = dragStartIndex - 1;
+      } else {
+        currentIndex = dragStartIndex + 1;
+      }
+
+      updateSlider();
+      isDragging = false;
+    }
+  });
+
+  // ======================
+  // Touch Swipe Support
+  // ======================
+
+  let touchStartX = 0;
+
+  container.addEventListener(
+    'touchstart',
+    function (e) {
+      touchStartX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  container.addEventListener(
+    'touchend',
+    function (e) {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          currentIndex++;
+        } else {
+          currentIndex--;
+        }
+
+        updateSlider();
+      }
+    },
+    { passive: true }
+  );
+
+  // Init
+  updateSlider();
+
+  window.addEventListener('resize', function () {
+    currentIndex = clampIndex(currentIndex);
+    updateSlider();
+  });
+})();
+</script>
 {% schema %}
 {
   "name": "Collection Slider",
