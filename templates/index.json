@@ -855,13 +855,13 @@
         "caption_size": 13,
         "explore_size": 10,
         "background_color": "#ffffff",
-        "stats_color": "#2b2b2b",
+        "stats_color": "#ffffff",
         "explore_bg": "#ffffff",
         "explore_text_color": "#0c4168",
         "explore_hover_bg": "#0c4168",
         "explore_hover_text": "#ffffff",
-        "body_color": "#3d3d3d",
-        "cta_color": "#1a1a1a",
+        "body_color": "#ffffff",
+        "cta_color": "#ffffff",
         "caption_color": "#ffffff",
         "explore_color": "#ffffff"
       }
