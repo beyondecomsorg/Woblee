@@ -543,9 +543,9 @@
         "arrow_color": "#ffffff",
         "arrow_size": 50,
         "padding_top": 52,
-        "padding_bottom": 52,
+        "padding_bottom": 60,
         "padding_top_mobile": 30,
-        "padding_bottom_mobile": 40
+        "padding_bottom_mobile": 30
       }
     },
     "collection_banner_kBPTxj": {
