@@ -72,6 +72,7 @@
     z-index: var(--layer-raised);
     overflow: visible;
     transform-origin: center;
+    border: none;
   }
 
   .quick-add-modal__close:active {
@@ -688,6 +689,10 @@
     .quick-add-modal__content .product-details .text-block:has(h2) *,
     .quick-add-modal__content .product-details .text-block:has(h3) * {
       display: revert !important;
+    }
+
+    body.template-collection.modal-open .quick-add-modal__content .product-details .text-block :is(h1, h2, h3) {
+      display: block !important;
     }
   }
 
