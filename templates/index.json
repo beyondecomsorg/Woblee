@@ -1052,7 +1052,7 @@
         "section_bg": "#ffffff",
         "padding_top_desktop": 40,
         "padding_bottom_desktop": 10,
-        "padding_top_mobile": 18,
+        "padding_top_mobile": 10,
         "padding_bottom_mobile": 24,
         "font_family": "sans_serif_n4",
         "heading_size_desktop": 42,
