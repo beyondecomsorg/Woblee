@@ -542,113 +542,10 @@
         "arrow_bg": "rgba(0,0,0,0)",
         "arrow_color": "#ffffff",
         "arrow_size": 50,
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
-      }
-    },
-    "collection_carousel_pro_pAhcyP": {
-      "type": "collection-carousel-pro",
-      "blocks": {
-        "card_hjY9gV": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
-            "title": "",
-            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
-          }
-        },
-        "card_rxyi84": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/black.webp",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_WDQtQc": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/e7g67g30o1cd8t7s68otxfw602tji5g0.avif",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_8ew7Bf": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_d3fLwH": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_tM8P6i": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
-            "title": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "card_hjY9gV",
-        "card_rxyi84",
-        "card_WDQtQc",
-        "card_8ew7Bf",
-        "card_d3fLwH",
-        "card_tM8P6i"
-      ],
-      "disabled": true,
-      "name": "Collection Carousel Pro",
-      "settings": {
-        "small_heading": "MORE TO",
-        "main_heading": "Bestsellers",
-        "description": "Discover our curated edits and seasonal collections",
-        "section_font": "sans_serif_n4",
-        "background_color": "#ffffff",
-        "small_heading_color": "#21f010",
-        "main_heading_color": "#0c4168",
-        "description_color": "#4f5d6b",
-        "small_heading_size": 18,
-        "small_heading_weight": 700,
-        "main_heading_size": 42,
-        "main_heading_weight": 700,
-        "description_size": 15,
-        "description_weight": 400,
-        "small_heading_size_mobile": 14,
-        "main_heading_size_mobile": 33,
-        "description_size_mobile": 14,
-        "content_width": 30,
-        "card_gap": 24,
-        "card_width_desktop": 460,
-        "card_height_desktop": 460,
-        "card_width_mobile": 280,
-        "card_height_mobile": 380,
-        "card_radius": 0,
-        "overlay_color": "#0c4168",
-        "overlay_opacity": 0,
-        "card_title_color": "#ffffff",
-        "card_title_size": 28,
-        "card_title_weight": 700,
-        "arrow_bg": "rgba(0,0,0,0)",
-        "arrow_color": "#ffffff",
-        "arrow_size": 50,
-        "scrollbar_track": "#eaeaea",
-        "scrollbar_thumb": "#0c4168",
-        "padding_top": 60,
+        "padding_top": 48,
         "padding_bottom": 60,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30
       }
     },
     "collection_banner_kBPTxj": {
@@ -1116,6 +1013,69 @@
         "padding_bottom": 0
       }
     },
+    "custom_bottom_bar_966ULH": {
+      "type": "custom-bottom-bar",
+      "blocks": {
+        "feature_mTikFx": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Relaxed-Blue.png",
+            "title": "OEKO-TEX® Certified",
+            "text": "100% safe, chemical-free & tested fabrics."
+          }
+        },
+        "feature_L3LwBp": {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainably Made",
+            "text": "Certified to the Global Organic Textile Standard."
+          }
+        },
+        "feature_XNFat3": {
+          "type": "feature",
+          "settings": {
+            "title": "Trusted Quality",
+            "text": "Rigorous tested for comfort & durability."
+          }
+        }
+      },
+      "block_order": [
+        "feature_mTikFx",
+        "feature_L3LwBp",
+        "feature_XNFat3"
+      ],
+      "name": "Trust scroll strip",
+      "settings": {
+        "heading": "Built to earn customer trust",
+        "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
+        "scroll_speed": 30,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 10,
+        "padding_top_mobile": 6,
+        "padding_bottom_mobile": 24,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 42,
+        "heading_size_mobile": 24,
+        "heading_weight": "700",
+        "text_size_desktop": 13,
+        "text_size_mobile": 12,
+        "text_weight": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#21f010",
+        "fade_color": "#ffffff"
+      }
+    },
     "17800675107a00a753": {
       "type": "_blocks",
       "blocks": {
@@ -1393,67 +1353,107 @@
         "padding-block-end": 48
       }
     },
-    "custom_bottom_bar_966ULH": {
-      "type": "custom-bottom-bar",
+    "collection_carousel_pro_pAhcyP": {
+      "type": "collection-carousel-pro",
       "blocks": {
-        "feature_mTikFx": {
-          "type": "feature",
+        "card_hjY9gV": {
+          "type": "card",
           "settings": {
-            "icon": "shopify://shop_images/Relaxed-Blue.png",
-            "title": "OEKO-TEX® Certified",
-            "text": "100% safe, chemical-free & tested fabrics."
+            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "title": "",
+            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
           }
         },
-        "feature_L3LwBp": {
-          "type": "feature",
+        "card_rxyi84": {
+          "type": "card",
           "settings": {
-            "title": "Sustainably Made",
-            "text": "Certified to the Global Organic Textile Standard."
+            "image": "shopify://shop_images/black.webp",
+            "title": "",
+            "link": ""
           }
         },
-        "feature_XNFat3": {
-          "type": "feature",
+        "card_WDQtQc": {
+          "type": "card",
           "settings": {
-            "title": "Trusted Quality",
-            "text": "Rigorous tested for comfort & durability."
+            "image": "shopify://shop_images/e7g67g30o1cd8t7s68otxfw602tji5g0.avif",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_8ew7Bf": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_d3fLwH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_tM8P6i": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "title": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "feature_mTikFx",
-        "feature_L3LwBp",
-        "feature_XNFat3"
+        "card_hjY9gV",
+        "card_rxyi84",
+        "card_WDQtQc",
+        "card_8ew7Bf",
+        "card_d3fLwH",
+        "card_tM8P6i"
       ],
-      "name": "Trust scroll strip",
+      "disabled": true,
+      "name": "Collection Carousel Pro",
       "settings": {
-        "heading": "Built to earn customer trust",
-        "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
-        "scroll_speed": 30,
-        "section_bg": "#ffffff",
-        "padding_top_desktop": 60,
-        "padding_bottom_desktop": 10,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 24,
-        "font_family": "sans_serif_n4",
-        "heading_size_desktop": 42,
-        "heading_size_mobile": 24,
-        "heading_weight": "700",
-        "text_size_desktop": 13,
-        "text_size_mobile": 12,
-        "text_weight": "500",
-        "heading_color": "#0c4168",
-        "subheading_color": "#666666",
-        "card_bg": "#ffffff",
-        "card_border": "#d9d9d9",
-        "title_color": "#0c4168",
-        "text_color": "#666666",
-        "icon_bg": "#f5f5f5",
-        "card_hover_bg": "#0c4168",
-        "card_hover_border": "#0c4168",
-        "title_hover_color": "#ffffff",
-        "text_hover_color": "#ffffff",
-        "icon_hover_bg": "#21f010",
-        "fade_color": "#ffffff"
+        "small_heading": "MORE TO",
+        "main_heading": "Bestsellers",
+        "description": "Discover our curated edits and seasonal collections",
+        "section_font": "sans_serif_n4",
+        "background_color": "#ffffff",
+        "small_heading_color": "#21f010",
+        "main_heading_color": "#0c4168",
+        "description_color": "#4f5d6b",
+        "small_heading_size": 18,
+        "small_heading_weight": 700,
+        "main_heading_size": 42,
+        "main_heading_weight": 700,
+        "description_size": 15,
+        "description_weight": 400,
+        "small_heading_size_mobile": 14,
+        "main_heading_size_mobile": 33,
+        "description_size_mobile": 14,
+        "content_width": 30,
+        "card_gap": 24,
+        "card_width_desktop": 460,
+        "card_height_desktop": 460,
+        "card_width_mobile": 280,
+        "card_height_mobile": 380,
+        "card_radius": 0,
+        "overlay_color": "#0c4168",
+        "overlay_opacity": 0,
+        "card_title_color": "#ffffff",
+        "card_title_size": 28,
+        "card_title_weight": 700,
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_color": "#ffffff",
+        "arrow_size": 50,
+        "scrollbar_track": "#eaeaea",
+        "scrollbar_thumb": "#0c4168",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     }
   },
