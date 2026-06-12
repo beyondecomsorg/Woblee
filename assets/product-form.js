@@ -287,8 +287,14 @@ class ProductFormComponent extends Component {
       const intendedVariantId = this.#getIntendedVariantId();
       const quantity = this.#getQuantity();
 
+      console.log('[Quick View Debug] Add to Cart clicked while variant change is in progress.');
+      console.log('[Quick View Debug] Queuing Intended Variant ID:', intendedVariantId);
+
       if (intendedVariantId) {
-        this.#addToCartQueue.push({ variantId: intendedVariantId, quantity });
+        this.refs.variantId.value = intendedVariantId;
+        this.#variantChangeInProgress = false;
+        this.#processAddToCart(intendedVariantId, quantity, event);
+        return;
       }
 
       this.refs.addToCartButtonContainer?.animateAddToCart?.();
@@ -300,7 +306,68 @@ class ProductFormComponent extends Component {
 
   /** @returns {string | undefined} */
   #getIntendedVariantId() {
-    return new URL(window.location.href).searchParams.get('variant') || this.refs.variantId?.value || undefined;
+    return this.#getSelectedVariantIdFromPicker() || this.refs.variantId?.value || new URL(window.location.href).searchParams.get('variant') || undefined;
+  }
+
+  /** @returns {HTMLElement | null} */
+  #getRelatedVariantPicker() {
+    const productId = this.dataset.productId;
+    const scopedContainer = this.closest('dialog, product-card, featured-product-information, .shopify-section');
+
+    const candidateSelectors = ['variant-picker', 'swatches-variant-picker-component'];
+    const candidatePickers = scopedContainer
+      ? scopedContainer.querySelectorAll(candidateSelectors.join(', '))
+      : document.querySelectorAll(candidateSelectors.join(', '));
+
+    for (const picker of candidatePickers) {
+      if (!(picker instanceof HTMLElement)) continue;
+      if (!productId || picker.dataset.productId === productId) return picker;
+    }
+
+    if (!productId) return null;
+
+    return /** @type {HTMLElement | null} */ (
+      document.querySelector(`variant-picker[data-product-id="${productId}"], swatches-variant-picker-component[data-product-id="${productId}"]`)
+    );
+  }
+
+  /** @returns {string | undefined} */
+  #getSelectedVariantIdFromPicker() {
+    const picker = this.#getRelatedVariantPicker();
+    if (!picker) return undefined;
+
+    const selectedOptions = /** @type {(HTMLInputElement | HTMLOptionElement)[]} */ (
+      Array.from(picker.querySelectorAll('select option[selected], fieldset input:checked'))
+    );
+
+    const selectedVariantOption = selectedOptions[selectedOptions.length - 1];
+    const selectedOptionLabels = selectedOptions.map((option) => option.value);
+    const selectedOptionValueIds = selectedOptions.map((option) => option.dataset.optionValueId || '');
+
+    console.log('[Quick View Debug] Selected variant option values:', selectedOptionLabels);
+    console.log('[Quick View Debug] Selected variant option value IDs:', selectedOptionValueIds);
+
+    const variantsJson = picker.querySelector('script[data-product-variants]')?.textContent;
+    if (variantsJson) {
+      try {
+        const variants = JSON.parse(variantsJson);
+        const matchedVariant = variants.find((variant) => {
+          if (!Array.isArray(variant?.options)) return false;
+          return variant.options.every((optionValue, index) => optionValue === selectedOptionLabels[index]);
+        });
+
+        if (matchedVariant?.id) {
+          console.log('[Quick View Debug] Resolved selected variant ID from variants JSON:', matchedVariant.id);
+          return String(matchedVariant.id);
+        }
+      } catch (error) {
+        console.warn('[Quick View Debug] Failed to parse variant JSON for immediate Quick View sync.', error);
+      }
+    }
+
+    const fallbackVariantId = selectedVariantOption?.dataset.variantId || undefined;
+    console.log('[Quick View Debug] Fallback selected variant ID from checked input:', fallbackVariantId);
+    return fallbackVariantId;
   }
 
   /** @returns {number} */
@@ -374,13 +441,20 @@ class ProductFormComponent extends Component {
     }
 
     const formData = new FormData(form);
+    const immediateVariantId = overrideVariantId || this.#getSelectedVariantIdFromPicker() || this.refs.variantId?.value;
 
-    if (overrideVariantId) {
-      formData.set('id', overrideVariantId);
+    console.log('[Quick View Debug] Immediate Variant ID being added:', immediateVariantId);
+
+    if (immediateVariantId) {
+      formData.set('id', immediateVariantId);
+      this.refs.variantId.value = immediateVariantId;
     }
+
     if (overrideQuantity !== undefined) {
       formData.set('quantity', overrideQuantity.toString());
     }
+
+    console.log('[Quick View Debug] Final Form Data ID submitted to cart:', formData.get('id'));
 
     const cartItemsComponents = document.querySelectorAll('cart-items-component');
     let cartItemComponentsSectionIds = [];
@@ -466,17 +540,26 @@ class ProductFormComponent extends Component {
             }, SUCCESS_MESSAGE_DISPLAY_DURATION);
           }
 
-          // Fetch the updated cart to get the actual total quantity for this variant
-          const cart = await this.#fetchAndUpdateCartQuantity();
-
           this.dispatchEvent(
-            new CartAddEvent(cart ?? undefined, id.toString(), {
+            new CartAddEvent(undefined, id.toString(), {
               source: 'product-form-component',
               itemCount: Number(formData.get('quantity')) || Number(this.dataset.quantityDefault),
               productId: this.dataset.productId,
               sections: response.sections,
             })
           );
+
+          this.#fetchAndUpdateCartQuantity().then((cart) => {
+            if (!cart) return;
+            this.dispatchEvent(
+              new CartUpdateEvent(cart, id.toString(), {
+                source: 'product-form-cart-sync',
+                itemCount: cart.item_count,
+                productId: this.dataset.productId,
+                sections: response.sections,
+              })
+            );
+          });
         }
       })
       .catch((error) => {
@@ -571,17 +654,27 @@ class ProductFormComponent extends Component {
           setTimeout(() => this.#clearLiveRegionText(), SUCCESS_MESSAGE_DISPLAY_DURATION);
         }
 
-        const cart = await this.#fetchAndUpdateCartQuantity();
-
         const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
         this.dispatchEvent(
-          new CartAddEvent(cart ?? undefined, this.id, {
+          new CartAddEvent(undefined, this.id, {
             source: 'product-form-component',
             itemCount: totalQuantity,
             productId: this.dataset.productId,
             sections: response.sections,
           })
         );
+
+        this.#fetchAndUpdateCartQuantity().then((cart) => {
+          if (!cart) return;
+          this.dispatchEvent(
+            new CartUpdateEvent(cart, this.id, {
+              source: 'product-form-cart-sync',
+              itemCount: cart.item_count,
+              productId: this.dataset.productId,
+              sections: response.sections,
+            })
+          );
+        });
       })
       .catch((error) => {
         console.error(error);
@@ -772,6 +865,14 @@ class ProductFormComponent extends Component {
 
   /** @param {import('./events').VariantSelectedEvent} _event */
   #onVariantSelected = (_event) => {
+    const selectedVariantId = this.#getSelectedVariantIdFromPicker();
+    console.log('[Quick View Debug] Variant Selected Event Fired');
+    console.log('[Quick View Debug] Selected Variant ID from Picker:', selectedVariantId);
+    
+    if (selectedVariantId) {
+      this.refs.variantId.value = selectedVariantId;
+      console.log('[Quick View Debug] Form hidden input updated to:', this.refs.variantId.value);
+    }
     this.#variantChangeInProgress = true;
   };
 }

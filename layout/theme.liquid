@@ -117,6 +117,11 @@ a.contents.user-select-text p{
     :where(input[type='radio']):checked span{
     color: white !important;
     }
+    @media only screen and (min-width: 768px){
+  .ess-grid-bottom .ess-explore{
+    width: 35%;
+  }
+}
     /* body.template-collection.modal-open .quick-add-modal__content .spacing-style.text-block.text-block--AQkxPSUU3YjdteVVGZ__text_7VVz8U.h2.text-block--align-left h1{
       display: none !important;
     } */
@@ -140,7 +145,37 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
     }
     body.page-width-wide.card-hover-effect-subtle-zoom.page-products.template-collection.modal-open .details__header {
     display: flex !important;
-    justify-content: center !important;
+    }
+    .details-content,
+    .quick-add-modal__content .quick-add-mobile-accordion .details-content>*,
+    .quick-add-modal__content .quick-add-mobile-accordion .text-block.rte, .quick-add-modal__content .quick-add-mobile-accordion .details-content, .quick-add-modal__content .quick-add-mobile-accordion .details-content>*{
+      color: #444;
+    }
+    .template-product summary.details__header{
+      text-transform: uppercase;
+    }
+      .quick-add-modal__content .accordion.accordion--plus.accordion--dividers.pdp-accordion-only{
+   display: none !important;
+    }
+    .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers,
+    body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
+      display: block;
+    }
+    .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers span.svg-wrapper.icon-caret.icon-animated{
+      display: none !important;
+    }
+    @media only screen and (max-width: 767px){
+  body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
+     width: 90%;
+     margin: auto;
+    }
+    }
+    .section-resource-list__content h2{
+      font-family: Helvetica, Arial, sans-serif;
+    }
+  
+    .accordion.accordion--AMzdsdnBObWNwR0wwa__accordion_iWQwkW.accordion--plus.border-style.spacing-style.accordion--dividers{
+      display: none !important;
     }
     span.svg-wrapper.icon-caret.icon-animated{
       display: none:
@@ -269,8 +304,13 @@ text-transform: uppercase;
 .section-resource-list__content{
 
 }
-body.template-collection.modal-open .quick-add-modal__content .product-details *:not(.group-block,.group-block-content,.buy-buttons-block,.buy-buttons-block *,.view-product-title,.view-product-title *,.quick-view__description,.quick-view__description *,variant-picker,variant-picker *,product-price,product-price *,product-inventory,product-inventory *,.view-more-details__wrapper,.view-more-details__wrapper *){
+body.template-collection.modal-open .quick-add-modal__content .quick-view-pdp-accordions .details-content{
   display: block !important;
+}
+body.template-collection.modal-open .quick-add-modal__content .quick-view-pdp-accordions .details-content *,
+body.template-collection.modal-open .quick-add-modal__content .quick-view-pdp-accordions :is(p, span, strong, br, ul, ol, li),
+body.template-collection.modal-open .quick-add-modal__content .quick-view-pdp-accordions .metafield-multi_line_text_field{
+  display: revert !important;
 }
 .quick-add-modal__content .product-details .text-block:is(.h1,.h2,.h3,.h4,.h5,.h6):has(h1) :is(h1,h2,h3,h4,h5,h6){
   margin-left: 1.6rem !important;

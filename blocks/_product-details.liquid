@@ -1,4 +1,86 @@
 
+{%- liquid
+  assign qv_product = closest.product | default: product
+  assign qv_design_details = qv_product.metafields.custom.design_details
+  assign qv_wash_care = qv_product.metafields.custom.wash_care
+
+  assign qv_has_overview = false
+  if qv_product.description != blank
+    assign qv_has_overview = true
+  endif
+
+  assign qv_has_design = false
+  if qv_design_details != blank
+    assign qv_has_design = true
+  endif
+
+  assign qv_has_wash = false
+  if qv_wash_care != blank and qv_wash_care.value != blank
+    assign qv_has_wash = true
+  endif
+-%}
+
+{%- capture accordions_content -%}
+  {%- if qv_has_overview -%}
+    {%- capture qv_overview_children -%}
+      <details class="details" data-testid="accordion-details">
+        <summary class="details__header">
+          Product Overview
+          <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </summary>
+        <div class="details-content">
+          {{ qv_product.description }}
+        </div>
+      </details>
+    {%- endcapture -%}
+    {% render 'accordion-custom-component', children: qv_overview_children, open_by_default_on_desktop: false, open_by_default_on_mobile: false %}
+  {%- endif -%}
+
+  {%- if qv_has_design -%}
+    {%- capture qv_design_children -%}
+      <details class="details" data-testid="accordion-details">
+        <summary class="details__header">
+          Design Details
+          <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </summary>
+        <div class="details-content">
+          {{ qv_design_details | metafield_tag }}
+        </div>
+      </details>
+    {%- endcapture -%}
+    {% render 'accordion-custom-component', children: qv_design_children, open_by_default_on_desktop: false, open_by_default_on_mobile: false %}
+  {%- endif -%}
+
+  {%- if qv_has_wash -%}
+    {%- capture qv_wash_children -%}
+      <details class="details" data-testid="accordion-details">
+        <summary class="details__header">
+          Wash &amp; Care
+          <span class="svg-wrapper icon-caret icon-animated">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+          <span class="svg-wrapper icon-plus">
+            {{- 'icon-plus.svg' | inline_asset_content -}}
+          </span>
+        </summary>
+        <div class="details-content">
+          {{ qv_wash_care.value | escape | newline_to_br }}
+        </div>
+      </details>
+    {%- endcapture -%}
+    {% render 'accordion-custom-component', children: qv_wash_children, open_by_default_on_desktop: false, open_by_default_on_mobile: false %}
+  {%- endif -%}
+{%- endcapture -%}
 
 {%- assign block_settings = block.settings -%}
 <div
@@ -27,37 +109,26 @@
 
 
     </div>
+ 
     {% content_for 'blocks' %}
+       {% comment %} {%- if qv_has_overview or qv_has_design or qv_has_wash -%}
+         <div class="accordion accordion--plus accordion--dividers pdp-accordion-only">
+           {{ accordions_content }}
+         </div>
+       {%- endif -%} {% endcomment %}
   {% endcapture %}
 
   {% render 'group', children: children, settings: block_settings, shopify_attributes: block.shopify_attributes %}
 
+  {%- if qv_has_overview or qv_has_design or qv_has_wash -%}
+    <div class="quick-view-pdp-accordions accordion accordion--plus accordion--dividers" hidden>
+      {{ accordions_content }}
+    </div>
+  {%- endif -%}
+
 
   {% if product.description != blank %}
-    {% comment %} <div class="quick-view-popup-descriptions">
-  <details>
-    <summary>PRODUCT OVERVIEW</summary>
-<div>Crafted with a combination of RAISED PUFF PRINT and KNOTTED CHAIN-STITCH EMBROIDERY, this tee showcases intricate detailing that adds depth, texture, and character to the design. Every element has been carefully considered to create a standout piece that feels unique and elevated.</div>
-  </details>
 
-
-  <details>
-    <summary>DESIGN DETAILS</summary>
-<div>Crafted with a combination of RAISED PUFF PRINT and KNOTTED CHAIN-STITCH EMBROIDERY, this tee showcases intricate detailing that adds depth, texture, and character to the design. Every element has been carefully considered to create a standout piece that feels unique and elevated.</div>
-  </details>
-
-  
-  <details>
-    <summary>WASH & CARE</summary>
-<div>Machine wash cold, inside out
-Wash with similar colours
-Do not bleach
-Tumble dry low or line dry
-Cool iron inside out
-Do not iron directly on print or embroidery
-Do not dry clean</div>
-  </details>
-</div> {% endcomment %}
 {% endif %}
 
 

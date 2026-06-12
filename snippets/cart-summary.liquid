@@ -5,6 +5,10 @@
   @param {string} [section_id] - The section ID for cart discount component.
 {%- enddoc -%}
 
+{%- liquid
+  assign is_cart_drawer = is_cart_drawer | default: false
+-%}
+
 <div class="cart-totals">
   {% # We need to keep this node in place to allow morphing to work properly # %}
   <div class="cart-totals__original-container cart-primary-typography">
@@ -15,7 +19,11 @@
           class="cart-totals__original-value cart-secondary-typography"
           data-testid="cart-subtotal-value"
         >
-          {{- cart.items_subtotal_price | money -}}
+          {% if is_cart_drawer %}
+            {{- cart.items_subtotal_price | money_without_trailing_zeros -}}
+          {% else %}
+            {{- cart.items_subtotal_price | money -}}
+          {% endif %}
         </span>
       </span>
       <ul
@@ -30,7 +38,7 @@
               {{ discount.title | escape }}
             </span>
             <span class="cart-discounts__value cart-secondary-typography"
-              >-{{ discount.total_allocated_amount | money -}}
+              >-{% if is_cart_drawer %}{{ discount.total_allocated_amount | money_without_trailing_zeros }}{% else %}{{ discount.total_allocated_amount | money }}{% endif -%}
             </span>
           </li>
         {%- endfor -%}
@@ -220,7 +228,9 @@
   {% endif %}
 
   {%- liquid
-    if settings.currency_code_enabled_cart_total
+    if is_cart_drawer
+      assign total_price = cart.total_price | money_without_trailing_zeros
+    elsif settings.currency_code_enabled_cart_total
       assign total_price = cart.total_price | money_with_currency
     else
       assign total_price = cart.total_price | money

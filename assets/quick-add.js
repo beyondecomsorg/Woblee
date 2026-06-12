@@ -250,44 +250,80 @@ export class QuickAddComponent extends Component {
 
     const description = this.#cloneDescription(productGrid);
 
-    if (isMobileBreakpoint()) {
-      const productDetails = productGrid.querySelector('.product-details');
-      const productFormComponent = productGrid.querySelector('product-form-component');
-      const variantPicker = productGrid.querySelector('variant-picker');
-      const productPrice = productGrid.querySelector('product-price');
-      const productTitle = document.createElement('a');
-      productTitle.textContent = this.dataset.productTitle || '';
+    morph(modalContent, productGrid);
 
-      // Make product title as a link to the product page
-      productTitle.href = this.productPageUrl;
+    if (isMobileBreakpoint()) {
+      const modalProductDetails = modalContent.querySelector('.product-details');
+      const modalProductFormComponent = modalContent.querySelector('product-form-component');
+      const modalVariantPicker = modalContent.querySelector('variant-picker');
+      const modalProductPrice = modalContent.querySelector('.product-details product-price, .product-header product-price');
+      const quickViewAccordions = /** @type {HTMLElement | null} */ (
+        modalProductDetails?.querySelector('.quick-view-pdp-accordions') || modalContent.querySelector('.quick-view-pdp-accordions')
+      );
+
+      modalContent.querySelector('.product-header')?.remove();
+      modalContent.querySelectorAll('.quick-add-mobile-accordion').forEach((accordionBlock) => accordionBlock.remove());
 
       const productHeader = document.createElement('div');
       productHeader.classList.add('product-header');
 
+      const productTitle = document.createElement('a');
+      productTitle.textContent = this.dataset.productTitle || '';
+      productTitle.href = this.productPageUrl;
       productHeader.appendChild(productTitle);
-      if (productPrice) {
-        productHeader.appendChild(productPrice);
+
+      if (modalProductPrice) {
+        productHeader.appendChild(modalProductPrice);
       }
-      productGrid.appendChild(productHeader);
+
+      modalContent.appendChild(productHeader);
 
       if (description) {
-        this.#insertDescription(productGrid, description);
+        this.#insertDescription(modalContent, description.cloneNode(true));
       }
 
-      if (variantPicker) {
-        productGrid.appendChild(variantPicker);
-      }
-      if (productFormComponent) {
-        productGrid.appendChild(productFormComponent);
+      if (modalVariantPicker) {
+        modalContent.appendChild(modalVariantPicker);
       }
 
-      productDetails?.remove();
+      if (modalProductFormComponent) {
+        modalContent.appendChild(modalProductFormComponent);
+      }
+
+      if (quickViewAccordions) {
+        quickViewAccordions.hidden = false;
+        quickViewAccordions.classList.add('quick-add-mobile-accordion');
+        quickViewAccordions.querySelectorAll('accordion-custom').forEach((accordionCustom) => {
+          accordionCustom.removeAttribute('open-by-default-on-mobile');
+        });
+        quickViewAccordions.querySelectorAll('details').forEach((details) => {
+          details.removeAttribute('open');
+        });
+        const insertAfter = /** @type {HTMLElement | Element} */ (
+          modalProductFormComponent || modalContent.querySelector('.buy-buttons-block') || modalVariantPicker || productHeader
+        );
+        insertAfter.insertAdjacentElement('afterend', quickViewAccordions);
+      }
+
+      modalProductDetails?.remove();
+    } else if (description) {
+      this.#insertDescription(modalContent, description);
     }
 
-    morph(modalContent, productGrid);
-
-    if (!isMobileBreakpoint() && description) {
-      this.#insertDescription(modalContent, description);
+    if (!isMobileBreakpoint()) {
+      const quickViewAccordions = /** @type {HTMLElement | null} */ (modalContent.querySelector('.quick-view-pdp-accordions'));
+      const buyButtons = modalContent.querySelector('.buy-buttons-block');
+      if (quickViewAccordions && buyButtons) {
+        quickViewAccordions.hidden = false;
+        quickViewAccordions.querySelectorAll('accordion-custom').forEach((accordionCustom) => {
+          accordionCustom.removeAttribute('open-by-default-on-mobile');
+          accordionCustom.removeAttribute('open-by-default-on-desktop');
+        });
+        quickViewAccordions.querySelectorAll('details').forEach((details) => {
+          details.removeAttribute('open');
+        });
+        buyButtons.insertAdjacentElement('afterend', quickViewAccordions);
+      }
     }
 
     // Read More button now redirects to product page - no toggle setup needed
@@ -425,12 +461,6 @@ class QuickAddDialog extends DialogComponent {
       formInputs.forEach(input => {
         input.value = selectedVariantId;
       });
-    }
-
-    // Debug log to verify the input updated successfully prior to form submission
-    const updatedInput = this.querySelector('form[action*="/cart/add"] input[name="id"]');
-    if (updatedInput) {
-      console.log('[Quick View Debug] Submitting Variant:', updatedInput.value);
     }
 
     // 2. Update prices

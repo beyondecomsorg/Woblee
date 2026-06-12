@@ -146,7 +146,7 @@
         </h2>
 
         <div class="cart-drawer__items">
-          {% render 'cart-products', force_empty: true %}
+          {% render 'cart-products', force_empty: true, is_cart_drawer: true %}
         </div>
       </div>
     {% endcapture %}
@@ -225,13 +225,13 @@
                 <scroll-hint
                   class="cart-drawer__items"
                 >
-                  {% render 'cart-products' %}
+                  {% render 'cart-products', is_cart_drawer: true %}
                 </scroll-hint>
 
                 <div
                   class="cart-drawer__summary"
                 >
-                  {% render 'cart-summary', section_id: section.id %}
+                  {% render 'cart-summary', section_id: section.id, is_cart_drawer: true %}
                 </div>
               </scroll-hint>
             {%- endif -%}

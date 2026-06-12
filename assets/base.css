@@ -723,7 +723,7 @@ body,
 .paragraph:not(.button),
 .paragraph > *,
 .text-block.paragraph :is(h1, h2, h3, h4, h5, h6) {
-  font-family: Aptos, Arial, Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-style: var(--font-paragraph--style);
   font-weight: var(--font-paragraph--weight);
   font-size: var(--font-paragraph--size);

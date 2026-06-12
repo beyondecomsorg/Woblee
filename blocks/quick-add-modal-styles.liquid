@@ -659,20 +659,14 @@
   .quick-add-modal__content
     .product-details
     *:not(
-      .product-header,
-      .product-header *,
       .group-block,
       .group-block-content,
       .buy-buttons-block,
       .buy-buttons-block *,
       .view-product-title,
       .view-product-title *,
-      .text-block:has(h1),
-      .text-block:has(h1) *,
       .quick-view__description,
       .quick-view__description *,
-      .quick-view-pdp-accordions,
-      .quick-view-pdp-accordions *,
       .accordion,
       .accordion *,
       accordion-custom,
@@ -697,18 +691,12 @@
   .quick-add-modal__content
     .group-block:not(
       :has(
-          .product-header,
-          .product-header *,
           .buy-buttons-block,
           .buy-buttons-block *,
           .view-product-title,
           .view-product-title *,
-          .text-block:has(h1),
-          .text-block:has(h1) *,
           .quick-view__description,
           .quick-view__description *,
-          .quick-view-pdp-accordions,
-          .quick-view-pdp-accordions *,
           .accordion,
           .accordion *,
           accordion-custom,
@@ -808,8 +796,8 @@
     padding-block-end: var(--padding-sm, 12px);
   }
 
-  .quick-add-modal__content .quick-view-pdp-accordions .icon-caret,
-  .quick-add-modal__content .quick-view-pdp-accordions .icon-plus {
+  .quick-add-modal__content .quick-view-pdp-accordions.accordion--caret .icon-plus,
+  .quick-add-modal__content .quick-view-pdp-accordions.accordion--plus .icon-caret {
     display: none;
   }
 
@@ -883,15 +871,10 @@
     display: none;
   }
 
-  .quick-add-modal__content .quick-view-pdp-accordions .text-block.rte,
-  .quick-add-modal__content .quick-view-pdp-accordions .details-content {
+  .quick-add-modal__content .accordion .text-block.rte,
+  .quick-add-modal__content .accordion .details-content,
+  .quick-add-modal__content .accordion .details-content > * {
     display: block !important;
-  }
-
-  .quick-add-modal__content .quick-view-pdp-accordions .details-content *,
-  .quick-add-modal__content .quick-view-pdp-accordions :is(p, span, strong, br, ul, ol, li),
-  .quick-add-modal__content .quick-view-pdp-accordions .metafield-multi_line_text_field {
-    display: revert !important;
   }
 
   @media screen and (max-width: 749px) {
@@ -921,15 +904,10 @@
       pointer-events: auto;
     }
 
-    .quick-add-modal__content .quick-view-pdp-accordions.quick-add-mobile-accordion .text-block.rte,
-    .quick-add-modal__content .quick-view-pdp-accordions.quick-add-mobile-accordion .details-content {
+    .quick-add-modal__content .quick-add-mobile-accordion .text-block.rte,
+    .quick-add-modal__content .quick-add-mobile-accordion .details-content,
+    .quick-add-modal__content .quick-add-mobile-accordion .details-content > * {
       display: block !important;
-    }
-
-    .quick-add-modal__content .quick-view-pdp-accordions.quick-add-mobile-accordion .details-content *,
-    .quick-add-modal__content .quick-view-pdp-accordions.quick-add-mobile-accordion :is(p, span, strong, br, ul, ol, li),
-    .quick-add-modal__content .quick-view-pdp-accordions.quick-add-mobile-accordion .metafield-multi_line_text_field {
-      display: revert !important;
     }
 
     .quick-add-modal__content .quick-add-mobile-accordion {
@@ -949,3 +927,9 @@
     }
   }
 {% endstylesheet %}
+{% schema %}
+{
+  "name": "Quick Add Modal Styles",
+  "settings": []
+}
+{% endschema %}
