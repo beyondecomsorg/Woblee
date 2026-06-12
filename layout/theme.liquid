@@ -165,8 +165,12 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
     .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
       display: none !important;
     }
+
     
     @media only screen and (max-width: 767px){
+          ul.menu-drawer__featured-content-list.menu-drawer__animated-element.list-unstyled{
+      display: none;
+    }
   body:has(#header-group #header-component[data-sticky-state=active]) .product-details.sticky-content--desktop{
      width: 90%;
      margin: auto;
