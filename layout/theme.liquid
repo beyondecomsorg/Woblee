@@ -65,16 +65,19 @@
   margin-top:0;
 }
     .details-content p{
-      text-transform: capitalize !important;
+      text-transform: none !important;
    color: #444 !important;
    
     }
 
-a.contents.user-select-text p,
+
 .price__regular .price, .price-item--sale{
   font-size: 14px !important;
 }
-
+a.contents.user-select-text p{
+ font-size: 15px;
+ font-weight: 700;
+}
 
 .variant-picker .variant-option--buttons label:has(.swatch){
   border-radius: 0 !important;
@@ -220,6 +223,9 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
     .product-grid{
       width: 95%;
     }
+   .section-resource-list__content .spacing-style.text-block h2{
+      font-size: 26px !important;
+    }
     #quick-add-modal-content .price__regular{
       padding-left: 0 !important;
       margin-left: 0;
@@ -259,7 +265,7 @@ body.template-collection.modal-open .quick-add-modal__content .price__regular .p
     }
       :is(main>.shopify-section:first-child .section:not(.disable-section-top-offset).spacing-style,main>.shopify-section:first-child .section:not(.disable-section-top-offset) .spacing-style) :is(.spacing-style,.inherit-spacing){
       width: 100%;
-      padding: 10px;
+      padding: 0px;
   }
 
   }
@@ -355,19 +361,19 @@ p.resource-card__title.paragraph{
 
 .details-content,
 .details-content * {
-  text-transform: capitalize;
+  text-transform: none;
 }
 .details-content p,
 .details-content li {
-  text-transform: capitalize;
+  text-transform: none;
 }
 .details-content p,
 .details-content li,
 .details-content strong {
-  text-transform: capitalize;
+  text-transform: none;
 }
 .details-content {
-  text-transform: capitalize;
+  text-transform: none;
 }
 .details-content h1,
 .details-content h2,
@@ -389,12 +395,15 @@ p.resource-card__title.paragraph{
 .details-content li {
   text-transform: capitalize;
 }
+.template-product product-recommendations .price {
+  font-weight: 400;
+}
 .details-content :is(h1, h2, h3, h4, h5, h6, p, li) {
   text-transform: capitalize;
 }
   .template-product .spacing-style.text-block h1{
   font-weight: 700;
-  font-size: 30px;
+  font-size: 36px;
   margin-top: 12px;
   line-height: 40px;
 }

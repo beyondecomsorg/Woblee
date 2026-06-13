@@ -277,7 +277,18 @@
 .wau-section.wau-visible .wau-cta {
   opacity: 1;
   transform: translateY(0);
-padding: 14px !important;
+}
+
+@media only screen and (max-width: 768px){
+.wau-section.wau-visible .wau-cta {
+  padding: 6px !important;
+}
+}
+
+@media only screen and (min-width: 768px){
+  .wau-cta {
+    padding: 14px !important;
+  }
 }
 
 /* Stats */
@@ -412,7 +423,7 @@ padding: 14px !important;
   text-align: center;
   margin-top: 10px;
   font-family: var(--wb-font-body, sans-serif);
-  font-size: var(--wb-caption, 11px);
+  font-size: 9px;
   font-weight: var(--wb-fw-bold, 700);
   letter-spacing: var(--wb-letter-wide, 0.09em);
   text-transform: uppercase;

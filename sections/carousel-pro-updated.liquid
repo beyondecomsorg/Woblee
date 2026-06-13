@@ -25,6 +25,15 @@
         </div>
       {% endif %}
 
+      {% if section.settings.enable_shop_all_button %}
+        <a
+          href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
+          class="collection-carousel-pro__shop-all-btn best-seller-shop-all-btn"
+        >
+          {{ section.settings.shop_all_button_text }}
+        </a>
+      {% endif %}
+
     </div>
 
     <div class="collection-carousel-pro__slider-wrapper">
@@ -131,6 +140,54 @@
   font-weight: {{ section.settings.description_weight }};
   line-height: 1.7;
   max-width: 450px;
+}
+
+.collection-carousel-pro__shop-all-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: {{ section.settings.shop_all_button_width_desktop }}px;
+  max-width: 100%;
+  height: {{ section.settings.shop_all_button_height_desktop }}px;
+  margin-top: {{ section.settings.shop_all_button_margin_top }}px;
+  margin-bottom: {{ section.settings.shop_all_button_margin_bottom }}px;
+  padding: 0 16px;
+  border: {{ section.settings.shop_all_button_border_width }}px solid {{ section.settings.shop_all_button_border_color }};
+  border-radius: {{ section.settings.shop_all_button_border_radius }}px;
+  background: {{ section.settings.shop_all_button_background_color }};
+  color: {{ section.settings.shop_all_button_text_color }};
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: {{ section.settings.shop_all_button_font_size_desktop }}px;
+  font-weight: {{ section.settings.shop_all_button_font_weight }};
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color .3s ease, border-color .3s ease, transform .3s ease, opacity .3s ease;
+}
+
+.collection-carousel-pro__shop-all-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: {{ section.settings.shop_all_button_border_color }};
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .3s ease;
+}
+
+.collection-carousel-pro__shop-all-btn:hover {
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.collection-carousel-pro__shop-all-btn:hover::before {
+  transform: scaleX(1);
 }
 
 .collection-carousel-pro__slider-wrapper {
@@ -248,6 +305,14 @@
     font-size: {{ section.settings.description_size_mobile }}px;
   }
 
+  .collection-carousel-pro__shop-all-btn {
+    width: {{ section.settings.shop_all_button_width_mobile }}px;
+    height: {{ section.settings.shop_all_button_height_mobile }}px;
+    font-size: {{ section.settings.shop_all_button_font_size_mobile }}px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .collection-carousel-pro__eyebrow {
     font-size: {{ section.settings.small_heading_size_mobile }}px;
   }
@@ -360,6 +425,154 @@ document.addEventListener('DOMContentLoaded', function () {
       "id": "description",
       "label": "Description",
       "default": "Discover our curated edits and seasonal collections"
+    },
+    {
+      "type": "header",
+      "content": "Shop All Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shop_all_button",
+      "label": "Enable Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shop_all_button_text",
+      "label": "Button Text",
+      "default": "SHOP ALL"
+    },
+    {
+      "type": "url",
+      "id": "shop_all_button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_width_desktop",
+      "label": "Button Width Desktop",
+      "min": 60,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_height_desktop",
+      "label": "Button Height Desktop",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_width_mobile",
+      "label": "Button Width Mobile",
+      "min": 60,
+      "max": 240,
+      "step": 2,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_height_mobile",
+      "label": "Button Height Mobile",
+      "min": 24,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_font_size_desktop",
+      "label": "Button Font Size Desktop",
+      "min": 8,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_font_size_mobile",
+      "label": "Button Font Size Mobile",
+      "min": 8,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_font_weight",
+      "label": "Button Font Weight",
+      "min": 100,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_border_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_border_width",
+      "label": "Button Border Width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "shop_all_button_text_color",
+      "label": "Button Text Color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "shop_all_button_background_color",
+      "label": "Button Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "shop_all_button_border_color",
+      "label": "Button Border Color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "shop_all_button_margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 0
     },
 
     {

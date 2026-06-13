@@ -43,9 +43,9 @@
         {% endif %}
 
         {% if section.settings.cta_label != blank %}
-          <a href="{{ section.settings.cta_url | default: '#' }}" class="ess-cta">
+        <h2 class="timeline-tabs__title">
             {{ section.settings.cta_label }}
-          </a>
+          </h2>
         {% endif %}
       </div>
     </div>
@@ -126,6 +126,18 @@
   min-height: 520px;
   background: var(--wb-color-blue);
 }
+.ess-left-content h2.timeline-tabs__title{
+ font-weight: 700;
+
+}
+
+@media only screen and (max-width: 900px){
+  .ess-left-content h2.timeline-tabs__title{
+    font-size: 24px;
+  } 
+}
+
+
 
 .ess-left-img,
 .ess-left-placeholder {
@@ -166,8 +178,8 @@
 }
 
 .ess-stats {
-  font-family: var(--wb-font-body);
-  font-size: 15px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
   color: var(--ess-stats-color);
   line-height: var(--wb-line-relaxed);
   font-weight: var(--wb-fw-regular);
@@ -176,8 +188,8 @@
 }
 
 .ess-body {
-  font-family: var(--wb-font-body);
-  font-size: 15px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
   color: var(--ess-body-color);
   line-height: var(--wb-line-body);
   margin-bottom: 28px;
@@ -251,7 +263,7 @@
 
 .ess-caption {
   font-family: var(--wb-font-body);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--ess-caption-color);
   margin: 0;
   line-height: var(--wb-line-body);
@@ -264,7 +276,7 @@
 }
 
 .ess-explore {
-  display: block;
+  display: grid;
   text-align: center;
   align-items: center;
   gap: 10px;
@@ -368,7 +380,7 @@
   font-size: 9px;
   }
   .ess-cta{
-  font-size: 11px;
+  font-size: 24px;
 }
 
   .ess-left {

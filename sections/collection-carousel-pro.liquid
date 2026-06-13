@@ -12,6 +12,9 @@
     --small-heading-color: {{ section.settings.small_heading_color }};
     --main-heading-color: {{ section.settings.main_heading_color }};
     --description-color: {{ section.settings.description_color }};
+    --shop-all-btn-text-color: {{ section.settings.shop_all_button_text_color }};
+    --shop-all-btn-bg-color: {{ section.settings.shop_all_button_background_color }};
+    --shop-all-btn-border-color: {{ section.settings.shop_all_button_border_color }};
     --card-title-color: {{ section.settings.card_title_color }};
     --overlay-color: {{ section.settings.overlay_color }};
     --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
@@ -25,6 +28,17 @@
     --padding-bottom: {{ section.settings.padding_bottom }}px;
     --padding-top-mobile: {{ section.settings.padding_top_mobile }}px;
     --padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
+    --shop-all-btn-width-desktop: {{ section.settings.shop_all_button_width_desktop }}px;
+    --shop-all-btn-height-desktop: {{ section.settings.shop_all_button_height_desktop }}px;
+    --shop-all-btn-width-mobile: {{ section.settings.shop_all_button_width_mobile }}px;
+    --shop-all-btn-height-mobile: {{ section.settings.shop_all_button_height_mobile }}px;
+    --shop-all-btn-font-size-desktop: {{ section.settings.shop_all_button_font_size_desktop }}px;
+    --shop-all-btn-font-size-mobile: {{ section.settings.shop_all_button_font_size_mobile }}px;
+    --shop-all-btn-font-weight: {{ section.settings.shop_all_button_font_weight }};
+    --shop-all-btn-radius: {{ section.settings.shop_all_button_border_radius }}px;
+    --shop-all-btn-border-width: {{ section.settings.shop_all_button_border_width }}px;
+    --shop-all-btn-margin-top: {{ section.settings.shop_all_button_margin_top }}px;
+    --shop-all-btn-margin-bottom: {{ section.settings.shop_all_button_margin_bottom }}px;
   "
 >
 
@@ -39,6 +53,14 @@
       {% endif %}
       {% if section.settings.description != blank %}
         <div class="collection-carousel-pro__description">{{ section.settings.description }}</div>
+      {% endif %}
+      {% if section.settings.enable_shop_all_button %}
+        <a
+          class="collection-carousel-pro__shop-all-btn best-seller-shop-all-btn"
+          href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
+        >
+          {{ section.settings.shop_all_button_text }}
+        </a>
       {% endif %}
     </div>
 
@@ -127,6 +149,36 @@
   font-weight: {{ section.settings.description_weight }};
   line-height: 1.8;
   max-width: 450px;
+}
+
+.collection-carousel-pro__shop-all-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--shop-all-btn-width-desktop);
+  max-width: 100%;
+  height: var(--shop-all-btn-height-desktop);
+  margin-top: var(--shop-all-btn-margin-top);
+  margin-bottom: var(--shop-all-btn-margin-bottom);
+  padding: 0 16px;
+  border: var(--shop-all-btn-border-width) solid var(--shop-all-btn-border-color);
+  border-radius: var(--shop-all-btn-radius);
+  background: var(--shop-all-btn-bg-color);
+  color: var(--shop-all-btn-text-color);
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: var(--shop-all-btn-font-size-desktop);
+  font-weight: var(--shop-all-btn-font-weight);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s ease, opacity .3s ease;
+}
+
+.collection-carousel-pro__shop-all-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .collection-carousel-pro__slider-wrapper {
@@ -236,6 +288,14 @@
     margin: 0 auto;
     max-width: 100%;
     font-size: {{ section.settings.description_size_mobile }}px;
+  }
+
+  .collection-carousel-pro__shop-all-btn {
+    width: var(--shop-all-btn-width-mobile);
+    height: var(--shop-all-btn-height-mobile);
+    font-size: var(--shop-all-btn-font-size-mobile);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .collection-carousel-pro__eyebrow {
@@ -351,6 +411,24 @@ const splide = new Splide(splideElement, {
     { "type": "text", "id": "small_heading", "label": "Small Heading", "default": "MORE TO" },
     { "type": "text", "id": "main_heading", "label": "Main Heading", "default": "PRODUCTS" },
     { "type": "textarea", "id": "description", "label": "Description", "default": "Discover our curated edits and seasonal collections" },
+    { "type": "header", "content": "Shop All Button" },
+    { "type": "checkbox", "id": "enable_shop_all_button", "label": "Enable Button", "default": true },
+    { "type": "text", "id": "shop_all_button_text", "label": "Button Text", "default": "SHOP ALL" },
+    { "type": "url", "id": "shop_all_button_link", "label": "Button Link" },
+    { "type": "range", "id": "shop_all_button_width_desktop", "label": "Button Width Desktop", "min": 60, "max": 200, "step": 2, "unit": "px", "default": 150 },
+    { "type": "range", "id": "shop_all_button_height_desktop", "label": "Button Height Desktop", "min": 24, "max": 100, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "shop_all_button_width_mobile", "label": "Button Width Mobile", "min": 60, "max": 240, "step": 2, "unit": "px", "default": 100 },
+    { "type": "range", "id": "shop_all_button_height_mobile", "label": "Button Height Mobile", "min": 24, "max": 100, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "shop_all_button_font_size_desktop", "label": "Button Font Size Desktop", "min": 8, "max": 40, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "shop_all_button_font_size_mobile", "label": "Button Font Size Mobile", "min": 8, "max": 30, "step": 1, "unit": "px", "default": 10 },
+    { "type": "range", "id": "shop_all_button_font_weight", "label": "Button Font Weight", "min": 100, "max": 900, "step": 100, "default": 600 },
+    { "type": "range", "id": "shop_all_button_border_radius", "label": "Button Border Radius", "min": 0, "max": 40, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "shop_all_button_border_width", "label": "Button Border Width", "min": 0, "max": 10, "step": 1, "unit": "px", "default": 1 },
+    { "type": "color", "id": "shop_all_button_text_color", "label": "Button Text Color", "default": "#0C4168" },
+    { "type": "color", "id": "shop_all_button_background_color", "label": "Button Background Color", "default": "rgba(0,0,0,0)" },
+    { "type": "color", "id": "shop_all_button_border_color", "label": "Button Border Color", "default": "#0C4168" },
+    { "type": "range", "id": "shop_all_button_margin_top", "label": "Top Margin", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 20 },
+    { "type": "range", "id": "shop_all_button_margin_bottom", "label": "Bottom Margin", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
     { "type": "header", "content": "Font Family" },
     { "type": "font_picker", "id": "section_font", "label": "Font Family", "default": "helvetica_n4" },
     { "type": "header", "content": "Colors" },
