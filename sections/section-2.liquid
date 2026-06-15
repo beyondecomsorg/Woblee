@@ -521,6 +521,12 @@ background: var(--wau-accent);
   to { transform: rotate(360deg); }
 }
 
+
+  .shopify-section.wau-section-wrapper{
+    padding-top: {{ section.settings.padding_desktop-top }}px;
+  padding-bottom: {{ section.settings.padding_desktop-bottom }}px;
+  }
+
 /* ══ RESPONSIVE ═══════════════════════ */
 @media (max-width: 900px) {
   .wau-inner {
