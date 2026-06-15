@@ -92,6 +92,8 @@
 <style>
 #wci-{{ section.id }} {
 
+  --wci-padding-top-mobile:    {{ section.settings.padding_top_mobile }}px;
+--wci-padding-bottom-mobile: {{ section.settings.padding_bottom_mobile }}px;
   /* Colors */
   --wci-bg:                  {{ section.settings.background_color }};
   --wci-heading-color:       {{ section.settings.heading_color }};
@@ -362,6 +364,12 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+
+   .wci-section {
+    padding-top: var(--wci-padding-top-mobile);
+    padding-bottom: var(--wci-padding-bottom-mobile);
+  }
+
   .wci-section {
     padding-left: 16px;
     padding-right: 16px;
@@ -992,7 +1000,25 @@
       "max": 120,
       "step": 4,
       "default": 60
-    }
+    },
+{
+  "type": "range",
+  "id": "padding_top_mobile",
+  "label": "Section top padding — mobile (px)",
+  "min": 0,
+  "max": 100,
+  "step": 2,
+  "default": 30
+},
+{
+  "type": "range",
+  "id": "padding_bottom_mobile",
+  "label": "Section bottom padding — mobile (px)",
+  "min": 0,
+  "max": 100,
+  "step": 2,
+  "default": 30
+}
   ],
   "blocks": [
     {
