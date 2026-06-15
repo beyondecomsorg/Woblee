@@ -532,8 +532,8 @@ background: var(--wau-accent);
 
 
   .shopify-section.wau-section-wrapper{
-    padding-top: var(--wau-pt-mobile);
-  padding-bottom: var(--wau-pb-mobile);
+    padding-top: {{ section.settings.padding_top_mobile }};
+  padding-bottom: {{ section.settings.padding_bottom_mobile }};
   }
   {% comment %} .wau-section {
   padding-top: var(--wau-pt-mobile);
@@ -1027,7 +1027,7 @@ background: var(--wau-accent);
     },
     {
   "type": "range",
-  "id": "padding_left",
+  "id": "padding_desktop-top",
   "label": "Desktop Section Padding top",
   "min": 0,
   "max": 200,
@@ -1037,7 +1037,7 @@ background: var(--wau-accent);
 },
 {
   "type": "range",
-  "id": "padding_right",
+  "id": "padding_desktop-bottom",
   "label": "Desktop Section Padding bottom",
   "min": 0,
   "max": 200,
