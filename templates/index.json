@@ -286,7 +286,7 @@
         "link_hover_color": "#21f010",
         "link_font": "Helvetica",
         "link_font_weight": "700",
-        "link_size_desktop": 12,
+        "link_size_desktop": 14,
         "link_size_mobile": 10,
         "link_letter_spacing": "0.08",
         "underline_thickness": 2,
