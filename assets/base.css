@@ -4359,7 +4359,6 @@ a[ref="productTitleLink"] p {
   }
 }
 .template-index :is(
-  a.hs-btn,
   .wci-cta-btn,
   .custom-footer__cta-btn
 ) {
@@ -4380,7 +4379,6 @@ a[ref="productTitleLink"] p {
 
 @media only screen and (max-width: 749px) {
   .template-index :is(
-    a.hs-btn,
     .wci-cta-btn,
     .custom-footer__cta-btn
   ) {
