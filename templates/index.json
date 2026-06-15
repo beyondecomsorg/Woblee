@@ -1071,7 +1071,7 @@
         "button_hover_bg": "#0c4168",
         "button_hover_text": "#ffffff",
         "button_font_size": 14,
-        "button_font_size_mobile": 14,
+        "button_font_size_mobile": 10,
         "button_font_weight": 700,
         "button_width_desktop": 150,
         "button_height_desktop": 40,
