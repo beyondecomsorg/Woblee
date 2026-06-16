@@ -90,7 +90,7 @@
 
   .resource-list__carousel slideshow-slides {
     gap: var(--resource-list-column-gap);
-  justify-content: center;
+    justify-content: center;
     /* Add padding to prevent hover animations from being clipped in slideshow
      15px accommodates:
      - Scale effect (9px on each side from 1.03 scale)
@@ -111,7 +111,11 @@
     scroll-snap-align: start;
     min-width: 0;
   }
-
+@media only screen and (max-width: 749px){
+  .resource-list__carousel slideshow-slides{
+    justify-content: flex-start;
+  }
+}
   /*
    * Resource list carousels have peeking slides on both sides.
    * We try to kick load them beforehand (they are lazy loaded otherwise).
