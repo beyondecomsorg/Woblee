@@ -577,6 +577,86 @@
         "padding_bottom": 60
       }
     },
+    "custom_bottom_bar_ABkAHw": {
+      "type": "custom-bottom-bar",
+      "blocks": {
+        "feature_9QpgQx": {
+          "type": "feature",
+          "settings": {
+            "title": "OEKO-TEX® Certified",
+            "text": "100% safe, chemical-free & tested fabrics."
+          }
+        },
+        "feature_8b6htt": {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainably Made",
+            "text": "Certified to the Global Organic Textile Standard."
+          }
+        },
+        "feature_7yYprL": {
+          "type": "feature",
+          "settings": {
+            "title": "Trusted Quality",
+            "text": "Rigorously tested for comfort & durability."
+          }
+        },
+        "feature_UJwn9E": {
+          "type": "feature",
+          "settings": {
+            "title": "Dermatologically Tested",
+            "text": "Safe for sensitive skin, clinically approved."
+          }
+        }
+      },
+      "block_order": [
+        "feature_9QpgQx",
+        "feature_8b6htt",
+        "feature_7yYprL",
+        "feature_UJwn9E"
+      ],
+      "name": "Trust scroll strip",
+      "settings": {
+        "heading": "Built to earn customer trust",
+        "subheading": "Show your strongest product advantages in a premium, scrollable strip.",
+        "scroll_speed": 60,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 0,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 14,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 26,
+        "heading_weight_desktop": "700",
+        "heading_weight_mobile": "700",
+        "subheading_size_desktop": 15,
+        "subheading_size_mobile": 13,
+        "subheading_weight_desktop": "500",
+        "subheading_weight_mobile": "500",
+        "title_size_desktop": 15,
+        "title_size_mobile": 14,
+        "title_weight_desktop": "700",
+        "title_weight_mobile": "700",
+        "text_size_desktop": 13,
+        "text_size_mobile": 12,
+        "text_weight_desktop": "500",
+        "text_weight_mobile": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#31e62b",
+        "fade_color": "#ffffff"
+      }
+    },
     "product_recommendations_7NA7MK": {
       "type": "product-recommendations",
       "blocks": {
@@ -705,7 +785,7 @@
         "recommendation_type": "related",
         "layout_type": "carousel",
         "carousel_on_mobile": true,
-        "max_products": 4,
+        "max_products": 10,
         "columns": 4,
         "mobile_columns": "2",
         "columns_gap": 12,
@@ -741,92 +821,12 @@
         "padding-block-start": 0,
         "padding-block-end": 40
       }
-    },
-    "custom_bottom_bar_ABkAHw": {
-      "type": "custom-bottom-bar",
-      "blocks": {
-        "feature_9QpgQx": {
-          "type": "feature",
-          "settings": {
-            "title": "OEKO-TEX® Certified",
-            "text": "100% safe, chemical-free & tested fabrics."
-          }
-        },
-        "feature_8b6htt": {
-          "type": "feature",
-          "settings": {
-            "title": "Sustainably Made",
-            "text": "Certified to the Global Organic Textile Standard."
-          }
-        },
-        "feature_7yYprL": {
-          "type": "feature",
-          "settings": {
-            "title": "Trusted Quality",
-            "text": "Rigorously tested for comfort & durability."
-          }
-        },
-        "feature_UJwn9E": {
-          "type": "feature",
-          "settings": {
-            "title": "Dermatologically Tested",
-            "text": "Safe for sensitive skin, clinically approved."
-          }
-        }
-      },
-      "block_order": [
-        "feature_9QpgQx",
-        "feature_8b6htt",
-        "feature_7yYprL",
-        "feature_UJwn9E"
-      ],
-      "name": "Trust scroll strip",
-      "settings": {
-        "heading": "Built to earn customer trust",
-        "subheading": "Show your strongest product advantages in a premium, scrollable strip.",
-        "scroll_speed": 60,
-        "section_bg": "#ffffff",
-        "padding_top_desktop": 0,
-        "padding_bottom_desktop": 0,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 14,
-        "font_family": "sans_serif_n4",
-        "heading_size_desktop": 40,
-        "heading_size_mobile": 26,
-        "heading_weight_desktop": "700",
-        "heading_weight_mobile": "700",
-        "subheading_size_desktop": 15,
-        "subheading_size_mobile": 13,
-        "subheading_weight_desktop": "500",
-        "subheading_weight_mobile": "500",
-        "title_size_desktop": 15,
-        "title_size_mobile": 14,
-        "title_weight_desktop": "700",
-        "title_weight_mobile": "700",
-        "text_size_desktop": 13,
-        "text_size_mobile": 12,
-        "text_weight_desktop": "500",
-        "text_weight_mobile": "500",
-        "heading_color": "#0c4168",
-        "subheading_color": "#666666",
-        "card_bg": "#ffffff",
-        "card_border": "#d9d9d9",
-        "title_color": "#0c4168",
-        "text_color": "#666666",
-        "icon_bg": "#f5f5f5",
-        "card_hover_bg": "#0c4168",
-        "card_hover_border": "#0c4168",
-        "title_hover_color": "#ffffff",
-        "text_hover_color": "#ffffff",
-        "icon_hover_bg": "#c8e62b",
-        "fade_color": "#ffffff"
-      }
     }
   },
   "order": [
     "product-information",
     "feature_gift_pdp_38caQd",
-    "product_recommendations_7NA7MK",
-    "custom_bottom_bar_ABkAHw"
+    "custom_bottom_bar_ABkAHw",
+    "product_recommendations_7NA7MK"
   ]
 }

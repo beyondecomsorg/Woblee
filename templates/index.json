@@ -53,8 +53,8 @@
             "video_url_webm": "",
             "hide_content": false,
             "eyebrow": "",
-            "heading": "New for Summer",
-            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.",
+            "heading": "AUTUMN WINTER ‘26 HAS ARRIVED",
+            "subtext": "Wear Your Vibe. Layer Your Story.",
             "btn1_label": "Men",
             "btn1_link": "shopify://collections/men",
             "btn1_new_tab": false,
@@ -297,6 +297,120 @@
         "underline_hover_scale": 65
       }
     },
+    "carousel_pro_updated_y638eJ": {
+      "type": "carousel-pro-updated",
+      "blocks": {
+        "card_ydRnHz": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "title": "",
+            "link": "shopify://products/chic-back-bow-tiered-midi-dress-in-english-blue"
+          }
+        },
+        "card_R4azyN": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_c4My6r": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_aQtnyp": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/black.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_gYJYw9": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_tdbejf": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/black.webp",
+            "title": "",
+            "link": "shopify://products/chic-back-bow-tiered-midi-dress-in-english-blue"
+          }
+        }
+      },
+      "block_order": [
+        "card_ydRnHz",
+        "card_R4azyN",
+        "card_c4My6r",
+        "card_aQtnyp",
+        "card_gYJYw9",
+        "card_tdbejf"
+      ],
+      "name": "Carousel Pro V2",
+      "settings": {
+        "small_heading": "MOST WANTED",
+        "main_heading": "BEST SELLERS",
+        "description": "The crowd favourites. Bold graphics, premium comfort, and everyday styles chosen again and again.",
+        "enable_shop_all_button": true,
+        "shop_all_button_text": "SHOP ALL",
+        "shop_all_button_link": "",
+        "shop_all_button_width_desktop": 150,
+        "shop_all_button_height_desktop": 40,
+        "shop_all_button_width_mobile": 100,
+        "shop_all_button_height_mobile": 40,
+        "shop_all_button_font_size_desktop": 14,
+        "shop_all_button_font_size_mobile": 10,
+        "shop_all_button_font_weight": 700,
+        "shop_all_button_border_radius": 0,
+        "shop_all_button_border_width": 1,
+        "shop_all_button_text_color": "#0c4168",
+        "shop_all_button_background_color": "#ffffff",
+        "shop_all_button_border_color": "#0c4168",
+        "shop_all_button_margin_top": 20,
+        "shop_all_button_margin_bottom": 0,
+        "section_font": "sans_serif_n4",
+        "background_color": "#e3e8ec",
+        "small_heading_color": "#21f010",
+        "main_heading_color": "#0c4168",
+        "description_color": "#4f5d6b",
+        "small_heading_size": 14,
+        "small_heading_weight": 700,
+        "main_heading_size": 40,
+        "main_heading_weight": 700,
+        "description_size": 14,
+        "description_weight": 400,
+        "small_heading_size_mobile": 14,
+        "main_heading_size_mobile": 24,
+        "description_size_mobile": 14,
+        "content_width": 40,
+        "card_gap": 24,
+        "card_height_desktop": 400,
+        "card_height_mobile": 380,
+        "card_radius": 0,
+        "overlay_color": "#0c4168",
+        "card_title_color": "#ffffff",
+        "card_title_size": 28,
+        "card_title_weight": 800,
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_color": "#ffffff",
+        "arrow_size": 50,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 30
+      }
+    },
     "custom_category_icons_fa4BTq": {
       "type": "custom-category-icons",
       "blocks": {
@@ -361,7 +475,7 @@
       ],
       "name": "Custom Category Icons",
       "settings": {
-        "heading": "Welcome to Woblee",
+        "heading": "FIND YOUR FIT",
         "heading_color": "#0c4168",
         "heading_font": "Helvetica",
         "heading_size": 40,
@@ -372,7 +486,7 @@
         "heading_line_height": 105,
         "heading_transform": "uppercase",
         "heading_margin_bottom": 18,
-        "subtext_line_1": "We craft premium menswear, designed to last.",
+        "subtext_line_1": "Whether you prefer clean classics or oversized statements, explore fits made to move with you.",
         "subtext_line_2_before": "",
         "inline_link_label": "",
         "inline_link_url": "",
@@ -388,6 +502,8 @@
         "subtext_margin_bottom": 10,
         "circle_size": 120,
         "circle_size_mobile": 96,
+        "icon_width_mobile": 80,
+        "icon_height_mobile": 80,
         "icon_gap": 32,
         "icon_label_gap": 14,
         "icons_margin_bottom": 16,
@@ -423,17 +539,136 @@
         "btn_border_radius": 0,
         "btn_hover_lift": 2,
         "background_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30
+      }
+    },
+    "custom_editorial_seaction_mHFt7p": {
+      "type": "custom-editorial-seaction",
+      "blocks": {
+        "grid_item_TpiJNJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/807aa052ae6e876691f2007ba68eea30.webp",
+            "caption": "Explore the incredible materials we use",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_x33UQJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
+            "caption": "Read about our amazing factory partners",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_BYHQCe": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/8_39eafd6b-af28-4049-b163-26dea5a977ee.webp",
+            "caption": "Our promise of great quality",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_bGrG7w": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
+            "caption": "Discover our pursuit of sustainability",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_TpiJNJ",
+        "grid_item_x33UQJ",
+        "grid_item_BYHQCe",
+        "grid_item_bGrG7w"
+      ],
+      "name": "Custom Editorial Split",
+      "settings": {
+        "max_width": 1500,
+        "left_width": "1.1fr",
+        "gap": 6,
+        "h_padding": 20,
+        "mobile_side_padding": 12,
         "padding_top": 0,
         "padding_bottom": 60,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 30
+        "padding_bottom_mobile": 0,
+        "left_image": "shopify://shop_images/updated-extended-signup-banner-home_d.webp",
+        "left_content_padding": 32,
+        "left_content_padding_mobile": 20,
+        "left_min_height": 520,
+        "left_min_height_mobile": 420,
+        "left_min_height_small_mobile": 340,
+        "logo_width": 80,
+        "logo_margin_bottom": 28,
+        "stats_text": "Every season comes with a new perspective.\nEach piece begins with an idea and ends with a story worth wearing.",
+        "body_text": "Discover our latest collection of premium essentials and expressive designs, created for those who wear their vibe with confidence.",
+        "cta_label": "New Arrivals",
+        "cta_url": "",
+        "grid_overlay_padding": 16,
+        "grid_overlay_padding_mobile": 10,
+        "grid_bottom_gap": 6,
+        "grid_item_ratio": "1 / 1",
+        "body_font": "Helvetica Neue",
+        "stats_size": 14,
+        "stats_size_mobile": 14,
+        "stats_weight": "400",
+        "stats_margin_bottom": 20,
+        "body_size": 14,
+        "body_size_mobile": 14,
+        "body_weight": "500",
+        "body_margin_bottom": 28,
+        "body_max_width": 280,
+        "cta_size": 14,
+        "cta_size_mobile": 24,
+        "cta_weight": "700",
+        "caption_size": 14,
+        "caption_size_mobile": 14,
+        "caption_weight": "500",
+        "explore_size": 14,
+        "explore_size_mobile": 10,
+        "explore_weight": "700",
+        "explore_width_desktop": 150,
+        "explore_height_desktop": 40,
+        "explore_width_mobile": 100,
+        "explore_height_mobile": 40,
+        "explore_padding_y": 10,
+        "explore_padding_x": 14,
+        "explore_padding_y_mobile": 10,
+        "explore_padding_x_mobile": 14,
+        "explore_radius": 0,
+        "background_color": "#ffffff",
+        "stats_color": "#ffffff",
+        "left_panel_bg": "#0c4168",
+        "grid_item_bg": "#0c4168",
+        "placeholder_bg": "#0c4168",
+        "overlay_start_color": "#0c4168b8",
+        "overlay_end_color": "rgba(0,0,0,0)",
+        "explore_bg": "#ffffff",
+        "explore_text_color": "#0c4168",
+        "explore_hover_bg": "#0c4168",
+        "explore_hover_text": "#ffffff",
+        "body_color": "#ffffff",
+        "cta_color": "#ffffff",
+        "cta_hover_color": "#0c4168",
+        "caption_color": "#ffffff",
+        "explore_color": "#ffffff"
       }
     },
     "custom_category_grid_dyNMWU": {
       "type": "custom-category-grid",
       "name": "Drop collections",
       "settings": {
-        "heading": "Drop Collections",
+        "heading": "SHOP OUR COLLECTIONS",
         "heading_size": 40,
         "heading_size_mobile": 24,
         "section_bg": "#ffffff",
@@ -462,118 +697,117 @@
         "link_8": ""
       }
     },
-    "carousel_pro_updated_y638eJ": {
-      "type": "carousel-pro-updated",
+    "custom_bottom_bar_966ULH": {
+      "type": "custom-bottom-bar",
       "blocks": {
-        "card_ydRnHz": {
-          "type": "card",
+        "feature_mTikFx": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
-            "title": "",
-            "link": "shopify://products/chic-back-bow-tiered-midi-dress-in-english-blue"
+            "icon": "shopify://shop_images/Relaxed-Blue.png",
+            "title": "100% COTTON",
+            "text": "Naturally breathable, comfortable, and made for everyday wear."
           }
         },
-        "card_R4azyN": {
-          "type": "card",
+        "feature_L3LwBp": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
-            "title": "",
-            "link": ""
+            "title": "BIO-WASHED SOFTNESS",
+            "text": "Extra-soft finish for a smoother feel and lasting comfort."
           }
         },
-        "card_c4My6r": {
-          "type": "card",
+        "feature_XNFat3": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
-            "title": "",
-            "link": ""
+            "title": "PREMIUM GSM FABRIC",
+            "text": "Substantial fabric weight that feels premium and holds its shape."
           }
         },
-        "card_aQtnyp": {
-          "type": "card",
+        "feature_eGHHm8": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/black.webp",
-            "title": "",
-            "link": ""
+            "title": "PRE-SHRUNK FABRIC",
+            "text": "Designed to maintain its fit and feel, wash after wash."
           }
         },
-        "card_gYJYw9": {
-          "type": "card",
+        "feature_kdGgmU": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
-            "title": "",
-            "link": ""
+            "title": "MADE TO LAST",
+            "text": "Built with quality construction for repeat wear and lasting durability."
           }
         },
-        "card_tdbejf": {
-          "type": "card",
+        "feature_adQCEh": {
+          "type": "feature",
           "settings": {
-            "image": "shopify://shop_images/black.webp",
-            "title": "",
-            "link": "shopify://products/chic-back-bow-tiered-midi-dress-in-english-blue"
+            "title": "DESIGNED FOR SELF-EXPRESSION",
+            "text": "Styles created to help you wear your personality with confidence."
+          }
+        },
+        "feature_yG6U8R": {
+          "type": "feature",
+          "settings": {
+            "title": "TREND-LED STYLES",
+            "text": "Contemporary silhouettes inspired by culture, creativity, and daily life."
+          }
+        },
+        "feature_hLwyTP": {
+          "type": "feature",
+          "settings": {
+            "title": "DESIGNED BY INDUSTRY VETERANS",
+            "text": "15+ years of experience in fashion, graphics, and product design."
           }
         }
       },
       "block_order": [
-        "card_ydRnHz",
-        "card_R4azyN",
-        "card_c4My6r",
-        "card_aQtnyp",
-        "card_gYJYw9",
-        "card_tdbejf"
+        "feature_mTikFx",
+        "feature_L3LwBp",
+        "feature_XNFat3",
+        "feature_eGHHm8",
+        "feature_kdGgmU",
+        "feature_adQCEh",
+        "feature_yG6U8R",
+        "feature_hLwyTP"
       ],
-      "name": "Carousel Pro V2",
+      "name": "Trust scroll strip",
       "settings": {
-        "small_heading": "MORE TO",
-        "main_heading": "Best Sellers",
-        "description": "Discover our curated edits and seasonal collections",
-        "enable_shop_all_button": true,
-        "shop_all_button_text": "SHOP ALL",
-        "shop_all_button_link": "",
-        "shop_all_button_width_desktop": 150,
-        "shop_all_button_height_desktop": 40,
-        "shop_all_button_width_mobile": 100,
-        "shop_all_button_height_mobile": 40,
-        "shop_all_button_font_size_desktop": 14,
-        "shop_all_button_font_size_mobile": 10,
-        "shop_all_button_font_weight": 700,
-        "shop_all_button_border_radius": 0,
-        "shop_all_button_border_width": 1,
-        "shop_all_button_text_color": "#0c4168",
-        "shop_all_button_background_color": "#ffffff",
-        "shop_all_button_border_color": "#0c4168",
-        "shop_all_button_margin_top": 20,
-        "shop_all_button_margin_bottom": 0,
-        "section_font": "sans_serif_n4",
-        "background_color": "#ffffff",
-        "small_heading_color": "#21f010",
-        "main_heading_color": "#0c4168",
-        "description_color": "#4f5d6b",
-        "small_heading_size": 14,
-        "small_heading_weight": 700,
-        "main_heading_size": 40,
-        "main_heading_weight": 700,
-        "description_size": 14,
-        "description_weight": 400,
-        "small_heading_size_mobile": 14,
-        "main_heading_size_mobile": 24,
-        "description_size_mobile": 14,
-        "content_width": 40,
-        "card_gap": 24,
-        "card_height_desktop": 400,
-        "card_height_mobile": 380,
-        "card_radius": 0,
-        "overlay_color": "#0c4168",
-        "card_title_color": "#ffffff",
-        "card_title_size": 28,
-        "card_title_weight": 800,
-        "arrow_bg": "rgba(0,0,0,0)",
-        "arrow_color": "#ffffff",
-        "arrow_size": 50,
-        "padding_top": 48,
-        "padding_bottom": 60,
-        "padding_top_mobile": 30,
-        "padding_bottom_mobile": 30
+        "heading": "DESIGNED TO BE WORN. MADE TO BE LOVED.",
+        "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
+        "scroll_speed": 30,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 10,
+        "padding_top_mobile": 6,
+        "padding_bottom_mobile": 18,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 24,
+        "heading_weight_desktop": "700",
+        "heading_weight_mobile": "700",
+        "subheading_size_desktop": 14,
+        "subheading_size_mobile": 14,
+        "subheading_weight_desktop": "500",
+        "subheading_weight_mobile": "500",
+        "title_size_desktop": 14,
+        "title_size_mobile": 14,
+        "title_weight_desktop": "700",
+        "title_weight_mobile": "700",
+        "text_size_desktop": 14,
+        "text_size_mobile": 14,
+        "text_weight_desktop": "500",
+        "text_weight_mobile": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#21f010",
+        "fade_color": "#ffffff"
       }
     },
     "collection_banner_kBPTxj": {
@@ -581,6 +815,7 @@
       "blocks": {
         "slide_EHTaEb": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Lookbook1_Desktop.webp",
             "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
@@ -610,7 +845,7 @@
           "settings": {
             "image": "shopify://shop_images/Lookbook1_Desktop.webp",
             "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
-            "heading": "Kith Summer 2026",
+            "heading": "KIDS COLLECTION",
             "subtext": "",
             "button_1_label": "SHOP NOW",
             "button_1_link": "",
@@ -639,7 +874,7 @@
       "name": "Collection Slideshow",
       "settings": {
         "section_bg": "#ffffff",
-        "padding_top_desktop": 0,
+        "padding_top_desktop": 38,
         "padding_bottom_desktop": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0,
@@ -745,7 +980,7 @@
         "section_bg_color": "#ffffff",
         "wrapper_width": 94,
         "section_padding_top": 60,
-        "section_padding_bottom": 40,
+        "section_padding_bottom": 60,
         "section_padding_top_mobile": 30,
         "section_padding_bottom_mobile": 30,
         "heading_color": "#0c4168",
@@ -801,210 +1036,6 @@
         "button_hover_text_color": "#ffffff",
         "button_hover_bg_color": "#0c4168",
         "button_hover_border_color": "#0c4168"
-      }
-    },
-    "tab_section_PXmk7b": {
-      "type": "tab-section",
-      "blocks": {
-        "timeline_item_wxTw3A": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
-            "title": "Designing for PowerHouses",
-            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.<br/></p>"
-          }
-        },
-        "timeline_item_Ufgcn7": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p></p>"
-          }
-        },
-        "timeline_item_JVj43V": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
-          }
-        },
-        "timeline_item_BCqJBC": {
-          "type": "timeline_item",
-          "settings": {
-            "year": "2017",
-            "image": "shopify://shop_images/drs2.webp",
-            "title": "Designing for PowerHouses",
-            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "timeline_item_wxTw3A",
-        "timeline_item_Ufgcn7",
-        "timeline_item_JVj43V",
-        "timeline_item_BCqJBC"
-      ],
-      "name": "Timeline tabs",
-      "settings": {
-        "heading": "About us",
-        "section_bg": "#ffffff",
-        "section_padding_top": 20,
-        "section_padding_bottom": 60,
-        "section_padding_top_mobile": 0,
-        "section_padding_bottom_mobile": 30,
-        "heading_color": "#0c4168",
-        "heading_size": 40,
-        "heading_weight": "700",
-        "heading_size_mobile": 24,
-        "heading_weight_mobile": "700",
-        "tab_color": "#777777",
-        "tab_active_color": "#0c4168",
-        "tab_underline_color": "#000000",
-        "tab_font_size": 14,
-        "tab_font_weight": "600",
-        "tab_font_size_mobile": 14,
-        "tab_font_weight_mobile": "600",
-        "content_heading_color": "#0c4168",
-        "content_heading_size": 28,
-        "content_heading_weight": "700",
-        "content_heading_size_mobile": 22,
-        "content_text_color": "#666666",
-        "content_text_size": 14,
-        "content_heading_weight_mobile": "700",
-        "content_text_weight": "400",
-        "content_text_size_mobile": 14,
-        "content_text_weight_mobile": "400",
-        "content_width": 800,
-        "image_height_desktop": 440,
-        "image_height_mobile": 400,
-        "image_radius": 0,
-        "image_fit": "cover",
-        "layout_gap": 40
-      }
-    },
-    "custom_editorial_seaction_mHFt7p": {
-      "type": "custom-editorial-seaction",
-      "blocks": {
-        "grid_item_TpiJNJ": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/materialsblock_1024x1024_6e31caab-b83c-438a-b38b-47b5ad9e718b.webp",
-            "caption": "Explore the incredible materials we use",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        },
-        "grid_item_x33UQJ": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/factory-our-parternerblock_1024x1024_8237e11c-afc5-44fe-991b-5a7e9e1b4735.webp",
-            "caption": "Read about our amazing factory partners",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        },
-        "grid_item_BYHQCe": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/promisblock_1024x1024_5d0eabf8-08ae-45bc-9137-ba4035196c6a.webp",
-            "caption": "Our promise of great quality",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        },
-        "grid_item_bGrG7w": {
-          "type": "grid_item",
-          "settings": {
-            "image": "shopify://shop_images/sustainabilityblock_1024x1024_fc8ae7de-d48e-4c34-b64b-243a76d0c263.webp",
-            "caption": "Discover our pursuit of sustainability",
-            "explore_label": "EXPLORE",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "grid_item_TpiJNJ",
-        "grid_item_x33UQJ",
-        "grid_item_BYHQCe",
-        "grid_item_bGrG7w"
-      ],
-      "name": "Custom Editorial Split",
-      "settings": {
-        "max_width": 1500,
-        "left_width": "1.1fr",
-        "gap": 6,
-        "h_padding": 20,
-        "mobile_side_padding": 12,
-        "padding_top": 0,
-        "padding_bottom": 60,
-        "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
-        "left_image": "shopify://shop_images/updated-extended-signup-banner-home_d.webp",
-        "left_content_padding": 32,
-        "left_content_padding_mobile": 20,
-        "left_min_height": 520,
-        "left_min_height_mobile": 420,
-        "left_min_height_small_mobile": 340,
-        "logo": "shopify://shop_images/Woblee_Logo_Wide.png",
-        "logo_width": 80,
-        "logo_margin_bottom": 28,
-        "stats_text": "10+ years of premium fashion.\nOver 2 lakh happy customers.\n1500+ unique styles.",
-        "body_text": "And a relentless vision of setting a new benchmark for premium Indian fashion.",
-        "cta_label": "NEW ARRIVALS",
-        "cta_url": "",
-        "grid_overlay_padding": 16,
-        "grid_overlay_padding_mobile": 10,
-        "grid_bottom_gap": 6,
-        "grid_item_ratio": "1 / 1",
-        "body_font": "Helvetica Neue",
-        "stats_size": 14,
-        "stats_size_mobile": 14,
-        "stats_weight": "400",
-        "stats_margin_bottom": 20,
-        "body_size": 14,
-        "body_size_mobile": 14,
-        "body_weight": "500",
-        "body_margin_bottom": 28,
-        "body_max_width": 280,
-        "cta_size": 14,
-        "cta_size_mobile": 24,
-        "cta_weight": "700",
-        "caption_size": 14,
-        "caption_size_mobile": 14,
-        "caption_weight": "500",
-        "explore_size": 14,
-        "explore_size_mobile": 10,
-        "explore_weight": "700",
-        "explore_width_desktop": 150,
-        "explore_height_desktop": 40,
-        "explore_width_mobile": 100,
-        "explore_height_mobile": 40,
-        "explore_padding_y": 10,
-        "explore_padding_x": 14,
-        "explore_padding_y_mobile": 10,
-        "explore_padding_x_mobile": 14,
-        "explore_radius": 0,
-        "background_color": "#ffffff",
-        "stats_color": "#ffffff",
-        "left_panel_bg": "#0c4168",
-        "grid_item_bg": "#0c4168",
-        "placeholder_bg": "#0c4168",
-        "overlay_start_color": "#0c4168b8",
-        "overlay_end_color": "rgba(0,0,0,0)",
-        "explore_bg": "#ffffff",
-        "explore_text_color": "#0c4168",
-        "explore_hover_bg": "#0c4168",
-        "explore_hover_text": "#ffffff",
-        "body_color": "#ffffff",
-        "cta_color": "#ffffff",
-        "cta_hover_color": "#0c4168",
-        "caption_color": "#ffffff",
-        "explore_color": "#ffffff"
       }
     },
     "section_2_BrdHkP": {
@@ -1155,7 +1186,7 @@
       "name": "We Are — Rotating Banner",
       "settings": {
         "static_text": "We are",
-        "background_color": "#f5c800",
+        "background_color": "#21F010",
         "static_text_color": "#ffffff",
         "rotating_text_color": "#0c4168",
         "sub_text_color": "#0c4168",
@@ -1176,77 +1207,88 @@
         "padding_bottom": 0
       }
     },
-    "custom_bottom_bar_966ULH": {
-      "type": "custom-bottom-bar",
+    "tab_section_PXmk7b": {
+      "type": "tab-section",
       "blocks": {
-        "feature_mTikFx": {
-          "type": "feature",
+        "timeline_item_wxTw3A": {
+          "type": "timeline_item",
           "settings": {
-            "icon": "shopify://shop_images/Relaxed-Blue.png",
-            "title": "OEKO-TEX® Certified",
-            "text": "100% safe, chemical-free & tested fabrics."
+            "year": "2017",
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "title": "Designing for PowerHouses",
+            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p>Mercury Development and ChilliFresh have since worked together on three more projects – Pin.FM, a new, Amazon-cloud powered, social media app for the iPhone that allows users to view their content (photos, Tweets, check-ins, and so on) from social services like Facebook, Twitter, and Foursquare in one aggregated chronological timeline and post voice comments to it; jaja, the world's first pressure-sensitive stylus; and the AppTag Laser Blaster, which brings first-person shooter console gameplay to smartphones.<br/></p>"
           }
         },
-        "feature_L3LwBp": {
-          "type": "feature",
+        "timeline_item_Ufgcn7": {
+          "type": "timeline_item",
           "settings": {
-            "title": "Sustainably Made",
-            "text": "Certified to the Global Organic Textile Standard."
+            "year": "2017",
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>ChilliFresh is an app development company founded by Jon Atherton. Wobble, a mobile, Amazon-cloud based app that enables users to take static pictures, add targets, and shake, making the images jiggle and sway, is the first project Mercury Development worked with Atherton to complete. Wobble was developed using a 3D engine and realistic wireframe to identify which pixels to distort, and a natural physics model to calculate acceleration.</p><p></p>"
           }
         },
-        "feature_XNFat3": {
-          "type": "feature",
+        "timeline_item_JVj43V": {
+          "type": "timeline_item",
           "settings": {
-            "title": "Trusted Quality",
-            "text": "Rigorous tested for comfort & durability."
+            "year": "2017",
+            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
+          }
+        },
+        "timeline_item_BCqJBC": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "2017",
+            "image": "shopify://shop_images/drs2.webp",
+            "title": "Designing for PowerHouses",
+            "text": "<p>Add your timeline content here. This layout works best with 2–4 short paragraphs.</p>"
           }
         }
       },
       "block_order": [
-        "feature_mTikFx",
-        "feature_L3LwBp",
-        "feature_XNFat3"
+        "timeline_item_wxTw3A",
+        "timeline_item_Ufgcn7",
+        "timeline_item_JVj43V",
+        "timeline_item_BCqJBC"
       ],
-      "name": "Trust scroll strip",
+      "name": "Timeline tabs",
       "settings": {
-        "heading": "Built to earn customer trust",
-        "subheading": "Show your strongest product advantages in a premium, scrollable strip that feels interactive and easy to explore.",
-        "scroll_speed": 30,
+        "heading": "About us",
         "section_bg": "#ffffff",
-        "padding_top_desktop": 40,
-        "padding_bottom_desktop": 10,
-        "padding_top_mobile": 6,
-        "padding_bottom_mobile": 24,
-        "font_family": "sans_serif_n4",
-        "heading_size_desktop": 40,
-        "heading_size_mobile": 24,
-        "heading_weight_desktop": "700",
-        "heading_weight_mobile": "700",
-        "subheading_size_desktop": 14,
-        "subheading_size_mobile": 14,
-        "subheading_weight_desktop": "500",
-        "subheading_weight_mobile": "500",
-        "title_size_desktop": 14,
-        "title_size_mobile": 14,
-        "title_weight_desktop": "700",
-        "title_weight_mobile": "700",
-        "text_size_desktop": 14,
-        "text_size_mobile": 14,
-        "text_weight_desktop": "500",
-        "text_weight_mobile": "500",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_top_mobile": 15,
+        "section_padding_bottom_mobile": 30,
         "heading_color": "#0c4168",
-        "subheading_color": "#666666",
-        "card_bg": "#ffffff",
-        "card_border": "#d9d9d9",
-        "title_color": "#0c4168",
-        "text_color": "#666666",
-        "icon_bg": "#f5f5f5",
-        "card_hover_bg": "#0c4168",
-        "card_hover_border": "#0c4168",
-        "title_hover_color": "#ffffff",
-        "text_hover_color": "#ffffff",
-        "icon_hover_bg": "#21f010",
-        "fade_color": "#ffffff"
+        "heading_size": 40,
+        "heading_weight": "700",
+        "heading_size_mobile": 24,
+        "heading_weight_mobile": "700",
+        "tab_color": "#777777",
+        "tab_active_color": "#0c4168",
+        "tab_underline_color": "#000000",
+        "tab_font_size": 14,
+        "tab_font_weight": "600",
+        "tab_font_size_mobile": 14,
+        "tab_font_weight_mobile": "600",
+        "content_heading_color": "#0c4168",
+        "content_heading_size": 28,
+        "content_heading_weight": "700",
+        "content_heading_size_mobile": 22,
+        "content_text_color": "#666666",
+        "content_text_size": 14,
+        "content_heading_weight_mobile": "700",
+        "content_text_weight": "400",
+        "content_text_size_mobile": 14,
+        "content_text_weight_mobile": "400",
+        "content_width": 800,
+        "image_height_desktop": 440,
+        "image_height_mobile": 400,
+        "image_radius": 0,
+        "image_fit": "cover",
+        "layout_gap": 40
       }
     },
     "17800675107a00a753": {
@@ -1651,16 +1693,16 @@
     "custom_hero_section_jrfcFp",
     "marquee_izzYrQ",
     "custom_editorial_CCz9Yx",
-    "custom_category_icons_fa4BTq",
-    "custom_category_grid_dyNMWU",
     "carousel_pro_updated_y638eJ",
+    "custom_category_icons_fa4BTq",
+    "custom_editorial_seaction_mHFt7p",
+    "custom_category_grid_dyNMWU",
+    "custom_bottom_bar_966ULH",
     "collection_banner_kBPTxj",
     "collection_splider_j6nUDX",
-    "tab_section_PXmk7b",
-    "custom_editorial_seaction_mHFt7p",
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
-    "custom_bottom_bar_966ULH",
+    "tab_section_PXmk7b",
     "17800675107a00a753",
     "product_list_aak7xm",
     "collection_carousel_pro_pAhcyP"
