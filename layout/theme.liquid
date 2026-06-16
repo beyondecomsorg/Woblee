@@ -108,9 +108,12 @@ a.contents.user-select-text p{
     .add-to-cart-text__content span{
           text-transform: uppercase;
     }
-    .add-to-cart-text__content span:hover{
-      color: #32ff00;
-    }
+
+    .add-to-cart-button:hover .add-to-cart-text__content,
+.add-to-cart-button:hover .add-to-cart-text__content span {
+  color: #32ff00 !important; /* Green */
+}
+
     .predictive-search-results__title:first-of-type{
       font-weight: 700;
     }
