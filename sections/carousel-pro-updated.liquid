@@ -88,11 +88,46 @@
 
     </div>
 
+    
+
+
+        {% if section.settings.enable_shop_all_button %}
+      
+      <a href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
+        class="collection-carousel-pro__shop-all-btn collection-carousel-pro__shop-all-btn--mobile-below">
+        {{ section.settings.shop_all_button_text }}
+      </a>
+    {% endif %}
+
+
+
+
   </div>
 
 </section>
 
 {%  style %}
+/* Hide mobile-below button on desktop */
+a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--mobile-below {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+
+  /* Hide original button on mobile */
+  .collection-carousel-pro__content .collection-carousel-pro__shop-all-btn {
+    display: none !important;
+  }
+
+  /* Show the below-slider button on mobile */
+  .collection-carousel-pro__shop-all-btn--mobile-below {
+    display: inline-flex;
+    width: {{ section.settings.shop_all_button_width_mobile }}px;
+    height: {{ section.settings.shop_all_button_height_mobile }}px;
+    font-size: {{ section.settings.shop_all_button_font_size_mobile }}px;
+    margin: 16px auto 0;
+  }
+}
 .collection-carousel-pro {
   background: {{ section.settings.background_color }};
   padding-top: {{ section.settings.padding_top }}px;

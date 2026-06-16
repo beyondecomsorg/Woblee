@@ -88,9 +88,13 @@
     }
   }
 
+  .card-gallery slideshow-arrows .slideshow-control{
+    display: none;
+  }
+
   .resource-list__carousel slideshow-slides {
     gap: var(--resource-list-column-gap);
-    justify-content: center;
+    justify-content: flex-start;
     /* Add padding to prevent hover animations from being clipped in slideshow
      15px accommodates:
      - Scale effect (9px on each side from 1.03 scale)

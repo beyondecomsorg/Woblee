@@ -1,0 +1,425 @@
+
+<section class="featured-content-banner">
+  <div class="featured-content-banner__container">
+
+    {% if section.settings.custom_link != blank %}
+      <a
+        href="{{ section.settings.custom_link }}"
+        class="featured-content-banner__image-wrapper"
+      >
+    {% else %}
+      <div class="featured-content-banner__image-wrapper">
+    {% endif %}
+
+        {% if section.settings.custom_image != blank %}
+          {{
+            section.settings.custom_image
+            | image_url: width: 2000
+            | image_tag:
+              loading: 'lazy',
+              class: 'featured-content-banner__image',
+              alt: section.settings.custom_title
+          }}
+        {% endif %}
+
+    {% if section.settings.custom_link != blank %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
+
+    <div class="featured-content-banner__content">
+
+      {% if section.settings.custom_title != blank %}
+        {% if section.settings.custom_link != blank %}
+          <a
+            href="{{ section.settings.custom_link }}"
+            class="featured-content-banner__title-link"
+          >
+        {% endif %}
+
+            <h2 class="featured-content-banner__title">
+              {{ section.settings.custom_title }}
+            </h2>
+
+        {% if section.settings.custom_link != blank %}
+          </a>
+        {% endif %}
+      {% endif %}
+
+      {% if section.settings.show_date and section.settings.custom_date != blank %}
+        <div class="featured-content-banner__date">
+          Posted on {{ section.settings.custom_date }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.custom_description != blank %}
+        <div class="featured-content-banner__description">
+          {{ section.settings.custom_description }}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+{% style %}
+
+.featured-content-banner {
+  background: {{ section.settings.background_color }};
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+}
+
+.featured-content-banner__container {
+  max-width: {{ section.settings.container_width }}px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: {{ section.settings.column_gap }}px;
+}
+
+.featured-content-banner__image-wrapper {
+  flex: 0 0 {{ section.settings.image_width }}%;
+  max-width: {{ section.settings.image_width }}%;
+  display: block;
+  overflow: hidden;
+  border-radius: {{ section.settings.image_radius }}px;
+  text-decoration: none;
+}
+
+.featured-content-banner__image {
+  width: 100%;
+  height: {{ section.settings.image_height_desktop }}px;
+  object-fit: {{ section.settings.image_fit }};
+  display: block;
+  transition: transform .4s ease;
+}
+
+.featured-content-banner__image-wrapper:hover .featured-content-banner__image {
+  transform: scale(1.04);
+}
+
+/* Content */
+
+.featured-content-banner__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.featured-content-banner__title-link {
+  text-decoration: none;
+}
+
+.featured-content-banner__title {
+  margin: 0 0 16px;
+  font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
+  font-size: {{ section.settings.title_size }}px;
+  font-weight: {{ section.settings.title_weight }};
+  color: {{ section.settings.title_color }};
+  line-height: 1.15;
+}
+
+.featured-content-banner__date {
+  margin-bottom: 20px;
+  font-family: {{ section.settings.date_font.family }}, {{ section.settings.date_font.fallback_families }};
+  font-size: {{ section.settings.date_size }}px;
+  font-weight: {{ section.settings.date_weight }};
+  color: {{ section.settings.date_color }};
+  line-height: 1.4;
+}
+
+.featured-content-banner__description {
+  font-family: {{ section.settings.description_font.family }}, {{ section.settings.description_font.fallback_families }};
+  font-size: {{ section.settings.description_size }}px;
+  font-weight: {{ section.settings.description_weight }};
+  color: {{ section.settings.description_color }};
+  line-height: {{ section.settings.description_line_height }};
+}
+
+/* Mobile */
+
+
+@media only screen and (min-width: 768px){
+    .featured-content-banner{
+     width: 80%;
+     margin: auto;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+  .featured-content-banner {
+    padding-top: {{ section.settings.padding_top_mobile }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+  }
+
+  .featured-content-banner__container {
+    flex-direction: column;
+    padding: 0 20px;
+    gap: {{ section.settings.column_gap_mobile }}px;
+  }
+
+  .featured-content-banner__image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    flex: unset;
+  }
+
+  .featured-content-banner__image {
+    height: {{ section.settings.image_height_mobile }}px;
+  }
+
+  .featured-content-banner__content {
+    width: 100%;
+    text-align: {{ section.settings.mobile_text_align }};
+  }
+
+  .featured-content-banner__title {
+    font-size: {{ section.settings.title_size_mobile }}px;
+  }
+
+  .featured-content-banner__description {
+    font-size: {{ section.settings.description_size_mobile }}px;
+  }
+}
+
+{% endstyle %}
+
+
+
+
+
+{% schema %}
+{
+"name": "Featured Content Banner",
+"settings": [
+{
+"type": "header",
+"content": "Content"
+},
+{
+"type": "image_picker",
+"id": "custom_image",
+"label": "Image"
+},
+{
+"type": "text",
+"id": "custom_title",
+"label": "Title",
+"default": "Father's Day Gift Guide 2026: Honour What He Built"
+},
+{
+"type": "textarea",
+"id": "custom_description",
+"label": "Description"
+},
+{
+"type": "checkbox",
+"id": "show_date",
+"label": "Show Date",
+"default": true
+},
+{
+"type": "text",
+"id": "custom_date",
+"label": "Date",
+"default": "May 27, 2026"
+},
+{
+"type": "url",
+"id": "custom_link",
+"label": "Title Link"
+},
+{
+"type": "header",
+"content": "Title Settings"
+},
+{
+"type": "range",
+"id": "title_size",
+"label": "Title Size Desktop",
+"min": 16,
+"max": 80,
+"step": 1,
+"default": 48
+},
+{
+"type": "range",
+"id": "title_size_mobile",
+"label": "Title Size Mobile",
+"min": 14,
+"max": 60,
+"step": 1,
+"default": 32
+},
+{
+"type": "range",
+"id": "title_weight",
+"label": "Title Font Weight",
+"min": 100,
+"max": 900,
+"step": 100,
+"default": 700
+},
+{
+"type": "color",
+"id": "title_color",
+"label": "Title Color",
+"default": "#000000"
+},
+
+{
+"type": "header",
+"content": "Date Settings"
+},
+{
+"type": "range",
+"id": "date_size",
+"label": "Date Size",
+"min": 10,
+"max": 40,
+"step": 1,
+"default": 18
+},
+{
+"type": "range",
+"id": "date_weight",
+"label": "Date Font Weight",
+"min": 100,
+"max": 900,
+"step": 100,
+"default": 400
+},
+{
+"type": "color",
+"id": "date_color",
+"label": "Date Color",
+"default": "#666666"
+},
+
+{
+"type": "header",
+"content": "Description Settings"
+},
+{
+"type": "range",
+"id": "description_size",
+"label": "Description Size Desktop",
+"min": 10,
+"max": 40,
+"step": 1,
+"default": 18
+},
+{
+"type": "range",
+"id": "description_size_mobile",
+"label": "Description Size Mobile",
+"min": 10,
+"max": 30,
+"step": 1,
+"default": 16
+},
+{
+"type": "range",
+"id": "description_weight",
+"label": "Description Font Weight",
+"min": 100,
+"max": 900,
+"step": 100,
+"default": 400
+},
+{
+"type": "color",
+"id": "description_color",
+"label": "Description Color",
+"default": "#333333"
+},
+{
+"type": "range",
+"id": "description_line_height",
+"label": "Description Line Height",
+"min": 1,
+"max": 3,
+"step": 0.1,
+"default": 1.6
+},
+
+{
+"type": "header",
+"content": "Fonts"
+},
+{
+"type": "font_picker",
+"id": "title_font",
+"label": "Title Font",
+"default": "helvetica_n7"
+},
+{
+"type": "font_picker",
+"id": "date_font",
+"label": "Date Font",
+"default": "helvetica_n4"
+},
+{
+"type": "font_picker",
+"id": "description_font",
+"label": "Description Font",
+"default": "helvetica_n4"
+},
+{
+"type": "header",
+"content": "Section Spacing"
+},
+{
+"type": "range",
+"id": "padding_top",
+"label": "Desktop Padding Top",
+"min": 0,
+"max": 200,
+"step": 4,
+"unit": "px",
+"default": 80
+},
+{
+"type": "range",
+"id": "padding_bottom",
+"label": "Desktop Padding Bottom",
+"min": 0,
+"max": 200,
+"step": 4,
+"unit": "px",
+"default": 80
+},
+{
+"type": "range",
+"id": "padding_top_mobile",
+"label": "Mobile Padding Top",
+"min": 0,
+"max": 120,
+"step": 4,
+"unit": "px",
+"default": 40
+},
+{
+"type": "range",
+"id": "padding_bottom_mobile",
+"label": "Mobile Padding Bottom",
+"min": 0,
+"max": 120,
+"step": 4,
+"unit": "px",
+"default": 40
+}
+
+],
+"presets": [
+{
+"name": "Featured Content Banner"
+}
+]
+}
+
+  {% endschema %}

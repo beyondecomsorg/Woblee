@@ -232,7 +232,9 @@
       class="product-meta-modal__close"
       aria-label="Close"
     >
-      ✕
+      <span class="svg-wrapper">
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </span>
     </button>
 
     <h2 class="product-meta-modal__title"></h2>
@@ -271,17 +273,54 @@ document.addEventListener('DOMContentLoaded', function () {
   const isQuickView = productInfo && productInfo.closest('.quick-add-modal');
   if (isQuickView) return;
 
-  const modal = document.querySelector('.product-meta-modal');
+  const modal = document.getElementById('ProductMetaModal-' + sectionId);
+  const cards = document.querySelectorAll('#ProductMetaCards-' + sectionId + ' .meta-card');
+  const closeAnimationDuration = 300;
+  let previousScrollY = 0;
+  let previousBodyPaddingRight = '';
+
+  let closeTimer;
 
   if (!modal) return;
 
   const titleEl = modal.querySelector('.product-meta-modal__title');
   const bodyEl = modal.querySelector('.product-meta-modal__body');
   const closeBtn = modal.querySelector('.product-meta-modal__close');
+  const inner = modal.querySelector('.product-meta-modal__inner');
 
-  function openModal(title, content) {
-    titleEl.innerHTML = title;
-    bodyEl.innerHTML = content;
+  function lockBodyScroll() {
+    previousScrollY = window.scrollY;
+    previousBodyPaddingRight = document.body.style.paddingRight || '';
+
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = scrollbarWidth + 'px';
+    }
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + previousScrollY + 'px';
+    document.body.style.width = '100%';
+    document.body.classList.add('meta-modal-open');
+  }
+
+  function unlockBodyScroll() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.paddingRight = previousBodyPaddingRight;
+    document.body.classList.remove('meta-modal-open');
+    window.scrollTo({ top: previousScrollY, behavior: 'instant' });
+  }
+
+function openModal(title, content) {
+  titleEl.innerHTML = title;
+  bodyEl.innerHTML = content;
+
+  
+  clearTimeout(closeTimer);
+
+  if (!modal.open) {
+    lockBodyScroll();
 
     if (typeof modal.showModal === 'function') {
       modal.showModal();
@@ -289,20 +328,41 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.setAttribute('open', '');
     }
 
-    document.body.classList.add('meta-modal-open');
+    // Force browser paint before animation starts
+    modal.offsetHeight;
+
+    modal.classList.remove('dialog-closing');
+    modal.classList.add('is-open');
+    return;
   }
 
-  function closeModal() {
-    if (typeof modal.close === 'function') {
+  modal.classList.remove('dialog-closing');
+  modal.classList.add('is-open');
+}
+
+  function finalizeClose() {
+    if (typeof modal.close === 'function' && modal.open) {
       modal.close();
     } else {
       modal.removeAttribute('open');
     }
 
-    document.body.classList.remove('meta-modal-open');
+    modal.classList.remove('dialog-closing');
+    modal.classList.remove('is-open');
+    unlockBodyScroll();
   }
 
-  document.querySelectorAll('.meta-card').forEach(function(card) {
+  function closeModal() {
+    if (!modal.open) return;
+
+    
+    modal.classList.remove('is-open');
+    modal.classList.add('dialog-closing');
+    clearTimeout(closeTimer);
+    closeTimer = window.setTimeout(finalizeClose, closeAnimationDuration);
+  }
+
+  cards.forEach(function(card) {
 
     card.addEventListener('click', function(e) {
 
@@ -326,18 +386,19 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   modal.addEventListener('click', function(e) {
-
-    const inner = modal.querySelector('.product-meta-modal__inner');
-
-    if (!inner.contains(e.target)) {
+    if (inner && !inner.contains(e.target)) {
       closeModal();
     }
+  });
 
+  modal.addEventListener('cancel', function(e) {
+    e.preventDefault();
+    closeModal();
   });
 
   document.addEventListener('keydown', function(e) {
 
-    if (e.key === 'Escape' && modal.hasAttribute('open')) {
+    if (e.key === 'Escape' && modal.open) {
       closeModal();
     }
 
@@ -858,27 +919,170 @@ document.addEventListener('DOMContentLoaded', function () {
   .meta-card-content {
     display: none;
   }
+  body.meta-modal-open {
+    overflow: hidden;
+  }
   .product-meta-modal {
     border: none;
     background: transparent;
     padding: 0;
-    max-width: 700px;
-    width: 90%;
+    margin: 0;
+    max-width: none;
+    max-height: none;
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .product-meta-modal[open],
+  .product-meta-modal:modal {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    max-width: none;
+    max-height: none;
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow: hidden;
   }
   .product-meta-modal::backdrop {
-    background: rgba(0,0,0,.5);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.6);
   }
   .product-meta-modal__inner {
     background: #fff;
-    border-radius: 16px;
-    padding: 32px;
     position: relative;
+    width: clamp(420px, 34vw, 560px);
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: none;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
   }
   .product-meta-modal__close {
-    position: absolute; top: 16px; right: 16px; background: #f4f4f4; border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; color: #333;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    color: #111;
   }
-  .product-meta-modal__close:hover { background: #e0e0e0; }
-  .product-meta-modal__title { margin: 0 0 16px; font-size: 24px; color: #0c4168; text-transform: uppercase; }
-  .product-meta-modal__body { font-size: 14px; line-height: 1.6; color: #333; white-space: pre-line; }
+  .product-meta-modal__close:hover {
+    opacity: 0.7;
+  }
+  .product-meta-modal__close .svg-wrapper {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-meta-modal__close .svg-wrapper svg {
+    width: 100%;
+    height: 100%;
+  }
+  .product-meta-modal__title {
+    margin: 0;
+    padding: 32px 72px 20px 32px;
+    font-size: 24px;
+    color: #0c4168;
+    text-transform: uppercase;
+    flex: 0 0 auto;
+  }
+  .product-meta-modal__body {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-line;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0 32px 32px;
+    -webkit-overflow-scrolling: touch;
+  }
+  @media screen and (min-width: 750px) {
+    .product-meta-modal__inner {
+      transform: translateX(-100%);
+    }
+    .product-meta-modal.is-open .product-meta-modal__inner {
+      animation: product-meta-drawer-in-left 0.32s ease forwards;
+    }
+    .product-meta-modal.dialog-closing .product-meta-modal__inner {
+      animation: product-meta-drawer-out-left 0.28s ease forwards;
+    }
+    @keyframes product-meta-drawer-in-left {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+    @keyframes product-meta-drawer-out-left {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+  }
+  @media screen and (max-width: 1199px) {
+    .product-meta-modal__inner {
+      width: min(44vw, 560px);
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .product-meta-modal[open],
+    .product-meta-modal:modal {
+      align-items: flex-end;
+    }
+  .product-meta-modal__inner {
+    width: 100%;
+    height: 92svh;
+    max-height: 92svh;
+    border-radius: 24px 24px 0 0;
+
+    transform: translateY(100%);
+    will-change: transform;
+
+
+    box-shadow: 0 -12px 40px rgba(0,0,0,.18);
+  }
+
+    .product-meta-modal__title {
+      padding: 24px 64px 16px 24px;
+      font-size: 22px;
+    }
+    .product-meta-modal__body {
+      padding: 0 24px 24px;
+    }
+    .product-meta-modal__close {
+      top: 16px;
+      right: 16px;
+    }
+    /* .product-meta-modal.is-open .product-meta-modal__inner {
+      animation: none;
+        transform: translateY(0);
+    }
+    .product-meta-modal.dialog-closing .product-meta-modal__inner {
+      animation: none;
+      transform: translateY(100%);
+    } */
+  }
 {% endstylesheet %}
