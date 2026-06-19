@@ -1163,8 +1163,8 @@
           "settings": {
             "heading": "",
             "sub_textt": "",
-            "word": "rebellious",
-            "sub_text": "But never scandalous"
+            "word": "COMFORT IS CONFIDENCE",
+            "sub_text": "Which never goes out of style."
           }
         },
         "phrase_CamVJL": {
@@ -1172,8 +1172,8 @@
           "settings": {
             "heading": "",
             "sub_textt": "",
-            "word": "fearless",
-            "sub_text": "But never reckless"
+            "word": "CREATED WITH INTENTION",
+            "sub_text": "Not by accident."
           }
         },
         "phrase_wqybQ8": {
@@ -1181,8 +1181,53 @@
           "settings": {
             "heading": "",
             "sub_textt": "",
-            "word": "confident",
-            "sub_text": "But never arrogant"
+            "word": "LESS NOISE",
+            "sub_text": "More substance."
+          }
+        },
+        "phrase_heHbzE": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "FOR PEOPLE WHO NOTICE",
+            "sub_text": "The little things."
+          }
+        },
+        "phrase_9UcCKB": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "EVERY THREAD COUNTS",
+            "sub_text": "Every detail matters."
+          }
+        },
+        "phrase_RTqVw4": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "DESIGNED TO EVOLVE",
+            "sub_text": "Just like you."
+          }
+        },
+        "phrase_CRcYF3": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "BUILT ON CREATIVITY",
+            "sub_text": "Grounded in craft."
+          }
+        },
+        "phrase_ePEzK4": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "THOUGHTFULLY MADE",
+            "sub_text": "Effortlessly worn."
           }
         }
       },
@@ -1191,7 +1236,12 @@
         "phrase_DkDGRX",
         "phrase_JrdzcE",
         "phrase_CamVJL",
-        "phrase_wqybQ8"
+        "phrase_wqybQ8",
+        "phrase_heHbzE",
+        "phrase_9UcCKB",
+        "phrase_RTqVw4",
+        "phrase_CRcYF3",
+        "phrase_ePEzK4"
       ],
       "name": "We Are — Rotating Banner",
       "settings": {
