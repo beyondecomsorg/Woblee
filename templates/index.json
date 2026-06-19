@@ -1186,7 +1186,7 @@
       "name": "We Are — Rotating Banner",
       "settings": {
         "static_text": "We are",
-        "background_color": "#21f010",
+        "background_color": "#13FF00",
         "static_text_color": "#ffffff",
         "rotating_text_color": "#0c4168",
         "sub_text_color": "#0c4168",
