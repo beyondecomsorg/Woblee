@@ -311,7 +311,7 @@
   function sizeSlot() {
     const h = elA.offsetHeight || 52;
     slot.style.height = h + 'px';
-  
+    slot.style.minWidth = Math.max(elA.offsetWidth, elB.offsetWidth) + 'px';
   }
   sizeSlot();
 
@@ -333,8 +333,8 @@
     void inactiveEl.offsetWidth;
 
     /* Widen slot if new word is wider */
-    {% comment %} const newW = inactiveEl.scrollWidth;
-    const curW = activeEl.scrollWidth; {% endcomment %}
+    const newW = inactiveEl.scrollWidth;
+    const curW = activeEl.scrollWidth;
 
     /* Kick both animations simultaneously */
     activeEl.className  = 'war-word war-word--animating-out';
