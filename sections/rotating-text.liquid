@@ -339,7 +339,6 @@
     /* Widen slot if new word is wider */
     const newW = inactiveEl.scrollWidth;
     const curW = activeEl.scrollWidth;
-    slot.style.minWidth = Math.max(newW, curW) + 'px';
 
     /* Kick both animations simultaneously */
     activeEl.className  = 'war-word war-word--animating-out';
