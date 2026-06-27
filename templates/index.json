@@ -357,6 +357,7 @@
         "card_gYJYw9",
         "card_tdbejf"
       ],
+      "disabled": true,
       "name": "Carousel Pro V2",
       "settings": {
         "small_heading": "MOST WANTED",
@@ -409,6 +410,125 @@
         "padding_bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 30
+      }
+    },
+    "collection_carousel_pro_pAhcyP": {
+      "type": "collection-carousel-pro",
+      "blocks": {
+        "card_hjY9gV": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/807aa052ae6e876691f2007ba68eea30.webp",
+            "title": "",
+            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
+          }
+        },
+        "card_rxyi84": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/PRDGY_Flying_Bull_Back_Oversized_T-shirt.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_WDQtQc": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/8_39eafd6b-af28-4049-b163-26dea5a977ee.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_8ew7Bf": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_d3fLwH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot2026-06-05at16.36.59.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_tM8P6i": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot2026-06-05at16.37.50.png",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_hjY9gV",
+        "card_rxyi84",
+        "card_WDQtQc",
+        "card_8ew7Bf",
+        "card_d3fLwH",
+        "card_tM8P6i"
+      ],
+      "name": "Collection Carousel Pro",
+      "settings": {
+        "small_heading": "MORE TO",
+        "main_heading": "Bestsellers",
+        "description": "Discover our curated edits and seasonal collections",
+        "enable_shop_all_button": true,
+        "shop_all_button_text": "SHOP ALL",
+        "shop_all_button_link": "",
+        "shop_all_button_width_desktop": 150,
+        "shop_all_button_height_desktop": 40,
+        "shop_all_button_width_mobile": 100,
+        "shop_all_button_height_mobile": 40,
+        "shop_all_button_font_size_desktop": 14,
+        "shop_all_button_font_size_mobile": 10,
+        "shop_all_button_font_weight": 600,
+        "shop_all_button_border_radius": 0,
+        "shop_all_button_border_width": 1,
+        "shop_all_button_text_color": "#0c4168",
+        "shop_all_button_background_color": "rgba(0,0,0,0)",
+        "shop_all_button_border_color": "#0c4168",
+        "shop_all_button_margin_top": 20,
+        "shop_all_button_margin_bottom": 0,
+        "section_font": "sans_serif_n4",
+        "background_color": "#ffffff",
+        "small_heading_color": "#21f010",
+        "main_heading_color": "#0c4168",
+        "description_color": "#4f5d6b",
+        "small_heading_size": 18,
+        "small_heading_weight": 700,
+        "main_heading_size": 42,
+        "main_heading_weight": 700,
+        "description_size": 15,
+        "description_weight": 400,
+        "small_heading_size_mobile": 14,
+        "main_heading_size_mobile": 33,
+        "description_size_mobile": 14,
+        "content_width": 30,
+        "card_gap": 24,
+        "card_width_desktop": 460,
+        "card_height_desktop": 460,
+        "card_width_mobile": 280,
+        "card_height_mobile": 380,
+        "card_radius": 0,
+        "overlay_color": "#0c4168",
+        "overlay_opacity": 0,
+        "card_title_color": "#ffffff",
+        "card_title_size": 28,
+        "card_title_weight": 700,
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_color": "#ffffff",
+        "arrow_size": 50,
+        "scrollbar_track": "#eaeaea",
+        "scrollbar_thumb": "#0c4168",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 40,
+        "padding_bottom_mobile": 40
       }
     },
     "custom_category_icons_fa4BTq": {
@@ -1631,126 +1751,6 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
-    },
-    "collection_carousel_pro_pAhcyP": {
-      "type": "collection-carousel-pro",
-      "blocks": {
-        "card_hjY9gV": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
-            "title": "",
-            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
-          }
-        },
-        "card_rxyi84": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/black.webp",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_WDQtQc": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/e7g67g30o1cd8t7s68otxfw602tji5g0.avif",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_8ew7Bf": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_d3fLwH": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_tM8P6i": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
-            "title": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "card_hjY9gV",
-        "card_rxyi84",
-        "card_WDQtQc",
-        "card_8ew7Bf",
-        "card_d3fLwH",
-        "card_tM8P6i"
-      ],
-      "disabled": true,
-      "name": "Collection Carousel Pro",
-      "settings": {
-        "small_heading": "MORE TO",
-        "main_heading": "Bestsellers",
-        "description": "Discover our curated edits and seasonal collections",
-        "enable_shop_all_button": true,
-        "shop_all_button_text": "SHOP ALL",
-        "shop_all_button_link": "",
-        "shop_all_button_width_desktop": 150,
-        "shop_all_button_height_desktop": 40,
-        "shop_all_button_width_mobile": 100,
-        "shop_all_button_height_mobile": 40,
-        "shop_all_button_font_size_desktop": 14,
-        "shop_all_button_font_size_mobile": 10,
-        "shop_all_button_font_weight": 600,
-        "shop_all_button_border_radius": 0,
-        "shop_all_button_border_width": 1,
-        "shop_all_button_text_color": "#0c4168",
-        "shop_all_button_background_color": "rgba(0,0,0,0)",
-        "shop_all_button_border_color": "#0c4168",
-        "shop_all_button_margin_top": 20,
-        "shop_all_button_margin_bottom": 0,
-        "section_font": "sans_serif_n4",
-        "background_color": "#ffffff",
-        "small_heading_color": "#21f010",
-        "main_heading_color": "#0c4168",
-        "description_color": "#4f5d6b",
-        "small_heading_size": 18,
-        "small_heading_weight": 700,
-        "main_heading_size": 42,
-        "main_heading_weight": 700,
-        "description_size": 15,
-        "description_weight": 400,
-        "small_heading_size_mobile": 14,
-        "main_heading_size_mobile": 33,
-        "description_size_mobile": 14,
-        "content_width": 30,
-        "card_gap": 24,
-        "card_width_desktop": 460,
-        "card_height_desktop": 460,
-        "card_width_mobile": 280,
-        "card_height_mobile": 380,
-        "card_radius": 0,
-        "overlay_color": "#0c4168",
-        "overlay_opacity": 0,
-        "card_title_color": "#ffffff",
-        "card_title_size": 28,
-        "card_title_weight": 700,
-        "arrow_bg": "rgba(0,0,0,0)",
-        "arrow_color": "#ffffff",
-        "arrow_size": 50,
-        "scrollbar_track": "#eaeaea",
-        "scrollbar_thumb": "#0c4168",
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "padding_top_mobile": 40,
-        "padding_bottom_mobile": 40
-      }
     }
   },
   "order": [
@@ -1758,6 +1758,7 @@
     "marquee_izzYrQ",
     "custom_editorial_CCz9Yx",
     "carousel_pro_updated_y638eJ",
+    "collection_carousel_pro_pAhcyP",
     "custom_category_icons_fa4BTq",
     "custom_editorial_seaction_mHFt7p",
     "custom_category_grid_dyNMWU",
@@ -1768,7 +1769,6 @@
     "rotating_text_X4Hpjk",
     "tab_section_PXmk7b",
     "17800675107a00a753",
-    "product_list_aak7xm",
-    "collection_carousel_pro_pAhcyP"
+    "product_list_aak7xm"
   ]
 }
