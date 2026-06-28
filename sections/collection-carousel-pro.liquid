@@ -78,7 +78,19 @@
                   > {% endcomment %}
                    <div class="collection-carousel-pro__card">
                     {% if block.settings.image != blank %}
-                      {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'collection-carousel-pro__image' }}
+
+{% if forloop.index <= 2 %}
+  {{ block.settings.image | image_url: width: 1200 | image_tag:
+    loading: 'eager',
+    fetchpriority: 'high',
+    class: 'collection-carousel-pro__image'
+  }}
+{% else %}
+  {{ block.settings.image | image_url: width: 1200 | image_tag:
+    loading: 'lazy',
+    class: 'collection-carousel-pro__image'
+  }}
+{% endif %}
                     {% endif %}
                     <div class="collection-carousel-pro__overlay"></div>
                     {% if block.settings.title != blank %}
@@ -234,6 +246,18 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   transition: transform .5s ease;
   pointer-events: none;
   -webkit-user-drag: none;
+
+      backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+.collection-carousel-splide .splide__slide{
+    opacity:1 !important;
+    visibility:visible !important;
+}
+
+.collection-carousel-splide .splide__track{
+    transform:translate3d(0,0,0);
 }
 
 .collection-carousel-pro__card:hover .collection-carousel-pro__image {
@@ -385,30 +409,31 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-const splide = new Splide(splideElement, {
-  type: 'loop',
-  perPage: 2,
-  perMove: 1,
-  gap: '{{ section.settings.card_gap }}px',
+const splide = new Splide(splideElement,{
+    type:'loop',
+    perPage:2,
+    perMove:1,
+    gap:'{{ section.settings.card_gap }}px',
 
-  arrows: true,
-  pagination: false,
+    arrows:true,
+    pagination:false,
 
-  drag: true,
-  swipe: true,
-  // speed: 600,
+    drag:true,
+    swipe:true,
 
-  breakpoints: {
-    991: {
-      perPage: 1.5,
-    },
-    767: {
-      perPage: 1.1,
-      gap: '12px',
-      drag: true,
-      swipe: true,
+    speed:500,
+    rewindSpeed:500,
+    updateOnMove:true,
+
+    breakpoints:{
+      991:{
+        perPage:1.5
+      },
+      767:{
+        perPage:1.1,
+        gap:'12px'
+      }
     }
-  }
 });
 
 
