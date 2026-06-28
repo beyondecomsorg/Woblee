@@ -55,7 +55,7 @@
         <div class="collection-carousel-pro__description">{{ section.settings.description }}</div>
       {% endif %}
       {% if section.settings.enable_shop_all_button %}
-        <a
+        
           class="collection-carousel-pro__shop-all-btn best-seller-shop-all-btn"
           href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
         >
@@ -71,21 +71,30 @@
             {% for block in section.blocks %}
               {% if block.type == 'card' %}
                 <li class="splide__slide" {{ block.shopify_attributes }}>
-                  {% comment %} <a
-                    class="collection-carousel-pro__card"
-                    href="{% if block.settings.link != blank %}{{ block.settings.link }}{% else %}#{% endif %}"
-                    aria-label="{{ block.settings.title | escape }}"
-                  > {% endcomment %}
-                   <div class="collection-carousel-pro__card">
+                  <div class="collection-carousel-pro__card">
                     {% if block.settings.image != blank %}
-                      {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'collection-carousel-pro__image' }}
+                      {% if forloop.index0 < 2 %}
+                        {{ block.settings.image | image_url: width: 1200 | image_tag:
+                          loading: 'eager',
+                          fetchpriority: 'high',
+                          class: 'collection-carousel-pro__image',
+                          widths: '400, 600, 800, 1200',
+                          sizes: '(max-width: 767px) 90vw, 50vw'
+                        }}
+                      {% else %}
+                        {{ block.settings.image | image_url: width: 1200 | image_tag:
+                          loading: 'lazy',
+                          class: 'collection-carousel-pro__image',
+                          widths: '400, 600, 800, 1200',
+                          sizes: '(max-width: 767px) 90vw, 50vw'
+                        }}
+                      {% endif %}
                     {% endif %}
                     <div class="collection-carousel-pro__overlay"></div>
                     {% if block.settings.title != blank %}
                       <div class="collection-carousel-pro__title">{{ block.settings.title }}</div>
                     {% endif %}
-                    </div>
-                  {% comment %} </a> {% endcomment %}
+                  </div>
                 </li>
               {% endif %}
             {% endfor %}
@@ -94,19 +103,12 @@
       </div>
     </div>
 
-
-
-        {% if section.settings.enable_shop_all_button %}
-      
+    {% if section.settings.enable_shop_all_button %}
       <a href="{% if section.settings.shop_all_button_link != blank %}{{ section.settings.shop_all_button_link }}{% else %}#{% endif %}"
         class="collection-carousel-pro__shop-all-btn collection-carousel-pro__shop-all-btn--mobile-below">
         {{ section.settings.shop_all_button_text }}
       </a>
     {% endif %}
-
-
-
-
 
   </div>
 
@@ -114,7 +116,6 @@
 
 {% style %}
 
-/* ── Layout ── */
 .collection-carousel-pro {
   background: var(--section-bg);
   padding-top: var(--padding-top);
@@ -126,7 +127,7 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-    padding-top: 15px;
+  padding-top: 15px;
   padding-bottom: 15px;
   gap: 40px;
   overflow: hidden;
@@ -189,7 +190,6 @@
   text-decoration: none;
   text-align: center;
   box-sizing: border-box;
-  /* transition: background-color .3s ease, color .3s ease, border-color .3s ease, transform .3s ease, opacity .3s ease; */
 }
 
 .collection-carousel-pro__shop-all-btn:hover {
@@ -197,11 +197,9 @@
 }
 
 @media screen and (min-width: 768px) {
-a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--mobile-below {
-  display: none;
-}
-
-
+  a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--mobile-below {
+    display: none;
+  }
 }
 
 .collection-carousel-pro__slider-wrapper {
@@ -224,6 +222,13 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   text-decoration: none;
   color: inherit;
   -webkit-tap-highlight-color: transparent;
+  touch-action: pan-x;
+  -webkit-user-select: none;
+  user-select: none;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .collection-carousel-pro__image {
@@ -234,6 +239,9 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   transition: transform .5s ease;
   pointer-events: none;
   -webkit-user-drag: none;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .collection-carousel-pro__card:hover .collection-carousel-pro__image {
@@ -267,6 +275,13 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   pointer-events: none;
 }
 
+.collection-carousel-splide .splide__slide {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 .collection-carousel-splide .splide__arrow {
   width: var(--arrow-size);
   height: var(--arrow-size);
@@ -287,13 +302,13 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   height: 8px;
 }
 
-/* ── MOBILE ── */
 @media screen and (max-width: 767px) {
 
   .collection-carousel-pro {
     padding-top: var(--padding-top-mobile);
     padding-bottom: var(--padding-bottom-mobile);
   }
+
   .collection-carousel-pro__content .collection-carousel-pro__shop-all-btn {
     display: none !important;
   }
@@ -302,8 +317,8 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
     flex-direction: column;
     gap: 24px;
     overflow: visible;
-      padding-top: 15px;
-  padding-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 
   .collection-carousel-pro__content {
@@ -356,20 +371,13 @@ a.collection-carousel-pro__shop-all-btn.collection-carousel-pro__shop-all-btn--m
   }
 }
 
-
 .collection-carousel-splide,
 .collection-carousel-splide .splide__track,
 .collection-carousel-splide .splide__list {
   touch-action: pan-x !important;
 }
 
-.collection-carousel-pro__card {
-  touch-action: pan-x;
-  -webkit-user-select: none;
-  user-select: none;
-}
 {% endstyle %}
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -385,48 +393,34 @@ document.addEventListener('DOMContentLoaded', function () {
     return;
   }
 
-const splide = new Splide(splideElement, {
-  type: 'loop',
-  perPage: 2,
-  perMove: 1,
-  gap: '{{ section.settings.card_gap }}px',
+  if (splideElement.splide) return;
 
-  arrows: true,
-  pagination: false,
-
-  drag: true,
-  swipe: true,
-  // speed: 600,
-
-  breakpoints: {
-    991: {
-      perPage: 1.5,
-    },
-    767: {
-      perPage: 1.1,
-      gap: '12px',
-      drag: true,
-      swipe: true,
+  const splide = new Splide(splideElement, {
+    type: 'loop',
+    perPage: 2,
+    perMove: 1,
+    gap: '{{ section.settings.card_gap }}px',
+    arrows: true,
+    pagination: false,
+    drag: true,
+    swipe: true,
+    trimSpace: false,
+    waitForTransition: true,
+    lazyLoad: 'nearby',
+    breakpoints: {
+      991: {
+        perPage: 1.5,
+      },
+      767: {
+        perPage: 1.1,
+        gap: '12px',
+        drag: true,
+        swipe: true,
+      }
     }
-  }
-});
-
+  });
 
   splide.mount();
-  
-
-  // Prevent links from blocking drag
-  splide.on('drag', function () {
-    section.querySelectorAll('.collection-carousel-pro__card').forEach(function (link) {
-      link.style.pointerEvents = 'none';
-    });
-  });
-
-  splide.on('dragged', function () {
-    section.querySelectorAll('.collection-carousel-pro__card').forEach(function (link) {
-      link.style.pointerEvents = 'auto';
-    });
-  });
 
 });
 </script>
