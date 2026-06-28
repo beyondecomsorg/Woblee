@@ -360,7 +360,6 @@
 }
 
 {% endstyle %}
-
 <script>
 (function () {
   function initCarousel() {
@@ -377,15 +376,13 @@
 
     if (carousel._flickity) return;
 
-    var isMobile = window.innerWidth <= 767;
-
     new Flickity(carousel, {
       cellAlign: 'left',
       contain: false,
       wrapAround: true,
       groupCells: false,
-      autoPlay: false,
-      pageDots: isMobile,
+      autoPlay: 3000,
+      pageDots: false,
       prevNextButtons: true,
       draggable: true,
       freeScroll: false,
