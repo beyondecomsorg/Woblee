@@ -142,9 +142,10 @@
       </div>
       
 
-      {% assign m_style = product.metafields.custom.style %}
-{% assign m_fabric = product.metafields.custom.fabric %}
-{% assign m_fit = product.metafields.custom.fit %}
+      {% assign m_style = product.metafields.custom.style.value %}
+{% assign m_fabric = product.metafields.custom.fabric.value %}
+{% assign m_fit = product.metafields.custom.fit.value %}
+
 
 {% if m_style != blank or m_fabric != blank or m_fit != blank %}
 
@@ -167,7 +168,7 @@
         <span>Style</span>
 
         <div class="meta-card-content" hidden>
-          {{ m_style }}
+          {{ m_style | newline_to_br }}
         </div>
       </button>
     {% endif %}
@@ -191,7 +192,7 @@
         <span>Fabric</span>
 
         <div class="meta-card-content" hidden>
-          {{ m_fabric }}
+          {{ m_fabric | newline_to_br }}
         </div>
       </button>
     {% endif %}
@@ -212,7 +213,7 @@
         <span>Fit</span>
 
         <div class="meta-card-content" hidden>
-          {{ m_fit }}
+          {{ m_fit | newline_to_br }}
         </div>
       </button>
     {% endif %}

@@ -4,6 +4,13 @@
   Layout: 2x3 or 3x2 grid, fully customizable
 {% endcomment %}
 
+{%- assign fg_images       = product.metafields.custom.product_features_images.value -%}
+{%- assign fg_headings     = product.metafields.custom.product_features_text.value -%}
+{%- assign fg_subheadings  = product.metafields.custom.product_features_subheading.value -%}
+{%- assign fg_paragraphs   = product.metafields.custom.product_features_paragraph.value -%}
+
+{%- if fg_headings != blank and fg_headings.size > 0 -%}
+
 {{ 'features-grid.css' | asset_url | stylesheet_tag }}
 
 <section
@@ -51,27 +58,59 @@
 <div class="splide features-slider" id="features-slider-{{ section.id }}">
   <div class="splide__track">
     <ul class="splide__list">
-      {% for block in section.blocks %}
+      {% for heading in fg_headings %}
+        {%- assign i = forloop.index0 -%}
+        {%- assign fg_image = nil -%}
+        {%- for img in fg_images -%}
+          {%- if forloop.index0 == i -%}
+            {%- assign fg_image = img -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign fg_subheading = fg_subheadings[i] -%}
+        {%- assign fg_paragraph = fg_paragraphs[i] -%}
         <li class="splide__slide">
           <div class="features-grid__card">
             <div class="features-grid__top">
-              {% if block.settings.image != blank %}
+              {% if fg_image != blank %}
                 <div class="features-grid__img-wrap">
-                  <img
-                    src="{{ block.settings.image | image_url: width: 300 }}"
-                    alt="{{ block.settings.heading }}"
-                    loading="lazy"
-                  >
+                  {% if fg_image.image %}
+                    <img
+                      src="{{ fg_image.image | image_url: width: 300 }}"
+                      alt="{{ heading | escape }}"
+                      loading="lazy"
+                    >
+                  {% elsif fg_image.url %}
+                    <img
+                      src="{{ fg_image.url }}"
+                      alt="{{ heading | escape }}"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    <img
+                      src="{{ fg_image | image_url: width: 300 }}"
+                      alt="{{ heading | escape }}"
+                      loading="lazy"
+                    >
+                  {% endif %}
                 </div>
               {% endif %}
 
-              <h3 class="features-grid__heading">
-                {{ block.settings.heading }}
-              </h3>
+              <div class="features-grid__heading-wrap">
+                <h3 class="features-grid__heading">
+                  {{ heading }}
+                </h3>
+
+                {% if fg_subheading != blank %}
+                  <p class="features-grid__subheading">
+                    {{ fg_subheading }}
+                  </p>
+                {% endif %}
+              </div>
             </div>
 
             <p class="features-grid__desc">
-              {{ block.settings.description }}
+              {{ fg_paragraph }}
             </p>
           </div>
         </li>
@@ -100,8 +139,8 @@
 .features-slider .splide__slide::before {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 20%;
+  bottom: 20%;
   left: -15px; /* Centered in the 30px gap */
   width: 0.5px;
   background-color: var(--wb-color-grey, #626261);
@@ -178,7 +217,7 @@
 .features-grid__top {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
   margin-bottom: 10px;
 }
 
@@ -196,19 +235,33 @@
   display: block;
 }
 
+.features-grid__heading-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  height: 100%;
+}
+
 .features-grid__heading {
   color: var(--fg-text);
   font-size: var(--fg-heading-size);
   font-weight: var(--fg-heading-weight);
   line-height: 1.2;
   margin: 0;
-      text-align: left;
-    align-items: center;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    height: 100%;
+  text-align: left;
+  text-transform: uppercase;
 }
+
+.features-grid__subheading {
+  color: var(--fg-text);
+  font-size: calc(var(--fg-heading-size) * 0.7);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
 .features-grid__desc {
   color: var(--fg-desc-color);
   font-size: var(--fg-desc-size);
@@ -269,7 +322,7 @@
 
   .features-grid__top {
     align-items: flex-start;
-    gap: 15px;
+    gap: 5px;
   }
 
   .features-grid__heading {
@@ -315,7 +368,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   new Splide('#features-slider-{{ section.id }}', {
-    type: 'slide',
+    type: 'loop',
     perPage: 4,
     perMove: 1,
     gap: '30px',
@@ -337,6 +390,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }).mount();
 });
 </script>
+
+{%- endif -%}
 
 {% schema %}
 {

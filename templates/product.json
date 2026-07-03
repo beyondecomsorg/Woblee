@@ -300,8 +300,9 @@
               "blocks": {
                 "accordion_row_TbgNUF": {
                   "type": "_accordion-row",
+                  "disabled": true,
                   "settings": {
-                    "heading": "PRODUCT OVERVIEW",
+                    "heading": "PRODUCT OVERVIEWkugilfykuyi",
                     "open_by_default": false,
                     "icon": "none",
                     "width": 20
@@ -310,7 +311,7 @@
                     "text_n6TMzy": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>The <strong>STRIVE TO CONQUER GRAPHIC TEE</strong> is designed for individuals who embrace ambition, resilience, and the pursuit of excellence. Featuring elevated print and embroidery detailing, this statement piece blends contemporary design with everyday comfort. Created for those who lead from the front and build their own legacy, it delivers a premium look without compromising on wearability.</p>",
+                        "text": "<p>The <strong>STRIVE TO CONQUER GRAPHIC TEE</strong> is designed for individuals who embrace ambition, resilience, and the pursuit of excellence. Featuring elevated print and embroidery detailing, this statement piece blends contemporary design with everyday comfort. Created for those who lead from the front and build their own legacy, it delivers a premium look without compromising on wearability</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -602,7 +603,7 @@
         "mobile_columns": 1,
         "grid_gap": 40,
         "mobile_gap": 24,
-        "container_width": 1200,
+        "container_width": 1440,
         "card_style": "boxed",
         "card_layout": "row",
         "card_inner_gap": 20,
@@ -623,7 +624,7 @@
         "text_color": "#0c4168",
         "desc_color": "#444444",
         "padding_top": 20,
-        "padding_bottom": 20
+        "padding_bottom": 0
       }
     },
     "custom_bottom_bar_ABkAHw": {
