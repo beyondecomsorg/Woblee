@@ -1,1 +1,1702 @@
-{"sections":{"custom_hero_section_jrfcFp":{"type":"custom-hero-section","blocks":{"slide_jWfnFU":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/Banner_1.png","image_focal_point":"center center","mobile_image":"shopify:\/\/shop_images\/Banner_1_mob.png","mobile_image_focal_point":"center center","video_url_mp4":"","video_url_webm":"","hide_content":false,"eyebrow":"Wear Your Vibe. Layer Your Story.","heading":"AUTUMN WINTER ‘26 HAS ARRIVED","subtext":"Playful, expressive, and built for everyday comfort. The latest Woblee drop brings fresh graphics, premium essentials, and statement styles made for the season.","btn1_label":"Men","btn1_link":"shopify:\/\/collections\/men","btn1_new_tab":false,"btn1_custom_bg":"","btn1_custom_text":"","btn2_label":"woMEN","btn2_link":"shopify:\/\/collections\/men-copy","btn2_new_tab":false,"btn2_custom_bg":"","btn2_custom_text":"","btn3_label":"kids","btn3_link":"shopify:\/\/collections\/women-copy","btn3_new_tab":false,"btn3_custom_bg":"","btn3_custom_text":""}},"slide_B6rmj8":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/Banner_2_web.png","image_focal_point":"center center","mobile_image":"shopify:\/\/shop_images\/Banner_2_mob.png","mobile_image_focal_point":"center center","video_url_mp4":"","video_url_webm":"","hide_content":false,"eyebrow":"The Classic White Tee, Perfected.","heading":"SIMPLE BY DESIGN. STRONG BY NATURE.","subtext":"Timeless, versatile, and always in rotation. Our Core Line white tees bring premium fabric and clean design to every closet.","btn1_label":"Men","btn1_link":"shopify:\/\/collections\/men","btn1_new_tab":false,"btn1_custom_bg":"","btn1_custom_text":"","btn2_label":"woMEN","btn2_link":"shopify:\/\/collections\/men-copy","btn2_new_tab":false,"btn2_custom_bg":"","btn2_custom_text":"","btn3_label":"kids","btn3_link":"shopify:\/\/collections\/women-copy","btn3_new_tab":false,"btn3_custom_bg":"","btn3_custom_text":""}},"slide_VNKUdd":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/Banner_2_web.png","image_focal_point":"center center","mobile_image":"shopify:\/\/shop_images\/Banner_2_mob.png","mobile_image_focal_point":"center center","video_url_mp4":"","video_url_webm":"","hide_content":false,"eyebrow":"Shop The Color Edit","heading":"PLAYFUL. VIBRANT. FULL OF ENERGY.","subtext":"From bright statements to soft pastels, find shades built for self-expression. Premium fabric, unmistakable Woblee energy.","btn1_label":"Men","btn1_link":"shopify:\/\/collections\/men","btn1_new_tab":false,"btn1_custom_bg":"","btn1_custom_text":"","btn2_label":"woMEN","btn2_link":"shopify:\/\/collections\/men-copy","btn2_new_tab":false,"btn2_custom_bg":"","btn2_custom_text":"","btn3_label":"kids","btn3_link":"shopify:\/\/collections\/women-copy","btn3_new_tab":false,"btn3_custom_bg":"","btn3_custom_text":""}}},"block_order":["slide_jWfnFU","slide_B6rmj8","slide_VNKUdd"],"name":"Hero Slideshow Custom","settings":{"autoplay":true,"autoplay_speed":5000,"transition_type":"slide","transition_speed":700,"show_arrows":true,"show_dots":true,"video_pause_autoplay":false,"overlay_color":"#000000","overlay_opacity":25,"heading_font_size_desktop":40,"heading_font_size_mobile":24,"description_font_size":14,"button_font_size_desktop":14,"button_font_size_mobile":10,"caption_position":"bottom_left","content_offset_h":4,"content_offset_v":8,"content_max_width":600,"caption_bg_show":false,"caption_bg_color":"#00000066","button_width_desktop":150,"button_height_desktop":40,"button_width_mobile":100,"button_height_mobile":40,"button_style":"sharp","button_bg_color":"#ffffff","button_text_color":"#1a1a1a","button_border_color":"#ffffff","button_hover_bg":"rgba(0,0,0,0)","button_hover_text":"#ffffff","button_font_size":14,"button_padding_v":18,"button_padding_h":40,"button_border_width":1,"button_gap":16,"button_align":"left","mobile_button_stack":"column","arrow_bg":"#ffffff26","arrow_hover_bg":"#ffffff59","arrow_color":"#ffffff","dot_color":"#ffffff","dot_active_color":"#ffffff","mobile_caption_below":false,"mobile_caption_bg":"#ffffff"}},"marquee_izzYrQ":{"type":"marquee","blocks":{"text_WDkNgd":{"type":"text","settings":{"text":"<p>A world of timeless designs that honor the people who make them & the places they’re made.<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h2","font":"var(--font-primary--family)","font_size":"var(--font-size--heading-lg)","line_height":"tight","letter_spacing":"tight","case":"none","wrap":"nowrap","color":"","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_WDkNgd"],"disabled":true,"name":"t:names.marquee","settings":{"movement_direction":"normal","color_scheme":"","padding-block-start":48,"padding-block-end":48,"gap_between_elements":16}},"custom_editorial_CCz9Yx":{"type":"custom-editorial","blocks":{"collection_item_3c4Dti":{"type":"collection_item","settings":{"image":"shopify:\/\/shop_images\/Artistic.png","heading":"ARTISTIC","card_bg_override":"","heading_color_override":"","accent_color_override":"","button_1_label":"Women","button_1_url":"","button_2_label":"Men","button_2_url":""}},"collection_item_W9xTnk":{"type":"collection_item","settings":{"image":"shopify:\/\/shop_images\/Graphic.png","heading":"GRAPHIC","card_bg_override":"","heading_color_override":"","accent_color_override":"","button_1_label":"Women","button_1_url":"","button_2_label":"Men","button_2_url":""}},"collection_item_EGfkLq":{"type":"collection_item","settings":{"image":"shopify:\/\/shop_images\/Essentials.png","heading":"ESSENTIALS","card_bg_override":"","heading_color_override":"","accent_color_override":"","button_1_label":"Men","button_1_url":"","button_2_label":"Women","button_2_url":""}},"collection_item_GJtwzb":{"type":"collection_item","settings":{"image":"shopify:\/\/shop_images\/Statement_-_replace_smart_casual_with_this.png","heading":"STATEMENT","card_bg_override":"","heading_color_override":"","accent_color_override":"","button_1_label":"Men","button_1_url":"","button_2_label":"Women","button_2_url":""}}},"block_order":["collection_item_3c4Dti","collection_item_W9xTnk","collection_item_EGfkLq","collection_item_GJtwzb"],"name":"Custom Editorial","settings":{"container_width":1560,"container_padding":40,"color_primary":"#0c4168","color_primary_dark":"#0a3557","color_accent":"#21f010","color_white":"#ffffff","color_grey":"#626261","color_burgundy":"#851828","max_width":1600,"section_padding_horizontal":0,"padding_top":60,"padding_bottom":60,"mobile_padding_top":32,"mobile_padding_bottom":32,"desktop_cols":4,"tablet_cols":2,"mobile_cols":2,"gap_desktop":20,"gap_mobile":16,"card_bg":"#ffffff","card_border_radius":0,"card_shadow_color":"#0c4168","card_shadow_opacity":8,"card_shadow_hover":14,"card_hover_lift":6,"content_padding_vertical":16,"content_padding_horizontal":14,"image_ratio":"3\/4","image_border_radius":0,"image_hover_zoom":true,"image_hover_scale":8,"image_overlay_enable":true,"image_overlay_color":"#0c4168","image_overlay_opacity":0,"image_overlay_hover_opacity":10,"accent_line_color":"#21f010","accent_line_hover_color":"#0c4168","accent_line_width":46,"accent_line_hover_width":68,"accent_line_height":3,"accent_line_spacing":12,"heading_color":"#0a3557","heading_hover_color":"#0a3557","heading_font":"Helvetica","heading_font_weight":"800","heading_size_desktop":20,"heading_size_mobile":14,"heading_line_height":105,"heading_letter_spacing":"-0.02","heading_transform":"none","link_color":"#0c4168","link_hover_color":"#21f010","link_font":"Helvetica","link_font_weight":"700","link_size_desktop":14,"link_size_mobile":10,"link_letter_spacing":"0.08","underline_thickness":2,"underline_offset":6,"underline_hover_scale":65}},"collection_carousel_pro_pAhcyP":{"type":"collection-carousel-pro","blocks":{"card_hjY9gV":{"type":"card","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/1.png","title":"","link":"shopify:\/\/products\/strive-to-conquer-mens-graphic-tee"}},"card_rxyi84":{"type":"card","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/New_Arri_2.png","title":"","link":""}},"card_WDQtQc":{"type":"card","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/New_Arri_3.png","title":"","link":""}},"card_8ew7Bf":{"type":"card","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/New_Arri_4.png","title":"","link":""}},"card_d3fLwH":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/1.png","title":"","link":""}},"card_tM8P6i":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/2.png","title":"","link":""}},"card_MNgmtT":{"type":"card","settings":{"image":"shopify:\/\/shop_images\/3.png","title":"","link":""}}},"block_order":["card_hjY9gV","card_rxyi84","card_WDQtQc","card_8ew7Bf","card_d3fLwH","card_tM8P6i","card_MNgmtT"],"name":"Collection Carousel Pro","settings":{"small_heading":"MOST WANTED","main_heading":"Bestsellers","description":"The crowd favourites. Bold graphics, premium comfort, and everyday styles chosen again and again.","enable_shop_all_button":true,"shop_all_button_text":"SHOP ALL","shop_all_button_link":"","shop_all_button_width_desktop":140,"shop_all_button_height_desktop":40,"shop_all_button_width_mobile":100,"shop_all_button_height_mobile":40,"shop_all_button_font_size_desktop":14,"shop_all_button_font_size_mobile":10,"shop_all_button_font_weight":600,"shop_all_button_border_radius":0,"shop_all_button_border_width":1,"shop_all_button_text_color":"#0c4168","shop_all_button_background_color":"rgba(0,0,0,0)","shop_all_button_border_color":"#0c4168","shop_all_button_margin_top":20,"shop_all_button_margin_bottom":0,"section_font":"sans_serif_n4","background_color":"#f0efef","small_heading_color":"#21f010","main_heading_color":"#0c4168","description_color":"#4f5d6b","small_heading_size":18,"small_heading_weight":700,"main_heading_size":42,"main_heading_weight":700,"description_size":15,"description_weight":400,"small_heading_size_mobile":14,"main_heading_size_mobile":33,"description_size_mobile":14,"content_width":30,"card_gap":24,"card_width_desktop":460,"card_height_desktop":460,"card_width_mobile":280,"card_height_mobile":380,"card_radius":0,"overlay_color":"#0c4168","overlay_opacity":0,"card_title_color":"#ffffff","card_title_size":28,"card_title_weight":700,"arrow_bg":"rgba(0,0,0,0)","arrow_color":"#ffffff","arrow_size":50,"scrollbar_track":"#eaeaea","scrollbar_thumb":"#0c4168","padding_top":12,"padding_bottom":12,"padding_top_mobile":0,"padding_bottom_mobile":0}},"custom_category_icons_fa4BTq":{"type":"custom-category-icons","blocks":{"category_kzEbaF":{"type":"category","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/Regular-Blue.png","image_hover":"shopify:\/\/shop_images\/Relaxed-Blue.png","label":"Regular","link":"","circle_bg":"#f0ece4"}},"category_HapBiR":{"type":"category","settings":{"image":"shopify:\/\/shop_images\/Regular.png","image_hover":"shopify:\/\/shop_images\/Regular-Blue.png","label":"Regular","link":"shopify:\/\/collections\/regular-tees","circle_bg":"#ffffff"}},"category_Fgx9N4":{"type":"category","settings":{"image":"shopify:\/\/shop_images\/Relaxed.png","image_hover":"shopify:\/\/shop_images\/Relaxed-Blue.png","label":"Relaxed","link":"shopify:\/\/collections\/relaxed-tees","circle_bg":"#ffffff"}},"category_LP6wDc":{"type":"category","settings":{"image":"shopify:\/\/shop_images\/Oversized.png","image_hover":"shopify:\/\/shop_images\/Oversized-Blue.png","label":"Oversized","link":"shopify:\/\/collections\/home-page","circle_bg":"#ffffff"}},"category_6dU3Bg":{"type":"category","settings":{"image":"shopify:\/\/shop_images\/Boxy.png","image_hover":"shopify:\/\/shop_images\/Boxy-Blue.png","label":"Boxy","link":"shopify:\/\/collections\/regular-tees-copy","circle_bg":"#ffffff"}}},"block_order":["category_kzEbaF","category_HapBiR","category_Fgx9N4","category_LP6wDc","category_6dU3Bg"],"name":"Custom Category Icons","settings":{"heading":"FIND YOUR FIT","heading_color":"#0c4168","heading_font":"Helvetica","heading_size":40,"heading_size_mobile":24,"heading_weight":"700","heading_weight_mobile":"700","heading_letter_spacing":"0","heading_line_height":105,"heading_transform":"uppercase","heading_margin_bottom":18,"subtext_line_1":"Whether you prefer clean classics or oversized statements, explore fits made to move with you.","subtext_line_2_before":"","inline_link_label":"","inline_link_url":"","subtext_line_2_after":"for exclusive benefits.","subtext_color":"#444444","inline_link_color":"#1a1a1a","body_font":"Helvetica Neue","subtext_size":14,"subtext_size_mobile":14,"subtext_weight":"400","subtext_weight_mobile":"400","subtext_line_height":160,"subtext_margin_bottom":10,"circle_size":120,"circle_size_mobile":96,"icon_width_mobile":80,"icon_height_mobile":80,"icon_gap":32,"icon_label_gap":14,"icons_margin_bottom":16,"circle_border_width":2,"circle_hover_border_color":"#21f010","circle_hover_lift":6,"circle_shadow_color":"#0c4168","circle_shadow_opacity":16,"label_color":"#1a1a1a","label_hover_color":"#0c4168","label_size":14,"label_size_mobile":14,"label_weight":"700","label_weight_mobile":"700","label_letter_spacing":"0.08","label_transform":"uppercase","cta_label":"","cta_url":"","btn_bg":"#ffffff","btn_text_color":"#0c4168","btn_border_color":"#0c4168","btn_hover_bg":"#0c4168","btn_hover_text_color":"#ffffff","btn_font":"Helvetica","btn_font_size":14,"btn_font_weight":"700","btn_letter_spacing":"0.08","btn_text_transform":"uppercase","btn_padding_v":18,"btn_padding_h":56,"btn_min_height":52,"btn_border_width":2,"btn_border_radius":0,"btn_hover_lift":2,"background_color":"#ffffff","padding_top":60,"padding_bottom":60,"padding_top_mobile":30,"padding_bottom_mobile":30}},"custom_editorial_seaction_mHFt7p":{"type":"custom-editorial-seaction","blocks":{"grid_item_TpiJNJ":{"type":"grid_item","settings":{"image":"shopify:\/\/shop_images\/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png","caption":"Explore the incredible materials we use","explore_label":"EXPLORE","link":""}},"grid_item_x33UQJ":{"type":"grid_item","settings":{"image":"shopify:\/\/shop_images\/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png","caption":"Read about our amazing factory partners","explore_label":"EXPLORE","link":""}},"grid_item_BYHQCe":{"type":"grid_item","settings":{"image":"shopify:\/\/shop_images\/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png","caption":"Our promise of great quality","explore_label":"EXPLORE","link":""}},"grid_item_bGrG7w":{"type":"grid_item","settings":{"image":"shopify:\/\/shop_images\/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png","caption":"Discover our pursuit of sustainability","explore_label":"EXPLORE","link":""}}},"block_order":["grid_item_TpiJNJ","grid_item_x33UQJ","grid_item_BYHQCe","grid_item_bGrG7w"],"name":"Custom Editorial Split","settings":{"max_width":1500,"left_width":"1.1fr","gap":6,"h_padding":20,"mobile_side_padding":12,"padding_top":0,"padding_bottom":60,"padding_top_mobile":0,"padding_bottom_mobile":0,"left_image":"shopify:\/\/shop_images\/New_Arrivals_700x700_afcee856-07e8-41b4-924a-404dd0cd9065.png","left_content_padding":32,"left_content_padding_mobile":20,"left_min_height":520,"left_min_height_mobile":420,"left_min_height_small_mobile":340,"logo_width":80,"logo_margin_bottom":28,"stats_text":"Every season comes with a new perspective.\nEach piece begins with an idea and ends with a story worth wearing.","body_text":"Discover our latest collection of premium essentials and expressive designs, created for those who wear their vibe with confidence.","cta_label":"New Arrivals","cta_url":"","grid_overlay_padding":16,"grid_overlay_padding_mobile":10,"grid_bottom_gap":6,"grid_item_ratio":"1 \/ 1","body_font":"Helvetica Neue","stats_size":14,"stats_size_mobile":14,"stats_weight":"400","stats_margin_bottom":20,"body_size":14,"body_size_mobile":14,"body_weight":"500","body_margin_bottom":28,"body_max_width":280,"cta_size":14,"cta_size_mobile":24,"cta_weight":"700","caption_size":14,"caption_size_mobile":14,"caption_weight":"500","explore_size":14,"explore_size_mobile":10,"explore_weight":"700","explore_width_desktop":150,"explore_height_desktop":40,"explore_width_mobile":100,"explore_height_mobile":40,"explore_padding_y":10,"explore_padding_x":14,"explore_padding_y_mobile":10,"explore_padding_x_mobile":14,"explore_radius":0,"background_color":"#ffffff","stats_color":"#ffffff","left_panel_bg":"#0c4168","grid_item_bg":"#0c4168","placeholder_bg":"#0c4168","overlay_start_color":"#0c4168b8","overlay_end_color":"rgba(0,0,0,0)","explore_bg":"#ffffff","explore_text_color":"#0c4168","explore_hover_bg":"#0c4168","explore_hover_text":"#ffffff","body_color":"#ffffff","cta_color":"#ffffff","cta_hover_color":"#0c4168","caption_color":"#ffffff","explore_color":"#ffffff"}},"custom_category_grid_dyNMWU":{"type":"custom-category-grid","name":"Drop collections","settings":{"heading":"SHOP OUR COLLECTIONS","heading_size":40,"heading_size_mobile":24,"section_bg":"#ffffff","padding_top":0,"padding_bottom":0,"padding_top_mobile":0,"padding_bottom_mobile":0,"heading_color":"#0c4168","heading_weight":"600","heading_weight_mobile":"700","desktop_image_1":"shopify:\/\/shop_images\/Untitled_design.png","link_1":"","desktop_image_2":"shopify:\/\/shop_images\/Untitled_design_1.png","link_2":"","desktop_image_3":"shopify:\/\/shop_images\/Untitled_design_2.png","link_3":"","desktop_image_4":"shopify:\/\/shop_images\/Untitled_design_3.png","link_4":"","desktop_image_5":"shopify:\/\/shop_images\/Untitled_design_4.png","link_5":"","desktop_image_6":"shopify:\/\/shop_images\/Untitled_design_6.png","link_6":"","desktop_image_7":"shopify:\/\/shop_images\/Untitled_design_5.png","link_7":"","desktop_image_8":"shopify:\/\/shop_images\/Untitled_design_7.png","link_8":""}},"custom_bottom_bar_966ULH":{"type":"custom-bottom-bar","blocks":{"feature_mTikFx":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/Relaxed-Blue.png","title":"PURE COTTON","text":"Naturally breathable for everyday wear"}},"feature_L3LwBp":{"type":"feature","settings":{"title":"BIO-WASHED","text":"Extra-soft finish for lasting comfort"}},"feature_XNFat3":{"type":"feature","settings":{"title":"HEAVYWEIGHT","text":"Premium GSM that maintains its shape"}},"feature_eGHHm8":{"type":"feature","settings":{"title":"PRE-SHRUNK","text":"Made to sustain, wash after wash"}},"feature_kdGgmU":{"type":"feature","settings":{"title":"BUILT TO LAST","text":"Quality construction for years of wear"}},"feature_adQCEh":{"type":"feature","settings":{"title":"EXPRESSIVE","text":"Created to affirm your individuality"}},"feature_yG6U8R":{"type":"feature","settings":{"title":"MODERN FITS","text":"Inspired by culture & creativity"}},"feature_hLwyTP":{"type":"feature","settings":{"title":"DESIGN EXPERTISE","text":"15+ years in visuals & design"}}},"block_order":["feature_mTikFx","feature_L3LwBp","feature_XNFat3","feature_eGHHm8","feature_kdGgmU","feature_adQCEh","feature_yG6U8R","feature_hLwyTP"],"name":"Trust scroll strip","settings":{"heading":"DESIGNED TO BE WORN. MADE TO BE LOVED.","subheading":"","scroll_speed":30,"section_bg":"#ffffff","padding_top_desktop":40,"padding_bottom_desktop":10,"padding_top_mobile":6,"padding_bottom_mobile":18,"font_family":"sans_serif_n4","heading_size_desktop":40,"heading_size_mobile":24,"heading_weight_desktop":"700","heading_weight_mobile":"700","subheading_size_desktop":14,"subheading_size_mobile":14,"subheading_weight_desktop":"500","subheading_weight_mobile":"500","title_size_desktop":14,"title_size_mobile":14,"title_weight_desktop":"700","title_weight_mobile":"700","text_size_desktop":14,"text_size_mobile":14,"text_weight_desktop":"500","text_weight_mobile":"500","heading_color":"#0c4168","subheading_color":"#666666","card_bg":"#ffffff","card_border":"#d9d9d9","title_color":"#0c4168","text_color":"#666666","icon_bg":"#f5f5f5","card_hover_bg":"#0c4168","card_hover_border":"#0c4168","title_hover_color":"#ffffff","text_hover_color":"#ffffff","icon_hover_bg":"#1af354","fade_color":"#ffffff"}},"collection_banner_kBPTxj":{"type":"collection-banner","blocks":{"slide_EHTaEb":{"type":"slide","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/Lookbook1_Desktop.webp","mobile_image":"shopify:\/\/shop_images\/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp","heading":"Collection Spotlight","subtext":"","button_1_label":"SHOP NOW","button_1_link":"","button_2_label":"","button_2_link":"","override_colors":false,"heading_color":"#ffffff","desc_color":"#ffffff","btn1_bg":"#ffffff","btn1_text":"#000000","btn2_bg":"#ffffff","btn2_text":"#000000","override_overlay":false,"overlay_color":"#000000","overlay_opacity":40,"override_alignment":false,"text_alignment":"left","button_alignment":"flex-start"}},"slide_99W6bA":{"type":"slide","settings":{"image":"shopify:\/\/shop_images\/Lookbook1_Desktop.webp","mobile_image":"shopify:\/\/shop_images\/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp","heading":"KIDS COLLECTION","subtext":"","button_1_label":"SHOP NOW","button_1_link":"","button_2_label":"","button_2_link":"","override_colors":false,"heading_color":"#ffffff","desc_color":"#ffffff","btn1_bg":"#ffffff","btn1_text":"#000000","btn2_bg":"#ffffff","btn2_text":"#000000","override_overlay":false,"overlay_color":"#000000","overlay_opacity":40,"override_alignment":false,"text_alignment":"left","button_alignment":"flex-start"}}},"block_order":["slide_EHTaEb","slide_99W6bA"],"name":"Collection Slideshow","settings":{"section_bg":"#ffffff","padding_top_desktop":38,"padding_bottom_desktop":0,"padding_top_mobile":0,"padding_bottom_mobile":0,"margin_top":0,"margin_bottom":0,"content_max_width":2000,"desktop_image_height":840,"mobile_image_height":500,"desktop_overlay_color":"#000000","desktop_overlay_opacity":0,"mobile_overlay_color":"#000000","mobile_overlay_opacity":0,"image_position_desktop":"bottom","image_position_mobile":"right","image_border_radius":0,"slide_border_radius":0,"content_position":"bottom-left","content_width_desktop":660,"content_width_mobile":350,"heading_font":"sans_serif_n4","body_font":"sans_serif_n4","heading_size":40,"heading_weight":"700","heading_line_height":1.1,"heading_letter_spacing":0,"heading_color":"#ffffff","heading_hover_color":"#ffffff","heading_transform":"none","heading_size_mobile":24,"heading_line_height_mobile":1.1,"heading_letter_spacing_mobile":0,"desc_size":14,"desc_weight":"400","desc_line_height":1.5,"desc_letter_spacing":0,"desc_color":"#ffffff","desc_size_mobile":15,"desc_line_height_mobile":1.5,"btn1_bg":"#ffffff","btn1_text":"#0c4168","btn1_border_color":"#ffffff","btn1_border_width":0,"btn1_border_radius":0,"btn1_width":150,"btn1_height":40,"btn1_width_mobile":100,"btn1_height_mobile":40,"btn1_padding_x":20,"btn1_padding_y":12,"btn1_size":14,"btn1_weight":"600","btn1_letter_spacing":1,"btn1_hover_bg":"#0c4168","btn1_hover_text":"#ffffff","btn1_hover_border":"#0c4168","btn2_bg":"#ffffff","btn2_text":"#0c4168","btn2_border_color":"#ffffff","btn2_border_width":0,"btn2_border_radius":0,"btn2_width":150,"btn2_height":40,"btn2_width_mobile":100,"btn2_height_mobile":40,"btn2_padding_x":20,"btn2_padding_y":12,"btn2_size":14,"btn2_weight":"600","btn2_letter_spacing":1,"btn2_hover_bg":"#0c4168","btn2_hover_text":"#ffffff","btn2_hover_border":"#0c4168","arrow_color":"#ffffff","arrow_hover_color":"#ffffff","arrow_bg":"rgba(0,0,0,0)","arrow_hover_bg":"rgba(0,0,0,0)","arrow_size":80,"arrow_size_mobile":54,"arrow_border_radius":50,"dot_color":"#ffffff61","dot_active_color":"#fffffff2","dot_width":28,"dot_height":3,"dot_active_width":36,"dot_border_radius":2,"dot_gap":6,"autoplay":true,"autoplay_speed":6,"pause_on_hover":true,"infinite_loop":true,"transition_duration":0.7}},"collection_splider_j6nUDX":{"type":"collection-splider","name":"Collection Slider","settings":{"heading":"","collection":"home-page","products_to_show":24,"show_view_all":true,"button_label":"SHOP ALL","section_bg_color":"#ffffff","wrapper_width":94,"section_padding_top":60,"section_padding_bottom":60,"section_padding_top_mobile":30,"section_padding_bottom_mobile":30,"heading_color":"#0c4168","heading_size_desktop":40,"heading_size_mobile":32,"heading_weight":"800","heading_alignment":"left","heading_alignment_mobile":"center","heading_margin_bottom":24,"card_bg_color":"rgba(0,0,0,0)","image_bg_color":"#f7f7f7","image_ratio_desktop":"3 \/ 3.6","image_ratio_mobile":"3 \/ 3.6","card_width_desktop":240,"card_width_tablet":210,"card_width_mobile":180,"card_gap_desktop":16,"card_gap_mobile":12,"card_info_spacing":12,"title_color":"#0c4168","title_size_desktop":20,"title_size_mobile":14,"title_weight":"700","price_color":"#444444","compare_price_color":"#444444","price_size_desktop":14,"price_size_mobile":10,"price_weight":"500","arrow_color":"#0c4168","arrow_bg_color":"rgba(0,0,0,0)","arrow_size_desktop":40,"arrow_size_mobile":32,"arrow_offset_desktop":44,"arrow_offset_tablet":10,"arrow_border_radius":0,"button_margin_top":0,"button_width_desktop":150,"button_height_desktop":40,"button_width_mobile":100,"button_height_mobile":40,"button_font_size_desktop":14,"button_font_size_mobile":10,"button_font_weight":"700","button_border_width":2,"button_border_radius":0,"button_padding_x":14,"button_padding_y":10,"button_padding_x_mobile":10,"button_padding_y_mobile":10,"button_text_color":"#0c4168","button_bg_color":"#ffffff","button_border_color":"#0c4168","button_hover_text_color":"#ffffff","button_hover_bg_color":"#0c4168","button_hover_border_color":"#0c4168"}},"section_2_BrdHkP":{"type":"section-2","blocks":{"card_KDWbQm":{"type":"card","settings":{"card_image":"shopify:\/\/shop_images\/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp","card_label":"Pure Confidence"}},"card_KMLL9L":{"type":"card","settings":{"card_image":"shopify:\/\/shop_images\/black.webp","card_label":"Born Bold"}},"card_r6TGtV":{"type":"card","settings":{"card_image":"shopify:\/\/shop_images\/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp","card_label":"Fearless Spirit"}},"stat_eApY44":{"type":"stat","settings":{"stat_value":"DESIGN-LED","stat_label":"CREATED BY DESIGNERS"}},"stat_Pqzapj":{"type":"stat","settings":{"stat_value":"STORY-DRIVEN","stat_label":"GRAPHICS WITH MEANING"}},"stat_j3QiFA":{"type":"stat","settings":{"stat_value":"LIMITED EDITIONS","stat_label":"MADE TO STAND OUT"}}},"block_order":["card_KDWbQm","card_KMLL9L","card_r6TGtV","stat_eApY44","stat_Pqzapj","stat_j3QiFA"],"name":"Lookbook","settings":{"heading":"Lookbook","body_text":"A collection of moods, moments, and stories waiting to be worn.","cta_text":"EXPLORE","cta_url":"shopify:\/\/pages\/lookbook","section_font":"sans_serif_n4","heading_color":"#ffffff","heading_size":40,"heading_size_mobile":24,"heading_weight":700,"body_color":"#ffffff","body_size":14,"body_size_mobile":14,"body_weight":400,"button_bg":"#ffffff","button_text":"#0c4168","button_hover_bg":"#0c4168","button_hover_text":"#ffffff","button_font_size":14,"button_font_size_mobile":10,"button_font_weight":700,"button_width_desktop":150,"button_height_desktop":40,"button_width_mobile":100,"button_height_mobile":40,"stats_number_color":"#21f010","stats_label_color":"#b7c1cc","stats_number_size":14,"stats_number_size_mobile":14,"stats_number_weight":800,"stats_label_size":14,"stats_label_size_mobile":14,"stats_label_weight":400,"background_color":"#e6e6e6","accent_color":"#21f010","blob_color":"#21f010","padding_desktop-top":0,"padding_desktop-bottom":0,"padding_top_mobile":0,"padding_bottom_mobile":0,"padding_top":84,"padding_bottom":0}},"rotating_text_X4Hpjk":{"type":"rotating-text","blocks":{"phrase_erCf4E":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"WEAR YOUR VIBE","sub_text":"Not someone else's."}},"phrase_DkDGRX":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"DRESS FOR YOUR MOOD","sub_text":" The rest will follow."}},"phrase_JrdzcE":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"COMFORT IS CONFIDENCE","sub_text":"Which never goes out of style."}},"phrase_CamVJL":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"CREATED WITH INTENTION","sub_text":"Not by accident."}},"phrase_wqybQ8":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"LESS NOISE","sub_text":"More substance."}},"phrase_heHbzE":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"FOR PEOPLE WHO NOTICE","sub_text":"The little things."}},"phrase_9UcCKB":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"EVERY THREAD COUNTS","sub_text":"Every detail matters."}},"phrase_RTqVw4":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"DESIGNED TO EVOLVE","sub_text":"Just like you."}},"phrase_CRcYF3":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"BUILT ON CREATIVITY","sub_text":"Grounded in craft."}},"phrase_ePEzK4":{"type":"phrase","settings":{"heading":"","sub_textt":"","word":"THOUGHTFULLY MADE","sub_text":"Effortlessly worn."}}},"block_order":["phrase_erCf4E","phrase_DkDGRX","phrase_JrdzcE","phrase_CamVJL","phrase_wqybQ8","phrase_heHbzE","phrase_9UcCKB","phrase_RTqVw4","phrase_CRcYF3","phrase_ePEzK4"],"name":"We Are — Rotating Banner","settings":{"background_color":"#13ff00","rotating_text_color":"#0c4168","sub_text_color":"#0c4168","rotating_text_size_desktop":28,"sub_text_size_desktop":14,"rotating_text_size_mobile":24,"sub_text_size_mobile":14,"rotating_text_weight_desktop":700,"sub_text_weight_desktop":400,"rotating_text_weight_mobile":700,"sub_text_weight_mobile":400,"interval":2,"padding_top":10,"padding_bottom":10}},"tab_section_PXmk7b":{"type":"tab-section","blocks":{"timeline_item_wxTw3A":{"type":"timeline_item","settings":{"year":"ORIGIN","image":"shopify:\/\/shop_images\/gauvi18eg0ict51uh884g74ao04fpo87.avif","title":"IT STARTED WITH A FEELING","text":"<p>Most brands start with a gap in the market. Woblee started with a gap in how clothing made people feel. KSK Aircon has spent years earning trust the slow way - through engineering discipline and consistency. We asked a different question: what happens when you apply that same discipline to something as personal as what someone wears every day.<\/p><p>The answer became Woblee. Not a pivot, not a side project - a second venture built with the same intent, just pointed at a different kind of craftsmanship. Snehlata Jaiswal, our founder and creative director, brought a NIFT-trained eye for fabric, fit, and construction, and a belief that fashion should say something rather than just cover something.<\/p><p>That belief hasn't changed since day one. Every collection we've shipped has been an attempt to turn a feeling into a design worth wearing - not chasing a trend, but building a point of view.<\/p>"}},"timeline_item_Ufgcn7":{"type":"timeline_item","settings":{"year":"CRAFT","image":"shopify:\/\/shop_images\/c21aoohh845x34h413yx8625t176i3jc.webp","title":"THE MASTERY IS IN THE DETAILS","text":"<p>Craft isn't a department at Woblee. It's a mindset we hold every team to - design, sourcing, production - because a t-shirt only earns the right to be worn if it's built properly first. We hold ourselves to ISO 9001, 14001, and 45001 standards not because it's expected of a fashion label, but because we came from an industry where certification wasn't optional.<\/p><p>That discipline shows up in the smallest choices. Our Core Line is proof that \"simple\" is actually the hardest thing to get right - premium blanks with nothing to hide behind, which means the fabric, the fit, and the finish all have to be flawless. Our Statement and Artistic Lines push further creatively, but they're held to the exact same bar of construction.<\/p><p>We've learned that quality isn't a single decision made once. It's a discipline practiced daily - fabric sourcing, stitch density, print technique, fit testing - repeated until it becomes instinct. That's what separates a brand from a factory output.<\/p>"}},"timeline_item_JVj43V":{"type":"timeline_item","settings":{"year":"DESIGN","image":"shopify:\/\/shop_images\/q5w00c72s70127860d5dwl150v22ij58.webp","title":"THE CRAFT OF ORIGINAL THOUGHT","text":"<p>Every Woblee graphic starts as a story before it becomes a print. We don't design around a trend cycle - we design around a narrative worth telling, a moment that deserves to exist on fabric. The story comes first. The execution is where the craft takes over.<\/p><p>That's where technique matters just as much as concept. Story-based graphics, bold typography, and theme-driven artistic collections are each a different tool for a different kind of story - restraint and precision for a typographic statement, composition and sequencing for a narrative graphic, layered detail for an artistic drop. None of these are interchangeable.<\/p><p>The elements change from collection to collection, but the intent never does. Every design has to earn its place through story and craftsmanship together - because a graphic without a story is just decoration, and a story without craft never leaves the sketchpad.<\/p>"}},"timeline_item_BCqJBC":{"type":"timeline_item","settings":{"year":"COMMUNITY","image":"shopify:\/\/shop_images\/drs2.webp","title":"BUILT BY PEOPLE, NOT JUST FOR THEM","text":"<p>We didn't build Woblee for a demographic. We built it for a mindset - people who see personal style as a form of self-expression, not conformity. People who'd rather wear something original than something safe, and who notice the difference between a brand that designs with intent and one that's just following the crowd.<\/p><p>That relationship goes both ways. Details like handwritten thank-you notes, or designs built around family combinations, exist because we believe the relationship between a brand and its community should feel personal, not transactional. Every piece we make is designed to become part of someone's story - not just occupy space in their wardrobe.<\/p><p>Our community isn't just an audience. It's a feedback loop. The way people style, wear, and talk about Woblee shapes what we build next - which is exactly how a brand should grow.<\/p>"}},"timeline_item_L4FmA7":{"type":"timeline_item","settings":{"year":"FUTURE","image":"shopify:\/\/shop_images\/drs2.webp","title":"BUILT TO LAST, DESIGNED TO EVOLVE","text":"<p>We're building Woblee in phases, deliberately. Phase one is about getting the foundation unshakeable - a clear brand identity, strong core collections, and a direct relationship with the people who wear us. Growth without foundation is just noise, and we're not interested in noise.<\/p><p>From there, the ambition widens - deeper category expansion into streetwear, collaborations with artists and creators who share our design philosophy, and offline experiences that let people feel the brand in person, not just scroll past it. Every stage is designed to compound on the one before it, not chase the next shiny opportunity.<\/p><p>What won't change is the standard. Thoughtful design, uncompromising craft, and a genuine connection with the people who choose to wear us. That's not a tagline. That's the operating principle behind everything Woblee becomes next.<\/p>"}}},"block_order":["timeline_item_wxTw3A","timeline_item_Ufgcn7","timeline_item_JVj43V","timeline_item_BCqJBC","timeline_item_L4FmA7"],"name":"Timeline tabs","settings":{"heading":"About us","section_bg":"#ffffff","section_padding_top":60,"section_padding_bottom":60,"section_padding_top_mobile":15,"section_padding_bottom_mobile":30,"heading_color":"#0c4168","heading_size":40,"heading_weight":"700","heading_size_mobile":24,"heading_weight_mobile":"700","tab_color":"#777777","tab_active_color":"#0c4168","tab_underline_color":"#000000","tab_font_size":14,"tab_font_weight":"600","tab_font_size_mobile":14,"tab_font_weight_mobile":"600","content_heading_color":"#0c4168","content_heading_size":28,"content_heading_weight":"700","content_heading_size_mobile":22,"content_text_color":"#666666","content_text_size":14,"content_heading_weight_mobile":"700","content_text_weight":"400","content_text_size_mobile":14,"content_text_weight_mobile":"400","content_width":800,"image_height_desktop":440,"image_height_mobile":400,"image_radius":0,"image_fit":"cover","layout_gap":40}},"17800675107a00a753":{"type":"_blocks","blocks":{"ai_gen_block_31a39b2_Va8WBB":{"type":"ai_gen_block_31a39b2","settings":{"small_title":"More to","main_heading":"Products","subtitle":"Discover our curated edits and seasonal collections","small_title_size":16,"main_heading_size":48,"subtitle_size":14,"card_1_image":"shopify:\/\/shop_images\/black.webp","card_1_title":"Collection 1","card_1_link":"","card_2_image":"shopify:\/\/shop_images\/hoodie2.webp","card_2_title":"Collection 2","card_2_link":"","card_3_image":"shopify:\/\/shop_images\/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp","card_3_title":"Collection 3","card_3_link":"","card_4_image":"shopify:\/\/shop_images\/hoodie1.webp","card_4_title":"Collection 4","card_4_link":"","card_5_image":"shopify:\/\/shop_images\/drs2.webp","card_5_title":"Collection 5","card_5_link":"","card_6_image":"shopify:\/\/shop_images\/c21aoohh845x34h413yx8625t176i3jc.webp","card_6_title":"Collection 6","card_6_link":"","card_width_desktop":400,"card_width_mobile":280,"card_height":500,"card_gap":20,"card_border_radius":12,"card_title_size":20,"card_background":"#ffffff","background_color":"#ffffff","heading_color":"#000000","text_color":"#030302","arrow_background":"#ffffff","arrow_hover_background":"#030302","arrow_icon_color":"#000000","scrollbar_color":"#030302","scrollbar_hover_color":"#000000","scrollbar_track_color":"#d3cec5"},"blocks":{}}},"block_order":["ai_gen_block_31a39b2_Va8WBB"],"disabled":true,"settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"product_list_aak7xm":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_list_text_a8UMYC":{"type":"_product-list-text","name":"t:names.collection_title","settings":{"text":"<h2>{{ closest.collection.title }}<\/h2>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_9MpXnU":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"View all","open_in_new_tab":true,"style_class":"link","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["product_list_text_a8UMYC","product_list_button_9MpXnU"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_BzqxyQ":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_KPyPqq":{"type":"product-title","name":"t:names.product_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_EAwF6k":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","color":"var(--color-foreground)","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_BzqxyQ","product_title_KPyPqq","price_EAwF6k"]}},"disabled":true,"name":"t:names.products_carousel","settings":{"collection":"home-page","layout_type":"carousel","carousel_on_mobile":false,"max_products":6,"columns":4,"mobile_columns":"2","mobile_card_size":"44cqw","columns_gap":8,"rows_gap":24,"icons_style":"arrow","icons_shape":"square","section_width":"page-width","horizontal_alignment":"flex-start","gap":28,"color_scheme":"scheme-1","padding-block-start":48,"padding-block-end":48}}},"order":["custom_hero_section_jrfcFp","marquee_izzYrQ","custom_editorial_CCz9Yx","collection_carousel_pro_pAhcyP","custom_category_icons_fa4BTq","custom_editorial_seaction_mHFt7p","custom_category_grid_dyNMWU","custom_bottom_bar_966ULH","collection_banner_kBPTxj","collection_splider_j6nUDX","section_2_BrdHkP","rotating_text_X4Hpjk","tab_section_PXmk7b","17800675107a00a753","product_list_aak7xm"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero_section_jrfcFp": {
+      "type": "custom-hero-section",
+      "blocks": {
+        "slide_jWfnFU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Banner_1.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/Banner_1_mob.png",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "Wear Your Vibe. Layer Your Story.",
+            "heading": "AUTUMN WINTER ‘26 HAS ARRIVED",
+            "subtext": "Playful, expressive, and built for everyday comfort. The latest Woblee drop brings fresh graphics, premium essentials, and statement styles made for the season.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/men-copy",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/women-copy",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
+        "slide_B6rmj8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Banner_2_web.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "The Classic White Tee, Perfected.",
+            "heading": "SIMPLE BY DESIGN. STRONG BY NATURE.",
+            "subtext": "Timeless, versatile, and always in rotation. Our Core Line white tees bring premium fabric and clean design to every closet.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/men-copy",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/women-copy",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
+        "slide_VNKUdd": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Banner_2_web.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "PLAYFUL. VIBRANT. FULL OF ENERGY.",
+            "heading": "Shop The Color Edit",
+            "subtext": "From bright statements to soft pastels, find shades built for self-expression. Premium fabric, unmistakable Woblee energy.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/men-copy",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/women-copy",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_jWfnFU",
+        "slide_B6rmj8",
+        "slide_VNKUdd"
+      ],
+      "name": "Hero Slideshow Custom",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5000,
+        "transition_type": "slide",
+        "transition_speed": 700,
+        "show_arrows": true,
+        "show_dots": true,
+        "video_pause_autoplay": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 25,
+        "heading_font_size_desktop": 40,
+        "heading_font_size_mobile": 24,
+        "description_font_size": 14,
+        "button_font_size_desktop": 14,
+        "button_font_size_mobile": 10,
+        "caption_position": "bottom_left",
+        "content_offset_h": 4,
+        "content_offset_v": 8,
+        "content_max_width": 600,
+        "caption_bg_show": false,
+        "caption_bg_color": "#00000066",
+        "button_width_desktop": 150,
+        "button_height_desktop": 40,
+        "button_width_mobile": 100,
+        "button_height_mobile": 40,
+        "button_style": "sharp",
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#1a1a1a",
+        "button_border_color": "#ffffff",
+        "button_hover_bg": "rgba(0,0,0,0)",
+        "button_hover_text": "#ffffff",
+        "button_font_size": 14,
+        "button_padding_v": 18,
+        "button_padding_h": 40,
+        "button_border_width": 1,
+        "button_gap": 16,
+        "button_align": "left",
+        "mobile_button_stack": "column",
+        "arrow_bg": "#ffffff26",
+        "arrow_hover_bg": "#ffffff59",
+        "arrow_color": "#ffffff",
+        "dot_color": "#ffffff",
+        "dot_active_color": "#ffffff",
+        "mobile_caption_below": false,
+        "mobile_caption_bg": "#ffffff"
+      }
+    },
+    "marquee_izzYrQ": {
+      "type": "marquee",
+      "blocks": {
+        "text_WDkNgd": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A world of timeless designs that honor the people who make them & the places they’re made.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "var(--font-size--heading-lg)",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "nowrap",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_WDkNgd"
+      ],
+      "disabled": true,
+      "name": "t:names.marquee",
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "gap_between_elements": 16
+      }
+    },
+    "custom_editorial_CCz9Yx": {
+      "type": "custom-editorial",
+      "blocks": {
+        "collection_item_3c4Dti": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Artistic.png",
+            "heading": "ARTISTIC",
+            "card_bg_override": "",
+            "heading_color_override": "",
+            "accent_color_override": "",
+            "button_1_label": "Women",
+            "button_1_url": "",
+            "button_2_label": "Men",
+            "button_2_url": ""
+          }
+        },
+        "collection_item_W9xTnk": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Graphic.png",
+            "heading": "GRAPHIC",
+            "card_bg_override": "",
+            "heading_color_override": "",
+            "accent_color_override": "",
+            "button_1_label": "Women",
+            "button_1_url": "",
+            "button_2_label": "Men",
+            "button_2_url": ""
+          }
+        },
+        "collection_item_EGfkLq": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Essentials.png",
+            "heading": "ESSENTIALS",
+            "card_bg_override": "",
+            "heading_color_override": "",
+            "accent_color_override": "",
+            "button_1_label": "Men",
+            "button_1_url": "",
+            "button_2_label": "Women",
+            "button_2_url": ""
+          }
+        },
+        "collection_item_GJtwzb": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Statement_-_replace_smart_casual_with_this.png",
+            "heading": "STATEMENT",
+            "card_bg_override": "",
+            "heading_color_override": "",
+            "accent_color_override": "",
+            "button_1_label": "Men",
+            "button_1_url": "",
+            "button_2_label": "Women",
+            "button_2_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_3c4Dti",
+        "collection_item_W9xTnk",
+        "collection_item_EGfkLq",
+        "collection_item_GJtwzb"
+      ],
+      "name": "Custom Editorial",
+      "settings": {
+        "container_width": 1560,
+        "container_padding": 40,
+        "color_primary": "#0c4168",
+        "color_primary_dark": "#0a3557",
+        "color_accent": "#21f010",
+        "color_white": "#ffffff",
+        "color_grey": "#626261",
+        "color_burgundy": "#851828",
+        "max_width": 1600,
+        "section_padding_horizontal": 0,
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 32,
+        "mobile_padding_bottom": 32,
+        "desktop_cols": 4,
+        "tablet_cols": 2,
+        "mobile_cols": 2,
+        "gap_desktop": 20,
+        "gap_mobile": 16,
+        "card_bg": "#ffffff",
+        "card_border_radius": 0,
+        "card_shadow_color": "#0c4168",
+        "card_shadow_opacity": 8,
+        "card_shadow_hover": 14,
+        "card_hover_lift": 6,
+        "content_padding_vertical": 16,
+        "content_padding_horizontal": 14,
+        "image_ratio": "3/4",
+        "image_border_radius": 0,
+        "image_hover_zoom": true,
+        "image_hover_scale": 8,
+        "image_overlay_enable": true,
+        "image_overlay_color": "#0c4168",
+        "image_overlay_opacity": 0,
+        "image_overlay_hover_opacity": 10,
+        "accent_line_color": "#21f010",
+        "accent_line_hover_color": "#0c4168",
+        "accent_line_width": 46,
+        "accent_line_hover_width": 68,
+        "accent_line_height": 3,
+        "accent_line_spacing": 12,
+        "heading_color": "#0a3557",
+        "heading_hover_color": "#0a3557",
+        "heading_font": "Helvetica",
+        "heading_font_weight": "800",
+        "heading_size_desktop": 20,
+        "heading_size_mobile": 14,
+        "heading_line_height": 105,
+        "heading_letter_spacing": "-0.02",
+        "heading_transform": "none",
+        "link_color": "#0c4168",
+        "link_hover_color": "#21f010",
+        "link_font": "Helvetica",
+        "link_font_weight": "700",
+        "link_size_desktop": 14,
+        "link_size_mobile": 10,
+        "link_letter_spacing": "0.08",
+        "underline_thickness": 2,
+        "underline_offset": 6,
+        "underline_hover_scale": 65
+      }
+    },
+    "collection_carousel_pro_pAhcyP": {
+      "type": "collection-carousel-pro",
+      "blocks": {
+        "card_hjY9gV": {
+          "type": "card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/1.png",
+            "title": "",
+            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
+          }
+        },
+        "card_rxyi84": {
+          "type": "card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/New_Arri_2.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_WDQtQc": {
+          "type": "card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/New_Arri_3.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_8ew7Bf": {
+          "type": "card",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/New_Arri_4.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_d3fLwH": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/1.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_tM8P6i": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/2.png",
+            "title": "",
+            "link": ""
+          }
+        },
+        "card_MNgmtT": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/3.png",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_hjY9gV",
+        "card_rxyi84",
+        "card_WDQtQc",
+        "card_8ew7Bf",
+        "card_d3fLwH",
+        "card_tM8P6i",
+        "card_MNgmtT"
+      ],
+      "name": "Collection Carousel Pro",
+      "settings": {
+        "small_heading": "MOST WANTED",
+        "main_heading": "Bestsellers",
+        "description": "The crowd favourites. Bold graphics, premium comfort, and everyday styles chosen again and again.",
+        "enable_shop_all_button": true,
+        "shop_all_button_text": "SHOP ALL",
+        "shop_all_button_link": "",
+        "shop_all_button_width_desktop": 140,
+        "shop_all_button_height_desktop": 40,
+        "shop_all_button_width_mobile": 100,
+        "shop_all_button_height_mobile": 40,
+        "shop_all_button_font_size_desktop": 14,
+        "shop_all_button_font_size_mobile": 10,
+        "shop_all_button_font_weight": 600,
+        "shop_all_button_border_radius": 0,
+        "shop_all_button_border_width": 1,
+        "shop_all_button_text_color": "#0c4168",
+        "shop_all_button_background_color": "rgba(0,0,0,0)",
+        "shop_all_button_border_color": "#0c4168",
+        "shop_all_button_margin_top": 20,
+        "shop_all_button_margin_bottom": 0,
+        "section_font": "sans_serif_n4",
+        "background_color": "#f0efef",
+        "small_heading_color": "#21f010",
+        "main_heading_color": "#0c4168",
+        "description_color": "#4f5d6b",
+        "small_heading_size": 18,
+        "small_heading_weight": 700,
+        "main_heading_size": 42,
+        "main_heading_weight": 700,
+        "description_size": 15,
+        "description_weight": 400,
+        "small_heading_size_mobile": 14,
+        "main_heading_size_mobile": 33,
+        "description_size_mobile": 14,
+        "content_width": 30,
+        "card_gap": 24,
+        "card_width_desktop": 460,
+        "card_height_desktop": 460,
+        "card_width_mobile": 280,
+        "card_height_mobile": 380,
+        "card_radius": 0,
+        "overlay_color": "#0c4168",
+        "overlay_opacity": 0,
+        "card_title_color": "#ffffff",
+        "card_title_size": 28,
+        "card_title_weight": 700,
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_color": "#ffffff",
+        "arrow_size": 50,
+        "scrollbar_track": "#eaeaea",
+        "scrollbar_thumb": "#0c4168",
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "custom_category_icons_fa4BTq": {
+      "type": "custom-category-icons",
+      "blocks": {
+        "category_kzEbaF": {
+          "type": "category",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Regular-Blue.png",
+            "image_hover": "shopify://shop_images/Relaxed-Blue.png",
+            "label": "Regular",
+            "link": "",
+            "circle_bg": "#f0ece4"
+          }
+        },
+        "category_HapBiR": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Regular.png",
+            "image_hover": "shopify://shop_images/Regular-Blue.png",
+            "label": "Regular",
+            "link": "shopify://collections/regular-tees",
+            "circle_bg": "#ffffff"
+          }
+        },
+        "category_Fgx9N4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Relaxed.png",
+            "image_hover": "shopify://shop_images/Relaxed-Blue.png",
+            "label": "Relaxed",
+            "link": "shopify://collections/relaxed-tees",
+            "circle_bg": "#ffffff"
+          }
+        },
+        "category_LP6wDc": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Oversized.png",
+            "image_hover": "shopify://shop_images/Oversized-Blue.png",
+            "label": "Oversized",
+            "link": "shopify://collections/home-page",
+            "circle_bg": "#ffffff"
+          }
+        },
+        "category_6dU3Bg": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Boxy.png",
+            "image_hover": "shopify://shop_images/Boxy-Blue.png",
+            "label": "Boxy",
+            "link": "shopify://collections/regular-tees-copy",
+            "circle_bg": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "category_kzEbaF",
+        "category_HapBiR",
+        "category_Fgx9N4",
+        "category_LP6wDc",
+        "category_6dU3Bg"
+      ],
+      "name": "Custom Category Icons",
+      "settings": {
+        "heading": "FIND YOUR FIT",
+        "heading_color": "#0c4168",
+        "heading_font": "Helvetica",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": "700",
+        "heading_weight_mobile": "700",
+        "heading_letter_spacing": "0",
+        "heading_line_height": 105,
+        "heading_transform": "uppercase",
+        "heading_margin_bottom": 18,
+        "subtext_line_1": "Whether you prefer clean classics or oversized statements, explore fits made to move with you.",
+        "subtext_line_2_before": "",
+        "inline_link_label": "",
+        "inline_link_url": "",
+        "subtext_line_2_after": "for exclusive benefits.",
+        "subtext_color": "#444444",
+        "inline_link_color": "#1a1a1a",
+        "body_font": "Helvetica Neue",
+        "subtext_size": 14,
+        "subtext_size_mobile": 14,
+        "subtext_weight": "400",
+        "subtext_weight_mobile": "400",
+        "subtext_line_height": 160,
+        "subtext_margin_bottom": 10,
+        "circle_size": 120,
+        "circle_size_mobile": 96,
+        "icon_width_mobile": 80,
+        "icon_height_mobile": 80,
+        "icon_gap": 32,
+        "icon_label_gap": 14,
+        "icons_margin_bottom": 16,
+        "circle_border_width": 2,
+        "circle_hover_border_color": "#21f010",
+        "circle_hover_lift": 6,
+        "circle_shadow_color": "#0c4168",
+        "circle_shadow_opacity": 16,
+        "label_color": "#1a1a1a",
+        "label_hover_color": "#0c4168",
+        "label_size": 14,
+        "label_size_mobile": 14,
+        "label_weight": "700",
+        "label_weight_mobile": "700",
+        "label_letter_spacing": "0.08",
+        "label_transform": "uppercase",
+        "cta_label": "",
+        "cta_url": "",
+        "btn_bg": "#ffffff",
+        "btn_text_color": "#0c4168",
+        "btn_border_color": "#0c4168",
+        "btn_hover_bg": "#0c4168",
+        "btn_hover_text_color": "#ffffff",
+        "btn_font": "Helvetica",
+        "btn_font_size": 14,
+        "btn_font_weight": "700",
+        "btn_letter_spacing": "0.08",
+        "btn_text_transform": "uppercase",
+        "btn_padding_v": 18,
+        "btn_padding_h": 56,
+        "btn_min_height": 52,
+        "btn_border_width": 2,
+        "btn_border_radius": 0,
+        "btn_hover_lift": 2,
+        "background_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30
+      }
+    },
+    "custom_editorial_seaction_mHFt7p": {
+      "type": "custom-editorial-seaction",
+      "blocks": {
+        "grid_item_TpiJNJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png",
+            "caption": "Explore the incredible materials we use",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_x33UQJ": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png",
+            "caption": "Read about our amazing factory partners",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_BYHQCe": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png",
+            "caption": "Our promise of great quality",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        },
+        "grid_item_bGrG7w": {
+          "type": "grid_item",
+          "settings": {
+            "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png",
+            "caption": "Discover our pursuit of sustainability",
+            "explore_label": "EXPLORE",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_TpiJNJ",
+        "grid_item_x33UQJ",
+        "grid_item_BYHQCe",
+        "grid_item_bGrG7w"
+      ],
+      "name": "Custom Editorial Split",
+      "settings": {
+        "max_width": 1500,
+        "left_width": "1.1fr",
+        "gap": 6,
+        "h_padding": 20,
+        "mobile_side_padding": 12,
+        "padding_top": 0,
+        "padding_bottom": 60,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "left_image": "shopify://shop_images/New_Arrivals_700x700_afcee856-07e8-41b4-924a-404dd0cd9065.png",
+        "left_content_padding": 32,
+        "left_content_padding_mobile": 20,
+        "left_min_height": 520,
+        "left_min_height_mobile": 420,
+        "left_min_height_small_mobile": 340,
+        "logo_width": 80,
+        "logo_margin_bottom": 28,
+        "stats_text": "Every season comes with a new perspective.\nEach piece begins with an idea and ends with a story worth wearing.",
+        "body_text": "Discover our latest collection of premium essentials and expressive designs, created for those who wear their vibe with confidence.",
+        "cta_label": "New Arrivals",
+        "cta_url": "",
+        "grid_overlay_padding": 16,
+        "grid_overlay_padding_mobile": 10,
+        "grid_bottom_gap": 6,
+        "grid_item_ratio": "1 / 1",
+        "body_font": "Helvetica Neue",
+        "stats_size": 14,
+        "stats_size_mobile": 14,
+        "stats_weight": "400",
+        "stats_margin_bottom": 20,
+        "body_size": 14,
+        "body_size_mobile": 14,
+        "body_weight": "500",
+        "body_margin_bottom": 28,
+        "body_max_width": 280,
+        "cta_size": 14,
+        "cta_size_mobile": 24,
+        "cta_weight": "700",
+        "caption_size": 14,
+        "caption_size_mobile": 14,
+        "caption_weight": "500",
+        "explore_size": 14,
+        "explore_size_mobile": 10,
+        "explore_weight": "700",
+        "explore_width_desktop": 150,
+        "explore_height_desktop": 40,
+        "explore_width_mobile": 100,
+        "explore_height_mobile": 40,
+        "explore_padding_y": 10,
+        "explore_padding_x": 14,
+        "explore_padding_y_mobile": 10,
+        "explore_padding_x_mobile": 14,
+        "explore_radius": 0,
+        "background_color": "#ffffff",
+        "stats_color": "#ffffff",
+        "left_panel_bg": "#0c4168",
+        "grid_item_bg": "#0c4168",
+        "placeholder_bg": "#0c4168",
+        "overlay_start_color": "#0c4168b8",
+        "overlay_end_color": "rgba(0,0,0,0)",
+        "explore_bg": "#ffffff",
+        "explore_text_color": "#0c4168",
+        "explore_hover_bg": "#0c4168",
+        "explore_hover_text": "#ffffff",
+        "body_color": "#ffffff",
+        "cta_color": "#ffffff",
+        "cta_hover_color": "#0c4168",
+        "caption_color": "#ffffff",
+        "explore_color": "#ffffff"
+      }
+    },
+    "custom_category_grid_dyNMWU": {
+      "type": "custom-category-grid",
+      "name": "Drop collections",
+      "settings": {
+        "heading": "SHOP OUR COLLECTIONS",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "section_bg": "#ffffff",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "heading_color": "#0c4168",
+        "heading_weight": "600",
+        "heading_weight_mobile": "700",
+        "desktop_image_1": "shopify://shop_images/Untitled_design.png",
+        "link_1": "",
+        "desktop_image_2": "shopify://shop_images/Untitled_design_1.png",
+        "link_2": "",
+        "desktop_image_3": "shopify://shop_images/Untitled_design_2.png",
+        "link_3": "",
+        "desktop_image_4": "shopify://shop_images/Untitled_design_3.png",
+        "link_4": "",
+        "desktop_image_5": "shopify://shop_images/Untitled_design_4.png",
+        "link_5": "",
+        "desktop_image_6": "shopify://shop_images/Untitled_design_6.png",
+        "link_6": "",
+        "desktop_image_7": "shopify://shop_images/Untitled_design_5.png",
+        "link_7": "",
+        "desktop_image_8": "shopify://shop_images/Untitled_design_7.png",
+        "link_8": ""
+      }
+    },
+    "custom_bottom_bar_966ULH": {
+      "type": "custom-bottom-bar",
+      "blocks": {
+        "feature_mTikFx": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/Relaxed-Blue.png",
+            "title": "PURE COTTON",
+            "text": "Naturally breathable for everyday wear"
+          }
+        },
+        "feature_L3LwBp": {
+          "type": "feature",
+          "settings": {
+            "title": "BIO-WASHED",
+            "text": "Extra-soft finish for lasting comfort"
+          }
+        },
+        "feature_XNFat3": {
+          "type": "feature",
+          "settings": {
+            "title": "HEAVYWEIGHT",
+            "text": "Premium GSM that maintains its shape"
+          }
+        },
+        "feature_eGHHm8": {
+          "type": "feature",
+          "settings": {
+            "title": "PRE-SHRUNK",
+            "text": "Made to sustain, wash after wash"
+          }
+        },
+        "feature_kdGgmU": {
+          "type": "feature",
+          "settings": {
+            "title": "BUILT TO LAST",
+            "text": "Quality construction for years of wear"
+          }
+        },
+        "feature_adQCEh": {
+          "type": "feature",
+          "settings": {
+            "title": "EXPRESSIVE",
+            "text": "Created to affirm your individuality"
+          }
+        },
+        "feature_yG6U8R": {
+          "type": "feature",
+          "settings": {
+            "title": "MODERN FITS",
+            "text": "Inspired by culture & creativity"
+          }
+        },
+        "feature_hLwyTP": {
+          "type": "feature",
+          "settings": {
+            "title": "DESIGN EXPERTISE",
+            "text": "15+ years in visuals & design"
+          }
+        }
+      },
+      "block_order": [
+        "feature_mTikFx",
+        "feature_L3LwBp",
+        "feature_XNFat3",
+        "feature_eGHHm8",
+        "feature_kdGgmU",
+        "feature_adQCEh",
+        "feature_yG6U8R",
+        "feature_hLwyTP"
+      ],
+      "name": "Trust scroll strip",
+      "settings": {
+        "heading": "DESIGNED TO BE WORN. MADE TO BE LOVED.",
+        "subheading": "",
+        "scroll_speed": 30,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 10,
+        "padding_top_mobile": 6,
+        "padding_bottom_mobile": 18,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 24,
+        "heading_weight_desktop": "700",
+        "heading_weight_mobile": "700",
+        "subheading_size_desktop": 14,
+        "subheading_size_mobile": 14,
+        "subheading_weight_desktop": "500",
+        "subheading_weight_mobile": "500",
+        "title_size_desktop": 14,
+        "title_size_mobile": 14,
+        "title_weight_desktop": "700",
+        "title_weight_mobile": "700",
+        "text_size_desktop": 14,
+        "text_size_mobile": 14,
+        "text_weight_desktop": "500",
+        "text_weight_mobile": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#1af354",
+        "fade_color": "#ffffff"
+      }
+    },
+    "collection_banner_kBPTxj": {
+      "type": "collection-banner",
+      "blocks": {
+        "slide_EHTaEb": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
+            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "heading": "Collection Spotlight",
+            "subtext": "",
+            "button_1_label": "SHOP NOW",
+            "button_1_link": "",
+            "button_2_label": "",
+            "button_2_link": "",
+            "override_colors": false,
+            "heading_color": "#ffffff",
+            "desc_color": "#ffffff",
+            "btn1_bg": "#ffffff",
+            "btn1_text": "#000000",
+            "btn2_bg": "#ffffff",
+            "btn2_text": "#000000",
+            "override_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "override_alignment": false,
+            "text_alignment": "left",
+            "button_alignment": "flex-start"
+          }
+        },
+        "slide_99W6bA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
+            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "heading": "KIDS COLLECTION",
+            "subtext": "",
+            "button_1_label": "SHOP NOW",
+            "button_1_link": "",
+            "button_2_label": "",
+            "button_2_link": "",
+            "override_colors": false,
+            "heading_color": "#ffffff",
+            "desc_color": "#ffffff",
+            "btn1_bg": "#ffffff",
+            "btn1_text": "#000000",
+            "btn2_bg": "#ffffff",
+            "btn2_text": "#000000",
+            "override_overlay": false,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "override_alignment": false,
+            "text_alignment": "left",
+            "button_alignment": "flex-start"
+          }
+        }
+      },
+      "block_order": [
+        "slide_EHTaEb",
+        "slide_99W6bA"
+      ],
+      "name": "Collection Slideshow",
+      "settings": {
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 38,
+        "padding_bottom_desktop": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "content_max_width": 2000,
+        "desktop_image_height": 840,
+        "mobile_image_height": 500,
+        "desktop_overlay_color": "#000000",
+        "desktop_overlay_opacity": 0,
+        "mobile_overlay_color": "#000000",
+        "mobile_overlay_opacity": 0,
+        "image_position_desktop": "bottom",
+        "image_position_mobile": "right",
+        "image_border_radius": 0,
+        "slide_border_radius": 0,
+        "content_position": "bottom-left",
+        "content_width_desktop": 660,
+        "content_width_mobile": 350,
+        "heading_font": "sans_serif_n4",
+        "body_font": "sans_serif_n4",
+        "heading_size": 40,
+        "heading_weight": "700",
+        "heading_line_height": 1.1,
+        "heading_letter_spacing": 0,
+        "heading_color": "#ffffff",
+        "heading_hover_color": "#ffffff",
+        "heading_transform": "none",
+        "heading_size_mobile": 24,
+        "heading_line_height_mobile": 1.1,
+        "heading_letter_spacing_mobile": 0,
+        "desc_size": 14,
+        "desc_weight": "400",
+        "desc_line_height": 1.5,
+        "desc_letter_spacing": 0,
+        "desc_color": "#ffffff",
+        "desc_size_mobile": 15,
+        "desc_line_height_mobile": 1.5,
+        "btn1_bg": "#ffffff",
+        "btn1_text": "#0c4168",
+        "btn1_border_color": "#ffffff",
+        "btn1_border_width": 0,
+        "btn1_border_radius": 0,
+        "btn1_width": 150,
+        "btn1_height": 40,
+        "btn1_width_mobile": 100,
+        "btn1_height_mobile": 40,
+        "btn1_padding_x": 20,
+        "btn1_padding_y": 12,
+        "btn1_size": 14,
+        "btn1_weight": "600",
+        "btn1_letter_spacing": 1,
+        "btn1_hover_bg": "#0c4168",
+        "btn1_hover_text": "#ffffff",
+        "btn1_hover_border": "#0c4168",
+        "btn2_bg": "#ffffff",
+        "btn2_text": "#0c4168",
+        "btn2_border_color": "#ffffff",
+        "btn2_border_width": 0,
+        "btn2_border_radius": 0,
+        "btn2_width": 150,
+        "btn2_height": 40,
+        "btn2_width_mobile": 100,
+        "btn2_height_mobile": 40,
+        "btn2_padding_x": 20,
+        "btn2_padding_y": 12,
+        "btn2_size": 14,
+        "btn2_weight": "600",
+        "btn2_letter_spacing": 1,
+        "btn2_hover_bg": "#0c4168",
+        "btn2_hover_text": "#ffffff",
+        "btn2_hover_border": "#0c4168",
+        "arrow_color": "#ffffff",
+        "arrow_hover_color": "#ffffff",
+        "arrow_bg": "rgba(0,0,0,0)",
+        "arrow_hover_bg": "rgba(0,0,0,0)",
+        "arrow_size": 80,
+        "arrow_size_mobile": 54,
+        "arrow_border_radius": 50,
+        "dot_color": "#ffffff61",
+        "dot_active_color": "#fffffff2",
+        "dot_width": 28,
+        "dot_height": 3,
+        "dot_active_width": 36,
+        "dot_border_radius": 2,
+        "dot_gap": 6,
+        "autoplay": true,
+        "autoplay_speed": 6,
+        "pause_on_hover": true,
+        "infinite_loop": true,
+        "transition_duration": 0.7
+      }
+    },
+    "collection_splider_j6nUDX": {
+      "type": "collection-splider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "",
+        "collection": "home-page",
+        "products_to_show": 24,
+        "show_view_all": true,
+        "button_label": "SHOP ALL",
+        "section_bg_color": "#ffffff",
+        "wrapper_width": 94,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 30,
+        "heading_color": "#0c4168",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 32,
+        "heading_weight": "800",
+        "heading_alignment": "left",
+        "heading_alignment_mobile": "center",
+        "heading_margin_bottom": 24,
+        "card_bg_color": "rgba(0,0,0,0)",
+        "image_bg_color": "#f7f7f7",
+        "image_ratio_desktop": "3 / 3.6",
+        "image_ratio_mobile": "3 / 3.6",
+        "card_width_desktop": 240,
+        "card_width_tablet": 210,
+        "card_width_mobile": 180,
+        "card_gap_desktop": 16,
+        "card_gap_mobile": 12,
+        "card_info_spacing": 12,
+        "title_color": "#0c4168",
+        "title_size_desktop": 20,
+        "title_size_mobile": 14,
+        "title_weight": "700",
+        "price_color": "#444444",
+        "compare_price_color": "#444444",
+        "price_size_desktop": 14,
+        "price_size_mobile": 10,
+        "price_weight": "500",
+        "arrow_color": "#0c4168",
+        "arrow_bg_color": "rgba(0,0,0,0)",
+        "arrow_size_desktop": 40,
+        "arrow_size_mobile": 32,
+        "arrow_offset_desktop": 44,
+        "arrow_offset_tablet": 10,
+        "arrow_border_radius": 0,
+        "button_margin_top": 0,
+        "button_width_desktop": 150,
+        "button_height_desktop": 40,
+        "button_width_mobile": 100,
+        "button_height_mobile": 40,
+        "button_font_size_desktop": 14,
+        "button_font_size_mobile": 10,
+        "button_font_weight": "700",
+        "button_border_width": 2,
+        "button_border_radius": 0,
+        "button_padding_x": 14,
+        "button_padding_y": 10,
+        "button_padding_x_mobile": 10,
+        "button_padding_y_mobile": 10,
+        "button_text_color": "#0c4168",
+        "button_bg_color": "#ffffff",
+        "button_border_color": "#0c4168",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_bg_color": "#0c4168",
+        "button_hover_border_color": "#0c4168"
+      }
+    },
+    "section_2_BrdHkP": {
+      "type": "section-2",
+      "blocks": {
+        "card_KDWbQm": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "card_label": "Pure Confidence"
+          }
+        },
+        "card_KMLL9L": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/black.webp",
+            "card_label": "Born Bold"
+          }
+        },
+        "card_r6TGtV": {
+          "type": "card",
+          "settings": {
+            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_label": "Fearless Spirit"
+          }
+        },
+        "stat_eApY44": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "DESIGN-LED",
+            "stat_label": "CREATED BY DESIGNERS"
+          }
+        },
+        "stat_Pqzapj": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "STORY-DRIVEN",
+            "stat_label": "GRAPHICS WITH MEANING"
+          }
+        },
+        "stat_j3QiFA": {
+          "type": "stat",
+          "settings": {
+            "stat_value": "LIMITED EDITIONS",
+            "stat_label": "MADE TO STAND OUT"
+          }
+        }
+      },
+      "block_order": [
+        "card_KDWbQm",
+        "card_KMLL9L",
+        "card_r6TGtV",
+        "stat_eApY44",
+        "stat_Pqzapj",
+        "stat_j3QiFA"
+      ],
+      "name": "Lookbook",
+      "settings": {
+        "heading": "Lookbook",
+        "body_text": "A collection of moods, moments, and stories waiting to be worn.",
+        "cta_text": "EXPLORE",
+        "cta_url": "shopify://pages/lookbook",
+        "section_font": "sans_serif_n4",
+        "heading_color": "#ffffff",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": 700,
+        "body_color": "#ffffff",
+        "body_size": 14,
+        "body_size_mobile": 14,
+        "body_weight": 400,
+        "button_bg": "#ffffff",
+        "button_text": "#0c4168",
+        "button_hover_bg": "#0c4168",
+        "button_hover_text": "#ffffff",
+        "button_font_size": 14,
+        "button_font_size_mobile": 10,
+        "button_font_weight": 700,
+        "button_width_desktop": 150,
+        "button_height_desktop": 40,
+        "button_width_mobile": 100,
+        "button_height_mobile": 40,
+        "stats_number_color": "#21f010",
+        "stats_label_color": "#b7c1cc",
+        "stats_number_size": 14,
+        "stats_number_size_mobile": 14,
+        "stats_number_weight": 800,
+        "stats_label_size": 14,
+        "stats_label_size_mobile": 14,
+        "stats_label_weight": 400,
+        "background_color": "#e6e6e6",
+        "accent_color": "#21f010",
+        "blob_color": "#21f010",
+        "padding_desktop-top": 0,
+        "padding_desktop-bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "padding_top": 84,
+        "padding_bottom": 0
+      }
+    },
+    "rotating_text_X4Hpjk": {
+      "type": "rotating-text",
+      "blocks": {
+        "phrase_erCf4E": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "WEAR YOUR VIBE",
+            "sub_text": "Not someone else's."
+          }
+        },
+        "phrase_DkDGRX": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "DRESS FOR YOUR MOOD",
+            "sub_text": " The rest will follow."
+          }
+        },
+        "phrase_JrdzcE": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "COMFORT IS CONFIDENCE",
+            "sub_text": "Which never goes out of style."
+          }
+        },
+        "phrase_CamVJL": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "CREATED WITH INTENTION",
+            "sub_text": "Not by accident."
+          }
+        },
+        "phrase_wqybQ8": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "LESS NOISE",
+            "sub_text": "More substance."
+          }
+        },
+        "phrase_heHbzE": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "FOR PEOPLE WHO NOTICE",
+            "sub_text": "The little things."
+          }
+        },
+        "phrase_9UcCKB": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "EVERY THREAD COUNTS",
+            "sub_text": "Every detail matters."
+          }
+        },
+        "phrase_RTqVw4": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "DESIGNED TO EVOLVE",
+            "sub_text": "Just like you."
+          }
+        },
+        "phrase_CRcYF3": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "BUILT ON CREATIVITY",
+            "sub_text": "Grounded in craft."
+          }
+        },
+        "phrase_ePEzK4": {
+          "type": "phrase",
+          "settings": {
+            "heading": "",
+            "sub_textt": "",
+            "word": "THOUGHTFULLY MADE",
+            "sub_text": "Effortlessly worn."
+          }
+        }
+      },
+      "block_order": [
+        "phrase_erCf4E",
+        "phrase_DkDGRX",
+        "phrase_JrdzcE",
+        "phrase_CamVJL",
+        "phrase_wqybQ8",
+        "phrase_heHbzE",
+        "phrase_9UcCKB",
+        "phrase_RTqVw4",
+        "phrase_CRcYF3",
+        "phrase_ePEzK4"
+      ],
+      "name": "We Are — Rotating Banner",
+      "settings": {
+        "background_color": "#13ff00",
+        "rotating_text_color": "#0c4168",
+        "sub_text_color": "#0c4168",
+        "rotating_text_size_desktop": 28,
+        "sub_text_size_desktop": 14,
+        "rotating_text_size_mobile": 24,
+        "sub_text_size_mobile": 14,
+        "rotating_text_weight_desktop": 700,
+        "sub_text_weight_desktop": 400,
+        "rotating_text_weight_mobile": 700,
+        "sub_text_weight_mobile": 400,
+        "interval": 2,
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
+    "tab_section_PXmk7b": {
+      "type": "tab-section",
+      "blocks": {
+        "timeline_item_wxTw3A": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "ORIGIN",
+            "image": "shopify://shop_images/gauvi18eg0ict51uh884g74ao04fpo87.avif",
+            "title": "IT STARTED WITH A FEELING",
+            "text": "<p>Most brands start with a gap in the market. Woblee started with a gap in how clothing made people feel. KSK Aircon has spent years earning trust the slow way - through engineering discipline and consistency. We asked a different question: what happens when you apply that same discipline to something as personal as what someone wears every day.</p><p>The answer became Woblee. Not a pivot, not a side project - a second venture built with the same intent, just pointed at a different kind of craftsmanship. Snehlata Jaiswal, our founder and creative director, brought a NIFT-trained eye for fabric, fit, and construction, and a belief that fashion should say something rather than just cover something.</p><p>That belief hasn't changed since day one. Every collection we've shipped has been an attempt to turn a feeling into a design worth wearing - not chasing a trend, but building a point of view.</p>"
+          }
+        },
+        "timeline_item_Ufgcn7": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "CRAFT",
+            "image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "title": "THE MASTERY IS IN THE DETAILS",
+            "text": "<p>Craft isn't a department at Woblee. It's a mindset we hold every team to - design, sourcing, production - because a t-shirt only earns the right to be worn if it's built properly first. We hold ourselves to ISO 9001, 14001, and 45001 standards not because it's expected of a fashion label, but because we came from an industry where certification wasn't optional.</p><p>That discipline shows up in the smallest choices. Our Core Line is proof that \"simple\" is actually the hardest thing to get right - premium blanks with nothing to hide behind, which means the fabric, the fit, and the finish all have to be flawless. Our Statement and Artistic Lines push further creatively, but they're held to the exact same bar of construction.</p><p>We've learned that quality isn't a single decision made once. It's a discipline practiced daily - fabric sourcing, stitch density, print technique, fit testing - repeated until it becomes instinct. That's what separates a brand from a factory output.</p>"
+          }
+        },
+        "timeline_item_JVj43V": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "DESIGN",
+            "image": "shopify://shop_images/q5w00c72s70127860d5dwl150v22ij58.webp",
+            "title": "THE CRAFT OF ORIGINAL THOUGHT",
+            "text": "<p>Every Woblee graphic starts as a story before it becomes a print. We don't design around a trend cycle - we design around a narrative worth telling, a moment that deserves to exist on fabric. The story comes first. The execution is where the craft takes over.</p><p>That's where technique matters just as much as concept. Story-based graphics, bold typography, and theme-driven artistic collections are each a different tool for a different kind of story - restraint and precision for a typographic statement, composition and sequencing for a narrative graphic, layered detail for an artistic drop. None of these are interchangeable.</p><p>The elements change from collection to collection, but the intent never does. Every design has to earn its place through story and craftsmanship together - because a graphic without a story is just decoration, and a story without craft never leaves the sketchpad.</p>"
+          }
+        },
+        "timeline_item_BCqJBC": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "COMMUNITY",
+            "image": "shopify://shop_images/drs2.webp",
+            "title": "BUILT BY PEOPLE, NOT JUST FOR THEM",
+            "text": "<p>We didn't build Woblee for a demographic. We built it for a mindset - people who see personal style as a form of self-expression, not conformity. People who'd rather wear something original than something safe, and who notice the difference between a brand that designs with intent and one that's just following the crowd.</p><p>That relationship goes both ways. Details like handwritten thank-you notes, or designs built around family combinations, exist because we believe the relationship between a brand and its community should feel personal, not transactional. Every piece we make is designed to become part of someone's story - not just occupy space in their wardrobe.</p><p>Our community isn't just an audience. It's a feedback loop. The way people style, wear, and talk about Woblee shapes what we build next - which is exactly how a brand should grow.</p>"
+          }
+        },
+        "timeline_item_L4FmA7": {
+          "type": "timeline_item",
+          "settings": {
+            "year": "FUTURE",
+            "image": "shopify://shop_images/drs2.webp",
+            "title": "BUILT TO LAST, DESIGNED TO EVOLVE",
+            "text": "<p>We're building Woblee in phases, deliberately. Phase one is about getting the foundation unshakeable - a clear brand identity, strong core collections, and a direct relationship with the people who wear us. Growth without foundation is just noise, and we're not interested in noise.</p><p>From there, the ambition widens - deeper category expansion into streetwear, collaborations with artists and creators who share our design philosophy, and offline experiences that let people feel the brand in person, not just scroll past it. Every stage is designed to compound on the one before it, not chase the next shiny opportunity.</p><p>What won't change is the standard. Thoughtful design, uncompromising craft, and a genuine connection with the people who choose to wear us. That's not a tagline. That's the operating principle behind everything Woblee becomes next.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "timeline_item_wxTw3A",
+        "timeline_item_Ufgcn7",
+        "timeline_item_JVj43V",
+        "timeline_item_BCqJBC",
+        "timeline_item_L4FmA7"
+      ],
+      "name": "Timeline tabs",
+      "settings": {
+        "heading": "About us",
+        "section_bg": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_top_mobile": 15,
+        "section_padding_bottom_mobile": 30,
+        "heading_color": "#0c4168",
+        "heading_size": 40,
+        "heading_weight": "700",
+        "heading_size_mobile": 24,
+        "heading_weight_mobile": "700",
+        "tab_color": "#777777",
+        "tab_active_color": "#0c4168",
+        "tab_underline_color": "#000000",
+        "tab_font_size": 14,
+        "tab_font_weight": "600",
+        "tab_font_size_mobile": 14,
+        "tab_font_weight_mobile": "600",
+        "content_heading_color": "#0c4168",
+        "content_heading_size": 28,
+        "content_heading_weight": "700",
+        "content_heading_size_mobile": 22,
+        "content_text_color": "#666666",
+        "content_text_size": 14,
+        "content_heading_weight_mobile": "700",
+        "content_text_weight": "400",
+        "content_text_size_mobile": 14,
+        "content_text_weight_mobile": "400",
+        "content_width": 800,
+        "image_height_desktop": 440,
+        "image_height_mobile": 400,
+        "image_radius": 0,
+        "image_fit": "cover",
+        "layout_gap": 40
+      }
+    },
+    "17800675107a00a753": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_31a39b2_Va8WBB": {
+          "type": "ai_gen_block_31a39b2",
+          "settings": {
+            "small_title": "More to",
+            "main_heading": "Products",
+            "subtitle": "Discover our curated edits and seasonal collections",
+            "small_title_size": 16,
+            "main_heading_size": 48,
+            "subtitle_size": 14,
+            "card_1_image": "shopify://shop_images/black.webp",
+            "card_1_title": "Collection 1",
+            "card_1_link": "",
+            "card_2_image": "shopify://shop_images/hoodie2.webp",
+            "card_2_title": "Collection 2",
+            "card_2_link": "",
+            "card_3_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_3_title": "Collection 3",
+            "card_3_link": "",
+            "card_4_image": "shopify://shop_images/hoodie1.webp",
+            "card_4_title": "Collection 4",
+            "card_4_link": "",
+            "card_5_image": "shopify://shop_images/drs2.webp",
+            "card_5_title": "Collection 5",
+            "card_5_link": "",
+            "card_6_image": "shopify://shop_images/c21aoohh845x34h413yx8625t176i3jc.webp",
+            "card_6_title": "Collection 6",
+            "card_6_link": "",
+            "card_width_desktop": 400,
+            "card_width_mobile": 280,
+            "card_height": 500,
+            "card_gap": 20,
+            "card_border_radius": 12,
+            "card_title_size": 20,
+            "card_background": "#ffffff",
+            "background_color": "#ffffff",
+            "heading_color": "#000000",
+            "text_color": "#030302",
+            "arrow_background": "#ffffff",
+            "arrow_hover_background": "#030302",
+            "arrow_icon_color": "#000000",
+            "scrollbar_color": "#030302",
+            "scrollbar_hover_color": "#000000",
+            "scrollbar_track_color": "#d3cec5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_31a39b2_Va8WBB"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_list_aak7xm": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_a8UMYC": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>{{ closest.collection.title }}</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_9MpXnU": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": true,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_a8UMYC",
+            "product_list_button_9MpXnU"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_BzqxyQ": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_KPyPqq": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_EAwF6k": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_BzqxyQ",
+            "product_title_KPyPqq",
+            "price_EAwF6k"
+          ]
+        }
+      },
+      "disabled": true,
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "home-page",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 6,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "square",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "custom_hero_section_jrfcFp",
+    "marquee_izzYrQ",
+    "custom_editorial_CCz9Yx",
+    "collection_carousel_pro_pAhcyP",
+    "custom_category_icons_fa4BTq",
+    "custom_editorial_seaction_mHFt7p",
+    "custom_category_grid_dyNMWU",
+    "custom_bottom_bar_966ULH",
+    "collection_banner_kBPTxj",
+    "collection_splider_j6nUDX",
+    "section_2_BrdHkP",
+    "rotating_text_X4Hpjk",
+    "tab_section_PXmk7b",
+    "17800675107a00a753",
+    "product_list_aak7xm"
+  ]
+}
