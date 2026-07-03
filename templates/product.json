@@ -1,1 +1,864 @@
-{"sections":{"product-information":{"type":"product-information","blocks":{"media-gallery":{"type":"_product-media-gallery","static":true,"settings":{"media_presentation":"grid","media_columns":"two","image_gap":0,"large_first_image":false,"icons_style":"arrow","slideshow_controls_style":"dots","slideshow_mobile_controls_style":"dots","thumbnail_position":"bottom","thumbnail_width":44,"thumbnail_radius":0,"aspect_ratio":"1\/1.25","constrain_to_viewport":false,"media_fit":"cover","media_radius":0,"extend_media":true,"zoom":true,"video_loop":false,"hide_variants":false,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product-details":{"type":"_product-details","static":true,"settings":{"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","details_position":"flex-start","gap":40,"sticky_details_desktop":true,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":40,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"group_8fkkWP":{"type":"group","name":"Header","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_7VVz8U":{"type":"text","name":"t:names.title","settings":{"text":"<h1>{{ closest.product.title }}<\/h1>","width":"100%","max_width":"normal","alignment":"left","type_preset":"h2","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground-heading)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_b7xNnM":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":16,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"price_UN6aHJ":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"fit-content","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","color":"var(--color-foreground)","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"review_MbGGDq":{"type":"review","name":"t:names.product_review_stars","settings":{"stars_style":"single","show_number":false,"rating_color":"foreground","type_preset":"h6","width":"100%","alignment":"left"},"blocks":{}}},"block_order":["price_UN6aHJ","review_MbGGDq"]}},"block_order":["text_7VVz8U","group_b7xNnM"]},"variant_picker_3Nha6V":{"type":"variant-picker","name":"t:names.product_variant_picker","settings":{"variant_style":"buttons","show_swatches":true,"alignment":"left","padding-block-start":16,"padding-block-end":16,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"buy_buttons_NmYpFG":{"type":"buy-buttons","name":"t:names.product_buy_buttons","settings":{"stacking":false,"show_pickup_availability":false,"gift_card_form":true,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"quantity":{"type":"quantity","disabled":true,"static":true,"settings":{},"blocks":{}},"add-to-cart":{"type":"add-to-cart","static":true,"settings":{"style_class":"button"},"blocks":{}},"accelerated-checkout":{"type":"accelerated-checkout","disabled":true,"static":true,"settings":{},"blocks":{}}},"block_order":[]},"accordion_iWQwkW":{"type":"accordion","name":"t:names.accordion","disabled":true,"settings":{"icon":"plus","dividers":true,"type_preset":"h6","inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"accordion_row_TbgNUF":{"type":"_accordion-row","settings":{"heading":"PRODUCT OVERVIEW","open_by_default":false,"icon":"none","width":20},"blocks":{"text_n6TMzy":{"type":"text","settings":{"text":"<p>The <strong>STRIVE TO CONQUER GRAPHIC TEE<\/strong> is designed for individuals who embrace ambition, resilience, and the pursuit of excellence. Featuring elevated print and embroidery detailing, this statement piece blends contemporary design with everyday comfort. Created for those who lead from the front and build their own legacy, it delivers a premium look without compromising on wearability.<\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"h6","font":"var(--font-primary--family)","font_size":"","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_n6TMzy"]},"accordion_row_iMd7pJ":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"DESIGN DETAILS","open_by_default":false,"icon":"none","width":20},"blocks":{"text_V4NpQM":{"type":"text","settings":{"text":"<p>Crafted with a combination of <strong>RAISED PUFF PRINT<\/strong> and <strong>KNOTTED CHAIN-STITCH EMBROIDERY<\/strong>, this tee showcases intricate detailing that adds depth, texture, and character to the design. Every element has been carefully considered to create a standout piece that feels unique and elevated.<\/p>","width":"100%","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_V4NpQM"]},"accordion_row_NtC7h9":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"WASH & CARE","open_by_default":false,"icon":"none","width":20},"blocks":{"text_UbbHiR":{"type":"text","settings":{"text":"<ul><li>Machine wash cold, inside out<\/li><li>Wash with similar colours<\/li><li>Do not bleach<\/li><li>Tumble dry low or line dry<\/li><li>Cool iron inside out<\/li><li>Do not iron directly on print or embroidery<\/li><li>Do not dry clean<\/li><\/ul>","width":"100%","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_UbbHiR"]}},"block_order":["accordion_row_TbgNUF","accordion_row_iMd7pJ","accordion_row_NtC7h9"]}},"block_order":["group_8fkkWP","variant_picker_3Nha6V","buy_buttons_NmYpFG","accordion_iWQwkW"]}},"settings":{"content_width":"content-full-width","desktop_media_position":"left","equal_columns":true,"limit_details_width":false,"gap":40,"enable_sticky_add_to_cart":true,"color_scheme":"scheme-5","typography_product_title_size_desktop":40,"typography_product_title_size_mobile":30,"typography_product_title_weight":"700","typography_product_price_size_desktop":24,"typography_product_price_size_mobile":18,"typography_product_price_weight":"700","typography_variant_labels_size_desktop":14,"typography_variant_labels_size_mobile":12,"typography_variant_labels_weight":"600","typography_variant_values_size_desktop":14,"typography_variant_values_size_mobile":12,"typography_variant_values_weight":"500","typography_add_to_cart_size_desktop":14,"typography_add_to_cart_size_mobile":14,"typography_add_to_cart_weight":"700","typography_accordion_heading_size_desktop":14,"typography_accordion_heading_size_mobile":14,"typography_accordion_heading_weight":"700","typography_accordion_content_size_desktop":14,"typography_accordion_content_size_mobile":14,"typography_accordion_content_weight":"400","typography_feature_icons_size_desktop":14,"typography_feature_icons_size_mobile":12,"typography_feature_icons_weight":"600","typography_breadcrumbs_size_desktop":14,"typography_breadcrumbs_size_mobile":12,"typography_breadcrumbs_weight":"400","typography_product_meta_size_desktop":14,"typography_product_meta_size_mobile":14,"typography_product_meta_weight":"400","padding-block-start":0,"padding-block-end":60}},"feature_gift_pdp_38caQd":{"type":"feature-gift-pdp","blocks":{"feature_item_VCJ7mR":{"type":"feature_item","settings":{"image":"shopify:\/\/shop_images\/Any_view_of_things_that_is_not_strange_is_false.gif","icon_emoji":"","heading":"The best cotton. Period.","description":"Only extra-long staple cotton. Suvin, Supima, and other premium varieties. Picked for softness and built to last."}},"feature_item_tKRzRK":{"type":"feature_item","settings":{"image":"shopify:\/\/shop_images\/ciencia_astronomia_teoria_universo.jpg","icon_emoji":"","heading":"Custom-made fabrics.","description":"Every fabric is knit, dyed, and finished exclusively for us. Nothing off the shelf, no shortcuts."}},"feature_item_7qDXKY":{"type":"feature_item","settings":{"image":"shopify:\/\/shop_images\/download.gif","icon_emoji":"","heading":"Engineered for perfect fit.","description":"Fits are developed with digital simulations for stretch, tension, and drape. Patterns refined per size."}},"feature_item_hLAyAr":{"type":"feature_item","settings":{"image":"shopify:\/\/shop_images\/download_3.jpg","icon_emoji":"","heading":"Tested to last.","description":"Pilling, wash cycles, spirality, long-term wear. Every product is put through it before it ships."}},"feature_item_EKa846":{"type":"feature_item","settings":{"image":"shopify:\/\/shop_images\/download.gif","icon_emoji":"","heading":"No logos. Ever.","description":"You won't find our name on the outside. The fabric, the fit, how it wears over time — that's the branding."}},"feature_item_WmrCnU":{"type":"feature_item","settings":{"image":"shopify:\/\/shop_images\/Any_view_of_things_that_is_not_strange_is_false.gif","icon_emoji":"","heading":"Safe. Certified.","description":"Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX® standards."}}},"block_order":["feature_item_VCJ7mR","feature_item_tKRzRK","feature_item_7qDXKY","feature_item_hLAyAr","feature_item_EKa846","feature_item_WmrCnU"],"name":"Features Grid","settings":{"section_heading":"DESIGN FEATURES","section_subheading":"","section_heading_size":40,"section_heading_size_mobile":26,"section_heading_weight":"700","section_subheading_size_desktop":18,"section_subheading_size_mobile":14,"section_subheading_weight":"400","header_align":"center","header_gap":16,"columns":3,"mobile_columns":1,"grid_gap":40,"mobile_gap":24,"container_width":1200,"card_style":"boxed","card_layout":"row","card_inner_gap":20,"card_bg_color":"#F2F2F2","card_radius":12,"card_padding":24,"image_size":80,"image_radius":50,"heading_font_size":18,"card_heading_font_size_desktop":18,"card_heading_font_size_mobile":14,"card_heading_font_weight":"700","desc_font_size":14,"card_desc_font_size_desktop":14,"card_desc_font_size_mobile":14,"card_desc_font_weight":"400","bg_color":"#F2F2F2","text_color":"#0c4168","desc_color":"#444444","padding_top":20,"padding_bottom":20}},"custom_bottom_bar_ABkAHw":{"type":"custom-bottom-bar","blocks":{"feature_9QpgQx":{"type":"feature","settings":{"title":"OEKO-TEX® Certified","text":"100% safe, chemical-free & tested fabrics."}},"feature_8b6htt":{"type":"feature","settings":{"title":"Sustainably Made","text":"Certified to the Global Organic Textile Standard."}},"feature_7yYprL":{"type":"feature","settings":{"title":"Trusted Quality","text":"Rigorously tested for comfort & durability."}},"feature_UJwn9E":{"type":"feature","settings":{"title":"Dermatologically Tested","text":"Safe for sensitive skin, clinically approved."}}},"block_order":["feature_9QpgQx","feature_8b6htt","feature_7yYprL","feature_UJwn9E"],"name":"Trust scroll strip","settings":{"heading":"Built to earn customer trust","subheading":"Show your strongest product advantages in a premium, scrollable strip.","scroll_speed":60,"section_bg":"#ffffff","padding_top_desktop":50,"padding_bottom_desktop":50,"padding_top_mobile":30,"padding_bottom_mobile":30,"font_family":"sans_serif_n4","heading_size_desktop":40,"heading_size_mobile":26,"heading_weight_desktop":"700","heading_weight_mobile":"700","subheading_size_desktop":15,"subheading_size_mobile":13,"subheading_weight_desktop":"500","subheading_weight_mobile":"500","title_size_desktop":15,"title_size_mobile":14,"title_weight_desktop":"700","title_weight_mobile":"700","text_size_desktop":13,"text_size_mobile":12,"text_weight_desktop":"500","text_weight_mobile":"500","heading_color":"#0c4168","subheading_color":"#666666","card_bg":"#ffffff","card_border":"#d9d9d9","title_color":"#0c4168","text_color":"#666666","icon_bg":"#f5f5f5","card_hover_bg":"#0c4168","card_hover_border":"#0c4168","title_hover_color":"#ffffff","text_hover_color":"#ffffff","icon_hover_bg":"#31e62b","fade_color":"#ffffff"}},"product_recommendations_7NA7MK":{"type":"product-recommendations","blocks":{"text_6zRg3F":{"type":"text","name":"t:names.header","settings":{"text":"<h2>YOU MAY ALSO LIKE<\/h2>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_3FqbHf":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"portrait","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_xhrr7M":{"type":"product-title","name":"t:names.product_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_PjACam":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","color":"var(--color-foreground)","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_3FqbHf","product_title_xhrr7M","price_PjACam"]}},"block_order":["text_6zRg3F"],"name":"t:names.product_recommendations","settings":{"product":"{{ closest.product }}","recommendation_type":"related","layout_type":"carousel","carousel_on_mobile":true,"max_products":10,"columns":4,"mobile_columns":"2","columns_gap":12,"rows_gap":24,"icons_style":"arrow","icons_shape":"none","section_width":"page-width","gap":28,"color_scheme":"scheme-1","section_heading_font_size_desktop":40,"section_heading_font_size_mobile":26,"section_heading_font_weight":"700","card_title_font_size_desktop":14,"card_title_font_size_mobile":14,"card_title_font_weight":"700","card_price_font_size_desktop":14,"card_price_font_size_mobile":14,"card_price_font_weight":"700","popup_title_font_size_desktop":30,"popup_title_font_size_mobile":24,"popup_title_font_weight":"700","popup_price_font_size_desktop":18,"popup_price_font_size_mobile":18,"popup_price_font_weight":"700","popup_content_font_size_desktop":14,"popup_content_font_size_mobile":14,"popup_accordion_heading_font_size_desktop":14,"popup_accordion_heading_font_size_mobile":14,"popup_accordion_heading_font_weight":"700","popup_add_to_cart_font_size_desktop":14,"popup_add_to_cart_font_size_mobile":14,"popup_add_to_cart_font_weight":"700","padding-block-start":0,"padding-block-end":40}}},"order":["product-information","feature_gift_pdp_38caQd","custom_bottom_bar_ABkAHw","product_recommendations_7NA7MK"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product-information": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 0,
+            "large_first_image": false,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "dots",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 44,
+            "thumbnail_radius": 0,
+            "aspect_ratio": "1/1.25",
+            "constrain_to_viewport": false,
+            "media_fit": "cover",
+            "media_radius": 0,
+            "extend_media": true,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": false,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 40,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 40,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_8fkkWP": {
+              "type": "group",
+              "name": "Header",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_7VVz8U": {
+                  "type": "text",
+                  "name": "t:names.title",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground-heading)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "group_b7xNnM": {
+                  "type": "group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "row",
+                    "vertical_on_mobile": false,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 16,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "inherit_color_scheme": true,
+                    "color_scheme": "",
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "price_UN6aHJ": {
+                      "type": "price",
+                      "name": "t:names.product_price",
+                      "settings": {
+                        "show_sale_price_first": true,
+                        "show_installments": false,
+                        "show_tax_info": false,
+                        "type_preset": "h6",
+                        "width": "fit-content",
+                        "alignment": "left",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "color": "var(--color-foreground)",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "review_MbGGDq": {
+                      "type": "review",
+                      "name": "t:names.product_review_stars",
+                      "settings": {
+                        "stars_style": "single",
+                        "show_number": false,
+                        "rating_color": "foreground",
+                        "type_preset": "h6",
+                        "width": "100%",
+                        "alignment": "left"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "price_UN6aHJ",
+                    "review_MbGGDq"
+                  ]
+                }
+              },
+              "block_order": [
+                "text_7VVz8U",
+                "group_b7xNnM"
+              ]
+            },
+            "variant_picker_3Nha6V": {
+              "type": "variant-picker",
+              "name": "t:names.product_variant_picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": true,
+                "alignment": "left",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_NmYpFG": {
+              "type": "buy-buttons",
+              "name": "t:names.product_buy_buttons",
+              "settings": {
+                "stacking": false,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "accordion_iWQwkW": {
+              "type": "accordion",
+              "name": "t:names.accordion",
+              "disabled": true,
+              "settings": {
+                "icon": "plus",
+                "dividers": true,
+                "type_preset": "h6",
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "accordion_row_TbgNUF": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "PRODUCT OVERVIEW",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_n6TMzy": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>The <strong>STRIVE TO CONQUER GRAPHIC TEE</strong> is designed for individuals who embrace ambition, resilience, and the pursuit of excellence. Featuring elevated print and embroidery detailing, this statement piece blends contemporary design with everyday comfort. Created for those who lead from the front and build their own legacy, it delivers a premium look without compromising on wearability.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "h6",
+                        "font": "var(--font-primary--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_n6TMzy"
+                  ]
+                },
+                "accordion_row_iMd7pJ": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "DESIGN DETAILS",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_V4NpQM": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Crafted with a combination of <strong>RAISED PUFF PRINT</strong> and <strong>KNOTTED CHAIN-STITCH EMBROIDERY</strong>, this tee showcases intricate detailing that adds depth, texture, and character to the design. Every element has been carefully considered to create a standout piece that feels unique and elevated.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_V4NpQM"
+                  ]
+                },
+                "accordion_row_NtC7h9": {
+                  "type": "_accordion-row",
+                  "name": "t:names.accordion_row",
+                  "settings": {
+                    "heading": "WASH & CARE",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "text_UbbHiR": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<ul><li>Machine wash cold, inside out</li><li>Wash with similar colours</li><li>Do not bleach</li><li>Tumble dry low or line dry</li><li>Cool iron inside out</li><li>Do not iron directly on print or embroidery</li><li>Do not dry clean</li></ul>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "color": "var(--color-foreground)",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_UbbHiR"
+                  ]
+                }
+              },
+              "block_order": [
+                "accordion_row_TbgNUF",
+                "accordion_row_iMd7pJ",
+                "accordion_row_NtC7h9"
+              ]
+            }
+          },
+          "block_order": [
+            "group_8fkkWP",
+            "variant_picker_3Nha6V",
+            "buy_buttons_NmYpFG",
+            "accordion_iWQwkW"
+          ]
+        }
+      },
+      "settings": {
+        "content_width": "content-full-width",
+        "desktop_media_position": "left",
+        "equal_columns": true,
+        "limit_details_width": false,
+        "gap": 40,
+        "enable_sticky_add_to_cart": true,
+        "color_scheme": "scheme-5",
+        "typography_product_title_size_desktop": 40,
+        "typography_product_title_size_mobile": 30,
+        "typography_product_title_weight": "700",
+        "typography_product_price_size_desktop": 24,
+        "typography_product_price_size_mobile": 18,
+        "typography_product_price_weight": "700",
+        "typography_variant_labels_size_desktop": 14,
+        "typography_variant_labels_size_mobile": 12,
+        "typography_variant_labels_weight": "600",
+        "typography_variant_values_size_desktop": 14,
+        "typography_variant_values_size_mobile": 12,
+        "typography_variant_values_weight": "500",
+        "typography_add_to_cart_size_desktop": 14,
+        "typography_add_to_cart_size_mobile": 14,
+        "typography_add_to_cart_weight": "700",
+        "typography_accordion_heading_size_desktop": 14,
+        "typography_accordion_heading_size_mobile": 14,
+        "typography_accordion_heading_weight": "700",
+        "typography_accordion_content_size_desktop": 14,
+        "typography_accordion_content_size_mobile": 14,
+        "typography_accordion_content_weight": "400",
+        "typography_feature_icons_size_desktop": 14,
+        "typography_feature_icons_size_mobile": 12,
+        "typography_feature_icons_weight": "600",
+        "typography_breadcrumbs_size_desktop": 14,
+        "typography_breadcrumbs_size_mobile": 12,
+        "typography_breadcrumbs_weight": "400",
+        "typography_product_meta_size_desktop": 14,
+        "typography_product_meta_size_mobile": 14,
+        "typography_product_meta_weight": "400",
+        "padding-block-start": 0,
+        "padding-block-end": 60
+      }
+    },
+    "feature_gift_pdp_38caQd": {
+      "type": "feature-gift-pdp",
+      "blocks": {
+        "feature_item_VCJ7mR": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
+            "icon_emoji": "",
+            "heading": "The best cotton. Period.",
+            "description": "Only extra-long staple cotton. Suvin, Supima, and other premium varieties. Picked for softness and built to last."
+          }
+        },
+        "feature_item_tKRzRK": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/ciencia_astronomia_teoria_universo.jpg",
+            "icon_emoji": "",
+            "heading": "Custom-made fabrics.",
+            "description": "Every fabric is knit, dyed, and finished exclusively for us. Nothing off the shelf, no shortcuts."
+          }
+        },
+        "feature_item_7qDXKY": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download.gif",
+            "icon_emoji": "",
+            "heading": "Engineered for perfect fit.",
+            "description": "Fits are developed with digital simulations for stretch, tension, and drape. Patterns refined per size."
+          }
+        },
+        "feature_item_hLAyAr": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download_3.jpg",
+            "icon_emoji": "",
+            "heading": "Tested to last.",
+            "description": "Pilling, wash cycles, spirality, long-term wear. Every product is put through it before it ships."
+          }
+        },
+        "feature_item_EKa846": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/download.gif",
+            "icon_emoji": "",
+            "heading": "No logos. Ever.",
+            "description": "You won't find our name on the outside. The fabric, the fit, how it wears over time — that's the branding."
+          }
+        },
+        "feature_item_WmrCnU": {
+          "type": "feature_item",
+          "settings": {
+            "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
+            "icon_emoji": "",
+            "heading": "Safe. Certified.",
+            "description": "Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX® standards."
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_VCJ7mR",
+        "feature_item_tKRzRK",
+        "feature_item_7qDXKY",
+        "feature_item_hLAyAr",
+        "feature_item_EKa846",
+        "feature_item_WmrCnU"
+      ],
+      "name": "Features Grid",
+      "settings": {
+        "section_heading": "DESIGN FEATURES",
+        "section_subheading": "",
+        "section_heading_size": 40,
+        "section_heading_size_mobile": 26,
+        "section_heading_weight": "700",
+        "section_subheading_size_desktop": 18,
+        "section_subheading_size_mobile": 14,
+        "section_subheading_weight": "400",
+        "header_align": "center",
+        "header_gap": 16,
+        "columns": 3,
+        "mobile_columns": 1,
+        "grid_gap": 40,
+        "mobile_gap": 24,
+        "container_width": 1200,
+        "card_style": "boxed",
+        "card_layout": "row",
+        "card_inner_gap": 20,
+        "card_bg_color": "#f2f2f2",
+        "card_radius": 12,
+        "card_padding": 24,
+        "image_size": 80,
+        "image_radius": 50,
+        "heading_font_size": 18,
+        "card_heading_font_size_desktop": 18,
+        "card_heading_font_size_mobile": 14,
+        "card_heading_font_weight": "700",
+        "desc_font_size": 14,
+        "card_desc_font_size_desktop": 14,
+        "card_desc_font_size_mobile": 14,
+        "card_desc_font_weight": "400",
+        "bg_color": "#f2f2f2",
+        "text_color": "#0c4168",
+        "desc_color": "#444444",
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "custom_bottom_bar_ABkAHw": {
+      "type": "custom-bottom-bar",
+      "blocks": {
+        "feature_9QpgQx": {
+          "type": "feature",
+          "settings": {
+            "title": "PURE COTTON",
+            "text": "Naturally breathable for everyday wear"
+          }
+        },
+        "feature_UJwn9E": {
+          "type": "feature",
+          "settings": {
+            "title": "BIO-WASHED",
+            "text": "Extra-soft finish for everlasting comfort"
+          }
+        },
+        "feature_UmJidV": {
+          "type": "feature",
+          "settings": {
+            "title": "HEAVYWEIGHT",
+            "text": "Premium GSM that maintains its shape"
+          }
+        },
+        "feature_FqiVKE": {
+          "type": "feature",
+          "settings": {
+            "title": "PRE-SHRUNK",
+            "text": "Made to sustain, wash after wash"
+          }
+        },
+        "feature_NpfzVQ": {
+          "type": "feature",
+          "settings": {
+            "title": "BUILT TO LAST",
+            "text": "Quality construction for years of wear"
+          }
+        },
+        "feature_wGHqFa": {
+          "type": "feature",
+          "settings": {
+            "title": "EXPRESSIVE",
+            "text": "Created to affirm your individuality"
+          }
+        },
+        "feature_PzN3gc": {
+          "type": "feature",
+          "settings": {
+            "title": "MODERN FITS",
+            "text": "Inspired by pop culture and creativity"
+          }
+        },
+        "feature_dPwryg": {
+          "type": "feature",
+          "settings": {
+            "title": "DESIGN EXPERTISE",
+            "text": "15+ years in fashion, visuals & design"
+          }
+        }
+      },
+      "block_order": [
+        "feature_9QpgQx",
+        "feature_UJwn9E",
+        "feature_UmJidV",
+        "feature_FqiVKE",
+        "feature_NpfzVQ",
+        "feature_wGHqFa",
+        "feature_PzN3gc",
+        "feature_dPwryg"
+      ],
+      "name": "Trust scroll strip",
+      "settings": {
+        "heading": "DESIGNED TO BE WORN. MADE TO BE LOVED.",
+        "subheading": "",
+        "scroll_speed": 60,
+        "section_bg": "#ffffff",
+        "padding_top_desktop": 50,
+        "padding_bottom_desktop": 50,
+        "padding_top_mobile": 30,
+        "padding_bottom_mobile": 30,
+        "font_family": "sans_serif_n4",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 26,
+        "heading_weight_desktop": "700",
+        "heading_weight_mobile": "700",
+        "subheading_size_desktop": 15,
+        "subheading_size_mobile": 13,
+        "subheading_weight_desktop": "500",
+        "subheading_weight_mobile": "500",
+        "title_size_desktop": 15,
+        "title_size_mobile": 14,
+        "title_weight_desktop": "700",
+        "title_weight_mobile": "700",
+        "text_size_desktop": 13,
+        "text_size_mobile": 12,
+        "text_weight_desktop": "500",
+        "text_weight_mobile": "500",
+        "heading_color": "#0c4168",
+        "subheading_color": "#666666",
+        "card_bg": "#ffffff",
+        "card_border": "#d9d9d9",
+        "title_color": "#0c4168",
+        "text_color": "#666666",
+        "icon_bg": "#f5f5f5",
+        "card_hover_bg": "#0c4168",
+        "card_hover_border": "#0c4168",
+        "title_hover_color": "#ffffff",
+        "text_hover_color": "#ffffff",
+        "icon_hover_bg": "#31e62b",
+        "fade_color": "#ffffff"
+      }
+    },
+    "product_recommendations_7NA7MK": {
+      "type": "product-recommendations",
+      "blocks": {
+        "text_6zRg3F": {
+          "type": "text",
+          "name": "t:names.header",
+          "settings": {
+            "text": "<h2>YOU MAY ALSO LIKE</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_3FqbHf": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_xhrr7M": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_PjACam": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_3FqbHf",
+            "product_title_xhrr7M",
+            "price_PjACam"
+          ]
+        }
+      },
+      "block_order": [
+        "text_6zRg3F"
+      ],
+      "name": "t:names.product_recommendations",
+      "settings": {
+        "product": "{{ closest.product }}",
+        "recommendation_type": "related",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 10,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "section_heading_font_size_desktop": 40,
+        "section_heading_font_size_mobile": 26,
+        "section_heading_font_weight": "700",
+        "card_title_font_size_desktop": 14,
+        "card_title_font_size_mobile": 14,
+        "card_title_font_weight": "700",
+        "card_price_font_size_desktop": 14,
+        "card_price_font_size_mobile": 14,
+        "card_price_font_weight": "700",
+        "popup_title_font_size_desktop": 30,
+        "popup_title_font_size_mobile": 24,
+        "popup_title_font_weight": "700",
+        "popup_price_font_size_desktop": 18,
+        "popup_price_font_size_mobile": 18,
+        "popup_price_font_weight": "700",
+        "popup_content_font_size_desktop": 14,
+        "popup_content_font_size_mobile": 14,
+        "popup_accordion_heading_font_size_desktop": 14,
+        "popup_accordion_heading_font_size_mobile": 14,
+        "popup_accordion_heading_font_weight": "700",
+        "popup_add_to_cart_font_size_desktop": 14,
+        "popup_add_to_cart_font_size_mobile": 14,
+        "popup_add_to_cart_font_weight": "700",
+        "padding-block-start": 0,
+        "padding-block-end": 40
+      }
+    }
+  },
+  "order": [
+    "product-information",
+    "feature_gift_pdp_38caQd",
+    "custom_bottom_bar_ABkAHw",
+    "product_recommendations_7NA7MK"
+  ]
+}
