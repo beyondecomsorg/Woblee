@@ -85,21 +85,8 @@
     <div class="custom-footer__main-inner page-width">
       <div class="custom-footer__grid">
         <div class="custom-footer__left">
-     <div class="footer-img">
-  {% if section.settings.footer_logo != blank %}
-    {{
-      section.settings.footer_logo
-      | image_url: width: 400
-      | image_tag:
-      loading: 'lazy',
-      class: 'custom-footer__logo',
-      alt: shop.name
-    }}
-  {% endif %}
-</div>
           <div class="custom-footer__links-grid">
             <div class="custom-footer__col">
-              <h3 class="custom-footer__col-title">{{ section.settings.help_title }}</h3>
 
               <div class="custom-footer__contact-list">
             
@@ -108,9 +95,12 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.51 2 2 6.47 2 11.95c0 1.95.57 3.86 1.64 5.52L2 22l4.71-1.55a10.1 10.1 0 0 0 5.33 1.5h.01C17.57 21.95 22 17.49 22 12.02 22 6.52 17.56 2 12.04 2Zm0 18.35h-.01a8.37 8.37 0 0 1-4.27-1.17l-.31-.18-2.79.92.9-2.72-.2-.33a8.36 8.36 0 0 1-1.28-4.42c0-4.6 3.82-8.34 8.52-8.34 2.28 0 4.42.87 6.03 2.45a8.15 8.15 0 0 1 2.5 5.89c0 4.6-3.82 8.34-8.39 8.34Zm4.67-6.03c-.26-.13-1.56-.77-1.8-.86-.24-.09-.41-.13-.58.13-.17.26-.67.86-.82 1.03-.15.17-.3.19-.56.07-.26-.13-1.11-.4-2.11-1.28-.78-.69-1.3-1.55-1.45-1.81-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.07-.13-.58-1.39-.8-1.9-.21-.51-.43-.44-.59-.45l-.5-.01c-.17 0-.45.06-.69.32s-.92.9-.92 2.2.94 2.56 1.06 2.74c.13.17 1.86 2.88 4.52 4.04.63.27 1.13.43 1.52.55.64.2 1.23.17 1.69.1.52-.08 1.56-.64 1.78-1.26.22-.62.22-1.15.15-1.26-.07-.11-.24-.17-.5-.3Z" fill="currentColor"/></svg>
                     </span>
                     <div>
-<div class="custom-footer__contact-title">
-  {{ section.settings.whatsapp_title }}
-</div>
+                      <div class="custom-footer__contact-title">
+                        {{ section.settings.whatsapp_title }}
+                      </div>
+                      {% if section.settings.whatsapp_number != blank %}
+                        <div class="custom-footer__contact-sub">{{ section.settings.whatsapp_number }}</div>
+                      {% endif %}
                       <div class="custom-footer__contact-sub">{{ section.settings.whatsapp_time }}</div>
                     </div>
                   </div>
@@ -121,9 +111,12 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.4 0 .8-.3 1.1L6.6 10.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
                     </span>
                     <div>
-<div class="custom-footer__contact-title">
-  {{ section.settings.call_title }}
-</div>                      <div class="custom-footer__contact-sub">{{ section.settings.call_number }}</div>
+                      <div class="custom-footer__contact-title">
+                        {{ section.settings.call_title }}
+                      </div>
+                      {% if section.settings.call_number != blank %}
+                        <div class="custom-footer__contact-sub">{{ section.settings.call_number }}</div>
+                      {% endif %}
                       <div class="custom-footer__contact-sub">{{ section.settings.call_time }}</div>
                     </div>
                   </div>
@@ -133,25 +126,32 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2Zm16 3.2-8 5.3-8-5.3V7l8 5.3L20 7v1.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
                     </span>
                     <div>
-                <div class="custom-footer__contact-title">
-  {{ section.settings.email_title }}
-</div>
+                      <div class="custom-footer__contact-title">
+                        {{ section.settings.email_title }}
+                      </div>
+                      {% if section.settings.email_address != blank %}
+                        <div class="custom-footer__contact-sub">{{ section.settings.email_address }}</div>
+                      {% endif %}
                       <div class="custom-footer__contact-sub">{{ section.settings.email_time }}</div>
                     </div>
                   </div>
               </div>
 
               <div class="custom-footer__social-wrap">
-                <h3 class="custom-footer__col-title custom-footer__col-title--social">{{ section.settings.social_title }}</h3>
                 <div class="custom-footer__social">
-                  {% if section.settings.facebook_url != blank %}
-                    <a class="custom-footer__social-link" href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
-                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.7.5-1 1.1-1H17V3h-2.4C12.2 3 11 4.4 11 6.6v1.9H9v3h2V21h3v-9.5h2.3l.4-3H14Z" fill="currentColor"/></svg>
+                  {% if section.settings.website_url != blank %}
+                    <a class="custom-footer__social-link custom-footer__social-link--globe" href="{{ section.settings.website_url }}" target="_blank" rel="noopener" aria-label="Website">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
                     </a>
                   {% endif %}
                   {% if section.settings.instagram_url != blank %}
                     <a class="custom-footer__social-link" href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
                       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 2.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5Zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5ZM17.8 6.2a1 1 0 1 1-1 1 1 1 0 0 1 1-1Z" fill="currentColor"/></svg>
+                    </a>
+                  {% endif %}
+                  {% if section.settings.facebook_url != blank %}
+                    <a class="custom-footer__social-link" href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5V7c0-.7.5-1 1.1-1H17V3h-2.4C12.2 3 11 4.4 11 6.6v1.9H9v3h2V21h3v-9.5h2.3l.4-3H14Z" fill="currentColor"/></svg>
                     </a>
                   {% endif %}
                   {% if section.settings.linkedin_url != blank %}
@@ -240,11 +240,30 @@
                     autocomplete="email"
                   >
                 </div>
+                <div class="custom-footer__form-field">
+                  <input
+                    type="tel"
+                    name="contact[phone]"
+                    id="FooterPhoneInput-{{ section.id }}"
+                    class="custom-footer__input"
+                    placeholder="MOBILE NUMBER"
+                    required
+                    autocorrect="off"
+                    autocapitalize="off"
+                  >
+                </div>
+                <input
+                  type="hidden"
+                  name="contact[note]"
+                  id="FooterPhoneNote-{{ section.id }}"
+                >
               </div>
 
               <button type="submit" class="custom-footer__subscribe-btn">
                 SUBSCRIBE
               </button>
+
+              <div class="custom-footer__form-message custom-footer__form-message--error js-validation-error" style="display: none;"></div>
 
               {%- if form.errors -%}
                 <div class="custom-footer__form-message custom-footer__form-message--error">
@@ -258,6 +277,86 @@
                 </div>
               {%- endif -%}
             {%- endform -%}
+            <script>
+              (function() {
+                function initNewsletterForm() {
+                  const form = document.getElementById('FooterEmailInput-{{ section.id }}')?.closest('form');
+                  if (form) {
+                    form.addEventListener('submit', function(event) {
+                      const emailInput = form.querySelector('#FooterEmailInput-{{ section.id }}');
+                      const phoneInput = form.querySelector('#FooterPhoneInput-{{ section.id }}');
+                      const phoneNote = form.querySelector('#FooterPhoneNote-{{ section.id }}');
+                      const errorContainer = form.querySelector('.js-validation-error');
+
+                      if (errorContainer) {
+                        errorContainer.style.display = 'none';
+                        errorContainer.textContent = '';
+                      }
+
+                      let errors = [];
+
+                      // Validate Email
+                      if (emailInput) {
+                        const emailValue = emailInput.value.trim();
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailValue) {
+                          errors.push("Email address is required.");
+                        } else if (!emailRegex.test(emailValue)) {
+                          errors.push("Please enter a valid email address.");
+                        }
+                      }
+
+                      // Validate Phone
+                      let cleanPhone = "";
+                      if (phoneInput) {
+                        const phoneValue = phoneInput.value.trim();
+                        cleanPhone = phoneValue.replace(/[\s\-\(\)]/g, '');
+                        if (!phoneValue) {
+                          errors.push("Mobile number is required.");
+                        } else {
+                          const digitsOnly = cleanPhone.replace(/^\+/, '');
+                          if (!/^\+?\d{10,15}$/.test(cleanPhone)) {
+                            errors.push("Please enter a valid mobile number (10-15 digits).");
+                          } else if (digitsOnly.length < 10) {
+                            errors.push("Mobile number must be at least 10 digits.");
+                          }
+                        }
+                      }
+
+                      if (errors.length > 0) {
+                        event.preventDefault();
+                        if (errorContainer) {
+                          errorContainer.innerHTML = errors.join('<br>');
+                          errorContainer.style.display = 'block';
+                        }
+                        return false;
+                      }
+
+                      // Format and prepare fields if valid
+                      if (phoneInput && cleanPhone) {
+                        let finalPhone = cleanPhone;
+                        if (/^\d{10}$/.test(finalPhone)) {
+                          finalPhone = '+91' + finalPhone;
+                        } else if (/^91\d{10}$/.test(finalPhone)) {
+                          finalPhone = '+' + finalPhone;
+                        }
+                        
+                        phoneInput.value = finalPhone;
+                        if (phoneNote) {
+                          phoneNote.value = 'Mobile: ' + finalPhone;
+                        }
+                      }
+                    });
+                  }
+                }
+
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', initNewsletterForm);
+                } else {
+                  initNewsletterForm();
+                }
+              })();
+            </script>
           </div>
         </div>
       </div>
@@ -268,7 +367,19 @@
 
   <div class="custom-footer__bottom">
     <div class="custom-footer__bottom-inner page-width">
-      <p class="custom-footer__copyright">{{ section.settings.copyright_text }}</p>
+      <div class="custom-footer__copyright-wrap">
+        {% if section.settings.footer_logo != blank %}
+          {{
+            section.settings.footer_logo
+            | image_url: width: 200
+            | image_tag:
+            loading: 'lazy',
+            class: 'custom-footer__bottom-logo',
+            alt: shop.name
+          }}
+        {% endif %}
+        <p class="custom-footer__copyright">{{ section.settings.copyright_text }}</p>
+      </div>
     </div>
   </div>
 </footer>
@@ -516,7 +627,7 @@ width: 100px;
 .custom-footer__grid {
   display: grid;
   grid-template-columns: 65% 35%;
-  min-height: 390px;
+  min-height: 340px;
 }
 
 .custom-footer__left {
@@ -526,7 +637,7 @@ width: 100px;
 
 .custom-footer__right {
   background: var(--footer-right-bg);
-  padding: 92px 56px 0px;
+  padding: 0px 56px 0px;
   display: flex;
   align-items: center;
 }
@@ -592,7 +703,7 @@ width: 100px;
 .custom-footer__contact-title {
   font-size: 15px;
   line-height: 1.2;
-  font-weight: var(--wb-fw-semibold);
+  font-weight: var(--wb-fw-bold) !important;
   margin-bottom: 4px;
   color: var(--footer-text);
   font-family: var(--wb-font-heading);
@@ -627,6 +738,10 @@ width: 100px;
 .custom-footer__social-link:hover {
   transform: translateY(-1px);
   opacity: 0.85;
+}
+
+.custom-footer__social-link--globe {
+  color: var(--footer-accent) !important;
 }
 
 .custom-footer__social-link svg {
@@ -694,17 +809,23 @@ margin-top: 1rem;
 
 .custom-footer__newsletter-form {
   margin-top: 18px;
-  width: 60%;
+  width: 100%;
 }
 
 .custom-footer__form-fields {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
 }
 
 .custom-footer__form-field {
-  width: 100%;
+  flex: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .custom-footer__form-fields {
+    flex-direction: column;
+  }
 }
 
 .custom-footer__input {
@@ -780,6 +901,19 @@ margin-top: 1rem;
 .custom-footer__bottom-inner {
   padding: 26px 0 24px;
   text-align: center;
+}
+
+.custom-footer__copyright-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.custom-footer__bottom-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
 }
 
 .custom-footer__copyright {
@@ -885,6 +1019,12 @@ margin-top: 1rem;
 },
 {
   "type": "text",
+  "id": "whatsapp_number",
+  "label": "WhatsApp number",
+  "default": "+91 99999 99999"
+},
+{
+  "type": "text",
   "id": "call_title",
   "label": "Call Title",
   "default": "Call Us"
@@ -894,6 +1034,12 @@ margin-top: 1rem;
   "id": "email_title",
   "label": "Email Title",
   "default": "Email Us"
+},
+{
+  "type": "text",
+  "id": "email_address",
+  "label": "Email address",
+  "default": "help@wobleedesigns.com"
 },
     {
       "type": "text",
@@ -905,7 +1051,7 @@ margin-top: 1rem;
       "type": "text",
       "id": "whatsapp_time",
       "label": "WhatsApp timing",
-      "default": "Mon-Fri: 10am-6:30pm"
+      "default": "Mon-Sat: 9:30am-6am"
     },
     {
       "type": "text",
@@ -917,19 +1063,24 @@ margin-top: 1rem;
       "type": "text",
       "id": "call_time",
       "label": "Call timing",
-      "default": "Mon-Fri: 10am-6:30pm"
+      "default": "Mon-Sat: 9:30am-6am"
     },
     {
       "type": "text",
       "id": "email_time",
       "label": "Email timing",
-      "default": "Mon-Fri: 10am-6:30pm"
+      "default": "Mon-Sat: 9:30am-6am"
     },
     {
       "type": "text",
       "id": "social_title",
       "label": "Social title",
       "default": "Connect With Us"
+    },
+    {
+      "type": "url",
+      "id": "website_url",
+      "label": "Website URL"
     },
     {
       "type": "url",

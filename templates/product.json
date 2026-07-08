@@ -474,7 +474,7 @@
         "typography_product_meta_size_mobile": 14,
         "typography_product_meta_weight": "400",
         "padding-block-start": 0,
-        "padding-block-end": 60
+        "padding-block-end": 30
       }
     },
     "1783094455770a3a56": {
@@ -704,8 +704,8 @@
         "subheading": "",
         "scroll_speed": 60,
         "section_bg": "#ffffff",
-        "padding_top_desktop": 50,
-        "padding_bottom_desktop": 50,
+        "padding_top_desktop": 30,
+        "padding_bottom_desktop": 30,
         "padding_top_mobile": 30,
         "padding_bottom_mobile": 30,
         "font_family": "sans_serif_n4",
