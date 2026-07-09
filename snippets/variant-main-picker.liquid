@@ -8,6 +8,7 @@
 {%- enddoc -%}
 
 {% assign block_settings = block.settings %}
+{%- comment -%} size_chart_modal_id removed — size chart now uses single global <dialog id="size-chart-dialog"> in theme.liquid {%- endcomment -%}
 
 {% unless product_resource.has_only_default_variant %}
   {% liquid
@@ -37,6 +38,7 @@
     <form class="variant-picker__form">
       {%- for product_option in product_resource.options_with_values -%}
         {%- liquid
+          assign option_name_downcase = product_option.name | downcase
           assign swatch_count = product_option.values | map: 'swatch' | compact | size
           assign variant_style = block_settings.variant_style
 
@@ -71,7 +73,7 @@
         {%- elsif variant_style == 'swatch' or block_settings.variant_style == 'buttons' -%}
           {%- assign fieldset_index = forloop.index0 -%}
           <fieldset
-            class="variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ settings.variant_button_width }}{% endif %}"
+            class="variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ settings.variant_button_width }}{% endif %}{% if option_name_downcase contains 'size' %} variant-option--size-buttons{% endif %}"
             data-fieldset-index="{{ fieldset_index }}"
             ref="fieldsets[]"
             {{ option_id_attribute }}
@@ -84,9 +86,9 @@
                     <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
                   {%- endif %}
                 </span>
-                {%- assign option_name_downcase = product_option.name | downcase -%}
                 {%- if option_name_downcase == 'size' and product.metafields.custom.size_chart != blank -%}
-                  <button type="button" class="variant-option__size-chart-btn" aria-haspopup="dialog" aria-controls="SizeChartModal">
+                  {%- assign size_chart_img_url = product.metafields.custom.size_chart | image_url: width: 1200 -%}
+                  <button type="button" class="variant-option__size-chart-btn" aria-haspopup="dialog" aria-controls="size-chart-dialog" data-size-chart-url="{{ size_chart_img_url }}">
                     <span class="variant-option__size-chart-icon">📐</span>
                     <span class="variant-option__size-chart-text">Size Chart</span>
                   </button>
@@ -118,7 +120,15 @@
                   {% if product_option_value.variant.id %}
                     data-variant-id="{{ product_option_value.variant.id }}"
                   {% endif %}
-                  {% if product_option_value.selected %}
+                  {%- liquid
+                    assign is_checked = false
+                    if product_option_value.selected
+                      unless option_name_downcase contains 'size' and product.selected_variant == blank
+                        assign is_checked = true
+                      endunless
+                    endif
+                  -%}
+                  {% if is_checked %}
                     data-current-checked="true"
                     checked
                   {% else %}
@@ -181,12 +191,12 @@
             endif
           %}
 
-          <div class="variant-option variant-option--dropdowns">
+          <div class="variant-option variant-option--dropdowns{% if option_name_downcase == 'size' %} variant-option--size-dropdowns{% endif %}">
             <div class="variant-option__legend-flex">
               <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
-              {%- assign option_name_downcase = product_option.name | downcase -%}
               {%- if option_name_downcase == 'size' and product.metafields.custom.size_chart != blank -%}
-                <button type="button" class="variant-option__size-chart-btn" aria-haspopup="dialog" aria-controls="SizeChartModal">
+                {%- assign size_chart_img_url = product.metafields.custom.size_chart | image_url: width: 1200 -%}
+                <button type="button" class="variant-option__size-chart-btn" aria-haspopup="dialog" aria-controls="size-chart-dialog" data-size-chart-url="{{ size_chart_img_url }}">
                   <span class="variant-option__size-chart-icon">📐</span>
                   <span class="variant-option__size-chart-text">Size Chart</span>
                 </button>
@@ -205,6 +215,9 @@
                 name="options[{{ product_option.name | escape }}]"
                 class="variant-option__select"
               >
+                {%- if option_name_downcase contains 'size' and product.selected_variant == blank -%}
+                  <option value="" disabled selected>Choose your perfect fit</option>
+                {%- endif -%}
                 {%- for product_option_value in product_option.values -%}
                   <option
                     value="{{ product_option_value | escape }}"
@@ -212,7 +225,15 @@
                     data-option-value-id="{{ product_option_value.id }}"
                     data-variant-id="{{ product_option_value.variant.id }}"
                     data-connected-product-url="{{ product_option_value.product_url }}"
-                    {% if product_option_value.selected %}
+                    {%- liquid
+                      assign is_selected = false
+                      if product_option_value.selected
+                        unless option_name_downcase contains 'size' and product.selected_variant == blank
+                          assign is_selected = true
+                        endunless
+                      endif
+                    -%}
+                    {% if is_selected %}
                       selected="selected"
                     {% endif %}
                   >
@@ -243,42 +264,8 @@
       <script type="application/json" data-product-variants>
         {{ product_resource.variants | json }}
       </script>
+
     </form>
-    {%- if product.metafields.custom.size_chart != blank -%}
-      <div id="SizeChartModal" class="size-chart-modal" role="dialog" aria-modal="true" aria-labelledby="SizeChartModalTitle" aria-hidden="true" tabindex="-1">
-        <div class="size-chart-modal__overlay" data-close-modal></div>
-        <div class="size-chart-modal__card">
-          <header class="size-chart-modal__header">
-            <h2 id="SizeChartModalTitle" class="size-chart-modal__title">Size Chart</h2>
-            <button type="button" class="size-chart-modal__close" aria-label="Close size chart" data-close-modal>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </header>
-          <div class="size-chart-modal__body">
-            <div class="size-chart-modal__image-wrapper">
-              {{ product.metafields.custom.size_chart | image_url: width: 1200 | image_tag: 
-                class: 'size-chart-modal__image', 
-                loading: 'lazy', 
-                alt: 'Size Chart'
-              }}
-            </div>
-          </div>
-          <footer class="size-chart-modal__footer">
-            <span class="size-chart-modal__support-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-              </svg>
-            </span>
-            <div class="size-chart-modal__footer-text">
-              <strong>Still unsure?</strong> Contact our support team for sizing assistance.
-            </div>
-          </footer>
-        </div>
-      </div>
-    {%- endif -%}
   </variant-picker>
 {% endunless %}
 
@@ -428,272 +415,198 @@
     justify-content: center;
   }
 
-  /* Modal wrapper */
-  .size-chart-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
 
-  .size-chart-modal.is-open {
-    opacity: 1;
-    visibility: visible;
-  }
 
-  /* Modal overlay */
-  .size-chart-modal__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-  /* Modal Card */
-  .size-chart-modal__card {
-    position: relative;
-    max-width: 900px;
-    width: 90%;
-    background: #fff;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
-    transform: scale(0.9);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: flex;
-    flex-direction: column;
-    z-index: 1001;
-  }
-
-  .size-chart-modal.is-open .size-chart-modal__card {
-    transform: scale(1);
-  }
-
-  /* Header */
-  .size-chart-modal__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .size-chart-modal__title {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-    color: #121212;
-  }
-
-  .size-chart-modal__close {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .size-chart-modal__close svg {
-    width: 20px;
-    height: 20px;
-    color: #121212;
-  }
-
-  .size-chart-modal__close:hover {
-    background-color: #f5f5f5;
-    transform: rotate(90deg);
-  }
-
-  /* Body */
-  .size-chart-modal__body {
-    padding: 24px;
-    max-height: 75vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .size-chart-modal__image-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
-
-  .size-chart-modal__image {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-  }
-
-  /* Footer */
-  .size-chart-modal__footer {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 20px 24px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #eee;
-  }
-
-  .size-chart-modal__support-icon {
+  /* Premium Size Validation Message */
+  .size-validation-message {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    background-color: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #c53030;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(-8px);
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  .size-chart-modal__support-icon svg {
-    width: 20px;
-    height: 20px;
-    color: #666;
+  .size-validation-message.fade-in {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .size-chart-modal__footer-text {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.4;
+  .size-validation-message.fade-out {
+    opacity: 0;
+    transform: translateY(-8px);
   }
 
-  /* Mobile responsive styles */
-  @media screen and (max-width: 749px) {
-    .size-chart-modal__card {
-      width: 95%;
-      border-radius: 16px;
-    }
-    .size-chart-modal__header {
-      padding: 20px;
-    }
-    .size-chart-modal__body {
-      padding: 20px;
-    }
-    .size-chart-modal__close {
-      width: 44px;
-      height: 44px;
-    }
-    .size-chart-modal__footer {
-      padding: 16px 20px;
-    }
+  .size-validation-icon {
+    font-size: 16px;
+  }
+
+  /* Validation glow and border states */
+  .variant-option.validation-error .variant-option__button-label,
+  .variant-option.validation-error .variant-option__select-wrapper {
+    border-color: #feb2b2 !important;
+    box-shadow: 0 0 0 3px rgba(254, 178, 178, 0.4), 0 0 10px rgba(229, 62, 62, 0.1) !important;
+    transition: all 0.3s ease;
+  }
+
+  /* Bounce-shake animation for size options */
+  .bounce-shake {
+    animation: bounceShake 0.4s ease-in-out;
+  }
+
+  @keyframes bounceShake {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-4px); }
+    50% { transform: translateY(2px); }
+    75% { transform: translateY(-2px); }
+  }
+
+  /* Shake animation for Add to Cart button */
+  .shake-error {
+    animation: shakeError 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+  }
+
+  @keyframes shakeError {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+
+  /* Vibrate animation for cart button icon */
+  .vibrate {
+    animation: vibrateIcon 0.3s linear infinite;
+  }
+
+  @keyframes vibrateIcon {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+
+  /* Satisfaction pulse micro-animation */
+  .variant-option__button-label.pulse-active,
+  .variant-option__select-wrapper.pulse-active {
+    animation: pulseActive 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes pulseActive {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); box-shadow: 0 0 0 4px rgba(50, 255, 0, 0.2); }
+    100% { transform: scale(1); }
+  }
+
+  /* Premium Size Picker Style Overrides */
+  .variant-option--size-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important; /* Spacing between size buttons */
+    margin-top: 10px !important;
+  }
+
+  .variant-option--size-buttons .variant-option__button-label {
+    background-color: #ffffff !important;
+    border: 1px solid #D8D8D8 !important;
+    border-radius: 8px !important;
+    color: #1b3b5f !important; /* Brand dark blue / charcoal text */
+    font-weight: 500 !important;
+    padding: 12px 20px !important;
+    min-height: 48px !important;
+    min-width: 64px !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative !important;
+    overflow: visible !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: unset !important;
+  }
+
+  .variant-option--size-buttons .variant-option__button-label:hover {
+    border-color: #8c8c8c !important;
+    background-color: #f9f9f9 !important;
+  }
+
+  /* Selected state: Brand primary blue background and white text */
+  .variant-option--size-buttons .variant-option__button-label:has(input:checked) {
+    background-color: #0c4168 !important; /* Primary Brand Blue background */
+    border-color: #0c4168 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(12, 65, 104, 0.25) !important;
+    transform: scale(1.03) !important;
+  }
+
+  .variant-option--size-buttons .variant-option__button-label:has(input:checked) .variant-option__button-label__text {
+    color: #ffffff !important;
+  }
+
+  /* In selected hover state, keep active styling */
+  .variant-option--size-buttons .variant-option__button-label:has(input:checked):hover {
+    background-color: #0c4168 !important;
+    border-color: #0c4168 !important;
+    color: #ffffff !important;
+  }
+
+  /* Disabled / Out of stock sizes styling */
+  .variant-option--size-buttons .variant-option__button-label:has(input[aria-disabled="true"]),
+  .variant-option--size-buttons .variant-option__button-label:has(input[data-option-available="false"]) {
+    background-color: #f4f4f4 !important;
+    border-color: #e0e0e0 !important;
+    color: #a0a0a0 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    opacity: 0.6 !important;
+  }
+
+  .variant-option--size-buttons .variant-option__button-label:has(input[aria-disabled="true"]) .variant-option__button-label__text,
+  .variant-option--size-buttons .variant-option__button-label:has(input[data-option-available="false"]) .variant-option__button-label__text {
+    color: #a0a0a0 !important;
+  }
+
+  /* Diagonal line for disabled sizes */
+  .variant-option--size-buttons .variant-option__button-label:has(input[aria-disabled="true"])::after,
+  .variant-option--size-buttons .variant-option__button-label:has(input[data-option-available="false"])::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(to top right, transparent 48%, #a0a0a0 48%, #a0a0a0 52%, transparent 52%) !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+  }
+
+  /* Hide default Dawn ::before / ::after border hacks and pill backgrounds for size buttons */
+  .variant-option--size-buttons .variant-option__button-label::before,
+  .variant-option--size-buttons .variant-option__button-label__pill {
+    display: none !important;
+  }
+
+  /* Dropdown Style adjustments */
+  .variant-option--size-dropdowns .variant-option__select {
+    font-weight: 500 !important;
+    border-radius: 8px !important;
+  }
+
+  .variant-option--size-buttons .variant-option__button-label__text {
+    color: inherit !important;
   }
 {% endstylesheet %}
-
-{%- if product.metafields.custom.size_chart != blank -%}
-  <script>
-    class SizeChartModal {
-      constructor() {
-        this.modal = document.getElementById('SizeChartModal');
-        this.triggerBtn = document.querySelector('.variant-option__size-chart-btn');
-        if (!this.modal || !this.triggerBtn) return;
-
-        this.closeElements = this.modal.querySelectorAll('[data-close-modal]');
-        this.focusableElementsString = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-        this.firstFocusableElement = null;
-        this.lastFocusableElement = null;
-
-        this.init();
-      }
-
-      init() {
-        this.triggerBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          this.open();
-        });
-        this.closeElements.forEach(el => el.addEventListener('click', (e) => {
-          e.preventDefault();
-          this.close();
-        }));
-        
-        // Bind keydown events
-        document.addEventListener('keydown', (e) => this.handleKeydown(e));
-      }
-
-      open() {
-        this.modal.classList.add('is-open');
-        this.modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; // Body scroll lock
-        
-        // Focus management
-        this.setupFocus();
-        if (this.firstFocusableElement) {
-          setTimeout(() => this.firstFocusableElement.focus(), 50);
-        }
-      }
-
-      close() {
-        this.modal.classList.remove('is-open');
-        this.modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = ''; // Restore scrolling
-        
-        // Return focus to trigger
-        if (this.triggerBtn) {
-          this.triggerBtn.focus();
-        }
-      }
-
-      setupFocus() {
-        const focusableElements = Array.from(this.modal.querySelectorAll(this.focusableElementsString));
-        if (focusableElements.length > 0) {
-          this.firstFocusableElement = focusableElements[0];
-          this.lastFocusableElement = focusableElements[focusableElements.length - 1];
-        }
-      }
-
-      handleKeydown(e) {
-        if (!this.modal.classList.contains('is-open')) return;
-
-        // ESC closes popup
-        if (e.key === 'Escape') {
-          this.close();
-          return;
-        }
-
-        // Trap focus inside modal
-        if (e.key === 'Tab') {
-          this.setupFocus();
-          if (e.shiftKey) { // Shift + Tab
-            if (document.activeElement === this.firstFocusableElement) {
-              this.lastFocusableElement.focus();
-              e.preventDefault();
-            }
-          } else { // Tab
-            if (document.activeElement === this.lastFocusableElement) {
-              this.firstFocusableElement.focus();
-              e.preventDefault();
-            }
-          }
-        }
-      }
-    }
-
-    // Initialize Size Chart Modal
-    (function() {
-      function initSizeChart() {
-        new SizeChartModal();
-      }
-      
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSizeChart);
-      } else {
-        initSizeChart();
-      }
-
-      // Handle Shopify theme editor / dynamic loads
-      document.addEventListener('shopify:section:load', initSizeChart);
-    })();
-  </script>
-{%- endif -%}

@@ -251,7 +251,7 @@ class CartItemsComponent extends Component {
 
     const cartItemsHtml = event.detail.data.sections?.[this.sectionId];
     if (cartItemsHtml) {
-      morphSection(this.sectionId, cartItemsHtml);
+      morphSection(this.sectionId, cartItemsHtml, { mode: this.isDrawer ? 'hydration' : 'full' });
 
       // Update button states for all cart quantity selectors after morph
       this.#updateCartQuantitySelectorButtonStates();

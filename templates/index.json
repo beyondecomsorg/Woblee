@@ -403,7 +403,7 @@
       ],
       "name": "Collection Carousel Pro",
       "settings": {
-        "small_heading": "MOST WANTED",
+        "small_heading": "",
         "main_heading": "Bestsellers",
         "description": "The crowd favourites. Bold graphics, premium comfort, and everyday styles chosen again and again.",
         "enable_shop_all_button": true,

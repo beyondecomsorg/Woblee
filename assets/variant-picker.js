@@ -31,6 +31,7 @@ export default class VariantPicker extends Component {
 
   #resizeObserver = new ResizeNotifier(() => this.updateVariantPickerCss());
 
+
   connectedCallback() {
     super.connectedCallback();
     const fieldsets = /** @type {HTMLFieldSetElement[]} */ (this.refs.fieldsets || []);
@@ -496,6 +497,44 @@ export default class VariantPicker extends Component {
       if (!optionValueId) throw new Error('No option value ID found');
 
       return optionValueId;
+    });
+  }
+
+  // Size selection change listener: clears validation errors and plays pulse animation
+  #initSizeChangeListener() {
+    this.addEventListener('change', (e) => {
+      const changedInput = e.target;
+      if (changedInput instanceof HTMLInputElement || changedInput instanceof HTMLSelectElement) {
+        const optionContainer = changedInput.closest('fieldset.variant-option, .variant-option--dropdowns');
+        if (optionContainer) {
+          const legendOrLabel = optionContainer.querySelector('legend, label');
+          if (legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size')) {
+            // Remove validation styling
+            optionContainer.classList.remove('validation-error');
+            const message = optionContainer.querySelector('.size-validation-message');
+            if (message) {
+              message.classList.remove('fade-in');
+              message.classList.add('fade-out');
+              setTimeout(() => message.remove(), 350);
+            }
+
+            // Pulse satisfaction micro-animation on selection
+            if (changedInput instanceof HTMLInputElement) {
+              const label = changedInput.closest('.variant-option__button-label');
+              if (label) {
+                label.classList.add('pulse-active');
+                setTimeout(() => label.classList.remove('pulse-active'), 500);
+              }
+            } else if (changedInput instanceof HTMLSelectElement) {
+              const wrapper = changedInput.closest('.variant-option__select-wrapper');
+              if (wrapper) {
+                wrapper.classList.add('pulse-active');
+                setTimeout(() => wrapper.classList.remove('pulse-active'), 500);
+              }
+            }
+          }
+        }
+      }
     });
   }
 }

@@ -68,11 +68,17 @@ export class AddToCartComponent extends Component {
    * @param {MouseEvent & {target: HTMLElement}} event - The click event.
    */
   handleClick(event) {
+    const productForm = /** @type {ProductFormComponent | null} */ (this.closest('product-form-component'));
+    if (productForm && !productForm.validateSizeSelection()) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
+
     const form = this.closest('form');
     if (!form?.checkValidity()) return;
 
     // Check if adding would exceed max before animating
-    const productForm = /** @type {ProductFormComponent | null} */ (this.closest('product-form-component'));
     const quantitySelector = productForm?.refs.quantitySelector;
     if (quantitySelector?.canAddToCart) {
       const validation = quantitySelector.canAddToCart();
@@ -279,9 +285,119 @@ class ProductFormComponent extends Component {
     }
   };
 
+  /**
+   * Validates if a size has been selected before adding to cart
+   * @returns {boolean} True if size is selected or validation is skipped, false otherwise
+   */
+  validateSizeSelection() {
+    const picker = this.#getRelatedVariantPicker();
+    if (!picker) return true; // No variant picker, skip validation
+
+    const containers = Array.from(picker.querySelectorAll('fieldset.variant-option, .variant-option--dropdowns'));
+    const sizeContainer = containers.find(el => {
+      const legendOrLabel = el.querySelector('legend, label');
+      return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
+    });
+
+    if (!sizeContainer) return true; // No size option found, skip validation
+
+    // Check if selected
+    let isSelected = false;
+    const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
+    if (checkedRadio) {
+      isSelected = true;
+    } else {
+      const select = sizeContainer.querySelector('select');
+      if (select && select.value !== '' && !select.options[select.selectedIndex].disabled) {
+        isSelected = true;
+      }
+    }
+
+    if (isSelected) {
+      // Clear active validation if size is selected
+      const activeMessage = sizeContainer.querySelector('.size-validation-message');
+      if (activeMessage) {
+        activeMessage.classList.remove('fade-in');
+        activeMessage.classList.add('fade-out');
+        setTimeout(() => activeMessage.remove(), 350);
+      }
+      sizeContainer.classList.remove('validation-error');
+      return true;
+    }
+
+    // Validation failed - trigger premium animation sequence
+    
+    // 1. Accessibility announcement
+    const accessibilityMsg = "Please select a size before adding this item to your cart.";
+    this.#setLiveRegionText(accessibilityMsg);
+
+    // 2. Add to Cart Button shake animation
+    const addToCartButton = this.querySelector('add-to-cart-component button, .add-to-cart-btn, [name="add"]');
+    if (addToCartButton) {
+      addToCartButton.classList.add('shake-error');
+      const cartIcon = addToCartButton.querySelector('svg');
+      if (cartIcon) cartIcon.classList.add('vibrate');
+
+      setTimeout(() => {
+        addToCartButton.classList.remove('shake-error');
+        if (cartIcon) cartIcon.classList.remove('vibrate');
+      }, 500);
+    }
+
+    // 3. Highlight Size Selector Container with glow & bounce-shake
+    sizeContainer.classList.add('validation-error');
+    const targetSizeOptions = sizeContainer.querySelectorAll('.variant-option__button-label, .variant-option__select-wrapper');
+    targetSizeOptions.forEach(option => {
+      option.classList.add('bounce-shake');
+    });
+
+    // Clean up highlights after 2 seconds
+    if (this.sizeHighlightTimeout) clearTimeout(this.sizeHighlightTimeout);
+    this.sizeHighlightTimeout = setTimeout(() => {
+      sizeContainer.classList.remove('validation-error');
+      targetSizeOptions.forEach(option => {
+        option.classList.remove('bounce-shake');
+      });
+    }, 2000);
+
+    // 4. Friendly validation message banner
+    let message = sizeContainer.querySelector('.size-validation-message');
+    if (!message) {
+      message = document.createElement('div');
+      message.className = 'size-validation-message';
+      message.setAttribute('role', 'alert');
+      message.setAttribute('aria-live', 'assertive');
+      message.innerHTML = `
+        <span class="size-validation-text">Please select a size before adding to cart.</span>
+      `;
+
+      // Append to the bottom of the size options container so it sits below size options
+      sizeContainer.appendChild(message);
+    }
+
+    // Trigger animations
+    message.classList.remove('fade-out');
+    message.classList.add('fade-in');
+
+    // 5. Scroll size container into view smoothly
+    sizeContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // 6. Set keyboard focus to the first size option for accessibility
+    const firstOption = sizeContainer.querySelector('input[type="radio"], select');
+    if (firstOption) {
+      firstOption.focus();
+    }
+
+    return false;
+  }
+
   /** @param {Event} event */
   handleSubmit(event) {
     event.preventDefault();
+
+    if (!this.validateSizeSelection()) {
+      return;
+    }
 
     if (this.#variantChangeInProgress) {
       const intendedVariantId = this.#getIntendedVariantId();
@@ -471,7 +587,7 @@ class ProductFormComponent extends Component {
       ...fetchCfg,
       headers: {
         ...fetchCfg.headers,
-        Accept: 'text/html',
+        Accept: 'application/json',
       },
     })
       .then((response) => response.json())

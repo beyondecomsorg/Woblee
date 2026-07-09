@@ -12,8 +12,25 @@ import { debounce, isClickedOutside, onAnimationEnd } from '@theme/utilities';
 export class DialogComponent extends Component {
   requiredRefs = ['dialog'];
 
+  #observer = null;
+
   connectedCallback() {
     super.connectedCallback();
+    const { dialog } = this.refs;
+    if (dialog) {
+      dialog.addEventListener('close', this.#handleNativeClose);
+
+      this.#observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+            if (!dialog.open) {
+              this.#handleNativeClose();
+            }
+          }
+        });
+      });
+      this.#observer.observe(dialog, { attributes: true, attributeFilter: ['open'] });
+    }
 
     if (this.minWidth || this.maxWidth) {
       window.addEventListener('resize', this.#handleResize);
@@ -22,6 +39,17 @@ export class DialogComponent extends Component {
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    const { dialog } = this.refs;
+    if (dialog) {
+      dialog.removeEventListener('close', this.#handleNativeClose);
+    }
+    if (this.#observer) {
+      this.#observer.disconnect();
+    }
+    // Safeguard: unlock if dialog element is removed from DOM while body is locked
+    if (document.body.classList.contains('modal-open') && this.#previousScrollY > 0) {
+      this.#handleNativeClose();
+    }
     if (this.minWidth || this.maxWidth) {
       window.removeEventListener('resize', this.#handleResize);
     }
@@ -47,8 +75,9 @@ export class DialogComponent extends Component {
   showDialog() {
     const { dialog } = this.refs;
 
-    if (dialog.open) return;
+    if (dialog.open || this.isOpening) return;
 
+    this.isOpening = true;
     const scrollY = window.scrollY;
     this.#previousScrollY = scrollY;
     this.#previousBodyPaddingRight = document.body.style.paddingRight || '';
@@ -67,8 +96,16 @@ export class DialogComponent extends Component {
       document.body.classList.add('modal-open');
       document.documentElement.setAttribute('scroll-lock', '');
 
-      dialog.showModal();
-      this.dispatchEvent(new DialogOpenEvent());
+      try {
+        if (!dialog.open) {
+          dialog.showModal();
+          this.dispatchEvent(new DialogOpenEvent());
+        }
+      } catch (error) {
+        console.warn('Dialog showModal failed:', error);
+      } finally {
+        this.isOpening = false;
+      }
 
       this.addEventListener('click', this.#handleClick);
       this.addEventListener('keydown', this.#handleKeyDown);
@@ -87,19 +124,27 @@ export class DialogComponent extends Component {
     this.removeEventListener('keydown', this.#handleKeyDown);
 
     // Force browser to restart animation by resetting it
-    // Temporarily remove any existing animation state
     dialog.style.animation = 'none';
-
-    // Force a reflow
     void dialog.offsetWidth;
 
-    // Now add the closing class and restore animation
     dialog.classList.add('dialog-closing');
     dialog.style.animation = '';
 
-    await onAnimationEnd(dialog, undefined, {
-      subtree: false,
-    });
+    // Safety timeout of 600ms to guarantee close even if Web Animations API hangs
+    await Promise.race([
+      onAnimationEnd(dialog, undefined, {
+        subtree: false,
+      }),
+      new Promise((resolve) => setTimeout(resolve, 600)),
+    ]);
+
+    dialog.close();
+    dialog.classList.remove('dialog-closing');
+  };
+
+  #handleNativeClose = () => {
+    this.removeEventListener('click', this.#handleClick);
+    this.removeEventListener('keydown', this.#handleKeyDown);
 
     document.body.style.width = '';
     document.body.style.position = '';
@@ -108,9 +153,6 @@ export class DialogComponent extends Component {
     document.body.classList.remove('modal-open');
     document.documentElement.removeAttribute('scroll-lock');
     window.scrollTo({ top: this.#previousScrollY, behavior: 'instant' });
-
-    dialog.close();
-    dialog.classList.remove('dialog-closing');
 
     this.dispatchEvent(new DialogCloseEvent());
   };
@@ -204,3 +246,29 @@ document.addEventListener(
   },
   { capture: true }
 );
+
+// Global safeguard to prevent page from freezing in a locked scroll state
+const checkScrollLockSafeguard = () => {
+  requestAnimationFrame(() => {
+    const hasOpenDialog = Array.from(document.querySelectorAll('dialog')).some(
+      (dialog) => dialog.open
+    );
+    const hasOpenCustomModal = document.querySelector(
+      '.quick-add-modal.is-open, .size-chart-modal.is-open, [scroll-lock][open], [scroll-lock].is-open'
+    );
+
+    if (!hasOpenDialog && !hasOpenCustomModal) {
+      if (document.body.classList.contains('modal-open') || document.documentElement.hasAttribute('scroll-lock')) {
+        document.body.style.width = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.classList.remove('modal-open');
+        document.documentElement.removeAttribute('scroll-lock');
+      }
+    }
+  });
+};
+
+document.addEventListener('click', checkScrollLockSafeguard, { capture: true, passive: true });
+document.addEventListener('keydown', checkScrollLockSafeguard, { capture: true, passive: true });
+document.addEventListener('focusin', checkScrollLockSafeguard, { capture: true, passive: true });

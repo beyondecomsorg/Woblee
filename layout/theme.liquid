@@ -239,7 +239,6 @@ a.contents.user-select-text p{
 
 
 
-
     @media only screen and (max-width: 768px){
         #timeline-tabs-template--20344750243991__tab_section_PXmk7b, .war-static,
     .product-meta-modal__title,
@@ -275,6 +274,7 @@ a.contents.user-select-text p{
     }
     .wau-pcard__caption{
       font-size: 9px !important;
+      margin-top: 1rem;
     }
     .template-collection .group-block-content.layout-panel-flex.layout-panel-flex--column.mobile-column, product-price.text-block.text-left.h6.spacing-style{
     margin-top: 10px !important;
@@ -680,6 +680,185 @@ button.account-button,
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+
+    {%- comment -%}
+      =====================================================================
+      GLOBAL SIZE CHART DIALOG
+      Single native <dialog> shared by Product Page + Quick View.
+      Lives as a direct <body> child so showModal() top-layer rendering
+      always works regardless of the caller's stacking context.
+      Image URL is set dynamically from data-size-chart-url on the trigger.
+      =====================================================================
+    {%- endcomment -%}
+    <dialog id="size-chart-dialog" class="size-chart-dialog" aria-label="Size Chart">
+      <div class="size-chart-dialog__inner">
+        <header class="size-chart-dialog__header">
+          <h2 class="size-chart-dialog__title">Size Chart</h2>
+          <button class="size-chart-dialog__close" aria-label="Close size chart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </header>
+        <div class="size-chart-dialog__body">
+          <img id="size-chart-dialog-img" class="size-chart-dialog__img" src="" alt="Size Chart" loading="lazy">
+        </div>
+      </div>
+    </dialog>
+
+    <style>
+      /* ── Size Chart Dialog ── */
+      #size-chart-dialog {
+        border: none;
+        padding: 0;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        max-width: min(860px, 94vw);
+        width: 100%;
+        overflow: hidden;
+        /* Native <dialog> handles centering + top-layer automatically */
+      }
+
+      #size-chart-dialog::backdrop {
+        background: rgba(0, 0, 0, 0.55);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+      }
+
+      /* Entry animation: scale up from 95% */
+      @keyframes size-chart-in {
+        from { opacity: 0; transform: scale(0.94); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      #size-chart-dialog[open] {
+        animation: size-chart-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      .size-chart-dialog__inner {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .size-chart-dialog__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 24px;
+        border-bottom: 1px solid #ebebeb;
+      }
+
+      .size-chart-dialog__title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .size-chart-dialog__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.15s, transform 0.2s;
+        flex-shrink: 0;
+      }
+      .size-chart-dialog__close:hover {
+        background: #f4f4f4;
+        transform: rotate(90deg);
+      }
+
+      .size-chart-dialog__body {
+        padding: 24px;
+        overflow-y: auto;
+        max-height: calc(90vh - 80px);
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .size-chart-dialog__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 749px) {
+        #size-chart-dialog {
+          max-width: 96vw;
+          border-radius: 12px;
+          margin: auto 2vw;
+        }
+        .size-chart-dialog__header {
+          padding: 16px 18px;
+        }
+        .size-chart-dialog__body {
+          padding: 16px 18px;
+          max-height: calc(85vh - 70px);
+        }
+      }
+    </style>
+
+    <script>
+      (function () {
+        'use strict';
+
+        const dialog = document.getElementById('size-chart-dialog');
+        const dialogImg = document.getElementById('size-chart-dialog-img');
+        if (!dialog || !dialogImg) return;
+
+        // ── Open ──
+        // Any .variant-option__size-chart-btn anywhere on the page (Product Page OR Quick View)
+        document.addEventListener('click', function (e) {
+          const btn = e.target.closest('.variant-option__size-chart-btn');
+          if (!btn) return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Swap image if needed (different product's size chart)
+          const url = btn.dataset.sizeChartUrl || '';
+          if (url && dialogImg.src !== url) {
+            dialogImg.src = url;
+          }
+
+          // showModal() uses the native top-layer — no z-index fights, ever
+          if (!dialog.open) {
+            dialog.showModal();
+          }
+        });
+
+        // ── Close via close button ──
+        dialog.addEventListener('click', function (e) {
+          if (e.target.closest('.size-chart-dialog__close')) {
+            dialog.close();
+          }
+        });
+
+        // ── Close via clicking the ::backdrop ──
+        // When the click target is the <dialog> itself (not its inner content), it's on the backdrop
+        dialog.addEventListener('click', function (e) {
+          if (e.target === dialog) {
+            dialog.close();
+          }
+        });
+
+        // ── ESC key closes dialog ── (native behavior, but double-guard)
+        dialog.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') dialog.close();
+        });
+
+        // ── Scroll-lock guard ──
+        // The theme's dialog.js checks for [open] on native <dialog> elements, so
+        // showModal() / close() automatically satisfies the checkScrollLockSafeguard.
+        // No manual body.style manipulation needed here.
+      })();
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
   </body>
 </html>

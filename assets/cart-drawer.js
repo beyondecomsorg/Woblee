@@ -39,11 +39,14 @@ class CartDrawerComponent extends DialogComponent {
     this.#historyAbortController?.abort();
   }
 
+  historyPushed = false;
+
   #handleHistoryOpen = () => {
     if (!isMobileBreakpoint()) return;
 
     if (!history.state?.cartDrawerOpen) {
       history.pushState({ cartDrawerOpen: true }, '');
+      this.historyPushed = true;
     }
 
     this.#historyAbortController = new AbortController();
@@ -52,9 +55,10 @@ class CartDrawerComponent extends DialogComponent {
 
   #handleHistoryClose = () => {
     this.#historyAbortController?.abort();
-    if (history.state?.cartDrawerOpen) {
+    if (this.historyPushed && history.state?.cartDrawerOpen) {
       history.back();
     }
+    this.historyPushed = false;
   };
 
   #handlePopState = async () => {
@@ -63,6 +67,7 @@ class CartDrawerComponent extends DialogComponent {
       await this.closeDialog();
       this.refs.dialog.style.removeProperty('--dialog-drawer-closing-animation');
     }
+    this.historyPushed = false;
   };
 
   /**
