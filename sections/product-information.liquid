@@ -4,11 +4,28 @@
   {{ closest.product | structured_data }}
 </script>
 
+{%- assign split_gallery_setting = section.settings.split_gallery_images -%}
+
+{%- if split_gallery_setting -%}
+  <style>
+    .product-extended-gallery-wrapper {
+      display: block !important;
+    }
+  </style>
+{%- else -%}
+  <style>
+    .product-extended-gallery-wrapper {
+      display: none !important;
+    }
+  </style>
+{%- endif -%}
+
 {% capture media_gallery %}
   {%- content_for 'block',
     type: '_product-media-gallery',
     id: 'media-gallery',
-    closest.product: closest.product
+    closest.product: closest.product,
+    split_gallery_images: split_gallery_setting
   -%}
 {% endcapture %}
 
@@ -25,17 +42,31 @@
 {% endcapture %}
 
 {% if section.settings.enable_sticky_add_to_cart %}
-  {% liquid
+  {%- liquid
+    assign has_size_option = false
+    for option in product.options
+      assign option_name = option | downcase
+      if option_name contains 'size'
+        assign has_size_option = true
+      endif
+    endfor
+
     assign current_variant = product.selected_or_first_available_variant
     # Get the initial quantity based on quantity rules
     assign initial_quantity = current_variant.quantity_rule.min | default: 1
-  %}
+    
+    if has_size_option
+      assign initial_variant_id = ""
+    else
+      assign initial_variant_id = current_variant.id
+    endif
+  -%}
 
   <sticky-add-to-cart
     class="sticky-add-to-cart"
     data-variant-available="{{ current_variant.available }}"
     data-product-id="{{ product.id }}"
-    data-current-variant-id="{{ current_variant.id }}"
+    data-current-variant-id="{{ initial_variant_id }}"
     data-initial-quantity="{{ initial_quantity }}"
     data-default-variant-title="{{ 'products.product.default_title' | t }}"
   >
@@ -101,9 +132,25 @@
           {% endif %}
         >
           {% unless product.has_only_default_variant %}
-            {% if current_variant != blank %}
-              {% assign variant_title = current_variant.title | escape %}
-            {% endif %}
+            {%- liquid
+              if has_size_option == false
+                assign variant_title = current_variant.title | escape
+              else
+                assign selected_options_list = ""
+                for option in product.options_with_values
+                  assign option_name = option.name | downcase
+                  if option_name contains 'size'
+                    continue
+                  endif
+                  if selected_options_list != ""
+                    assign selected_options_list = selected_options_list | append: " / " | append: option.selected_value
+                  else
+                    assign selected_options_list = option.selected_value
+                  endif
+                endfor
+                assign variant_title = selected_options_list | escape
+              endif
+            -%}
             {{ variant_title }}
           {% endunless %}
         </div>
@@ -437,6 +484,12 @@
       "id": "enable_sticky_add_to_cart",
       "label": "t:settings.enable_sticky_add_to_cart",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "split_gallery_images",
+      "label": "Split product gallery (show remaining images below)",
+      "default": false
     },
     {
       "type": "color_scheme",

@@ -854,7 +854,31 @@ class ProductFormComponent extends Component {
     }
 
     const { variantId } = this.refs;
-    variantId.value = event.detail.resource?.id ?? '';
+
+    const picker = this.#getRelatedVariantPicker();
+    const hasSizeOption = picker && Array.from(picker.querySelectorAll('fieldset.variant-option, .variant-option--dropdowns')).some(el => {
+      const legendOrLabel = el.querySelector('legend, label');
+      return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
+    });
+
+    const isSizeSelected = () => {
+      if (!picker) return true;
+      const sizeContainer = Array.from(picker.querySelectorAll('fieldset.variant-option, .variant-option--dropdowns')).find(el => {
+        const legendOrLabel = el.querySelector('legend, label');
+        return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
+      });
+      if (!sizeContainer) return true;
+      const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
+      if (checkedRadio) return true;
+      const select = sizeContainer.querySelector('select');
+      return select && select.value !== '' && !select.options[select.selectedIndex].disabled;
+    };
+
+    if (hasSizeOption && !isSizeSelected()) {
+      variantId.value = '';
+    } else {
+      variantId.value = event.detail.resource?.id ?? '';
+    }
 
     this.#variantChangeInProgress = false;
 

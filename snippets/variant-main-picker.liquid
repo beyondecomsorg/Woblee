@@ -123,9 +123,7 @@
                   {%- liquid
                     assign is_checked = false
                     if product_option_value.selected
-                      unless option_name_downcase contains 'size' and product.selected_variant == blank
-                        assign is_checked = true
-                      endunless
+                      assign is_checked = true
                     endif
                   -%}
                   {% if is_checked %}
@@ -215,8 +213,8 @@
                 name="options[{{ product_option.name | escape }}]"
                 class="variant-option__select"
               >
-                {%- if option_name_downcase contains 'size' and product.selected_variant == blank -%}
-                  <option value="" disabled selected>Choose your perfect fit</option>
+                {%- if option_name_downcase contains 'size' -%}
+                  <option value="" disabled{% if product.selected_variant == blank %} selected{% endif %}>Choose your perfect fit</option>
                 {%- endif -%}
                 {%- for product_option_value in product_option.values -%}
                   <option
@@ -228,9 +226,7 @@
                     {%- liquid
                       assign is_selected = false
                       if product_option_value.selected
-                        unless option_name_downcase contains 'size' and product.selected_variant == blank
-                          assign is_selected = true
-                        endunless
+                        assign is_selected = true
                       endif
                     -%}
                     {% if is_selected %}
@@ -417,60 +413,7 @@
 
 
 
-  /* Premium Size Validation Message */
-  .size-validation-message {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background-color: #fff5f5;
-    border: 1px solid #feb2b2;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin: 8px 0;
-    font-size: 13px;
-    font-weight: 500;
-    color: #c53030;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 0;
-    transform: translateY(-8px);
-    width: 100%;
-    box-sizing: border-box;
-  }
 
-  .size-validation-message.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .size-validation-message.fade-out {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-
-  .size-validation-icon {
-    font-size: 16px;
-  }
-
-  /* Validation glow and border states */
-  .variant-option.validation-error .variant-option__button-label,
-  .variant-option.validation-error .variant-option__select-wrapper {
-    border-color: #feb2b2 !important;
-    box-shadow: 0 0 0 3px rgba(254, 178, 178, 0.4), 0 0 10px rgba(229, 62, 62, 0.1) !important;
-    transition: all 0.3s ease;
-  }
-
-  /* Bounce-shake animation for size options */
-  .bounce-shake {
-    animation: bounceShake 0.4s ease-in-out;
-  }
-
-  @keyframes bounceShake {
-    0%, 100% { transform: translateY(0); }
-    25% { transform: translateY(-4px); }
-    50% { transform: translateY(2px); }
-    75% { transform: translateY(-2px); }
-  }
 
   /* Shake animation for Add to Cart button */
   .shake-error {
@@ -513,9 +456,7 @@
 
   /* Premium Size Picker Style Overrides */
   .variant-option--size-buttons {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important; /* Spacing between size buttons */
+    display: block !important;
     margin-top: 10px !important;
   }
 
@@ -536,7 +477,8 @@
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    flex: unset !important;
+    margin-right: 10px !important;
+    margin-bottom: 10px !important;
   }
 
   .variant-option--size-buttons .variant-option__button-label:hover {

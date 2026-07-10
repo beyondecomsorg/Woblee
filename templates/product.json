@@ -442,6 +442,7 @@
         "limit_details_width": false,
         "gap": 40,
         "enable_sticky_add_to_cart": true,
+        "split_gallery_images": true,
         "color_scheme": "scheme-5",
         "typography_product_title_size_desktop": 40,
         "typography_product_title_size_mobile": 30,
@@ -476,6 +477,10 @@
         "padding-block-start": 0,
         "padding-block-end": 30
       }
+    },
+    "product-extended-gallery": {
+      "type": "product-extended-gallery",
+      "settings": {}
     },
     "1783094455770a3a56": {
       "type": "_blocks",
@@ -700,7 +705,7 @@
       ],
       "name": "Trust scroll strip",
       "settings": {
-        "heading": "DESIGNED TO BE WORN. MADE TO BE LOVED.",
+        "heading": "DESIGNED TO BE WORN.    MADE TO BE LOVED.",
         "subheading": "",
         "scroll_speed": 60,
         "section_bg": "#ffffff",
@@ -908,6 +913,7 @@
   },
   "order": [
     "product-information",
+    "product-extended-gallery",
     "1783094455770a3a56",
     "feature_gift_pdp_38caQd",
     "custom_bottom_bar_ABkAHw",

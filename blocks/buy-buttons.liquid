@@ -57,11 +57,20 @@
         ref="liveRegion"
       ></div>
       {%- form 'product', product, id: product_form_id, data-type: 'add-to-cart-form' -%}
+        {%- liquid
+          assign has_size_option = false
+          for option in product.options
+            assign option_name = option | downcase
+            if option_name contains 'size'
+              assign has_size_option = true
+            endif
+          endfor
+        -%}
         <input
           type="hidden"
           name="id"
           ref="variantId"
-          value="{{ product.selected_or_first_available_variant.id }}"
+          value="{% unless has_size_option %}{{ product.selected_or_first_available_variant.id }}{% endunless %}"
         >
         {%- if block_settings.gift_card_form and product.gift_card? -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section, block: block -%}

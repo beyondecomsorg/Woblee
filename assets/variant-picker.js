@@ -36,14 +36,37 @@ export default class VariantPicker extends Component {
     super.connectedCallback();
     const fieldsets = /** @type {HTMLFieldSetElement[]} */ (this.refs.fieldsets || []);
 
+    // Uncheck size options on initial load (both PDP and Quick View)
+    const containers = Array.from(this.querySelectorAll('fieldset.variant-option, .variant-option--dropdowns'));
+    const sizeContainer = containers.find(el => {
+      const legendOrLabel = el.querySelector('legend, label');
+      return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
+    });
+
+    if (sizeContainer) {
+      const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
+      if (checkedRadio) {
+        checkedRadio.checked = false;
+        checkedRadio.removeAttribute('checked');
+        checkedRadio.dataset.currentChecked = 'false';
+      }
+      const select = sizeContainer.querySelector('select');
+      if (select) {
+        select.value = '';
+        const placeholderOption = Array.from(select.options).find(opt => opt.value === '');
+        if (placeholderOption) {
+          placeholderOption.selected = true;
+          placeholderOption.setAttribute('selected', 'selected');
+        }
+      }
+    }
+
     fieldsets.forEach((fieldset) => {
       const radios = Array.from(fieldset?.querySelectorAll('input') ?? []);
       this.#radios.push(radios);
 
       const initialCheckedIndex = radios.findIndex((radio) => radio.dataset.currentChecked === 'true');
-      if (initialCheckedIndex !== -1) {
-        this.#checkedIndices.push([initialCheckedIndex]);
-      }
+      this.#checkedIndices.push(initialCheckedIndex !== -1 ? [initialCheckedIndex] : []);
     });
 
     this.addEventListener('change', this.variantChanged.bind(this));
@@ -374,6 +397,21 @@ export default class VariantPicker extends Component {
    * @param {Document | Element} newHtml - The new HTML.
    * @returns {NewProduct | undefined} Information about the new product if it has changed, otherwise undefined.
    */
+  isSizeSelected() {
+    const containers = Array.from(this.querySelectorAll('fieldset.variant-option, .variant-option--dropdowns'));
+    const sizeContainer = containers.find(el => {
+      const legendOrLabel = el.querySelector('legend, label');
+      return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
+    });
+    if (!sizeContainer) return true;
+
+    const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
+    if (checkedRadio) return true;
+
+    const select = sizeContainer.querySelector('select');
+    return select && select.value !== '' && !select.options[select.selectedIndex].disabled;
+  }
+
   updateVariantPicker(newHtml) {
     /** @type {NewProduct | undefined} */
     let newProduct;
@@ -382,6 +420,32 @@ export default class VariantPicker extends Component {
 
     if (!newVariantPickerSource) {
       throw new Error('No new variant picker source found');
+    }
+
+    // Prevent pre-selecting size during interactive color morphs if size has not been selected yet
+    if (!this.isSizeSelected() && newVariantPickerSource instanceof HTMLElement) {
+      const containers = Array.from(newVariantPickerSource.querySelectorAll('fieldset.variant-option, .variant-option--dropdowns'));
+      const sizeContainer = containers.find(el => {
+        const legendOrLabel = el.querySelector('legend, label');
+        return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
+      });
+      if (sizeContainer) {
+        const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
+        if (checkedRadio) {
+          checkedRadio.checked = false;
+          checkedRadio.removeAttribute('checked');
+          checkedRadio.dataset.currentChecked = 'false';
+        }
+        const select = sizeContainer.querySelector('select');
+        if (select) {
+          select.value = '';
+          const placeholderOption = Array.from(select.options).find(opt => opt.value === '');
+          if (placeholderOption) {
+            placeholderOption.selected = true;
+            placeholderOption.setAttribute('selected', 'selected');
+          }
+        }
+      }
     }
 
     // For combined listings, the product might have changed, so update the related data attribute.

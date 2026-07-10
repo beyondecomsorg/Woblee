@@ -79,7 +79,17 @@ class CartDrawerComponent extends DialogComponent {
       this.showDialog();
     }
 
-    this.#announceCartCount(event.detail.resource?.item_count);
+    const itemCount = event.detail.data?.itemCount ?? event.detail.resource?.item_count;
+    if (itemCount !== undefined) {
+      const { dialog } = /** @type {Refs} */ (this.refs);
+      if (dialog) {
+        const isEmpty = itemCount === 0;
+        dialog.classList.toggle('cart-drawer--empty', isEmpty);
+        dialog.setAttribute('aria-labelledby', isEmpty ? 'cart-drawer-heading-empty' : 'cart-drawer-heading');
+      }
+    }
+
+    this.#announceCartCount(itemCount);
   };
 
   /**
@@ -94,6 +104,13 @@ class CartDrawerComponent extends DialogComponent {
   }
 
   open() {
+    const { dialog } = /** @type {Refs} */ (this.refs);
+    if (dialog) {
+      const summary = dialog.querySelector('.cart-drawer__summary');
+      const isEmpty = !summary;
+      dialog.classList.toggle('cart-drawer--empty', isEmpty);
+      dialog.setAttribute('aria-labelledby', isEmpty ? 'cart-drawer-heading-empty' : 'cart-drawer-heading');
+    }
     this.showDialog();
 
     /**
@@ -117,6 +134,11 @@ class CartDrawerComponent extends DialogComponent {
     // Refs do not cross nested `*-component` boundaries (e.g., `cart-items-component`), so we query within the dialog.
     const content = dialog.querySelector('.cart-drawer__content');
     const summary = dialog.querySelector('.cart-drawer__summary');
+
+    // Dynamically toggle empty classes on dialog open based on DOM presence of summary element
+    const isEmpty = !summary;
+    dialog.classList.toggle('cart-drawer--empty', isEmpty);
+    dialog.setAttribute('aria-labelledby', isEmpty ? 'cart-drawer-heading-empty' : 'cart-drawer-heading');
 
     if (!content || !summary) {
       // Ensure the dialog doesn't get stuck in "unsticky" mode when summary disappears (e.g., empty cart).

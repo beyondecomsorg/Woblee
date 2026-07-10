@@ -105,6 +105,8 @@ class CartItemsComponent extends Component {
     if (isEmptyCart && template instanceof HTMLTemplateElement) {
       const clone = document.importNode(template.content, true);
 
+      this.#updateDialogEmptyState(0);
+
       startViewTransition(() => {
         this.replaceChildren(clone);
       }, [this.isDrawer ? 'empty-cart-drawer' : 'empty-cart-page']);
@@ -184,6 +186,8 @@ class CartItemsComponent extends Component {
         // Update data-cart-quantity for all matching variants
         this.#updateQuantitySelectors(parsedResponseText);
 
+        this.#updateDialogEmptyState(newCartItemCount);
+
         this.dispatchEvent(
           new CartUpdateEvent(parsedResponseText, this.sectionId, {
             itemCount: newCartItemCount,
@@ -255,6 +259,12 @@ class CartItemsComponent extends Component {
 
       // Update button states for all cart quantity selectors after morph
       this.#updateCartQuantitySelectorButtonStates();
+
+      // Update empty classes of parent dialog
+      const itemCount = event.detail.data?.itemCount ?? event.detail.resource?.item_count;
+      if (itemCount !== undefined) {
+        this.#updateDialogEmptyState(itemCount);
+      }
     } else {
       sectionRenderer.renderSection(this.sectionId, { cache: false });
     }
@@ -306,6 +316,21 @@ class CartItemsComponent extends Component {
   #updateCartQuantitySelectorButtonStates() {
     for (const selector of document.querySelectorAll('cart-quantity-selector-component')) {
       /** @type {any} */ (selector).updateButtonStates?.();
+    }
+  }
+
+  /**
+   * Updates the parent dialog's empty state classes and attributes.
+   * @param {number} itemCount - The new cart item count.
+   */
+  #updateDialogEmptyState(itemCount) {
+    if (this.isDrawer) {
+      const dialog = this.closest('.cart-drawer__dialog') || document.querySelector('.cart-drawer__dialog');
+      if (dialog) {
+        const isEmpty = itemCount === 0;
+        dialog.classList.toggle('cart-drawer--empty', isEmpty);
+        dialog.setAttribute('aria-labelledby', isEmpty ? 'cart-drawer-heading-empty' : 'cart-drawer-heading');
+      }
     }
   }
 

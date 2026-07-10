@@ -441,6 +441,9 @@ p:empty {
   .section--mobile-full-width > * {
     grid-column: 1 / -1;
   }
+    .product-extended-gallery{
+    padding-bottom: 40px !important;
+  }
 }
 
 /* Some page-width sections should still extend all the way to the right edge of the page, e.g. collection carousel */
@@ -506,6 +509,9 @@ p:empty {
   .desktop\:hidden {
     /* stylelint-disable-next-line declaration-no-important */
     display: none !important;
+  }
+  .media-gallery--two-column .media-gallery__grid{
+    justify-content: center;
   }
 }
 
@@ -4391,4 +4397,72 @@ a[ref="productTitleLink"] p {
     padding: var(--home-page-button-padding-mobile) !important;
     font-size: var(--home-page-button-font-size-mobile) !important;
   }
+
+}
+
+/* Premium Size Validation Message (Global and Quick View) */
+.size-validation-message {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background-color: #fff5f5 !important;
+  border: 1px solid #feb2b2 !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  margin: 12px 0 0 0 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #c53030 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  opacity: 0;
+  transform: translateY(-8px);
+  width: 100% !important;
+  flex-basis: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.size-validation-message.fade-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+   grid-column: 1 / -1;
+}
+body.template-collection.modal-open .quick-add-modal__content :is( .variant-option legend, .variant-option__button-label__text, .details-content, .details-content p, .details-content li, .details-content span, .details-content strong, .quick-view__description-content, .quick-view__description-content p, .quick-view__description-content li ){
+  width: 100%;
+}
+.variant-option__legend-flex{
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+.size-validation-message.fade-out {
+  opacity: 0 !important;
+  transform: translateY(-8px) !important;
+}
+
+.size-validation-text {
+  color: #c53030 !important;
+}
+
+/* Validation glow and border states */
+.variant-option.validation-error .variant-option__button-label,
+.variant-option.validation-error .variant-option__select-wrapper {
+  border-color: #feb2b2 !important;
+  box-shadow: 0 0 0 3px rgba(254, 178, 178, 0.4), 0 0 10px rgba(229, 62, 62, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Bounce-shake animation for size options */
+.bounce-shake {
+  animation: bounceShake 0.5s ease-in-out !important;
+}
+
+@keyframes bounceShake {
+  0% { transform: scale(1); }
+  15% { transform: scale(0.95) rotate(-2deg); }
+  30% { transform: scale(1.05) rotate(2deg); }
+  45% { transform: scale(0.98) rotate(-1deg); }
+  60% { transform: scale(1.02) rotate(1deg); }
+  75% { transform: scale(0.99) rotate(0); }
+  100% { transform: scale(1) rotate(0); }
 }

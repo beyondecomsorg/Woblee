@@ -163,6 +163,10 @@ class StickyAddToCartComponent extends Component {
    * Handles the add to cart button click in the sticky bar
    */
   handleAddToCartClick = async () => {
+    const productForm = this.#getProductForm();
+    if (productForm && !productForm.validateSizeSelection()) {
+      return;
+    }
     if (!this.#targetAddToCartButton) return;
     this.#targetAddToCartButton.dataset.puppet = 'true';
     this.#targetAddToCartButton.click();
