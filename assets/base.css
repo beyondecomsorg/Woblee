@@ -436,14 +436,15 @@ p:empty {
 .section--full-width > * {
   grid-column: 1 / -1;
 }
+    .product-extended-gallery{
+    padding-bottom: 40px !important;
+  }
 
 @media screen and (max-width: 749px) {
   .section--mobile-full-width > * {
     grid-column: 1 / -1;
   }
-    .product-extended-gallery{
-    padding-bottom: 40px !important;
-  }
+
 }
 
 /* Some page-width sections should still extend all the way to the right edge of the page, e.g. collection carousel */
