@@ -44,19 +44,25 @@ export default class VariantPicker extends Component {
     });
 
     if (sizeContainer) {
-      const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
-      if (checkedRadio) {
-        checkedRadio.checked = false;
-        checkedRadio.removeAttribute('checked');
-        checkedRadio.dataset.currentChecked = 'false';
-      }
+      const radios = sizeContainer.querySelectorAll('input[type="radio"]');
       const select = sizeContainer.querySelector('select');
-      if (select) {
-        select.value = '';
-        const placeholderOption = Array.from(select.options).find(opt => opt.value === '');
-        if (placeholderOption) {
-          placeholderOption.selected = true;
-          placeholderOption.setAttribute('selected', 'selected');
+      const totalOptions = radios.length || (select ? Array.from(select.options).filter(opt => opt.value !== '').length : 0);
+
+      // Only uncheck size options if there are multiple sizes to choose from
+      if (totalOptions > 1) {
+        const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
+        if (checkedRadio) {
+          checkedRadio.checked = false;
+          checkedRadio.removeAttribute('checked');
+          checkedRadio.dataset.currentChecked = 'false';
+        }
+        if (select) {
+          select.value = '';
+          const placeholderOption = Array.from(select.options).find(opt => opt.value === '');
+          if (placeholderOption) {
+            placeholderOption.selected = true;
+            placeholderOption.setAttribute('selected', 'selected');
+          }
         }
       }
     }
@@ -405,10 +411,15 @@ export default class VariantPicker extends Component {
     });
     if (!sizeContainer) return true;
 
+    const radios = sizeContainer.querySelectorAll('input[type="radio"]');
+    const select = sizeContainer.querySelector('select');
+    const totalOptions = radios.length || (select ? Array.from(select.options).filter(opt => opt.value !== '').length : 0);
+
+    if (totalOptions <= 1) return true;
+
     const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
     if (checkedRadio) return true;
 
-    const select = sizeContainer.querySelector('select');
     return select && select.value !== '' && !select.options[select.selectedIndex].disabled;
   }
 

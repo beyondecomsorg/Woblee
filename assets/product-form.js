@@ -301,6 +301,12 @@ class ProductFormComponent extends Component {
 
     if (!sizeContainer) return true; // No size option found, skip validation
 
+    const radios = sizeContainer.querySelectorAll('input[type="radio"]');
+    const select = sizeContainer.querySelector('select');
+    const totalOptions = radios.length || (select ? Array.from(select.options).filter(opt => opt.value !== '').length : 0);
+
+    if (totalOptions <= 1) return true; // Single option value, skip validation
+
     // Check if selected
     let isSelected = false;
     const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
@@ -868,9 +874,14 @@ class ProductFormComponent extends Component {
         return legendOrLabel && legendOrLabel.textContent.toLowerCase().includes('size');
       });
       if (!sizeContainer) return true;
+
+      const radios = sizeContainer.querySelectorAll('input[type="radio"]');
+      const select = sizeContainer.querySelector('select');
+      const totalOptions = radios.length || (select ? Array.from(select.options).filter(opt => opt.value !== '').length : 0);
+      if (totalOptions <= 1) return true;
+
       const checkedRadio = sizeContainer.querySelector('input[type="radio"]:checked');
       if (checkedRadio) return true;
-      const select = sizeContainer.querySelector('select');
       return select && select.value !== '' && !select.options[select.selectedIndex].disabled;
     };
 

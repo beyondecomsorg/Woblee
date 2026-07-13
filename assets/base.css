@@ -4467,3 +4467,28 @@ body.template-collection.modal-open .quick-add-modal__content :is( .variant-opti
   75% { transform: scale(0.99) rotate(0); }
   100% { transform: scale(1) rotate(0); }
 }
+
+/* Overrides for single-value options (no solid dark blue background fill, only thin border/outline outline) */
+.variant-option--single-value .variant-option__button-label:has(:checked):not(.variant-option__button-label--has-swatch, :has([data-option-available='false']))::before {
+  background-color: transparent !important;
+  border-color: var(--color-selected-variant-border) !important;
+}
+
+.variant-option--single-value .variant-option__button-label:has(:checked) {
+  color: var(--color-foreground) !important;
+  border-color: var(--color-selected-variant-border) !important;
+  background-color: var(--color-variant-background) !important;
+}
+
+.variant-option--single-value .variant-option__button-label__pill {
+  display: none !important;
+}
+
+.variant-option--single-value .variant-option__button-label:has(:checked):hover {
+  border-color: var(--color-selected-variant-border) !important;
+  color: var(--color-foreground) !important;
+}
+
+.variant-option--single-value .variant-option__button-label:has(:checked):hover .variant-option__button-label__pill {
+  background-color: transparent !important;
+}
