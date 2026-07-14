@@ -1607,7 +1607,7 @@ media-gallery {
 
 .product-media-container img {
   aspect-ratio: inherit;
-  object-fit: contain;
+  object-fit: contain !important;
 }
 
 .product-media-container.media-fit-contain img {
