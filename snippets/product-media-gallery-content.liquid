@@ -117,7 +117,13 @@
   assign sorted_media = '' | split: ','
   assign matching_color_media_ids = '|'
 
-  if color_option_index != blank and selected_color_value != blank
+  assign color_option_values_size = 0
+  if color_option_index != blank
+    assign color_option = selected_product.options_with_values[color_option_index]
+    assign color_option_values_size = color_option.values.size
+  endif
+
+  if color_option_index != blank and selected_color_value != blank and color_option_values_size > 1
     for variant in selected_product.variants
       assign variant_color_value = variant.options[color_option_index]
 
