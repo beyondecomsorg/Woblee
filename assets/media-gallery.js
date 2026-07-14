@@ -38,14 +38,22 @@ export class MediaGallery extends Component {
    * @param {VariantUpdateEvent} event - The variant update event.
    */
   #handleVariantUpdate = (event) => {
-    const source = event.detail.data.html;
+    const variant = event.detail.resource;
+    if (!variant) return;
 
-    if (!source) return;
-    const newMediaGallery = source.querySelector('media-gallery');
+    const mediaId = variant.featured_media?.id;
+    if (!mediaId) return;
 
-    if (!newMediaGallery) return;
+    if (this.slideshow) {
+      this.slideshow.select({ id: mediaId.toString() });
+    }
 
-    this.replaceWith(newMediaGallery);
+    const targetMedia = this.refs.media?.find(
+      (el) => el.getAttribute('data-media-id') == mediaId
+    );
+    if (targetMedia) {
+      targetMedia.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   };
 
   /**

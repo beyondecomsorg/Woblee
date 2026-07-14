@@ -1,8 +1,8 @@
 
 {%- liquid
   assign qv_product = closest.product | default: product
-  assign qv_design_details = qv_product.metafields.custom.design_details
-  assign qv_wash_care = qv_product.metafields.custom.wash_care
+  assign qv_design_details = qv_product.metafields.custom.technique
+  assign qv_wash_care = block.settings.wash_care
 
   assign qv_has_overview = false
   if qv_product.description != blank
@@ -15,7 +15,7 @@
   endif
 
   assign qv_has_wash = false
-  if qv_wash_care != blank and qv_wash_care.value != blank
+  if qv_wash_care != blank
     assign qv_has_wash = true
   endif
 -%}
@@ -74,7 +74,7 @@
           </span>
         </summary>
         <div class="details-content">
-          {{ qv_wash_care.value | escape | newline_to_br }}
+          {{ qv_wash_care }}
         </div>
       </details>
     {%- endcapture -%}
@@ -538,6 +538,12 @@
       "step": 1,
       "unit": "px",
       "default": 0
+    },
+    {
+      "type": "richtext",
+      "id": "wash_care",
+      "label": "Wash & Care Information",
+      "default": "<p>Hand wash cold. Do not bleach. Dry flat. Iron low heat if needed.</p>"
     }
   ],
   "presets": [

@@ -1902,7 +1902,14 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   );
 
   display: block;
-  background: var(--swatch-background);
+  --swatch-fallback: repeating-linear-gradient(
+    45deg,
+    #f2f2f2,
+    #f2f2f2 4px,
+    #e0e0e0 4px,
+    #e0e0e0 8px
+  );
+  background: var(--swatch-custom-color, var(--swatch-background, var(--swatch-fallback)));
   background-position: var(--swatch-focal-point, center);
   border-radius: var(--variant-picker-swatch-radius);
   border: var(--style-border-swatch-width) var(--style-border-swatch-style) var(--color-border);
@@ -1915,7 +1922,7 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   background-size: var(--swatch-width) var(--swatch-height);
 
   &.swatch--unavailable {
-    border-style: dashed;
+    border-style: var(--swatch-custom-border-style, dashed);
   }
 
   &.swatch--unscaled {

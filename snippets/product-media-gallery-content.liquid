@@ -115,55 +115,10 @@
   endif
 
   assign sorted_media = '' | split: ','
-  assign matching_color_media_ids = '|'
-
-  assign color_option_values_size = 0
-  if color_option_index != blank
-    assign color_option = selected_product.options_with_values[color_option_index]
-    assign color_option_values_size = color_option.values.size
-  endif
-
-  if color_option_index != blank and selected_color_value != blank and color_option_values_size > 1
-    for variant in selected_product.variants
-      assign variant_color_value = variant.options[color_option_index]
-
-      if variant_color_value == selected_color_value and variant.featured_media
-        assign media_id_token = '|' | append: variant.featured_media.id | append: '|'
-
-        unless matching_color_media_ids contains media_id_token
-          assign matching_color_media_ids = matching_color_media_ids | append: variant.featured_media.id | append: '|'
-        endunless
-      endif
-    endfor
-  endif
-
-  if matching_color_media_ids != '|'
-    if selected_variant_media
-      assign sorted_media = sorted_media | concat: selected_product.media | where: 'id', selected_variant_media.id
-    endif
-
-    for media in selected_product.media
-      assign media_id_token = '|' | append: media.id | append: '|'
-
-      unless matching_color_media_ids contains media_id_token
-        continue
-      endunless
-
-      if selected_variant_media and media.id == selected_variant_media.id
-        continue
-      endif
-
-      assign found_media = selected_product.media | where: 'id', media.id
-      assign sorted_media = sorted_media | concat: found_media
-    endfor
-  elsif selected_variant_media
+  if selected_variant_media
     assign sorted_media = sorted_media | concat: selected_product.media | where: 'id', selected_variant_media.id
 
     for media in selected_product.media
-      if block_settings.hide_variants and variant_images contains media.src and sorted_media.size > 0
-        continue
-      endif
-
       if media.id != selected_variant_media.id
         assign found_media = selected_product.media | where: 'id', media.id
         assign sorted_media = sorted_media | concat: found_media
@@ -457,6 +412,7 @@
         {% endif %}
 
         {% render 'slideshow-slide',
+          slide_id: media.id,
           index: forloop.index0,
           children: children,
           class: class,
@@ -521,6 +477,7 @@
         {% for media in sorted_media %}
           <li
             ref="media[]"
+            data-media-id="{{ media.id }}"
             class="{{ product_media_container_class }} product-media-container--{{ media.media_type }} {% unless block_settings.aspect_ratio == 'adapt' %}product-media-container--force-aspect{% endunless %}"
             style="{% if block_settings.aspect_ratio == 'adapt' %} --media-preview-ratio: {{ media.preview_image.aspect_ratio | default: 1.0 }};{% endif %} --media-radius: {{ block_settings.media_radius }}px;"
             {% if settings.transition_to_main_product and forloop.first %}

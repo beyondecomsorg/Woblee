@@ -171,6 +171,7 @@
                 {% render 'swatch',
                   swatch: product_option_value.swatch,
                   variant_image: featured_media,
+                  color_name: product_option_value.name | default: product_option_value
                 %}
                 {% render 'strikethrough-variant', product_option: product_option_value %}
               </label>

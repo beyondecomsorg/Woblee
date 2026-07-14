@@ -146,7 +146,8 @@
                   {% render 'swatch',
                     swatch: product_option_value.swatch,
                     variant_image: featured_media,
-                    mode: 'unscaled'
+                    mode: 'unscaled',
+                    color_name: product_option_value.name | default: product_option_value
                   %}
                 {% else %}
                   {% if product_option_value.available == true %}
@@ -462,7 +463,6 @@
   .variant-option--size-buttons .variant-option__button-label {
     background-color: #ffffff !important;
     border: 1px solid #D8D8D8 !important;
-    border-radius: 8px !important;
     color: #1b3b5f !important; /* Brand dark blue / charcoal text */
     font-weight: 500 !important;
     padding: 12px 20px !important;
