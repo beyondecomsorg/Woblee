@@ -442,7 +442,7 @@
         "limit_details_width": false,
         "gap": 40,
         "enable_sticky_add_to_cart": true,
-        "split_gallery_images": false,
+        "split_gallery_images": true,
         "color_scheme": "scheme-5",
         "typography_product_title_size_desktop": 40,
         "typography_product_title_size_mobile": 30,
