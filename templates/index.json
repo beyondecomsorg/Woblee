@@ -210,9 +210,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Women",
-            "button_1_url": "",
+            "button_1_url": "shopify://collections/artistic",
             "button_2_label": "Men",
-            "button_2_url": ""
+            "button_2_url": "shopify://collections/artistic"
           }
         },
         "collection_item_W9xTnk": {
@@ -224,9 +224,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Women",
-            "button_1_url": "",
+            "button_1_url": "shopify://collections/artistic-copy",
             "button_2_label": "Men",
-            "button_2_url": ""
+            "button_2_url": "shopify://collections/artistic-copy"
           }
         },
         "collection_item_EGfkLq": {
@@ -238,9 +238,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Men",
-            "button_1_url": "",
+            "button_1_url": "shopify://collections/graphic-copy",
             "button_2_label": "Women",
-            "button_2_url": ""
+            "button_2_url": "shopify://collections/graphic-copy"
           }
         },
         "collection_item_GJtwzb": {
@@ -252,9 +252,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Men",
-            "button_1_url": "",
+            "button_1_url": "shopify://collections/statement",
             "button_2_label": "Women",
-            "button_2_url": ""
+            "button_2_url": "shopify://collections/statement"
           }
         }
       },
@@ -408,7 +408,7 @@
         "description": "The crowd favourites. Bold graphics, premium comfort, and everyday styles chosen again and again.",
         "enable_shop_all_button": true,
         "shop_all_button_text": "SHOP ALL",
-        "shop_all_button_link": "",
+        "shop_all_button_link": "shopify://collections/bestsellers",
         "shop_all_button_width_desktop": 140,
         "shop_all_button_height_desktop": 40,
         "shop_all_button_width_mobile": 100,
@@ -500,7 +500,7 @@
             "image": "shopify://shop_images/Oversized.png",
             "image_hover": "shopify://shop_images/Oversized-Blue.png",
             "label": "Oversized",
-            "link": "shopify://collections/home-page",
+            "link": "shopify://collections/oversized",
             "circle_bg": "#ffffff"
           }
         },
@@ -1022,7 +1022,7 @@
       "name": "Collection Slider",
       "settings": {
         "heading": "",
-        "collection": "home-page",
+        "collection": "artistic",
         "products_to_show": 24,
         "show_view_all": true,
         "button_label": "SHOP ALL",
@@ -1065,7 +1065,7 @@
         "arrow_offset_desktop": 44,
         "arrow_offset_tablet": 10,
         "arrow_border_radius": 0,
-        "button_margin_top": 0,
+        "button_margin_top": 40,
         "button_width_desktop": 150,
         "button_height_desktop": 40,
         "button_width_mobile": 100,
