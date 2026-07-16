@@ -129,7 +129,33 @@
   position: relative;
 }
 
-.features-slider .splide__slide {
+/* === FREE / NATURAL layout (≤ perPage slides, no scrolling needed) === */
+.features-slider.is-natural .splide__track {
+  overflow: visible !important;
+}
+.features-slider.is-natural .splide__list {
+  display: flex !important;
+  transform: none !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  gap: 30px !important;
+  width: 100% !important;
+}
+.features-slider.is-natural .splide__slide {
+  width: auto !important;
+  max-width: calc(33.333% - 20px) !important;
+  flex: 0 1 auto !important;
+  transform: none !important;
+}
+/* single slide — full-width card, nicely centered */
+.features-slider.is-natural.is-single .splide__slide {
+  max-width: 420px !important;
+  width: 100% !important;
+}
+
+/* === SLIDER layout (more slides than visible) === */
+.features-slider:not(.is-natural) .splide__slide {
+  /* width set by JS via autoWidth */
   height: auto;
   position: relative;
   border-left: none !important;
@@ -141,7 +167,7 @@
   position: absolute;
   top: 13%;
   bottom: 13%;
-  left: -15px; /* Centered in the 30px gap */
+  left: -15px;
   width: 0.5px;
   background-color: var(--wb-color-grey, #626261);
 }
@@ -150,10 +176,9 @@
   display: none !important;
 }
 
-@media only screen and (max-width: 768px) {
-  .features-slider .splide__slide {
-    /* No border on slide element directly */
-  }
+/* hide divider on natural layout */
+.features-slider.is-natural .splide__slide::before {
+  display: none !important;
 }
 
 /* Arrows */
@@ -367,27 +392,71 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  new Splide('#features-slider-{{ section.id }}', {
-    type: 'loop',
-    perPage: 4,
-    perMove: 1,
-    gap: '30px',
-    arrows: true,
-    pagination: true,
-    rewind: false,
+  var splideEl = document.querySelector('#features-slider-{{ section.id }}');
+  if (!splideEl) return;
 
-    breakpoints: {
-      1024: {
-        perPage: 3
-      },
-      768: {
-        perPage: 2
-      },
-      480: {
-        perPage: 1
-      }
+  var totalSlides = splideEl.querySelectorAll('.splide__slide').length;
+
+  /* --- Breakpoint thresholds matching Splide --- */
+  function getPerPage() {
+    var w = window.innerWidth;
+    if (w <= 480) return 1;
+    if (w <= 768) return 2;
+    return 3;  /* desktop: show 3, peek 4th */
+  }
+
+  /* --- Set slide widths for autoWidth mode (slider mode) --- */
+  function setSlideWidths() {
+    var perPage = getPerPage();
+    var gap = 30;
+    var trackW = splideEl.querySelector('.splide__track').offsetWidth;
+    /* Show perPage full slides + ~20% of next one */
+    var peekFraction = 0.20;
+    var slideW = Math.floor((trackW - gap * (perPage - 1 + peekFraction)) / (perPage + peekFraction));
+    splideEl.querySelectorAll('.splide__slide').forEach(function (sl) {
+      sl.style.width = slideW + 'px';
+    });
+  }
+
+  /* --- Switch between natural (flex) and slider mode --- */
+  function applyLayout() {
+    var perPage = getPerPage();
+    var needsSlider = totalSlides > perPage;
+
+    if (!needsSlider) {
+      /* Natural / free layout — no stretching */
+      splideEl.classList.add('is-natural');
+      splideEl.classList.toggle('is-single', totalSlides === 1);
+      /* Reset any inline widths */
+      splideEl.querySelectorAll('.splide__slide').forEach(function (sl) {
+        sl.style.width = '';
+      });
+    } else {
+      splideEl.classList.remove('is-natural', 'is-single');
+      setSlideWidths();
     }
-  }).mount();
+
+    /* Show/hide arrows */
+    var arrowsEl = splideEl.querySelector('.splide__arrows');
+    if (arrowsEl) {
+      arrowsEl.style.display = needsSlider ? '' : 'none';
+    }
+  }
+
+  var splide = new Splide('#features-slider-{{ section.id }}', {
+    type     : 'slide',
+    autoWidth: true,       /* respect our manually set widths */
+    perMove  : 1,
+    gap      : '30px',
+    arrows   : true,
+    pagination: false,
+    rewind   : true,
+    drag     : totalSlides > 1
+  });
+
+  splide.on('mounted', applyLayout);
+  splide.on('resize',  applyLayout);
+  splide.mount();
 });
 </script>
 
