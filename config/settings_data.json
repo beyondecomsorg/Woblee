@@ -90,6 +90,8 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 2,
     "variant_button_width": "equal-width-buttons",
+    "variant_picker_size_button_gap": 8,
+    "variant_picker_size_button_min_width": 44,
     "mega_menu_title_1": "shirts",
     "mega_menu_image_1": "shopify://shop_images/hoodie2.webp",
     "mega_menu_title_2": "men",
