@@ -52,9 +52,20 @@
 
   .product-extended-gallery__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     width: 100%;
+  }
+
+  @media only screen and (min-width: 768px){
+      .product-extended-gallery__grid {
+    margin: auto;
+    width: 80%;
+  }
+  body .product-extended-gallery__image{
+    object-fit: contain !important;
+    aspect-radio: auto !important;
+  }
   }
 
   .product-extended-gallery__item {
@@ -72,7 +83,7 @@
     height: auto;
     display: block;
     object-fit: fill;
-    aspect-ratio: 1 / 1.25;
+
   }
 
   .product-extended-gallery__video {
