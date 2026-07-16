@@ -1596,6 +1596,14 @@ media-gallery {
   }
 }
 
+.product-badges__badge.product-badges__badge--rectangle.color-scheme-1{
+  display: none;
+}
+.template-product .variant-picker .variant-option--buttons label:has(.swatch){
+  margin-left: 5px;
+}
+          
+
 .product-media-container--model {
   /* Usefull when view in your space is shown */
   flex-direction: column;
