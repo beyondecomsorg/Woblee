@@ -803,6 +803,10 @@ button.account-button,
           max-height: calc(85vh - 70px);
         }
       }
+      .product-meta-modal__body,
+.meta-card-content {
+  white-space: pre-line;
+}
     </style>
 
     <script>
@@ -859,6 +863,49 @@ button.account-button,
         // No manual body.style manipulation needed here.
       })();
     </script>
+
+    <script>
+  (function () {
+    var container = document.currentScript
+      ? document.currentScript.previousElementSibling
+      : null;
+
+    // Fallback: grab the last .fabric-info on the page if the above fails
+    if (!container || !container.classList.contains('fabric-info')) {
+      var all = document.querySelectorAll('.fabric-info');
+      container = all[all.length - 1];
+    }
+    if (!container) return;
+
+    var raw = container.getAttribute('data-fabric-raw') || '';
+    // Decode HTML entities from the escaped attribute
+    var txt = document.createElement('textarea');
+    txt.innerHTML = raw;
+    raw = txt.value;
+
+    // Split into blocks on blank lines
+    var blocks = raw.split(/\n\s*\n/).map(function (b) { return b.trim(); }).filter(Boolean);
+
+    var html = '';
+    blocks.forEach(function (block) {
+      var lines = block.split('\n').map(function (l) { return l.trim(); }).filter(Boolean);
+      if (lines.length === 0) return;
+      var heading = lines[0];
+      var body = lines.slice(1).join(' ');
+      html += '<div class="fabric-block">' +
+                '<h4 class="fabric-heading">' + heading + '</h4>' +
+                (body ? '<p class="fabric-body">' + body + '</p>' : '') +
+              '</div>';
+    });
+
+    container.innerHTML = html;
+  })();
+
+document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
+  body.innerHTML = body.innerHTML.replace(/(<br\s*\/?>\s*){2,}/gi, '<br>\n');
+});
+</script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
   </body>

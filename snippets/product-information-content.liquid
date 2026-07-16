@@ -375,8 +375,11 @@ function openModal(title, content) {
       const title =
         this.dataset.metaTitle || '';
 
-      const content =
+      let content =
         this.querySelector('.meta-card-content')?.innerHTML || '';
+
+      // Replace two or more consecutive <br> tags (including whitespace and newlines) with a single <br> followed by a newline to preserve pre-line spacing
+      content = content.replace(/(<br\s*\/?>\s*){2,}/gi, '<br>\n');
 
       openModal(title, content);
 
