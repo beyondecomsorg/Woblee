@@ -172,13 +172,19 @@
   background-color: var(--wb-color-grey, #626261);
 }
 
-.features-slider .splide__slide:first-child::before {
+.features-slider .splide__slide:first-child::before,
+.features-slider.is-natural.is-multi .splide__slide:first-child::before {
   display: none !important;
 }
 
-/* hide divider on natural layout */
-.features-slider.is-natural .splide__slide::before {
+/* hide divider only when there is a single card */
+.features-slider.is-natural.is-single .splide__slide::before {
   display: none !important;
+}
+
+/* show divider between cards in natural multi-card layout */
+.features-slider.is-natural.is-multi .splide__slide::before {
+  display: block !important;
 }
 
 /* Arrows */
@@ -427,12 +433,13 @@ document.addEventListener('DOMContentLoaded', function () {
       /* Natural / free layout — no stretching */
       splideEl.classList.add('is-natural');
       splideEl.classList.toggle('is-single', totalSlides === 1);
+      splideEl.classList.toggle('is-multi', totalSlides > 1);
       /* Reset any inline widths */
       splideEl.querySelectorAll('.splide__slide').forEach(function (sl) {
         sl.style.width = '';
       });
     } else {
-      splideEl.classList.remove('is-natural', 'is-single');
+      splideEl.classList.remove('is-natural', 'is-single', 'is-multi');
       setSlideWidths();
     }
 
