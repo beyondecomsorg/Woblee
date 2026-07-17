@@ -36,7 +36,7 @@
             "btn2_custom_bg": "",
             "btn2_custom_text": "",
             "btn3_label": "kids",
-            "btn3_link": "shopify://collections/women-copy",
+            "btn3_link": "shopify://collections/girls-8-14",
             "btn3_new_tab": false,
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
@@ -56,17 +56,17 @@
             "heading": "The Classic White Tee, Perfected.",
             "subtext": "Timeless, versatile, and always in rotation. Our Core Line white tees bring premium fabric and clean design to every closet.",
             "btn1_label": "Men",
-            "btn1_link": "shopify://collections/women",
+            "btn1_link": "shopify://collections/men",
             "btn1_new_tab": false,
             "btn1_custom_bg": "",
             "btn1_custom_text": "",
-            "btn2_label": "woMEN",
-            "btn2_link": "shopify://collections/men-copy",
+            "btn2_label": "WOMEN",
+            "btn2_link": "shopify://collections/women",
             "btn2_new_tab": false,
             "btn2_custom_bg": "",
             "btn2_custom_text": "",
-            "btn3_label": "kids",
-            "btn3_link": "shopify://collections/women-copy",
+            "btn3_label": "KIDS",
+            "btn3_link": "shopify://collections/girls-8-14",
             "btn3_new_tab": false,
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
@@ -210,9 +210,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Women",
-            "button_1_url": "shopify://collections/artistic",
+            "button_1_url": "shopify://collections/women-artistic",
             "button_2_label": "Men",
-            "button_2_url": "shopify://collections/artistic"
+            "button_2_url": "shopify://collections/men-artistic-tee"
           }
         },
         "collection_item_W9xTnk": {
@@ -224,9 +224,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Women",
-            "button_1_url": "shopify://collections/artistic-copy",
+            "button_1_url": "shopify://collections/women-graphic",
             "button_2_label": "Men",
-            "button_2_url": "shopify://collections/artistic-copy"
+            "button_2_url": "shopify://collections/men-graphic"
           }
         },
         "collection_item_EGfkLq": {
@@ -238,9 +238,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Men",
-            "button_1_url": "shopify://collections/graphic-copy",
+            "button_1_url": "shopify://collections/men-essentials",
             "button_2_label": "Women",
-            "button_2_url": "shopify://collections/graphic-copy"
+            "button_2_url": "shopify://collections/women-essentials"
           }
         },
         "collection_item_GJtwzb": {
@@ -252,9 +252,9 @@
             "heading_color_override": "",
             "accent_color_override": "",
             "button_1_label": "Men",
-            "button_1_url": "shopify://collections/statement",
+            "button_1_url": "shopify://collections/men-statement",
             "button_2_label": "Women",
-            "button_2_url": "shopify://collections/statement"
+            "button_2_url": "shopify://collections/women-statement"
           }
         }
       },
@@ -897,7 +897,7 @@
             "heading": "KIDS COLLECTION",
             "subtext": "",
             "button_1_label": "SHOP NOW",
-            "button_1_link": "",
+            "button_1_link": "shopify://collections/girls-8-14",
             "button_2_label": "",
             "button_2_link": "",
             "override_colors": false,
