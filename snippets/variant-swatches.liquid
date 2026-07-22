@@ -96,9 +96,14 @@
     {%- for product_option in product_resource.options_with_values -%}
       {%- liquid
         assign swatch_count = product_option.values | map: 'swatch' | compact | size
+        assign option_name_downcase = product_option.name | downcase | strip
+        assign is_color = false
+        if option_name_downcase contains 'color' or option_name_downcase contains 'colour'
+          assign is_color = true
+        endif
       -%}
 
-      {% if swatch_count == 0 %}
+      {% if swatch_count == 0 and is_color == false %}
         {% continue %}
       {% endif %}
 
@@ -135,7 +140,9 @@
                   assign featured_media = child_product.featured_media
                 elsif product_option_value.variant == blank
                   for variant in product_resource.variants
-                    if variant.available and variant[swatch_option_key] == product_option_value.name and variant.featured_media
+                    assign variant_opt_val = variant[swatch_option_key] | downcase | strip
+                    assign target_opt_val = product_option_value.name | downcase | strip
+                    if variant.available and variant_opt_val == target_opt_val and variant.featured_media
                       assign featured_media = variant.featured_media
                       assign first_available_variant = variant
                       break

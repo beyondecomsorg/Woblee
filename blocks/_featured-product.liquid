@@ -4,7 +4,12 @@
   assign product_has_swatches = false
   for product_option in closest.product.options_with_values
     assign swatch_count = product_option.values | map: 'swatch' | compact | size
-    if swatch_count > 0
+    assign option_name_downcase = product_option.name | downcase | strip
+    assign is_color = false
+    if option_name_downcase contains 'color' or option_name_downcase contains 'colour'
+      assign is_color = true
+    endif
+    if swatch_count > 0 or is_color
       assign product_has_swatches = true
       break
     endif
