@@ -202,7 +202,7 @@
         <div class="meta-card-content" hidden>
           {{- m_fabric | newline_to_br -}}
           {%- if m_fabric_images != blank -%}
-            <div class="fabric-popup-images-container">
+            <div class="fabric-popup-images-container" hidden>
               {%- for image in m_fabric_images -%}
                 {{- image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title, class: 'fabric-popup-image' -}}
               {%- endfor -%}
@@ -402,34 +402,179 @@ function openModal(title, content) {
       content = content.replace(/&nbsp;|\u00a0/g, ' ');
 
       if (title.toLowerCase() === 'fabric') {
-        const headings = [
+        // Extract fabric images if present
+        const imgContainer = this.querySelector('.fabric-popup-images-container');
+        const images = imgContainer ? Array.from(imgContainer.querySelectorAll('img')) : [];
+
+        // Remove hidden image container HTML from raw text content
+        if (imgContainer) {
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = content;
+          const tempImgContainer = tempDiv.querySelector('.fabric-popup-images-container');
+          if (tempImgContainer) tempImgContainer.remove();
+          content = tempDiv.innerHTML;
+        }
+
+        // Clean raw content into plain line breaks
+        let rawHtml = content
+          .replace(/<br\s*\/?>/gi, '\n')
+          .replace(/<p[^>]*>/gi, '')
+          .replace(/<\/p>/gi, '\n');
+
+        const txtDec = document.createElement('textarea');
+        txtDec.innerHTML = rawHtml;
+        let textContent = txtDec.value;
+
+        // Split into non-empty blocks separated by double linebreaks or single linebreaks
+        let rawBlocks = textContent.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
+        // Split raw text lines preserving paragraphs
+        let lines = textContent.split('\n').map(l => l.trim()).filter(Boolean);
+
+        const knownHeadings = [
           'WHY WE CHOSE IT',
-          'Bio Wash',
-          'CPL Wash',
-          'Heavy Enzyme Wash',
-          'Enzyme Wash',
-          'SINGLE JERSEY - 220-230 GSM',
-          'SINGLE JERSEY - 190-200 GSM',
-          'INTERLOCK - 210 GSM',
+          'BIO WASH',
+          'CPL WASH',
+          'HEAVY ENZYME WASH',
+          'ENZYME WASH',
+          'SINGLE JERSEY',
+          'INTERLOCK',
+          'TERRY',
           'PURE COTTON'
         ];
-        headings.forEach(function(heading) {
-          // Escape regex characters except dashes
-          let pattern = heading.replace(/[\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          // Handle hyphens/dashes flexibly (allow en-dash, em-dash, or standard hyphen)
-          pattern = pattern.replace(/-/g, '[-–—]');
-          // Replace spaces with \s+ to handle single/multiple spaces or tabs robustly
-          pattern = pattern.replace(/ /g, '\\s+');
-          
-          const regex = new RegExp('(^|<br\\s*\\/?>)\\s*(' + pattern + ')\\s*($|<br\\s*\\/?>)', 'gi');
-          content = content.replace(regex, function(match, p1, p2, p3) {
-            return p1 + '<h3>' + p2 + '</h3>' + p3;
-          });
+
+        let sections = [];
+        let currentSection = null;
+
+        lines.forEach(line => {
+          let lineUpper = line.toUpperCase();
+          let isHeading = knownHeadings.some(h => lineUpper === h || lineUpper.startsWith(h + ' ') || lineUpper.startsWith(h + '-'));
+
+          if (isHeading) {
+            if (currentSection) sections.push(currentSection);
+            currentSection = {
+              heading: line,
+              descriptions: []
+            };
+          } else {
+            if (currentSection) {
+              currentSection.descriptions.push(line);
+            } else {
+              currentSection = {
+                heading: '',
+                descriptions: [line]
+              };
+            }
+          }
         });
+        if (currentSection) sections.push(currentSection);
+
+        // Build HTML output: Heading -> Description -> Image (with side-by-side layout for 2nd section / GSM)
+        let newHtml = '';
+        let imageIdx = 0;
+
+        sections.forEach((sec, idx) => {
+          let hasImage = imageIdx < images.length;
+          let isSideBySide = hasImage && idx === 1; // 2nd section (GSM/Interlock) renders side-by-side
+
+          if (isSideBySide) {
+            newHtml += '<div class="fabric-section-side-by-side">';
+            newHtml += '  <div class="fabric-section-side-text">';
+            if (sec.heading) newHtml += '<h3>' + sec.heading + '</h3>';
+            if (sec.descriptions.length > 0) {
+              sec.descriptions.forEach(desc => {
+                newHtml += '<p class="fabric-section-desc">' + desc + '</p>';
+              });
+            }
+            newHtml += '  </div>';
+            newHtml += '  <div class="fabric-section-side-image">';
+            newHtml +=      images[imageIdx].outerHTML;
+            newHtml += '  </div>';
+            newHtml += '</div>';
+            imageIdx++;
+          } else {
+            if (sec.heading) {
+              newHtml += '<h3>' + sec.heading + '</h3>';
+            }
+            if (sec.descriptions.length > 0) {
+              sec.descriptions.forEach(desc => {
+                newHtml += '<p class="fabric-section-desc">' + desc + '</p>';
+              });
+            }
+            if (hasImage) {
+              const extraClass = imageIdx === 0 ? ' fabric-floating-first' : '';
+              newHtml += '<div class="fabric-intercalated-image-container' + extraClass + '">' + images[imageIdx].outerHTML + '</div>';
+              imageIdx++;
+            }
+          }
+        });
+
+        // Append any remaining images at the bottom if images > sections
+        while (imageIdx < images.length) {
+          newHtml += '<div class="fabric-intercalated-image-container">' + images[imageIdx].outerHTML + '</div>';
+          imageIdx++;
+        }
+
+        content = newHtml;
+      }
+
+      if (title.toLowerCase() === 'fit') {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
         
-        // Clean up `<br>` tags immediately preceding or succeeding `<h3>`
-        content = content.replace(/(<br\s*\/?>\s*)+<h3>/gi, '<h3>');
-        content = content.replace(/<\/h3>(\s*<br\s*\/?>\s*)+/gi, '</h3>');
+        // Extract fit image container if present
+        const fitImgContainer = tempDiv.querySelector('.fit-popup-image-container');
+        if (fitImgContainer) fitImgContainer.remove();
+
+        let rawText = tempDiv.innerText || tempDiv.textContent || '';
+        const fitTypes = ['OVERSIZED FIT', 'RELAXED FIT', 'BOXY FIT', 'REGULAR FIT'];
+        
+        let foundFit = '';
+        for (let fitType of fitTypes) {
+          if (rawText.toUpperCase().includes(fitType)) {
+            foundFit = fitType;
+            break;
+          }
+        }
+
+        let headingText = '';
+        let bodyRaw = '';
+
+        if (foundFit) {
+          headingText = foundFit;
+          // Extract description by removing headingText from rawText
+          let regex = new RegExp(foundFit, 'i');
+          bodyRaw = rawText.replace(regex, '').trim();
+        } else {
+          // Fallback to first line if <= 30 chars
+          let lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
+          if (lines.length > 0 && lines[0].length <= 30) {
+            headingText = lines[0];
+            bodyRaw = lines.slice(1).join('\n').trim();
+          } else {
+            bodyRaw = rawText.trim();
+          }
+        }
+
+        let newFitHtml = '';
+        if (headingText) {
+          newFitHtml += '<h2 class="fit-popup-heading">' + headingText + '</h2>';
+        }
+
+        if (bodyRaw) {
+          let paragraphs = bodyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+          if (paragraphs.length === 0) paragraphs = [bodyRaw];
+          
+          paragraphs.forEach(pText => {
+            let cleanP = pText.replace(/\n/g, ' ');
+            newFitHtml += '<p class="fit-popup-paragraph">' + cleanP + '</p>';
+          });
+        }
+
+        if (fitImgContainer) {
+          newFitHtml += fitImgContainer.outerHTML;
+        }
+
+        content = newFitHtml;
       }
 
       // Replace two or more consecutive <br> tags (including whitespace and newlines) with a single <br> followed by a newline to preserve pre-line spacing
@@ -1017,7 +1162,7 @@ function openModal(title, content) {
     position: relative;
     width: clamp(420px, 34vw, 560px);
     height: 100dvh;
-    border-radius: 0;
+
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -1074,8 +1219,18 @@ function openModal(title, content) {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 0 32px 32px;
     -webkit-overflow-scrolling: touch;
+
+    /* Hide scrollbar UI */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .product-meta-modal__body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
   }
   @media screen and (min-width: 750px) {
     .product-meta-modal__inner {
@@ -1146,7 +1301,6 @@ function openModal(title, content) {
       width: 100% !important;
       height: auto !important;
       max-height: 85vh !important;
-      border-radius: 24px 24px 0 0 !important;
       box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.18) !important;
       display: flex !important;
       flex-direction: column !important;
@@ -1197,8 +1351,42 @@ function openModal(title, content) {
     width: 100%;
     max-width: 400px;
     height: auto;
-    border-radius: 8px;
+
     object-fit: contain;
+  }
+
+  .fabric-intercalated-image-container {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0;
+    width: 100%;
+  }
+
+  .fabric-intercalated-image-container.fabric-floating-first {
+    margin: 40px 0 32px 0;
+    position: relative;
+    overflow: visible;
+  }
+
+  .fabric-intercalated-image-container.fabric-floating-first .fabric-popup-image {
+    transform: translateX(45px);
+
+    width: calc(100% - 20px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .fabric-intercalated-image-container.fabric-floating-first .fabric-popup-image:hover {
+      transform: translateX(40px) scale(1.02);
+  
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fabric-intercalated-image-container.fabric-floating-first .fabric-popup-image {
+      transform: translateX(30px);
+      width: calc(100% - 15px);
+
+    }
   }
 
   .fabric-popup-images-container {
@@ -1212,10 +1400,9 @@ function openModal(title, content) {
   .fabric-popup-image {
     display: block;
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     height: auto;
-    border-radius: 8px;
-    object-fit: contain;
+    object-fit: cover;
   }
 
   .fit-popup-image-container {
@@ -1229,7 +1416,7 @@ function openModal(title, content) {
     width: 100%;
     max-width: 400px;
     height: auto;
-    border-radius: 8px;
+
     object-fit: contain;
   }
 
@@ -1240,5 +1427,79 @@ function openModal(title, content) {
     color: #0c4168;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+
+  .fabric-section-desc {
+    font-size: 14px;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    text-transform: none !important;
+    color: #333 !important;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+  }
+
+  .fabric-section-side-by-side {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 28px 0;
+  }
+
+  .fabric-section-side-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .fabric-section-side-text h3 {
+    margin-top: 0 !important;
+  }
+
+  .fabric-section-side-image {
+    width: 140px;
+    min-width: 140px;
+    max-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .fabric-section-side-image img {
+    width: 100%;
+    height: auto;
+
+    object-fit: cover;
+    display: block;
+  }
+
+  .fit-popup-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0c4168;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+  }
+
+  .fit-popup-paragraph {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: #333;
+    margin: 0 0 28px 0;
+  }
+
+  .fit-popup-paragraph:last-of-type {
+    margin-bottom: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .fit-popup-heading {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+    .fit-popup-paragraph {
+      font-size: 13.5px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
   }
 {% endstylesheet %}

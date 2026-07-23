@@ -71,47 +71,55 @@
         {%- assign fg_paragraph = fg_paragraphs[i] -%}
         <li class="splide__slide">
           <div class="features-grid__card">
-            <div class="features-grid__top">
-              {% if fg_image != blank %}
-                <div class="features-grid__img-wrap">
-                  {% if fg_image.image %}
-                    <img
-                      src="{{ fg_image.image | image_url: width: 300 }}"
-                      alt="{{ heading | escape }}"
-                      loading="lazy"
-                    >
-                  {% elsif fg_image.url %}
-                    <img
-                      src="{{ fg_image.url }}"
-                      alt="{{ heading | escape }}"
-                      loading="lazy"
-                    >
-                  {% else %}
-                    <img
-                      src="{{ fg_image | image_url: width: 300 }}"
-                      alt="{{ heading | escape }}"
-                      loading="lazy"
-                    >
-                  {% endif %}
-                </div>
-              {% endif %}
-
-              <div class="features-grid__heading-wrap">
-                <h3 class="features-grid__heading">
-                  {{ heading }}
-                </h3>
-
-                {% if fg_subheading != blank %}
-                  <p class="features-grid__subheading">
-                    {{ fg_subheading }}
-                  </p>
+            {% if fg_image != blank %}
+              <div class="features-grid__img-wrap">
+                {% if fg_image.image %}
+                  <img
+                    src="{{ fg_image.image | image_url: width: 300 }}"
+                    alt="{{ heading | escape }}"
+                    loading="lazy"
+                  >
+                {% elsif fg_image.url %}
+                  <img
+                    src="{{ fg_image.url }}"
+                    alt="{{ heading | escape }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <img
+                    src="{{ fg_image | image_url: width: 300 }}"
+                    alt="{{ heading | escape }}"
+                    loading="lazy"
+                  >
                 {% endif %}
               </div>
-            </div>
+            {% endif %}
 
-            <p class="features-grid__desc">
-              {{ fg_paragraph }}
-            </p>
+            <div class="features-grid__content-wrap">
+              <h3 class="features-grid__heading">
+                {{ heading }}
+              </h3>
+
+              {% if fg_subheading != blank %}
+                <p class="features-grid__subheading">
+                  {{ fg_subheading }}
+                </p>
+              {% endif %}
+
+              {% if fg_paragraph != blank %}
+                <div class="features-grid__desc">
+                  {% assign sentences = fg_paragraph | split: '. ' %}
+                  {% for sentence in sentences %}
+                    {% assign trimmed_sentence = sentence | strip %}
+                    {% if trimmed_sentence != blank %}
+                      <p>
+                        {{ trimmed_sentence }}{% unless trimmed_sentence contains '.' %}.{% endunless %}
+                      </p>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
           </div>
         </li>
       {% endfor %}
@@ -144,8 +152,9 @@
 .features-slider.is-natural .splide__slide {
   width: auto !important;
   max-width: calc(33.333% - 20px) !important;
-  flex: 0 1 auto !important;
+  flex: 1 1 0 !important;
   transform: none !important;
+  display: flex;
 }
 /* single slide — full-width card, nicely centered */
 .features-slider.is-natural.is-single .splide__slide {
@@ -160,16 +169,18 @@
   position: relative;
   border-left: none !important;
   border-right: none !important;
+  display: flex;
 }
 
 .features-slider .splide__slide::before {
   content: "";
   position: absolute;
-  top: 13%;
-  bottom: 13%;
+  top: 10%;
+  bottom: 10%;
   left: -15px;
-  width: 0.5px;
-  background-color: var(--wb-color-grey, #626261);
+  width: 1px;
+  background-color: var(--wb-color-grey, #d0d0d0);
+  opacity: 0.6;
 }
 
 .features-slider .splide__slide:first-child::before,
@@ -204,7 +215,7 @@
   height: 30px;
   border: 1px solid #d9d9d9;
   background: #fff;
-  border-radius: 50%;
+
   opacity: 1;
   box-shadow: none;
 }
@@ -238,25 +249,26 @@
 
 .features-grid__card {
   background: var(--fg-card-bg);
-  border-radius: var(--fg-card-radius);
   padding: var(--fg-card-padding);
   height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-}
-
-.features-grid__top {
-  display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 10px;
+  gap: 22px;
+  box-sizing: border-box;
 }
 
 .features-grid__img-wrap {
-  width: 90px;
-  height: 90px;
-  min-width: 90px;
+  width: 75px;
+  height: 75px;
+  min-width: 75px;
+  max-width: 75px;
+  flex-shrink: 0;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .features-grid__img-wrap img {
@@ -266,39 +278,50 @@
   display: block;
 }
 
-.features-grid__heading-wrap {
+.features-grid__content-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 15px;
-  height: 100%;
+  flex: 1;
+  min-width: 0;
 }
 
 .features-grid__heading {
   color: var(--fg-text);
-  font-size: var(--fg-heading-size);
-  font-weight: var(--fg-heading-weight);
-  line-height: 1.2;
-  margin: 0;
+  font-size: clamp(20px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 4px 0;
   text-align: left;
   text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .features-grid__subheading {
   color: var(--fg-text);
-  font-size: calc(var(--fg-heading-size) * 0.7);
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 8px 0;
   text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
 }
 
 .features-grid__desc {
-  color: var(--fg-desc-color);
-  font-size: var(--fg-desc-size);
-  font-weight: var(--fg-desc-weight);
-  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.features-grid__desc p {
+  color: var(--fg-desc-color, #4a4a4a);
+  font-size: 12px;
+  font-weight: var(--fg-desc-weight, 400);
+  line-height: 17px;
   margin: 0;
+  text-align: left;
 }
 
 /* ===== SECTION ===== */
@@ -327,11 +350,7 @@
   margin: 0 0 12px;
   line-height: 1.2;
 }
-@media only screen and (max-width: 768px) {
- #features-grid-{{ section.id }} .features-grid__section-title{
-    font-size: var(--fg-section-title-size-mobile);
-  }
-    }
+
 #features-grid-{{ section.id }} .features-grid__section-sub {
   color: var(--fg-desc-color);
   font-size: var(--fg-section-sub-size);
@@ -340,46 +359,52 @@
   max-width: 600px;
 }
 
-#features-grid-{{ section.id }} .features-grid__card-body {
-  flex: 1;
-}
-
 /* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
+  #features-grid-{{ section.id }} .features-grid__section-title {
+    font-size: var(--fg-section-title-size-mobile);
+  }
+
   #features-grid-{{ section.id }} .features-grid__section-sub {
     font-size: var(--fg-section-sub-size-mobile);
   }
 
-  .features-grid__top {
+  .features-grid__card {
+    flex-direction: column;
     align-items: flex-start;
-    gap: 5px;
+    gap: 12px;
+    padding: 0;
   }
 
   .features-grid__heading {
-    font-size: var(--fg-heading-size-mobile);
+    font-size: var(--fg-heading-size-mobile, 18px);
   }
 
-  .features-grid__desc {
-    font-size: var(--fg-desc-size-mobile);
+  .features-grid__subheading {
+    font-size: 12px;
   }
 
-  .features-grid__card{
-    padding:0;
+  .features-grid__desc p {
+    font-size: var(--fg-desc-size-mobile, 13.5px);
+    line-height: 17px;
   }
-  .features-slider .splide__arrow svg{
+
+  .features-slider .splide__arrow svg {
     height: 12px;
     width: 12px;
   }
+
   #features-grid-{{ section.id }} {
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 
   .features-grid__img-wrap {
     width: 70px;
     height: 70px;
     min-width: 70px;
+    max-width: 70px;
   }
 
   .features-slider .splide__arrows {
