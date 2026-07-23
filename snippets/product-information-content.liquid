@@ -143,8 +143,11 @@
       
 
       {% assign m_style = product.metafields.custom.style.value %}
-{% assign m_fabric = product.metafields.custom.fabric.value %}
-{% assign m_fit = product.metafields.custom.fit.value %}
+      {% assign m_style_image = product.metafields.custom.style_image.value %}
+      {% assign m_fabric = product.metafields.custom.fabric.value %}
+      {% assign m_fabric_images = product.metafields.custom.fabric_images.value %}
+      {% assign m_fit = product.metafields.custom.fit.value %}
+      {% assign m_fit_image = product.metafields.custom.fit_image.value %}
 
 
 {% if m_style != blank or m_fabric != blank or m_fit != blank %}
@@ -168,7 +171,12 @@
         <span>Style</span>
 
         <div class="meta-card-content" hidden>
-          {{ m_style | newline_to_br }}
+          {{- m_style | newline_to_br -}}
+          {%- if m_style_image != blank -%}
+            <div class="style-popup-image-container">
+              {{- m_style_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: product.title, class: 'style-popup-image' -}}
+            </div>
+          {%- endif -%}
         </div>
       </button>
     {% endif %}
@@ -192,7 +200,14 @@
         <span>Fabric</span>
 
         <div class="meta-card-content" hidden>
-          {{ m_fabric | newline_to_br }}
+          {{- m_fabric | newline_to_br -}}
+          {%- if m_fabric_images != blank -%}
+            <div class="fabric-popup-images-container">
+              {%- for image in m_fabric_images -%}
+                {{- image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title, class: 'fabric-popup-image' -}}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
         </div>
       </button>
     {% endif %}
@@ -213,7 +228,12 @@
         <span>Fit</span>
 
         <div class="meta-card-content" hidden>
-          {{ m_fit | newline_to_br }}
+          {{- m_fit | newline_to_br -}}
+          {%- if m_fit_image != blank -%}
+            <div class="fit-popup-image-container">
+              {{- m_fit_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title, class: 'fit-popup-image' -}}
+            </div>
+          {%- endif -%}
         </div>
       </button>
     {% endif %}
@@ -377,6 +397,40 @@ function openModal(title, content) {
 
       let content =
         this.querySelector('.meta-card-content')?.innerHTML || '';
+
+      // Normalize non-breaking spaces and other space representations
+      content = content.replace(/&nbsp;|\u00a0/g, ' ');
+
+      if (title.toLowerCase() === 'fabric') {
+        const headings = [
+          'WHY WE CHOSE IT',
+          'Bio Wash',
+          'CPL Wash',
+          'Heavy Enzyme Wash',
+          'Enzyme Wash',
+          'SINGLE JERSEY - 220-230 GSM',
+          'SINGLE JERSEY - 190-200 GSM',
+          'INTERLOCK - 210 GSM',
+          'PURE COTTON'
+        ];
+        headings.forEach(function(heading) {
+          // Escape regex characters except dashes
+          let pattern = heading.replace(/[\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          // Handle hyphens/dashes flexibly (allow en-dash, em-dash, or standard hyphen)
+          pattern = pattern.replace(/-/g, '[-–—]');
+          // Replace spaces with \s+ to handle single/multiple spaces or tabs robustly
+          pattern = pattern.replace(/ /g, '\\s+');
+          
+          const regex = new RegExp('(^|<br\\s*\\/?>)\\s*(' + pattern + ')\\s*($|<br\\s*\\/?>)', 'gi');
+          content = content.replace(regex, function(match, p1, p2, p3) {
+            return p1 + '<h3>' + p2 + '</h3>' + p3;
+          });
+        });
+        
+        // Clean up `<br>` tags immediately preceding or succeeding `<h3>`
+        content = content.replace(/(<br\s*\/?>\s*)+<h3>/gi, '<h3>');
+        content = content.replace(/<\/h3>(\s*<br\s*\/?>\s*)+/gi, '</h3>');
+      }
 
       // Replace two or more consecutive <br> tags (including whitespace and newlines) with a single <br> followed by a newline to preserve pre-line spacing
       content = content.replace(/(<br\s*\/?>\s*){2,}/gi, '<br>\n');
@@ -1130,5 +1184,61 @@ function openModal(title, content) {
       padding: 0 24px 24px !important;
       padding-bottom: 24px !important;
     }
+  }
+
+  .style-popup-image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    width: 100%;
+  }
+  .style-popup-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .fabric-popup-images-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    margin-top: 28px;
+    width: 100%;
+  }
+  .fabric-popup-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .fit-popup-image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+    width: 100%;
+  }
+  .fit-popup-image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .product-meta-modal__body h3 {
+    margin: 28px 0 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0c4168;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 {% endstylesheet %}
