@@ -107,7 +107,7 @@
               {% endif %}
 
               {% if fg_paragraph != blank %}
-                <div class="features-grid__desc">
+                <div class="features-grid__desc features-grid__desc-desktop">
                   {% assign sentences = fg_paragraph | split: '. ' %}
                   {% for sentence in sentences %}
                     {% assign trimmed_sentence = sentence | strip %}
@@ -117,6 +117,9 @@
                       </p>
                     {% endif %}
                   {% endfor %}
+                </div>
+                <div class="features-grid__desc features-grid__desc-mobile">
+                  <p>{{ fg_paragraph | strip }}</p>
                 </div>
               {% endif %}
             </div>
@@ -314,7 +317,6 @@
 .features-grid__desc {
   display: flex;
   flex-direction: column;
-  gap: 0px;
 }
 
 .features-grid__desc p {
@@ -324,6 +326,10 @@
   line-height: 1.6;
   margin: 0;
   text-align: left;
+}
+
+.features-grid__desc-mobile {
+  display: none !important;
 }
 
 /* ===== SECTION ===== */
@@ -380,8 +386,15 @@
 /* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
+  .features-grid__desc-desktop {
+    display: none !important;
+  }
+  .features-grid__desc-mobile {
+    display: flex !important;
+  }
   .features-slider .splide__slide {
     width: 100% !important;
+    margin-right: 0 !important;
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
@@ -416,6 +429,10 @@
   .features-grid__desc p {
     font-size: 11px;
     line-height: 1.55;
+  }
+
+  .features-grid__desc p:nth-child(n+2) {
+    display: none !important;
   }
 
   .features-slider .splide__arrow svg {
@@ -467,9 +484,16 @@ document.addEventListener('DOMContentLoaded', function () {
   /* --- Set slide widths for autoWidth mode (slider mode) --- */
   function setSlideWidths() {
     var perPage = getPerPage();
-    var gap = 30;
     var trackW = splideEl.querySelector('.splide__track').offsetWidth;
-    /* Show perPage full slides + ~20% of next one */
+    if (window.innerWidth <= 768) {
+      /* Mobile: 1 full slide per view so every slide has 100% exact width and alignment */
+      splideEl.querySelectorAll('.splide__slide').forEach(function (sl) {
+        sl.style.width = trackW + 'px';
+      });
+      return;
+    }
+    var gap = 30;
+    /* Show perPage full slides + ~20% of next one on desktop */
     var peekFraction = 0.20;
     var slideW = Math.floor((trackW - gap * (perPage - 1 + peekFraction)) / (perPage + peekFraction));
     splideEl.querySelectorAll('.splide__slide').forEach(function (sl) {
@@ -508,6 +532,7 @@ document.addEventListener('DOMContentLoaded', function () {
     autoWidth: true,       /* respect our manually set widths */
     perMove  : 1,
     gap      : '30px',
+    trimSpace: 'move',
     arrows   : true,
     pagination: false,
     rewind   : true,
