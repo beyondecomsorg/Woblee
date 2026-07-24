@@ -583,6 +583,52 @@ function openModal(title, content) {
         content = newFitHtml;
       }
 
+      if (title.toLowerCase() === 'style') {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = content;
+
+        // Extract style image container if present
+        const styleImgContainer = tempDiv.querySelector('.style-popup-image-container');
+        if (styleImgContainer) styleImgContainer.remove();
+
+        let rawText = tempDiv.innerText || tempDiv.textContent || '';
+        const styleMap = [
+          { keyword: 'ARTISTIC TEE', heading: 'ARTISTIC TEE' },
+          { keyword: 'ARTISTIC', heading: 'ARTISTIC TEE' },
+          { keyword: 'GRAPHIC TEE', heading: 'GRAPHIC TEE' },
+          { keyword: 'GRAPHIC', heading: 'GRAPHIC TEE' },
+          { keyword: 'STATEMENT TEE', heading: 'STATEMENT TEE' },
+          { keyword: 'STATEMENT', heading: 'STATEMENT TEE' },
+          { keyword: 'ESSENTIAL TEE', heading: 'ESSENTIAL TEE' },
+          { keyword: 'ESSENTIAL', heading: 'ESSENTIAL TEE' }
+        ];
+
+        let foundHeading = '';
+        for (let s of styleMap) {
+          if (rawText.toUpperCase().includes(s.keyword)) {
+            foundHeading = s.heading;
+            break;
+          }
+        }
+
+        let newStyleHtml = '';
+        if (foundHeading) {
+          newStyleHtml += '<h2 class="style-popup-heading">' + foundHeading + '</h2>';
+        }
+
+        let paragraphs = rawText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+        paragraphs.forEach(pText => {
+          let cleanP = pText.replace(/\n/g, ' ');
+          newStyleHtml += '<p class="style-popup-paragraph">' + cleanP + '</p>';
+        });
+
+        if (styleImgContainer) {
+          newStyleHtml += styleImgContainer.outerHTML;
+        }
+
+        content = newStyleHtml;
+      }
+
       // Replace two or more consecutive <br> tags (including whitespace and newlines) with a single <br> followed by a newline to preserve pre-line spacing
       content = content.replace(/(<br\s*\/?>\s*){2,}/gi, '<br>\n');
 
@@ -1427,24 +1473,27 @@ function openModal(title, content) {
     display: block;
   }
 
-  .fit-popup-heading {
+  .fit-popup-heading,
+  .style-popup-heading {
     font-size: 16px;
     font-weight: 700;
     color: #0c4168;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
     line-height: 1.3;
   }
 
-  .fit-popup-paragraph {
-    font-size: 14.5px;
-    line-height: 1.8;
+  .fit-popup-paragraph,
+  .style-popup-paragraph {
+    font-size: 14px;
+    line-height: 1.6;
     color: #333;
-    margin: 0 0 28px 0;
+    margin: 0 0 20px 0;
   }
 
-  .fit-popup-paragraph:last-of-type {
+  .fit-popup-paragraph:last-of-type,
+  .style-popup-paragraph:last-of-type {
     margin-bottom: 24px;
   }
 
