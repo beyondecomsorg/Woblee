@@ -418,15 +418,14 @@ function openModal(title, content) {
         // Clean raw content into plain line breaks
         let rawHtml = content
           .replace(/<br\s*\/?>/gi, '\n')
-          .replace(/<p[^>]*>/gi, '')
-          .replace(/<\/p>/gi, '\n');
+          .replace(/<\/p>/gi, '\n')
+          .replace(/<\/div>/gi, '\n')
+          .replace(/<[^>]+>/g, '');
 
         const txtDec = document.createElement('textarea');
         txtDec.innerHTML = rawHtml;
         let textContent = txtDec.value;
 
-        // Split into non-empty blocks separated by double linebreaks or single linebreaks
-        let rawBlocks = textContent.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
         // Split raw text lines preserving paragraphs
         let lines = textContent.split('\n').map(l => l.trim()).filter(Boolean);
 
@@ -438,6 +437,7 @@ function openModal(title, content) {
           'ENZYME WASH',
           'SINGLE JERSEY',
           'INTERLOCK',
+          'LOOP KNIT',
           'TERRY',
           'PURE COTTON'
         ];
@@ -446,8 +446,14 @@ function openModal(title, content) {
         let currentSection = null;
 
         lines.forEach(line => {
-          let lineUpper = line.toUpperCase();
-          let isHeading = knownHeadings.some(h => lineUpper === h || lineUpper.startsWith(h + ' ') || lineUpper.startsWith(h + '-'));
+          let lineUpper = line.toUpperCase().trim();
+          let isHeading = knownHeadings.some(h => {
+            return lineUpper === h || 
+                   lineUpper.startsWith(h + ' ') || 
+                   lineUpper.startsWith(h + '-') || 
+                   lineUpper.startsWith(h + ' -') || 
+                   lineUpper.indexOf(h) === 0;
+          });
 
           if (isHeading) {
             if (currentSection) sections.push(currentSection);
