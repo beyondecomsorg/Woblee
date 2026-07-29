@@ -531,7 +531,15 @@ function openModal(title, content) {
         const fitImgContainer = tempDiv.querySelector('.fit-popup-image-container');
         if (fitImgContainer) fitImgContainer.remove();
 
-        let rawText = tempDiv.innerText || tempDiv.textContent || '';
+        let htmlContent = tempDiv.innerHTML
+          .replace(/<br\s*\/?>/gi, '\n')
+          .replace(/<\/p>/gi, '\n\n')
+          .replace(/<\/div>/gi, '\n\n');
+
+        const decDiv = document.createElement('div');
+        decDiv.innerHTML = htmlContent;
+        let rawText = (decDiv.innerText || decDiv.textContent || '').trim();
+
         const fitTypes = ['OVERSIZED FIT', 'RELAXED FIT', 'BOXY FIT', 'REGULAR FIT'];
         
         let foundFit = '';
@@ -547,9 +555,14 @@ function openModal(title, content) {
 
         if (foundFit) {
           headingText = foundFit;
-          // Extract description by removing headingText from rawText
-          let regex = new RegExp(foundFit, 'i');
-          bodyRaw = rawText.replace(regex, '').trim();
+          let lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
+          // If first line is ONLY the fit title (e.g. "OVERSIZED FIT"), remove first line
+          if (lines.length > 0 && lines[0].toUpperCase() === foundFit.toUpperCase()) {
+            bodyRaw = lines.slice(1).join('\n').trim();
+          } else {
+            // Description starts on first line; keep full text
+            bodyRaw = rawText.trim();
+          }
         } else {
           // Fallback to first line if <= 30 chars
           let lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
@@ -567,9 +580,18 @@ function openModal(title, content) {
         }
 
         if (bodyRaw) {
-          let paragraphs = bodyRaw.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
-          if (paragraphs.length === 0) paragraphs = [bodyRaw];
+          let paragraphs = bodyRaw.split(/\n+/).map(p => p.trim()).filter(Boolean);
           
+          if (paragraphs.length === 1 && paragraphs[0].includes('. ')) {
+            let parts = paragraphs[0].split(/(?<=\.)\s+/);
+            if (parts.length > 2) {
+              let mid = Math.ceil(parts.length / 2);
+              paragraphs = [parts.slice(0, mid).join(' '), parts.slice(mid).join(' ')];
+            } else if (parts.length === 2) {
+              paragraphs = parts;
+            }
+          }
+
           paragraphs.forEach(pText => {
             let cleanP = pText.replace(/\n/g, ' ');
             newFitHtml += '<p class="fit-popup-paragraph">' + cleanP + '</p>';
@@ -591,7 +613,16 @@ function openModal(title, content) {
         const styleImgContainer = tempDiv.querySelector('.style-popup-image-container');
         if (styleImgContainer) styleImgContainer.remove();
 
-        let rawText = tempDiv.innerText || tempDiv.textContent || '';
+        // Convert <br> tags and closing block tags into \n line breaks
+        let htmlContent = tempDiv.innerHTML
+          .replace(/<br\s*\/?>/gi, '\n')
+          .replace(/<\/p>/gi, '\n\n')
+          .replace(/<\/div>/gi, '\n\n');
+
+        const decDiv = document.createElement('div');
+        decDiv.innerHTML = htmlContent;
+        let rawText = (decDiv.innerText || decDiv.textContent || '').trim();
+
         const styleMap = [
           { keyword: 'ARTISTIC TEE', heading: 'ARTISTIC TEE' },
           { keyword: 'ARTISTIC', heading: 'ARTISTIC TEE' },
@@ -616,7 +647,20 @@ function openModal(title, content) {
           newStyleHtml += '<h2 class="style-popup-heading">' + foundHeading + '</h2>';
         }
 
-        let paragraphs = rawText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+        // Split paragraphs by double newlines or single linebreaks
+        let paragraphs = rawText.split(/\n+/).map(p => p.trim()).filter(Boolean);
+        
+        // If it's a single block containing multiple sentences (e.g. 2 sentences ending with period), split into 2 paragraphs as in reference
+        if (paragraphs.length === 1 && paragraphs[0].includes('. ')) {
+          let parts = paragraphs[0].split(/(?<=\.)\s+/);
+          if (parts.length > 2) {
+            let mid = Math.ceil(parts.length / 2);
+            paragraphs = [parts.slice(0, mid).join(' '), parts.slice(mid).join(' ')];
+          } else if (parts.length === 2) {
+            paragraphs = parts;
+          }
+        }
+
         paragraphs.forEach(pText => {
           let cleanP = pText.replace(/\n/g, ' ');
           newStyleHtml += '<p class="style-popup-paragraph">' + cleanP + '</p>';
@@ -1443,6 +1487,7 @@ function openModal(title, content) {
     align-items: flex-start;
     gap: 16px;
     margin: 24px 0;
+    flex-direction: column;
   }
 
   .fabric-section-side-text {
@@ -1459,16 +1504,14 @@ function openModal(title, content) {
   }
 
   .fabric-section-side-image {
-    width: 145px;
-    min-width: 190px;
-    max-width: 190px;
-    flex-shrink: 0;
-    margin-top: 8px;
+    width: 89%;
+   height: 350px;
+   margin:auto;
   }
 
   .fabric-section-side-image img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     display: block;
   }
@@ -1501,6 +1544,9 @@ function openModal(title, content) {
     .fit-popup-heading {
       font-size: 22px;
       margin-bottom: 14px;
+    }
+    .fabric-section-side-image{
+      height: 250px;
     }
     .fit-popup-paragraph {
       font-size: 13.5px;

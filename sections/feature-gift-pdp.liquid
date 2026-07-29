@@ -153,7 +153,7 @@
   width: 100% !important;
 }
 .features-slider .splide__slide {
-  width: 35% !important;
+  width: 33% !important;
   box-sizing: border-box !important;
   padding-left: 24px !important;
   padding-right: 24px !important;
@@ -167,30 +167,7 @@
 }
 
 .features-slider .splide__slide::before {
-  content: "";
-  position: absolute;
-  top: 15%;
-  bottom: 15%;
-  left: 0;
-  width: 1px;
-  background-color: var(--wb-color-grey, #d0d0d0);
-  opacity: 0.6;
-}
-
-.features-slider .splide__slide:first-child::before,
-.features-slider.is-natural.is-multi .splide__slide:first-child::before,
-.features-slider:not(.is-natural) .splide__slide:nth-child(3n+4)::before {
   display: none !important;
-}
-
-/* hide divider only when there is a single card */
-.features-slider.is-natural.is-single .splide__slide::before {
-  display: none !important;
-}
-
-/* show divider between cards in natural multi-card layout */
-.features-slider.is-natural.is-multi .splide__slide::before {
-  display: block !important;
 }
 
 /* Arrows */
@@ -321,7 +298,7 @@
 
 .features-grid__desc p {
   color: var(--fg-desc-color, #4a4a4a);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: var(--fg-desc-weight, 400);
   line-height: 1.6;
   margin: 0;
