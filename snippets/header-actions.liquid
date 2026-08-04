@@ -63,6 +63,11 @@
   {% endif %}
   {{- block.shopify_attributes -}}
 >
+  {%- comment -%} ✅ Advanced Wishlist: Header Icon — placed left of Account {%- endcomment -%}
+  <div class="hulk-wishlist-header-action header-actions__action">
+    {% render 'hulkapps-wishlist-header-icon' %}
+  </div>
+
   {% if shop.customer_accounts_enabled %}
     {% liquid
       assign account_actions_style = ''
@@ -572,6 +577,65 @@
     @media screen and (max-width: 749px) {
       justify-self: flex-end;
     }
+  }
+
+  /* ✅ Advanced Wishlist: Header icon styling — matches existing icon style */
+  .hulk-wishlist-header-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hulk-wishlist-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hulk-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    transition: color var(--header-content-transition-timing);
+    min-width: 44px;
+    height: 44px;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .hulk-header-icon i,
+  .hulk-header-icon svg,
+  .hulk-header-icon span {
+    color: #ffffff !important;
+  }
+
+
+  .hulk-header-icon:hover {
+    opacity: var(--opacity-hover-icons, 0.75);
+  }
+
+  .hulk-header-icon .icon-wishlist-heart-empty {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .hulk-header-icon .header-count.count {
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    min-width: 18px;
+    height: 18px;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    line-height: 1;
   }
 
   @media screen and (min-width: 750px) {

@@ -1,0 +1,162 @@
+{%- doc -%}
+  Advanced Wishlist integration styles for Woblee theme.
+  Covers: header icon, collection card button, PDP price row.
+{%- enddoc -%}
+
+{% stylesheet %}
+  /* ============================================================
+     COLLECTION CARD — Wishlist Button (TOP-RIGHT, circular)
+     Positioned at the top-right corner of the product image
+     with 14px spacing from the edges.
+  ============================================================ */
+
+  .hulk-wishlist-card-btn-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: var(--layer-raised);
+    pointer-events: none;
+  }  /* ─── Wishlist button: fixed circle shape (no hover pill expansion) ─── */
+  .grid-wishlist-btn.wishlist-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    /* Circular base — matching quick-add size */
+    background: linear-gradient(var(--color-background) 0 100%) padding-box;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    border: 2px solid hsl(0 0% 0% / 0.15);
+    height: var(--button-size-md, 44px) !important;
+    width: var(--button-size-md, 44px) !important;
+    min-width: var(--button-size-md, 44px) !important;
+    cursor: pointer;
+    overflow: hidden;
+    color: var(--color-foreground);
+    pointer-events: all;
+    text-decoration: none;
+    backdrop-filter: blur(20px) saturate(180%);
+
+    /* ✅ TOP-RIGHT placement */
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    opacity: 1;
+
+    /* Simple scale transition on hover */
+    transition-property: scale, opacity;
+    transition-duration: var(--animation-speed);
+    transition-timing-function: var(--ease-out-cubic);
+
+    &:hover {
+      scale: 1.06;
+      opacity: 0.9;
+    }
+
+    &:active {
+      scale: 0.97;
+    }
+  }
+
+  /* ─── Icon wrapper: fixed square, centering icon ─────────────── */
+  .grid-wishlist-btn.wishlist-btn .wishlist_btn_icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ─── Heart glyph: reset font-metric offsets ─────────────────── */
+  .grid-wishlist-btn.wishlist-btn .icon-wishlist-heart-empty {
+    display: block !important;
+    font-size: 17px !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  .grid-wishlist-btn.wishlist-btn .heart-hulk-animation {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ─── Text label: permanently hidden ─────────────────────────── */
+  body .grid-wishlist-btn.wishlist-btn > span:not(.wishlist_btn_icon):not(.count) {
+    display: none !important;
+  }
+
+  /* Hide count badge on cards */
+  .grid-wishlist-btn.wishlist-btn .count {
+    display: none !important;
+  }
+
+  /* ============================================================
+     PDP — Wishlist Button next to Price
+  ============================================================ */
+
+  .price-with-wishlist-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .price-with-wishlist-row product-price {
+    width: auto !important;
+    max-width: fit-content !important;
+    flex: 0 1 auto !important;
+    margin: 0 !important;
+  }
+
+
+  .hulk-pdp-wishlist-btn-wrapper {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+
+  /* Style the PDP wishlist button — inherits app icon font */
+  .hulk-pdp-wishlist-btn-wrapper .wishlist-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-foreground);
+    padding: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity var(--animation-speed);
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    /* Hide the text label on PDP — keep only the icon */
+    & > span:not(.wishlist_btn_icon) {
+      display: none !important;
+    }
+
+    & .icon-wishlist-heart-empty {
+      font-size: 22px;
+    }
+  }
+{% endstylesheet %}
+

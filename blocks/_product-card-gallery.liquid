@@ -29,6 +29,13 @@
     {%  if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add', product: product, section_id: section.id %}
     {% endif %}
+    {%- comment -%} ✅ Advanced Wishlist: Collection card button — bottom-right, circular {%- endcomment -%}
+    <div class="hulk-wishlist-card-btn-wrapper">
+      {% render 'hulkapps-wishlist-collection-btn',
+        productId: product.id,
+        variantId: product.selected_or_first_available_variant.id
+      %}
+    </div>
   {% endunless %}
 {% endcapture %}
 
@@ -44,6 +51,7 @@
 </div>
 
 {% render 'product-badges-styles' %}
+{% render 'hulkapps-wishlist-styles' %}
 
 {% schema %}
 {

@@ -36,6 +36,10 @@
   endcapture
 %}
 
+{%- comment -%} ✅ Advanced Wishlist: PDP price row — wishlist icon to the right of price {%- endcomment -%}
+{% if template.name == 'product' %}
+<div class="price-with-wishlist-row">
+{% endif %}
 <product-price
   class="text-block {{ text_block_classes }} text-{{ block_settings.alignment }} {{ block_settings.type_preset | default: 'paragraph' }} spacing-style"
   data-block-id="{{ block.id }}"
@@ -83,6 +87,13 @@
     </div>
   {%- endif -%}
 </product-price>
+{% if template.name == 'product' %}
+  <div class="hulk-pdp-wishlist-btn-wrapper">
+    {% render 'hulkapps-wishlist-product-btn' %}
+  </div>
+</div>
+{% endif %}
+{% render 'hulkapps-wishlist-styles' %}
 
 {% schema %}
 {

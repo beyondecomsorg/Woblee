@@ -1,0 +1,36 @@
+{%- comment -%}
+  hulkapps-wishlist-product-btn
+  This snippet is managed by the Advanced Wishlist app (HulkApps).
+  The app will overwrite/populate this file when the app embed is active.
+  A fallback heart link is provided so the layout doesn't break if the
+  app has not yet injected its version.
+{%- endcomment -%}
+
+{% assign hwl_product = product %}
+{% assign hwl_variant = hwl_product.selected_or_first_available_variant %}
+
+<a
+  href="javascript:void(0)"
+  rel="nofollow"
+  class="icon-wishlist-heart-empty wishlist-btn pdp-wishlist-btn heart-wishlist-animation"
+  data-wishList
+  data-added="false"
+  data-proID="{{ hwl_product.id }}"
+  data-varID="{{ hwl_variant.id }}"
+  style="display:none;"
+  aria-label="Add to wishlist"
+>
+  <div style="display: initial;" class="wishlist_btn_icon">
+    {% if shop.metafields.hulkapps_wishlist.hulkapps_wishlist_buttonstyle.button_icon_type == 'custom_icon' %}
+      <img
+        src="{{ shop.metafields.hulkapps_wishlist.hulkapps_wishlist_buttonstyle.empty_set_custom_icon }}"
+        class="hulk-wishlist-custom-icon"
+        width="22px"
+        height="22px"
+        style="display: none; line-height: 1; cursor: pointer; user-select: none; vertical-align: middle;"
+      >
+    {% else %}
+      <i class="heart-hulk-animation"><i class="icon-wishlist-heart-empty"></i></i>
+    {% endif %}
+  </div>
+</a>
