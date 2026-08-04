@@ -96,13 +96,14 @@
     "mega_menu_image_1": "shopify://shop_images/hoodie2.webp",
     "mega_menu_title_2": "men",
     "mega_menu_image_2": "shopify://shop_images/hoodie1.webp",
+    "sections": {
+      "color-swatches": {
+        "type": "color-swatches",
+        "settings": {}
+      }
+    },
     "content_for_index": [],
     "blocks": {
-      "17370010407503379518": {
-        "type": "shopify://apps/wishlist-by-square/blocks/app-embed/88ec2beb-ce43-48ed-b791-0a6554082c2b",
-        "disabled": false,
-        "settings": {}
-      },
       "14060646107696862457": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": true,
@@ -111,6 +112,11 @@
       "1744347199190486471": {
         "type": "shopify://apps/advanced-wishlist/blocks/app/330d9272-08ea-4193-b3e0-475a69fa65fa",
         "disabled": false,
+        "settings": {}
+      },
+      "17370010407503379518": {
+        "type": "shopify://apps/wishlist-by-square/blocks/app-embed/88ec2beb-ce43-48ed-b791-0a6554082c2b",
+        "disabled": true,
         "settings": {}
       }
     },
