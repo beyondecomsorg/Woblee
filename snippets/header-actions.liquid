@@ -638,6 +638,41 @@
     line-height: 1;
   }
 
+  @media screen and (max-width: 749px) {
+    header-actions {
+      gap: 6px !important; /* reduce gap between icons on mobile */
+    }
+
+    .hulk-wishlist-header-action {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .hulk-wishlist-icon{
+      padding-right: 0 !important;
+    }
+    header-actions{
+      gap: 0 !important;
+    }
+
+    .hulk-header-icon {
+      min-width: 32px !important;
+      height: 32px !important;
+      width: 32px !important;
+    }
+
+    .hulk-header-icon .icon-wishlist-heart-empty {
+      font-size: 18px !important;
+    }
+
+    .hulk-header-icon .header-count.count {
+      top: 0px !important;
+      right: -2px !important;
+      min-width: 14px !important;
+      height: 14px !important;
+      font-size: 8px !important;
+    }
+  }
+
   @media screen and (min-width: 750px) {
     .header-actions--text {
       gap: var(--gap-xl);
