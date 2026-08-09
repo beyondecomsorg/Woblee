@@ -1,0 +1,34 @@
+{% comment %}
+  ============================================================
+  FAQ Hardcoded Item Snippet
+  Renders a single default hardcoded FAQ accordion block.
+  ============================================================
+{% endcomment %}
+
+<div class="faq-accordion-item">
+  <h3 class="faq-accordion-header">
+    <button 
+      class="faq-accordion-trigger" 
+      aria-expanded="false" 
+      aria-controls="faq-answer-hc-{{ id }}"
+      type="button"
+    >
+      <span class="faq-question-text">{{ q }}</span>
+      <span class="faq-icon-wrap" aria-hidden="true">
+        <svg class="faq-icon-plus" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </button>
+  </h3>
+  <div 
+    class="faq-accordion-content" 
+    id="faq-answer-hc-{{ id }}" 
+    aria-hidden="true" 
+    style="max-height: 0;"
+  >
+    <div class="faq-accordion-inner rte">
+      {{ a }}
+    </div>
+  </div>
+</div>

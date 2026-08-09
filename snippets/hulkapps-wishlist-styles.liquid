@@ -82,6 +82,13 @@
     padding: 0 !important;
     width: auto !important;
     height: auto !important;
+    color: rgb(12 65 104 / 1.0) !important;
+  }
+
+  .grid-wishlist-btn.wishlist-btn .icon-wishlist-heart-empty:before {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
   }
 
   .grid-wishlist-btn.wishlist-btn .heart-hulk-animation {
@@ -91,6 +98,13 @@
     line-height: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
+    color: rgb(12 65 104 / 1.0) !important;
+  }
+
+  .grid-wishlist-btn.wishlist-btn .heart-hulk-animation .icon-wishlist-heart-empty:before {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
   }
 
   /* ─── Text label: permanently hidden ─────────────────────────── */
@@ -130,6 +144,12 @@
     align-items: center !important;
   }
 
+  @media (max-width: 768px) {
+    .hulk-pdp-wishlist-btn-wrapper {
+      margin-right: 18px !important;
+    }
+  }
+
 
   /* Style the PDP wishlist button — inherits app icon font */
   .hulk-pdp-wishlist-btn-wrapper .wishlist-btn {
@@ -139,7 +159,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: var(--color-foreground);
+    color: rgb(12 65 104 / 1.0) !important;
     padding: 4px;
     text-decoration: none;
     font-size: 14px;
@@ -155,7 +175,14 @@
     }
 
     & .icon-wishlist-heart-empty {
-      font-size: 22px;
+      font-size: 18px;
+      color: rgb(12 65 104 / 1.0) !important;
+
+      &::before {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+      }
     }
   }
 {% endstylesheet %}

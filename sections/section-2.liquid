@@ -81,6 +81,17 @@
     </div>
   {% endif %}
 
+  <div class="wau-stats">
+    {% for block in section.blocks %}
+      {% if block.type == 'stat' %}
+        <div class="wau-stat-pill" {{ block.shopify_attributes }}>
+          <strong>{{ block.settings.stat_value }}</strong>
+          <span>{{ block.settings.stat_label }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
   {% if section.settings.cta_text != blank %}
     <a href="{{ section.settings.cta_url }}" class="wau-cta">
       <span>{{ section.settings.cta_text }}</span>
@@ -96,17 +107,6 @@
       </svg>
     </a>
   {% endif %}
-
-  <div class="wau-stats">
-    {% for block in section.blocks %}
-      {% if block.type == 'stat' %}
-        <div class="wau-stat-pill" {{ block.shopify_attributes }}>
-          <strong>{{ block.settings.stat_value }}</strong>
-          <span>{{ block.settings.stat_label }}</span>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
 </div>
 
     <!-- ═══ RIGHT — Polaroid Fan ═══ -->
@@ -252,7 +252,7 @@
   font-family: Helvetica;
 }
 .wau-pcard__caption{
-  margin-top: 5px !important;
+
 }
 .wau-pcard__caption {
   font-family: Helvetica;
@@ -302,7 +302,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 36px;
+  margin-bottom: 36px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.8s ease 0.38s, transform 0.8s ease 0.38s;
@@ -418,7 +418,7 @@
 }
 
 .wau-pcard:hover .wau-pcard__img {
-  transform: scale(1.04);
+  /* transform: scale(1.04); */
 }
 
 .wau-pcard__img--ph {
@@ -581,9 +581,18 @@ background: var(--wau-accent);
   }
 }
 
+@media  (min-width: 769px){
+    .wau-section.wau-visible .wau-cta{
+    width: 50%;
+  }
+}
+
 @media (max-width: 768px) {
   .wau-heading {
     font-size: var(--wau-heading-size-mobile) !important;
+  }
+  .wau-section.wau-visible .wau-cta{
+    width: 83%;
   }
 
   .wau-body {

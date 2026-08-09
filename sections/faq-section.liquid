@@ -1,0 +1,802 @@
+{% comment %}
+  ============================================================
+  FAQ / Help Center Section
+  Two-column desktop layout with left category nav and right accordion.
+  Horizontal scrollable tabs on mobile.
+  ============================================================
+{% endcomment %}
+
+{%- liquid
+  assign text_color = section.settings.text_color
+  assign divider_color = section.settings.divider_color
+  assign active_color = section.settings.active_color
+-%}
+
+<div class="faq-section-wrapper" id="faq-section-{{ section.id }}" style="
+  --faq-bg: {{ section.settings.background_color }};
+  --faq-text-color: {{ text_color }};
+  --faq-divider-color: {{ divider_color }};
+  --faq-active-color: {{ active_color }};
+  --faq-pt: {{ section.settings.padding_top }}px;
+  --faq-pb: {{ section.settings.padding_bottom }}px;
+  --faq-pt-mobile: {{ section.settings.padding_top_mobile }}px;
+  --faq-pb-mobile: {{ section.settings.padding_bottom_mobile }}px;
+  --faq-anim-speed: {{ section.settings.anim_speed }}s;
+">
+  <div class="faq-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="faq-main-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="faq-layout">
+      <!-- LEFT SIDE: Navigation -->
+      <nav class="faq-nav" aria-label="FAQ Categories">
+        <ul class="faq-nav-list">
+          {%- assign categories = "About Woblee;Our Products;Sizing & Fit;Fabric & Quality;Design & Techniques;Product Care;Orders & Payments;Shipping, Returns & Exchanges;Contact & Support" | split: ";" -%}
+          {%- for cat in categories -%}
+            {%- assign cat_handle = cat | handleize -%}
+            <li class="faq-nav-item">
+              <button 
+                class="faq-nav-btn{% if forloop.first %} is-active{% endif %}"
+                data-target-cat="{{ cat_handle }}"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                type="button"
+              >
+                {{ cat }}
+              </button>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      <!-- RIGHT SIDE: Content -->
+      <div class="faq-content">
+        <!-- Loop categories to output each section -->
+        {%- for cat in categories -%}
+          {%- assign cat_handle = cat | handleize -%}
+          
+          <div 
+            class="faq-category-panel{% if forloop.first %} is-active{% endif %}" 
+            id="faq-panel-{{ cat_handle }}"
+            data-cat="{{ cat_handle }}"
+            role="tabpanel"
+            {% unless forloop.first %}style="display: none;"{% endunless %}
+          >
+            <!-- Introductory paragraph -->
+            <div class="faq-category-intro">
+              {%- case cat_handle -%}
+                {%- when 'about-woblee' -%}
+                  <p>Whether you’re here because a tee caught your eye or you’re simply curious about who we are, welcome. Here’s a little more about what makes Woblee, well… Woblee.</p>
+                {%- when 'our-products' -%}
+                  <p>Every Woblee product starts with the same idea: make something you’d actually want to wear again tomorrow. Here’s everything you might want to know before adding one to your wardrobe.</p>
+                {%- when 'sizing-fit' -%}
+                  <p>The right fit makes all the difference. Here’s everything you need to know before choosing your size.</p>
+                {%- when 'fabric-quality' -%}
+                  <p>All Woblee tees are crafted using 100% cotton selected for its softness, breathability and everyday comfort. Depending on the collection, we use different knit constructions and fabric weights to achieve the right look, feel and drape for each design.</p>
+                {%- when 'design-techniques' -%}
+                  <p>Every Woblee design is more than just ink on fabric. We use a variety of techniques to add texture, depth and character, making each piece feel as unique as the story behind it.</p>
+                {%- when 'product-care' -%}
+                  <p>A little care goes a long way. Follow these simple tips to help your Woblee favourites stay looking and feeling their best.</p>
+                {%- when 'orders-payments' -%}
+                  <p>Placing an order should be the easiest part of your day. Here’s everything you need to know before you check out.</p>
+                {%- when 'shipping-returns-exchanges' -%}
+                  <p>Need the full details? You can find our complete Shipping Policy, Return Policy and Exchange Policy in the footer or by following the links below.</p>
+                {%- when 'contact-support' -%}
+                  <p>Need a hand? Whether you have a question about an order, a product or just want to say hello, we’re here to help.</p>
+              {%- endcase -%}
+            </div>
+
+            <!-- Accordion container -->
+            <div class="faq-accordion">
+              {%- assign item_index = 0 -%}
+              
+              <!-- Hardcoded FAQs as fallback/default if no blocks are added -->
+              {%- if section.blocks.size == 0 -%}
+                {%- case cat_handle -%}
+                  {%- when 'about-woblee' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What is Woblee?', a: 'Woblee is an Indian casualwear brand built around self-expression. We create premium everyday clothing for men, women and kids that balances comfort, quality and creativity. From elevated essentials to story-driven graphics, everything we make is designed to become part of your everyday wardrobe, not just another thing hanging in your closet.', id: 'aw-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What makes Woblee different?', a: 'We don’t believe good design starts with following trends. It starts with an idea. Every collection is built around a concept, every graphic has a purpose, and every detail is there for a reason. We pair thoughtful design with premium fabrics and unique techniques to create pieces that feel just as good to wear as they do to look at.', id: 'aw-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What does “Wear Your Vibe” mean?', a: 'You don’t feel the same every day, so why should your wardrobe? Some mornings call for a bold graphic. Others just need a clean, understated tee. “Wear Your Vibe” is about having clothes that move with your mood, your personality and the version of yourself you want to show up as that day.', id: 'aw-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Is Woblee an Indian brand?', a: 'Absolutely. Woblee is proudly born, designed and built in India. Every collection is created with a global design perspective while staying rooted in the creativity, culture and individuality that make Indian fashion exciting.', id: 'aw-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Is Woblee part of KSK?', a: 'Yes. Woblee is the apparel venture of the KSK Group. While we carry forward KSK’s commitment to quality, reliability and craftsmanship, Woblee has its own identity, voice and creative direction. Think of it as the same foundation, expressed through a completely different lens.', id: 'aw-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Why is it called Woblee?', a: 'Because people aren’t one-dimensional.<br>The way you present yourself changes depending on where you are, who you’re with and how you’re feeling. Some days you’re confident. Some days you’re playful. Some days you just want to keep it simple. Your vibe shifts, evolves and, in a way, wobbles.<br>Woblee celebrates that. Instead of telling you who to be, we create options that let you be whoever you feel like being that day.', id: 'aw-6' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Who designs your collections?', a: 'Every Woblee collection is designed in-house by a team that loves good ideas as much as good design. Our process starts long before the first sketch, with research, inspiration and plenty of conversations about culture, art, trends and everyday life. The result is clothing that’s designed with intention, not just decoration.', id: 'aw-7' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are your designs exclusive?', a: 'Yes. Every Woblee design is created exclusively for the brand. We don’t use stock graphics or recycled artwork because we believe a design means more when it has a story behind it. Many of our collections are inspired by themes, moods and everyday moments, and some are released in limited quantities, so once they’re gone, they may not make a comeback.', id: 'aw-8' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Who is Woblee made for?', a: 'For anyone who believes clothing should feel as good as it looks. Whether you’re a student, a creator, a working professional, a parent or somewhere in between, Woblee is made for people who enjoy expressing themselves through what they wear. Around here, attitude matters a lot more than age.', id: 'aw-9' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Is Woblee a premium brand?', a: 'Yes, but not because of a label.<br>To us, premium means choosing better fabrics, paying attention to construction, investing in thoughtful finishes and creating designs that stand the test of time. It’s about the experience of wearing the product, from the first touch to the hundredth wear. We focus on making clothes you’ll keep reaching for, not just clothes you’ll wear once.', id: 'aw-10' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What kind of clothes does Woblee make?', a: 'T-shirts are where our story begins, but they’re only the beginning. You’ll find everything from clean everyday essentials to expressive statement pieces and artistic collections that showcase different design styles. As Woblee grows, so will the range of products we create.', id: 'aw-11' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How often do you launch new collections?', a: 'There’s always something new in the works. Some collections arrive with the seasons, while others are released as limited drops whenever the idea is ready. We’d rather take our time and launch something we’re genuinely proud of than release products just to fill a calendar.', id: 'aw-12' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Will you restock sold-out products?', a: 'It depends on the collection. Our core essentials are more likely to return, while limited-edition designs are often produced only once. If you’ve got your eye on something that’s sold out, feel free to get in touch with us. We’ll happily let you know if it’s coming back or if it’s time to find a new favourite.', id: 'aw-13' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Where can I buy Woblee?', a: 'You can shop directly from our website, where you’ll always find the widest selection of our collections. You’ll also see Woblee on selected online marketplaces, with more platforms being added as we continue to grow.', id: 'aw-14' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do you have a physical store?', a: 'Yes. We have a Woblee Design Experience Studio in Bengaluru, where you can explore the brand up close. As we grow, we’re also planning pop-ups and other retail experiences, so there’ll be more opportunities to meet us in person.', id: 'aw-15' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What’s next for Woblee?', a: 'More collections. More techniques. More categories. More stories waiting to be worn.<br>We’re building Woblee one thoughtful collection at a time, with the same goal we’ve had from day one: to create clothing that helps people express themselves, comfortably and confidently.', id: 'aw-16' -%}
+
+                  {%- when 'our-products' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What products does Woblee offer?', a: 'Right now, Woblee is centred around premium T-shirts for women, men and kids. Our collections range from everyday essentials and clean basics to expressive graphic tees and artistic statement pieces. As the brand grows, so will our range.', id: 'op-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What types of T-shirts does Woblee make?', a: 'We currently offer a mix of styles to suit different personalities and occasions.<ul><li>Essential Tees - Clean, versatile and made for everyday wear.</li><li>Graphic Tees - Creative designs that add personality without trying too hard.</li><li>Statement Tees - Bold concepts and typography that do the talking.</li><li>Artistic Tees - Design-led pieces inspired by themes, stories and creative expression.</li></ul>', id: 'op-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are all your products designed in-house?', a: 'Yes. Every Woblee product is designed by our in-house team. From the first idea to the final artwork, everything is created specifically for the brand. We don’t rely on ready-made graphics or generic designs.', id: 'op-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are your products made in India?', a: 'Yes. Our products are proudly designed and manufactured in India. Working locally helps us maintain better quality, finer attention to detail and stronger relationships with the people who bring our designs to life.', id: 'op-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do you release limited-edition collections?', a: 'Yes, some of our collections are intentionally produced in smaller quantities.<ul><li>Limited drops help keep every collection fresh.</li><li>Some designs may never be reproduced.</li><li>Once they’re gone, they’re often gone for good.</li></ul>', id: 'op-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Will a sold-out design come back?', a: 'Sometimes.<ul><li>Core styles are more likely to be restocked.</li><li>Limited collections may not return.</li><li>If you’re unsure, reach out to us. We’ll happily let you know whether a restock is planned.</li></ul>', id: 'op-6' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are all your T-shirts unisex?', a: 'Not all of them. We design dedicated fits for men, women and kids to make sure every tee fits the way it’s meant to. Some oversized silhouettes may naturally suit everyone, but we always recommend checking the product page and size guide before ordering.', id: 'op-7' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are your products suitable for everyday wear?', a: 'Absolutely. Every Woblee tee is designed to be worn often, not saved for “special occasions.” Comfortable fabrics, durable construction and versatile designs make them easy to style whether you’re heading to work, college, brunch or nowhere in particular.', id: 'op-8' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are your designs inspired by trends?', a: 'Not really. We pay attention to what’s happening in fashion, art and culture, but we don’t build collections around trends alone. We prefer designs with a little more staying power, pieces you’ll still enjoy wearing long after the trend cycle moves on.', id: 'op-9' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I request a design or suggest an idea?', a: 'We’d love to hear it. While we can’t promise every suggestion will become a collection, we’re always listening to our community. If you’ve got an idea you’d love to see on a Woblee tee, send it our way. Inspiration can come from anywhere.', id: 'op-10' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do all your collections have a theme?', a: 'Yes! Our collections are inspired by stories, some by moods, some by everyday moments and others by culture, nostalgia or art. Having a central idea helps us create designs that feel connected rather than random.', id: 'op-11' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Why do some products look simpler than others?', a: 'Because not every day calls for the loudest outfit. Some people want a bold graphic. Others just want an incredibly good plain tee. We design for both, because personal style isn’t one-size-fits-all.', id: 'op-12' -%}
+
+                  {%- when 'sizing-fit' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How do I find my size?', a: 'Every product page includes a detailed size chart to help you find your best fit. If you’re between sizes or unsure, feel free to reach out - we’re always happy to help.', id: 'sf-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do Woblee T-shirts fit true to size?', a: 'Yes. Our garments are designed to fit as intended for their respective fit type. We recommend choosing your usual size and referring to the size chart for the best fit.', id: 'sf-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What’s the difference between Regular, Relaxed, Oversized and Boxy fits?', a: 'Each fit is designed with a different look and feel in mind.<ul><li><strong>Regular Fit</strong> – A timeless, everyday silhouette that’s comfortable without being too loose or too fitted.</li><li><strong>Relaxed Fit</strong> – Offers a little more room for an easy, laid-back feel.</li><li><strong>Oversized Fit</strong> – Designed with a roomier silhouette for a bold, contemporary look.</li><li><strong>Boxy Fit</strong> – Shorter in length with a wider shape for a structured, fashion-forward style.</li></ul>', id: 'sf-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What if I’m between two sizes?', a: 'It depends on how you like your clothes to fit.<ul><li>For a closer fit, choose the smaller size.</li><li>For a more relaxed look, size up.</li><li>If you’re still unsure, our support team will be happy to guide you.</li></ul>', id: 'sf-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are men’s, women’s and kids’ sizes different?', a: 'Yes. Each category is designed with its own sizing and proportions to ensure the best possible fit. Always refer to the size chart for the product you’re purchasing.', id: 'sf-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Will my T-shirt shrink or stretch after washing?', a: 'Our garments are made using carefully selected fabrics and finishing processes to help minimise shrinkage and maintain their shape. Following the recommended care instructions will help your tee look and feel its best for longer.', id: 'sf-6' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I exchange my T-shirt if the size doesn’t fit?', a: 'Of course. If the size isn’t quite right, you can request an exchange as per our Exchange Policy, subject to eligibility and stock availability. For complete details, please visit our Exchange Policy.', id: 'sf-7' -%}
+
+                  {%- when 'fabric-quality' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What fabrics does Woblee use?', a: 'All Woblee tees are crafted using 100% cotton selected for its softness, breathability and everyday comfort. Depending on the collection, we use different knit constructions and fabric weights to achieve the right look, feel and drape for each design.', id: 'fq-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What does GSM mean?', a: 'GSM (grams per square metre) measures the weight and density of a fabric. A higher GSM generally creates a thicker, more structured tee, while a lower GSM offers a lighter, more breathable feel. We choose the GSM based on the style and purpose of each garment, so every tee feels exactly the way it was designed to.', id: 'fq-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What fabric types does Woblee use?', a: 'Our collections feature a range of premium cotton knit fabrics, including Single Jersey, Interlock, Terry and Loop Knit. Each offers a distinct feel-from lightweight everyday comfort to structured premium finishes—and the fabric used is always highlighted on the product page.', id: 'fq-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Are Woblee products pre-shrunk?', a: 'Many of our garments undergo processes like CPL, enzyme or bio washes to improve comfort, minimise shrinkage and enhance durability. The exact treatment used is mentioned on each product page.', id: 'fq-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What makes Woblee tees premium?', a: 'We focus on quality at every stage-from carefully selected fabrics and comfortable fits to durable construction and thoughtfully executed design techniques. Every tee is made to look great, feel better and stay that way, wear after wear.', id: 'fq-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How do I know which fabric is used in a product?', a: 'Every product page includes detailed information about the fabric composition, GSM (where applicable), wash treatment, fit and care instructions, so you know exactly what you’re buying.', id: 'fq-6' -%}
+
+                  {%- when 'design-techniques' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What printing and embroidery techniques does Woblee use?', a: 'Depending on the collection, you may find techniques like screen printing, puff print, gel print, embroidery, canvas patches, chenille, beadwork and more. Every technique is chosen to complement the artwork and bring the design to life.', id: 'dt-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Why do different Woblee T-shirts feel different?', a: 'Not every design is meant to look—or feel—the same. Some techniques create raised textures, while others are smooth, stitched or layered. It’s all part of the design, giving each tee its own personality.', id: 'dt-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do different techniques need different care?', a: 'Not really. Most Woblee garments can be cared for the same way by following the wash instructions on the product label. A little extra care—like washing inside out and avoiding direct ironing on prints—goes a long way.', id: 'dt-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Will printed and embroidered designs last?', a: 'Yes. Our products are made using quality materials and techniques designed for everyday wear. Following the recommended care instructions will help keep your garment looking its best over time.', id: 'dt-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Where can I learn more about each technique?', a: 'Every product page tells you exactly which techniques have been used on that garment. If you’re curious about how they work, visit our Techniques Guide to explore each one in more detail.', id: 'dt-5' -%}
+
+                  {%- when 'product-care' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How should I wash my Woblee T-shirt?', a: 'For best results:<ul><li>Machine wash cold with similar colours.</li><li>Turn the garment inside out before washing.</li><li>Use a mild detergent.</li><li>Avoid bleach or harsh chemicals.</li></ul>', id: 'pc-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I machine wash my Woblee T-shirt?', a: 'Yes. Most Woblee garments are machine washable. We recommend using a gentle cycle and washing with similar colours to help preserve the fabric and design. Always wash inside-out.', id: 'pc-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I tumble dry my T-shirt?', a: 'We recommend air drying whenever possible. High heat can affect the fabric, print, techniques and overall fit over time.', id: 'pc-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I iron printed or embroidered garments?', a: 'Yes, but with a little care.<ul><li>Always iron the garment inside out.</li><li>Do not iron directly over prints, embroidery or patches.</li><li>Use a low to medium heat setting.</li></ul>', id: 'pc-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Why should I wash my T-shirt inside out?', a: 'Turning your garment inside out helps protect the print, embroidery and fabric surface from unnecessary friction during washing, helping it stay looking newer for longer.', id: 'pc-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I dry clean my Woblee garments?', a: 'Most Woblee products are designed for regular home care and don’t require dry cleaning. If a garment needs special care, it’ll always be mentioned on the care label.', id: 'pc-6' -%}
+
+                  {%- when 'orders-payments' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How do I place an order?', a: 'Shopping with Woblee is simple.<ul><li>Browse your favourite styles.</li><li>Select your size and quantity.</li><li>Add the product to your cart.</li><li>Proceed to checkout and complete your payment.</li><li>We’ll take it from there.</li></ul>', id: 'opay-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do I need to create an account to place an order?', a: 'No. You can check out as a guest if guest checkout is available. Creating an account does make it easier to track your orders, save addresses and shop faster the next time around.', id: 'opay-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How will I know if my order has been confirmed?', a: 'Once your order is successfully placed, you’ll receive an order confirmation via email and/or SMS with your order details. If you don’t receive a confirmation within a few minutes, check your spam folder or get in touch with us.', id: 'opay-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I change my order after placing it?', a: 'If your order hasn’t entered processing yet, we’ll do our best to help. Please contact our support team as soon as possible. Once an order has been packed or shipped, changes may no longer be possible.', id: 'opay-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I cancel my order?', a: 'Yes, as long as your order hasn’t been processed for dispatch. If you’d like to cancel your order, contact us at the earliest and we’ll let you know if it’s still eligible for cancellation.', id: 'opay-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I order multiple products together?', a: 'Absolutely. Add as many products as you’d like to your cart before checking out. Depending on availability, they may arrive together or in separate shipments.', id: 'opay-6' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I place a bulk order?', a: 'Yes! Whether you’re shopping for your team, an event, your business or something else entirely, we’d love to help. Please get in touch with us through our Contact page, and we’ll guide you through the process.', id: 'opay-7' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What payment methods do you accept?', a: 'We accept a range of secure payment options, including:<ul><li>Credit Cards</li><li>Debit Cards</li><li>UPI</li><li>Net Banking</li><li>Digital Wallets</li><li>Other payment methods available at checkout</li></ul>', id: 'opay-8' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Is Cash on Delivery (COD) available?', a: 'Cash on Delivery may be available for selected locations and eligible orders. You’ll be able to see whether COD is available for your pin code during checkout.', id: 'opay-9' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Is it safe to make payments on your website?', a: 'Yes. All payments are processed through secure and trusted payment gateways. Your payment information is encrypted and handled using industry-standard security measures.', id: 'opay-10' -%}
+                    {%- render 'faq-hardcoded-item', q: 'My payment failed, but the amount was deducted. What should I do?', a: 'Don’t worry, this can occasionally happen due to banking delays.<ul><li>If the order wasn’t created, the amount is usually reversed automatically by your bank.</li><li>If the issue persists, contact us with your payment details and we’ll be happy to help.</li></ul>', id: 'opay-11' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Will I receive an invoice?', a: 'Yes. A digital tax invoice will be shared with your order confirmation and can also be downloaded once your order is complete.', id: 'opay-12' -%}
+
+                  {%- when 'shipping-returns-exchanges' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Do you ship across India?', a: 'Yes, we currently deliver to most serviceable pin codes across India. Read our Shipping Policy for delivery timelines, shipping charges and more.', id: 'sre-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How long will my order take to arrive?', a: 'Estimated delivery dates are shown on every product page and at checkout. For more information, see our Shipping Policy.', id: 'sre-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I return my order?', a: 'Yes, eligible products can be returned within the return window, provided they’re unused, unwashed and in their original condition. Read our Return Policy for eligibility and timelines.', id: 'sre-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I exchange my order?', a: 'Absolutely. If your preferred size or product is available, we’ll be happy to help with an exchange. See our Exchange Policy for the complete process.', id: 'sre-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How do I start a return or exchange?', a: 'Just contact our customer support team or use the returns portal (if available). We’ll guide you through the process. Full instructions are available in our Return and Exchange Policies.', id: 'sre-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'When will I receive my refund?', a: 'Refunds are processed after the returned product passes our quality check. For refund timelines and payment methods, please refer to our Return Policy.', id: 'sre-6' -%}
+                    {%- render 'faq-hardcoded-item', q: 'My order has an issue. What should I do?', a: 'If you’ve received a damaged, defective or incorrect item, please get in touch with us as soon as possible with your order details and photos of the product. The complete process is explained in our Return Policy.', id: 'sre-7' -%}
+
+                  {%- when 'contact-support' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How can I get in touch with Woblee?', a: 'You can reach us through:<ul><li>Email</li><li>Phone</li><li>WhatsApp</li><li>Our Contact Us page</li></ul>We’ll do our best to get back to you as quickly as possible.', id: 'cs-1' -%}
+                    {%- render 'faq-hardcoded-item', q: 'What are your customer support hours?', a: 'Our support team is available during our regular business hours. For the latest timings, please visit our Contact Us page.', id: 'cs-2' -%}
+                    {%- render 'faq-hardcoded-item', q: 'How long does it take to receive a response?', a: 'We aim to respond to all queries as soon as possible. During weekends, holidays or sale periods, it may take us a little longer—but we’ll always get back to you.', id: 'cs-3' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Where is Woblee based?', a: 'Woblee is proudly based in Bengaluru, India, where our collections are designed and brought to life.', id: 'cs-4' -%}
+                    {%- render 'faq-hardcoded-item', q: 'Can I visit Woblee?', a: 'Yes! We’d love to meet you. You can visit our Design Experience Studio in Bengaluru. For the address and visiting hours, please head over to our Contact Us page.', id: 'cs-5' -%}
+                    {%- render 'faq-hardcoded-item', q: 'I have a question that isn’t answered here. What should I do?', a: 'Just reach out to us. No question is too small—we’re always happy to help if we can.', id: 'cs-6' -%}
+                {%- endcase -%}
+              {%- else -%}
+                <!-- Loop custom added block items -->
+                {%- for block in section.blocks -%}
+                  {%- assign block_cat_handle = block.settings.category | handleize -%}
+                  {%- if block_cat_handle == cat_handle -%}
+                    {%- assign item_index = item_index | plus: 1 -%}
+                    <div class="faq-accordion-item" {{ block.shopify_attributes }}>
+                      <h3 class="faq-accordion-header">
+                        <button 
+                          class="faq-accordion-trigger" 
+                          aria-expanded="false" 
+                          aria-controls="faq-answer-{{ block.id }}"
+                          type="button"
+                        >
+                          <span class="faq-question-text">{{ block.settings.question }}</span>
+                          <span class="faq-icon-wrap" aria-hidden="true">
+                            <svg class="faq-icon-plus" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                              <path d="M7 1V13M1 7H13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </h3>
+                      <div 
+                        class="faq-accordion-content" 
+                        id="faq-answer-{{ block.id }}" 
+                        aria-hidden="true" 
+                        style="max-height: 0;"
+                      >
+                        <div class="faq-accordion-inner rte">
+                          {{ block.settings.answer }}
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Scoped variables and base setup */
+#faq-section-{{ section.id }} {
+  background: var(--faq-bg);
+  padding-top: var(--faq-pt);
+  padding-bottom: var(--faq-pb);
+  color: var(--faq-text-color);
+  overflow-x: hidden;
+}
+
+#faq-section-{{ section.id }} .faq-container {
+  max-width: {{ section.settings.max_width }}px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+#faq-section-{{ section.id }} .faq-main-heading {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 700;
+  margin-bottom: 50px;
+  color: var(--faq-text-color);
+}
+
+/* Two-column layout */
+#faq-section-{{ section.id }} .faq-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Category Navigation Left */
+#faq-section-{{ section.id }} .faq-nav {
+  position: sticky;
+  top: 40px;
+  z-index: 10;
+}
+
+#faq-section-{{ section.id }} .faq-nav-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+}
+
+#faq-section-{{ section.id }} .faq-nav-btn {
+  background: none;
+  border: none;
+  padding: 0 0 4px 0;
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--faq-text-color);
+  opacity: 0.4;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.25s ease, border-color 0.25s ease;
+  border-bottom: 2px solid transparent;
+  width: fit-content;
+}
+
+#faq-section-{{ section.id }} .faq-nav-btn:hover {
+  opacity: 0.8;
+}
+
+#faq-section-{{ section.id }} .faq-nav-btn.is-active {
+  opacity: 1;
+  border-bottom: 2px solid var(--faq-active-color);
+}
+
+/* Right Content */
+#faq-section-{{ section.id }} .faq-content {
+  min-width: 0;
+}
+
+#faq-section-{{ section.id }} .faq-category-intro {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  max-width: 800px;
+}
+
+#faq-section-{{ section.id }} .faq-category-intro p {
+  margin: 0;
+}
+
+/* Accordion Row */
+#faq-section-{{ section.id }} .faq-accordion {
+  border-top: 1px solid var(--faq-divider-color);
+}
+
+#faq-section-{{ section.id }} .faq-accordion-item {
+  border-bottom: 1px solid var(--faq-divider-color);
+}
+
+#faq-section-{{ section.id }} .faq-accordion-header {
+  margin: 0;
+  padding: 0;
+}
+
+#faq-section-{{ section.id }} .faq-accordion-trigger {
+  background: none;
+  border: none;
+  padding: 24px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--faq-text-color);
+}
+
+#faq-section-{{ section.id }} .faq-question-text {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+#faq-section-{{ section.id }} .faq-icon-wrap {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--faq-anim-speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#faq-section-{{ section.id }} .faq-accordion-trigger[aria-expanded="true"] .faq-icon-wrap {
+  transform: rotate(45deg);
+}
+
+#faq-section-{{ section.id }} .faq-accordion-content {
+  overflow: hidden;
+  transition: max-height var(--faq-anim-speed) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#faq-section-{{ section.id }} .faq-accordion-inner {
+  padding-bottom: 24px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+#faq-section-{{ section.id }} .faq-accordion-inner ul,
+#faq-section-{{ section.id }} .faq-accordion-inner ol {
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+
+#faq-section-{{ section.id }} .faq-accordion-inner li {
+  margin-bottom: 6px;
+}
+
+/* Responsive Mobile Rules */
+@media (max-width: 768px) {
+  #faq-section-{{ section.id }} {
+    padding-top: var(--faq-pt-mobile) !important;
+    padding-bottom: var(--faq-pb-mobile) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-container {
+    padding: 0 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-main-heading {
+    margin-bottom: 24px !important;
+    font-size: 28px !important;
+    padding: 0 !important;
+    width: 100% !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    white-space: normal !important;
+    text-align: left !important;
+  }
+
+  /* Stack layout vertically on mobile */
+  #faq-section-{{ section.id }} .faq-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Horizontal scrolling navigation on mobile */
+  #faq-section-{{ section.id }} .faq-nav {
+    position: sticky !important;
+    top: 0 !important;
+    background: var(--faq-bg) !important;
+    margin: 0 -16px 20px -16px !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid var(--faq-divider-color) !important;
+    width: auto !important;
+    max-width: none !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 24px !important;
+    padding: 0 0 4px 0 !important;
+    margin: 0 !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    list-style: none !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-nav-item {
+    scroll-snap-align: start !important;
+    flex: 0 0 auto !important;
+    display: block !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-nav-btn {
+    font-size: 14px !important;
+    padding: 8px 0 !important;
+    min-height: 44px !important;
+    white-space: nowrap !important;
+    opacity: 0.4 !important;
+    border-bottom: 2px solid transparent !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-nav-btn.is-active {
+    opacity: 1 !important;
+    border-bottom: 2px solid var(--faq-active-color) !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-category-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-category-intro {
+    font-size: 16px !important;
+    margin-bottom: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-accordion {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-accordion-item {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-accordion-trigger {
+    padding: 16px 0 !important;
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-question-text {
+    font-size: 16px !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-accordion-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-accordion-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+    padding-bottom: 16px !important;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const faqSection = document.getElementById('faq-section-{{ section.id }}');
+  if (!faqSection) return;
+
+  // 1. Category Switching functionality
+  const navButtons = faqSection.querySelectorAll('.faq-nav-btn');
+  const panels = faqSection.querySelectorAll('.faq-category-panel');
+
+  navButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetCat = this.getAttribute('data-target-cat');
+      
+      // Update active nav button states
+      navButtons.forEach(btn => {
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      this.classList.add('is-active');
+      this.setAttribute('aria-selected', 'true');
+
+      // Show targeted panel and hide others
+      panels.forEach(panel => {
+        if (panel.getAttribute('data-cat') === targetCat) {
+          panel.style.display = 'block';
+          panel.classList.add('is-active');
+          // Collapse all open answers in newly active panel
+          panel.querySelectorAll('.faq-accordion-trigger').forEach(trigger => {
+            trigger.setAttribute('aria-expanded', 'false');
+            const content = trigger.closest('.faq-accordion-item').querySelector('.faq-accordion-content');
+            if (content) {
+              content.style.maxHeight = '0px';
+              content.setAttribute('aria-hidden', 'true');
+            }
+          });
+        } else {
+          panel.style.display = 'none';
+          panel.classList.remove('is-active');
+        }
+      });
+
+      // Smooth scroll target item into view on mobile sticky tab bar
+      if (window.innerWidth <= 768) {
+        this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  });
+
+  // 2. Accordion expand/collapse functionality (Only 1 open at a time per category panel)
+  const accordionTriggers = faqSection.querySelectorAll('.faq-accordion-trigger');
+
+  accordionTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function() {
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      const currentItem = this.closest('.faq-accordion-item');
+      const currentPanel = this.closest('.faq-category-panel');
+      const currentContent = currentItem.querySelector('.faq-accordion-content');
+
+      // Collapse all other accordion items in the active panel
+      currentPanel.querySelectorAll('.faq-accordion-item').forEach(item => {
+        if (item !== currentItem) {
+          const otherTrigger = item.querySelector('.faq-accordion-trigger');
+          const otherContent = item.querySelector('.faq-accordion-content');
+          if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+          if (otherContent) {
+            otherContent.style.maxHeight = '0px';
+            otherContent.setAttribute('aria-hidden', 'true');
+          }
+        }
+      });
+
+      // Toggle state of clicked item
+      if (isExpanded) {
+        this.setAttribute('aria-expanded', 'false');
+        currentContent.style.maxHeight = '0px';
+        currentContent.setAttribute('aria-hidden', 'true');
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        currentContent.style.maxHeight = currentContent.scrollHeight + 'px';
+        currentContent.setAttribute('aria-hidden', 'false');
+      }
+    });
+  });
+
+  // 3. Set first accordion item of the active panel open by default if setting is enabled
+  {% if section.settings.open_first %}
+    const activePanel = faqSection.querySelector('.faq-category-panel.is-active');
+    if (activePanel) {
+      const firstTrigger = activePanel.querySelector('.faq-accordion-trigger');
+      if (firstTrigger) {
+        firstTrigger.click();
+      }
+    }
+  {% endif %}
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom FAQ Center",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Desktop Max Width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Line Color",
+      "default": "#e2e2e2"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active Tab Highlight Color",
+      "default": "#121212"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Open First Question By Default",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "anim_speed",
+      "label": "Accordion Transition Speed",
+      "min": 0.1,
+      "max": 0.8,
+      "step": 0.1,
+      "unit": "s",
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Desktop Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Desktop Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Mobile Padding Top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Mobile Padding Bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Question & Answer",
+      "settings": [
+        {
+          "type": "select",
+          "id": "category",
+          "label": "FAQ Category Group",
+          "options": [
+            { "value": "About Woblee", "label": "About Woblee" },
+            { "value": "Our Products", "label": "Our Products" },
+            { "value": "Sizing & Fit", "label": "Sizing & Fit" },
+            { "value": "Fabric & Quality", "label": "Fabric & Quality" },
+            { "value": "Design & Techniques", "label": "Design & Techniques" },
+            { "value": "Product Care", "label": "Product Care" },
+            { "value": "Orders & Payments", "label": "Orders & Payments" },
+            { "value": "Shipping, Returns & Exchanges", "label": "Shipping, Returns & Exchanges" },
+            { "value": "Contact & Support", "label": "Contact & Support" }
+          ],
+          "default": "About Woblee"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "FAQ Question",
+          "default": "What is the question?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "FAQ Answer",
+          "default": "<p>Write the answer here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ Center",
+      "category": "Layout"
+    }
+  ]
+}
+{% endschema %}
