@@ -4544,11 +4544,14 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
 }
 
 /* General reset for text inside the widget to prevent inherit styling conflicts */
-[data-widget-container="review-widget"] * {
+[data-widget-container="review-widget"] {
   font-family: var(--font-body--family, sans-serif) !important;
-  text-align: center !important;
 }
-
+.jdgm-empty-state[data-v-4be2343c], .jm-other-products-reviews-text[data-v-4be2343c],
+span.jm-text.jm-reviewer-info__name,
+p.jm-text.jm-other-products-reviews-text{
+  color: #0c4168 !important;
+}
 /* 1. CENTER THE REVIEW HEADER */
 [data-widget-container="review-widget"] .jm-review-widget-minimal-header__title,
 [data-widget-container="review-widget"] .jm-review-widget-minimal-header__title * {
@@ -4571,6 +4574,11 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
   justify-content: center !important;
   width: 100% !important;
   margin: 0 auto !important;
+  text-align: center !important;
+}
+
+[data-widget-container="review-widget"] .jm-no-reviews-state * {
+  text-align: center !important;
 }
 
 [data-widget-container="review-widget"] .jm-no-reviews-state__text {
@@ -4587,7 +4595,7 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
 
 /* 3. CENTER THE WRITE REVIEW BUTTON & CLUSTERS */
 [data-widget-container="review-widget"] .jm-no-reviews-state__action-buttons,
-[data-widget-container="review-widget"] .jm-action-buttons {
+[data-widget-container="review-widget"] .jm-no-reviews-state .jm-action-buttons {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -4596,8 +4604,8 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
   margin: 0 auto !important;
 }
 
-[data-widget-container="review-widget"] .jm-center,
-[data-widget-container="review-widget"] .jm-center--intrinsic {
+[data-widget-container="review-widget"] .jm-no-reviews-state .jm-center,
+[data-widget-container="review-widget"] .jm-no-reviews-state .jm-center--intrinsic {
   margin-left: auto !important;
   margin-right: auto !important;
   text-align: center !important;
@@ -4608,7 +4616,7 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
   width: 100% !important;
 }
 
-[data-widget-container="review-widget"] .jm-cluster {
+[data-widget-container="review-widget"] .jm-no-reviews-state .jm-cluster {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -4616,7 +4624,7 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
   width: 100% !important;
 }
 
-[data-widget-container="review-widget"] .jm-stack {
+[data-widget-container="review-widget"] .jm-no-reviews-state .jm-stack {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
