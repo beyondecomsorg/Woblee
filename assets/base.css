@@ -4636,7 +4636,7 @@ p.jm-text.jm-other-products-reviews-text{
 [data-widget-container="review-widget"] button.jm-button.jm-button--primary.jm-action-buttons__button {
   background-color: #0c4168 !important;
   color: #ffffff !important;
-  border-radius: var(--style-border-radius-buttons-primary, 0px) !important;
+  border-radius: 0px !important;
   font-family: var(--button-font-family-primary, inherit) !important;
   text-transform: var(--button-text-case-primary, uppercase) !important;
   font-weight: var(--font-paragraph--weight, bold) !important;
