@@ -4710,3 +4710,13 @@ p.jm-text.jm-other-products-reviews-text{
     white-space: normal !important;
   }
 }
+
+/* Center Customer Reviews heading only */
+[data-widget-container="review-widget"] .jm-review-widget__header .jm-stack--space-200 {
+  width: 100% !important;
+}
+[data-widget-container="review-widget"] .jm-review-widget-minimal-header__title {
+  text-align: center !important;
+  width: 100% !important;
+  display: block !important;
+}
