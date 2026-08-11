@@ -951,7 +951,7 @@
         "popup_add_to_cart_font_size_desktop": 14,
         "popup_add_to_cart_font_size_mobile": 14,
         "popup_add_to_cart_font_weight": "700",
-        "padding-block-start": 0,
+        "padding-block-start": 40,
         "padding-block-end": 40
       }
     }
