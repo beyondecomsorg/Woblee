@@ -4564,6 +4564,7 @@ p.jm-text.jm-other-products-reviews-text{
   text-align: center !important;
   width: 100% !important;
   white-space: nowrap !important;
+  text-transform: capitalize !important;
 }
 
 /* 2. CENTER THE EMPTY REVIEW STATE */
