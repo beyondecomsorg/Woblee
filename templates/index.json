@@ -602,7 +602,7 @@
           "settings": {
             "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png",
             "caption": "Explore the incredible materials we use",
-            "explore_label": "EXPLORE",
+            "explore_label": "",
             "link": ""
           }
         },
@@ -611,7 +611,7 @@
           "settings": {
             "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png",
             "caption": "Read about our amazing factory partners",
-            "explore_label": "EXPLORE",
+            "explore_label": "",
             "link": ""
           }
         },
@@ -620,7 +620,7 @@
           "settings": {
             "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png",
             "caption": "Our promise of great quality",
-            "explore_label": "EXPLORE",
+            "explore_label": "",
             "link": ""
           }
         },
@@ -629,7 +629,7 @@
           "settings": {
             "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png",
             "caption": "Discover our pursuit of sustainability",
-            "explore_label": "EXPLORE",
+            "explore_label": "",
             "link": ""
           }
         }
