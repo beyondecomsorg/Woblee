@@ -752,7 +752,6 @@
         "feature_mTikFx": {
           "type": "feature",
           "settings": {
-            "icon": "shopify://shop_images/Relaxed-Blue.png",
             "title": "PURE COTTON",
             "text": "Naturally breathable for everyday wear"
           }
