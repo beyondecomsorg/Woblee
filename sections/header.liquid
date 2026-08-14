@@ -408,6 +408,11 @@
 ></script>
 
 {% stylesheet %}
+  @media screen and (max-width: 749px) {
+    .header__navigation-bar-row {
+      display: none !important;
+    }
+  }
   body {
     --header-height: 60px;
     --header-group-height: var(--header-height);

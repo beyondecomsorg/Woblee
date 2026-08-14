@@ -138,7 +138,7 @@
               </div>
 
               <div class="custom-footer__social-wrap">
-                <div class="custom-footer__social">
+                <div class="custom-footer__social social-icons">
                   {% if section.settings.website_url != blank %}
                     <a class="custom-footer__social-link custom-footer__social-link--globe" href="{{ section.settings.website_url }}" target="_blank" rel="noopener" aria-label="Website">
                       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
@@ -165,46 +165,106 @@
 
             <div class="custom-footer__menus">
               <div class="custom-footer__menu-col">
-                <h3 class="custom-footer__col-title">{{ section.settings.menu_1_title }}</h3>
                 {% if section.settings.menu_1 != blank %}
-                  <ul class="custom-footer__menu-list">
-                    {% for link in linklists[section.settings.menu_1].links %}
-                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                  </ul>
+                  <!-- Mobile layout: details/summary -->
+                  <details class="footer-menu mobile-only">
+                    <summary class="custom-footer__col-title">
+                      <span>{{ section.settings.menu_1_title }}</span>
+                      <span class="footer-menu-icon"></span>
+                    </summary>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_1].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                  <!-- Desktop layout: normal headings & lists -->
+                  <div class="desktop-only">
+                    <h3 class="custom-footer__col-title">{{ section.settings.menu_1_title }}</h3>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_1].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 {% endif %}
               </div>
 
               <div class="custom-footer__menu-col">
-                <h3 class="custom-footer__col-title">{{ section.settings.menu_2_title }}</h3>
                 {% if section.settings.menu_2 != blank %}
-                  <ul class="custom-footer__menu-list">
-                    {% for link in linklists[section.settings.menu_2].links %}
-                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                  </ul>
+                  <!-- Mobile layout: details/summary -->
+                  <details class="footer-menu mobile-only">
+                    <summary class="custom-footer__col-title">
+                      <span>{{ section.settings.menu_2_title }}</span>
+                      <span class="footer-menu-icon"></span>
+                    </summary>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_2].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                  <!-- Desktop layout: normal headings & lists -->
+                  <div class="desktop-only">
+                    <h3 class="custom-footer__col-title">{{ section.settings.menu_2_title }}</h3>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_2].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 {% endif %}
               </div>
 
               <div class="custom-footer__menu-col">
-                <h3 class="custom-footer__col-title">{{ section.settings.menu_3_title }}</h3>
                 {% if section.settings.menu_3 != blank %}
-                  <ul class="custom-footer__menu-list">
-                    {% for link in linklists[section.settings.menu_3].links %}
-                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                  </ul>
+                  <!-- Mobile layout: details/summary -->
+                  <details class="footer-menu mobile-only">
+                    <summary class="custom-footer__col-title">
+                      <span>{{ section.settings.menu_3_title }}</span>
+                      <span class="footer-menu-icon"></span>
+                    </summary>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_3].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                  <!-- Desktop layout: normal headings & lists -->
+                  <div class="desktop-only">
+                    <h3 class="custom-footer__col-title">{{ section.settings.menu_3_title }}</h3>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_3].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 {% endif %}
               </div>
 
               <div class="custom-footer__menu-col">
-                <h3 class="custom-footer__col-title">{{ section.settings.menu_4_title }}</h3>
                 {% if section.settings.menu_4 != blank %}
-                  <ul class="custom-footer__menu-list">
-                    {% for link in linklists[section.settings.menu_4].links %}
-                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                    {% endfor %}
-                  </ul>
+                  <!-- Mobile layout: details/summary -->
+                  <details class="footer-menu mobile-only">
+                    <summary class="custom-footer__col-title">
+                      <span>{{ section.settings.menu_4_title }}</span>
+                      <span class="footer-menu-icon"></span>
+                    </summary>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_4].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </details>
+                  <!-- Desktop layout: normal headings & lists -->
+                  <div class="desktop-only">
+                    <h3 class="custom-footer__col-title">{{ section.settings.menu_4_title }}</h3>
+                    <ul class="custom-footer__menu-list">
+                      {% for link in linklists[section.settings.menu_4].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
                 {% endif %}
               </div>
             </div>
@@ -532,7 +592,7 @@ width: 100px;
   }
 
   .custom-footer__right{
-    padding:30px 20px;
+    padding: 15px !important;
   }
 }
 #{{ section_id }} {
@@ -723,19 +783,24 @@ width: 100px;
 .custom-footer__social {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-top: 6px;
-  width: 65%;
-  justify-content: center;
+  gap: 28px;
+  margin-top: 20px;
+  justify-content: flex-start;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 11px;
 }
 
 .custom-footer__social-link {
-  width: 26px;
-  height: 26px;
+  width: 22px !important;
+  height: 22px !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--footer-text);
+  color: var(--footer-text) !important;
   text-decoration: none;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -750,8 +815,8 @@ width: 100px;
 }
 
 .custom-footer__social-link svg {
-  width: 20px;
-  height: 20px;
+  width: 22px !important;
+  height: 22px !important;
   display: block;
 }
 
@@ -788,8 +853,8 @@ margin-top: 10px;
 }
 @media only screen and (min-width: 769px){
 .custom-footer__social-wrap{
-width: 73s%;
-margin: auto;
+width: 100%;
+margin: 0;
 
 }
 }
@@ -946,7 +1011,7 @@ margin: auto;
   }
 
   .custom-footer__left {
-    padding-bottom: 54px;
+    padding-bottom: 15px;
   }
 
   .custom-footer__links-grid {
@@ -971,6 +1036,9 @@ margin: auto;
   .custom-footer__usp-item {
     font-size: 11px;
     letter-spacing: 0.14em;
+  }
+  .custom-footer__right{
+    padding-top: 15px !important;
   }
 
   .custom-footer__left,
@@ -1004,6 +1072,90 @@ margin: auto;
 
   .custom-footer__copyright {
     font-size: 13px;
+  }
+}
+
+/* Mobile Collapsible Dropdowns for SHOP, INFO, LINKS */
+@media screen and (max-width: 767px) {
+  .custom-footer__menus {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+  .custom-footer__menu-col {
+    width: 100% !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  .custom-footer__menu-col:last-child {
+    border-bottom: none !important;
+  }
+  
+  .footer-menu {
+    width: 100% !important;
+  }
+  
+  .footer-menu summary.custom-footer__col-title {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 18px 0 !important;
+    margin: 0 !important;
+    cursor: pointer !important;
+    list-style: none !important;
+  }
+  
+  .footer-menu summary.custom-footer__col-title::-webkit-details-marker {
+    display: none !important;
+  }
+  
+  .footer-menu-icon {
+    display: inline-block !important;
+    transition: transform 0.25s ease !important;
+    font-size: 18px !important;
+    font-weight: var(--wb-fw-bold) !important;
+    line-height: 1 !important;
+  }
+  
+  .footer-menu-icon::before {
+    content: "+" !important;
+    display: inline-block !important;
+  }
+  
+  .footer-menu[open] .footer-menu-icon {
+    transform: rotate(180deg) !important;
+  }
+  
+  .footer-menu[open] .footer-menu-icon::before {
+    content: "−" !important;
+  }
+  
+  .footer-menu ul.custom-footer__menu-list {
+    padding-bottom: 18px !important;
+    margin: 0 !important;
+    list-style: none !important;
+  }
+  
+  .footer-menu ul.custom-footer__menu-list li + li {
+    margin-top: 12px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .desktop-only {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
   }
 }
 </style>

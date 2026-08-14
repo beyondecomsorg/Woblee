@@ -148,7 +148,7 @@
   flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 749px){
   #{{ section_id }} .timeline-tabs__inner.page-width .timeline-tabs__tabs {
   justify-content: flex-start;
 }
@@ -279,9 +279,9 @@
   }
 
   #{{ section_id }} .timeline-tabs__content {
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
-  }
+  } 
 
   #{{ section_id }} .timeline-tabs__image {
     height: {{ section.settings.image_height_mobile }}px;
@@ -305,8 +305,12 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     justify-content: flex-start;
-    gap: 20px;
+    gap: 6px;
     scrollbar-width: none;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+    
   }
 
   #{{ section_id }} .timeline-tabs__tabs::-webkit-scrollbar {

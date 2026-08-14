@@ -31,8 +31,16 @@
     <div class="faq-layout">
       <!-- LEFT SIDE: Navigation -->
       <nav class="faq-nav" aria-label="FAQ Categories">
-        <ul class="faq-nav-list">
-          {%- assign categories = "About Woblee;Our Products;Sizing & Fit;Fabric & Quality;Design & Techniques;Product Care;Orders & Payments;Contact & Support;Shipping, Returns & Exchanges" | split: ";" -%}
+        <!-- Mobile Dropdown Trigger -->
+        <button class="faq-mobile-trigger" type="button" aria-expanded="false" aria-controls="faq-nav-list">
+          <span class="faq-mobile-trigger-text">About Woblee</span>
+          <svg class="faq-mobile-trigger-icon" width="12" height="8" viewBox="0 0 12 8" fill="none">
+            <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <ul class="faq-nav-list" id="faq-nav-list">
+          {%- assign categories = "About Woblee;Our Products;Sizing and Fit;Fabric and Quality;Design and Techniques;Product Care;Orders and Payments;Shipping, Returns and Exchanges;Contact and Support" | split: ";" -%}
           {%- for cat in categories -%}
             {%- assign cat_handle = cat | handleize -%}
             <li class="faq-nav-item">
@@ -70,19 +78,19 @@
                   <p>Whether you’re here because a tee caught your eye or you’re simply curious about who we are, welcome. Here’s a little more about what makes Woblee, well… Woblee.</p>
                 {%- when 'our-products' -%}
                   <p>Every Woblee product starts with the same idea: make something you’d actually want to wear again tomorrow. Here’s everything you might want to know before adding one to your wardrobe.</p>
-                {%- when 'sizing-fit' -%}
+                {%- when 'sizing-and-fit' -%}
                   <p>The right fit makes all the difference. Here’s everything you need to know before choosing your size.</p>
-                {%- when 'fabric-quality' -%}
+                {%- when 'fabric-and-quality' -%}
                   <p>All Woblee tees are crafted using 100% cotton selected for its softness, breathability and everyday comfort. Depending on the collection, we use different knit constructions and fabric weights to achieve the right look, feel and drape for each design.</p>
-                {%- when 'design-techniques' -%}
+                {%- when 'design-and-techniques' -%}
                   <p>Every Woblee design is more than just ink on fabric. We use a variety of techniques to add texture, depth and character, making each piece feel as unique as the story behind it.</p>
                 {%- when 'product-care' -%}
                   <p>A little care goes a long way. Follow these simple tips to help your Woblee favourites stay looking and feeling their best.</p>
-                {%- when 'orders-payments' -%}
+                {%- when 'orders-and-payments' -%}
                   <p>Placing an order should be the easiest part of your day. Here’s everything you need to know before you check out.</p>
-                {%- when 'shipping-returns-exchanges' -%}
+                {%- when 'shipping-returns-and-exchanges' -%}
                   <p>Need the full details? You can find our complete Shipping Policy, Return Policy and Exchange Policy in the footer or by following the links below.</p>
-                {%- when 'contact-support' -%}
+                {%- when 'contact-and-support' -%}
                   <p>Need a hand? Whether you have a question about an order, a product or just want to say hello, we’re here to help.</p>
               {%- endcase -%}
             </div>
@@ -126,7 +134,7 @@
                     {%- render 'faq-hardcoded-item', q: 'Do all your collections have a theme?', a: 'Yes! Our collections are inspired by stories, some by moods, some by everyday moments and others by culture, nostalgia or art. Having a central idea helps us create designs that feel connected rather than random.', id: 'op-11' -%}
                     {%- render 'faq-hardcoded-item', q: 'Why do some products look simpler than others?', a: 'Because not every day calls for the loudest outfit. Some people want a bold graphic. Others just want an incredibly good plain tee. We design for both, because personal style isn’t one-size-fits-all.', id: 'op-12' -%}
 
-                  {%- when 'sizing-fit' -%}
+                  {%- when 'sizing-and-fit' -%}
                     {%- render 'faq-hardcoded-item', q: 'How do I find my size?', a: 'Every product page includes a detailed size chart to help you find your best fit. If you’re between sizes or unsure, feel free to reach out - we’re always happy to help.', id: 'sf-1' -%}
                     {%- render 'faq-hardcoded-item', q: 'Do Woblee T-shirts fit true to size?', a: 'Yes. Our garments are designed to fit as intended for their respective fit type. We recommend choosing your usual size and referring to the size chart for the best fit.', id: 'sf-2' -%}
                     {%- render 'faq-hardcoded-item', q: 'What’s the difference between Regular, Relaxed, Oversized and Boxy fits?', a: 'Each fit is designed with a different look and feel in mind.<ul><li><strong>Regular Fit</strong> – A timeless, everyday silhouette that’s comfortable without being too loose or too fitted.</li><li><strong>Relaxed Fit</strong> – Offers a little more room for an easy, laid-back feel.</li><li><strong>Oversized Fit</strong> – Designed with a roomier silhouette for a bold, contemporary look.</li><li><strong>Boxy Fit</strong> – Shorter in length with a wider shape for a structured, fashion-forward style.</li></ul>', id: 'sf-3' -%}
@@ -135,7 +143,7 @@
                     {%- render 'faq-hardcoded-item', q: 'Will my T-shirt shrink or stretch after washing?', a: 'Our garments are made using carefully selected fabrics and finishing processes to help minimise shrinkage and maintain their shape. Following the recommended care instructions will help your tee look and feel its best for longer.', id: 'sf-6' -%}
                     {%- render 'faq-hardcoded-item', q: 'Can I exchange my T-shirt if the size doesn’t fit?', a: 'Of course. If the size isn’t quite right, you can request an exchange as per our Exchange Policy, subject to eligibility and stock availability. For complete details, please visit our Exchange Policy.', id: 'sf-7' -%}
 
-                  {%- when 'fabric-quality' -%}
+                  {%- when 'fabric-and-quality' -%}
                     {%- render 'faq-hardcoded-item', q: 'What fabrics does Woblee use?', a: 'All Woblee tees are crafted using 100% cotton selected for its softness, breathability and everyday comfort. Depending on the collection, we use different knit constructions and fabric weights to achieve the right look, feel and drape for each design.', id: 'fq-1' -%}
                     {%- render 'faq-hardcoded-item', q: 'What does GSM mean?', a: 'GSM (grams per square metre) measures the weight and density of a fabric. A higher GSM generally creates a thicker, more structured tee, while a lower GSM offers a lighter, more breathable feel. We choose the GSM based on the style and purpose of each garment, so every tee feels exactly the way it was designed to.', id: 'fq-2' -%}
                     {%- render 'faq-hardcoded-item', q: 'What fabric types does Woblee use?', a: 'Our collections feature a range of premium cotton knit fabrics, including Single Jersey, Interlock, Terry and Loop Knit. Each offers a distinct feel-from lightweight everyday comfort to structured premium finishes—and the fabric used is always highlighted on the product page.', id: 'fq-3' -%}
@@ -143,7 +151,7 @@
                     {%- render 'faq-hardcoded-item', q: 'What makes Woblee tees premium?', a: 'We focus on quality at every stage-from carefully selected fabrics and comfortable fits to durable construction and thoughtfully executed design techniques. Every tee is made to look great, feel better and stay that way, wear after wear.', id: 'fq-5' -%}
                     {%- render 'faq-hardcoded-item', q: 'How do I know which fabric is used in a product?', a: 'Every product page includes detailed information about the fabric composition, GSM (where applicable), wash treatment, fit and care instructions, so you know exactly what you’re buying.', id: 'fq-6' -%}
 
-                  {%- when 'design-techniques' -%}
+                  {%- when 'design-and-techniques' -%}
                     {%- render 'faq-hardcoded-item', q: 'What printing and embroidery techniques does Woblee use?', a: 'Depending on the collection, you may find techniques like screen printing, puff print, gel print, embroidery, canvas patches, chenille, beadwork and more. Every technique is chosen to complement the artwork and bring the design to life.', id: 'dt-1' -%}
                     {%- render 'faq-hardcoded-item', q: 'Why do different Woblee T-shirts feel different?', a: 'Not every design is meant to look—or feel—the same. Some techniques create raised textures, while others are smooth, stitched or layered. It’s all part of the design, giving each tee its own personality.', id: 'dt-2' -%}
                     {%- render 'faq-hardcoded-item', q: 'Do different techniques need different care?', a: 'Not really. Most Woblee garments can be cared for the same way by following the wash instructions on the product label. A little extra care—like washing inside out and avoiding direct ironing on prints—goes a long way.', id: 'dt-3' -%}
@@ -158,7 +166,7 @@
                     {%- render 'faq-hardcoded-item', q: 'Why should I wash my T-shirt inside out?', a: 'Turning your garment inside out helps protect the print, embroidery and fabric surface from unnecessary friction during washing, helping it stay looking newer for longer.', id: 'pc-5' -%}
                     {%- render 'faq-hardcoded-item', q: 'Can I dry clean my Woblee garments?', a: 'Most Woblee products are designed for regular home care and don’t require dry cleaning. If a garment needs special care, it’ll always be mentioned on the care label.', id: 'pc-6' -%}
 
-                  {%- when 'orders-payments' -%}
+                  {%- when 'orders-and-payments' -%}
                     {%- render 'faq-hardcoded-item', q: 'How do I place an order?', a: 'Shopping with Woblee is simple.<ul><li>Browse your favourite styles.</li><li>Select your size and quantity.</li><li>Add the product to your cart.</li><li>Proceed to checkout and complete your payment.</li><li>We’ll take it from there.</li></ul>', id: 'opay-1' -%}
                     {%- render 'faq-hardcoded-item', q: 'Do I need to create an account to place an order?', a: 'No. You can check out as a guest if guest checkout is available. Creating an account does make it easier to track your orders, save addresses and shop faster the next time around.', id: 'opay-2' -%}
                     {%- render 'faq-hardcoded-item', q: 'How will I know if my order has been confirmed?', a: 'Once your order is successfully placed, you’ll receive an order confirmation via email and/or SMS with your order details. If you don’t receive a confirmation within a few minutes, check your spam folder or get in touch with us.', id: 'opay-3' -%}
@@ -172,7 +180,7 @@
                     {%- render 'faq-hardcoded-item', q: 'My payment failed, but the amount was deducted. What should I do?', a: 'Don’t worry, this can occasionally happen due to banking delays.<ul><li>If the order wasn’t created, the amount is usually reversed automatically by your bank.</li><li>If the issue persists, contact us with your payment details and we’ll be happy to help.</li></ul>', id: 'opay-11' -%}
                     {%- render 'faq-hardcoded-item', q: 'Will I receive an invoice?', a: 'Yes. A digital tax invoice will be shared with your order confirmation and can also be downloaded once your order is complete.', id: 'opay-12' -%}
 
-                  {%- when 'shipping-returns-exchanges' -%}
+                  {%- when 'shipping-returns-and-exchanges' -%}
                     {%- render 'faq-hardcoded-item', q: 'Do you ship across India?', a: 'Yes, we currently deliver to most serviceable pin codes across India. Read our Shipping Policy for delivery timelines, shipping charges and more.', id: 'sre-1' -%}
                     {%- render 'faq-hardcoded-item', q: 'How long will my order take to arrive?', a: 'Estimated delivery dates are shown on every product page and at checkout. For more information, see our Shipping Policy.', id: 'sre-2' -%}
                     {%- render 'faq-hardcoded-item', q: 'Can I return my order?', a: 'Yes, eligible products can be returned within the return window, provided they’re unused, unwashed and in their original condition. Read our Return Policy for eligibility and timelines.', id: 'sre-3' -%}
@@ -181,7 +189,7 @@
                     {%- render 'faq-hardcoded-item', q: 'When will I receive my refund?', a: 'Refunds are processed after the returned product passes our quality check. For refund timelines and payment methods, please refer to our Return Policy.', id: 'sre-6' -%}
                     {%- render 'faq-hardcoded-item', q: 'My order has an issue. What should I do?', a: 'If you’ve received a damaged, defective or incorrect item, please get in touch with us as soon as possible with your order details and photos of the product. The complete process is explained in our Return Policy.', id: 'sre-7' -%}
 
-                  {%- when 'contact-support' -%}
+                  {%- when 'contact-and-support' -%}
                     {%- render 'faq-hardcoded-item', q: 'How can I get in touch with Woblee?', a: 'You can reach us through:<ul><li>Email</li><li>Phone</li><li>WhatsApp</li><li>Our Contact Us page</li></ul>We’ll do our best to get back to you as quickly as possible.', id: 'cs-1' -%}
                     {%- render 'faq-hardcoded-item', q: 'What are your customer support hours?', a: 'Our support team is available during our regular business hours. For the latest timings, please visit our Contact Us page.', id: 'cs-2' -%}
                     {%- render 'faq-hardcoded-item', q: 'How long does it take to receive a response?', a: 'We aim to respond to all queries as soon as possible. During weekends, holidays or sale periods, it may take us a little longer—but we’ll always get back to you.', id: 'cs-3' -%}
@@ -241,30 +249,35 @@
   padding-bottom: var(--faq-pb);
   color: var(--faq-text-color);
   overflow-x: hidden;
+  
+  /* Override black settings defaults to brand blue */
+  --faq-text-color: #0c4168;
+  --faq-active-color: #0c4168;
 }
 
 #faq-section-{{ section.id }} .faq-container {
   max-width: {{ section.settings.max_width }}px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 48px;
   box-sizing: border-box;
+  width: 100%;
 }
 
 #faq-section-{{ section.id }} .faq-main-heading {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: var(--font-heading--family), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 40px !important;
   font-weight: 700 !important;
-  line-height: 48px !important;
-  color: rgb(12, 65, 104) !important;
-  margin-bottom: 32px !important;
-  letter-spacing: normal !important;
+  line-height: 1.2 !important;
+  color: #0c4168 !important;
+  margin-bottom: 40px !important;
+  letter-spacing: -0.02em !important;
 }
 
 /* Two-column layout */
 #faq-section-{{ section.id }} .faq-layout {
   display: grid;
-  grid-template-columns: 28% 72%;
-  gap: 40px;
+  grid-template-columns: 300px 1fr;
+  gap: 64px;
   align-items: start;
 }
 
@@ -273,9 +286,15 @@
   position: sticky;
   top: 120px;
   z-index: 2;
-  background-color: #F8F9FA;
-  padding: 20px !important;
-  border-radius: 8px;
+  background-color: rgba(12, 65, 104, 0.02);
+  border: 1px solid rgba(12, 65, 104, 0.1);
+  padding: 24px !important;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 20px rgba(12, 65, 104, 0.01);
+}
+
+#faq-section-{{ section.id }} .faq-mobile-trigger {
+  display: none;
 }
 
 #faq-section-{{ section.id }} .faq-nav-list {
@@ -284,38 +303,46 @@
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 12px !important;
+  gap: 8px !important;
 }
 
 #faq-section-{{ section.id }} .faq-nav-btn {
-  background: none;
+  background: transparent;
   border: none;
-  padding: 4px 0;
+  padding: 12px 18px !important;
   margin: 0;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: var(--font-body--family), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 13px !important;
-  font-weight: 700 !important;
-  line-height: 18px !important;
-  letter-spacing: 0.36px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.05em !important;
   text-transform: uppercase;
   color: #4A5568 !important;
-  opacity: 0.8 !important;
   cursor: pointer;
   text-align: left;
-  transition: color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
-  border-bottom: 2px solid transparent;
-  width: fit-content;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 0 !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #faq-section-{{ section.id }} .faq-nav-btn:hover {
-  color: rgb(12, 65, 104) !important;
-  opacity: 1 !important;
+  color: var(--faq-active-color) !important;
+  background-color: rgba(12, 65, 104, 0.03);
+  transform: translateX(4px);
 }
 
 #faq-section-{{ section.id }} .faq-nav-btn.is-active {
-  color: rgb(12, 65, 104) !important;
-  border-bottom: 2px solid rgb(12, 65, 104) !important;
-  opacity: 1 !important;
+  color: var(--faq-active-color) !important;
+  background-color: color-mix(in srgb, var(--faq-active-color) 8%, transparent) !important;
+  font-weight: 700 !important;
+}
+
+/* Fallback for browsers that don't support color-mix */
+@supports not (color-mix(in srgb, red, blue)) {
+  #faq-section-{{ section.id }} .faq-nav-btn.is-active {
+    background-color: rgba(12, 65, 104, 0.06) !important;
+  }
 }
 
 /* Right Content */
@@ -323,13 +350,29 @@
   min-width: 0;
 }
 
+#faq-section-{{ section.id }} .faq-category-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#faq-section-{{ section.id }} .faq-category-panel.is-active {
+  display: block;
+}
+
+#faq-section-{{ section.id }} .faq-category-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 #faq-section-{{ section.id }} .faq-category-intro {
-  font-family: Helvetica, Arial, sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 19.32px !important;
-  color: #2D3748 !important;
-  margin-bottom: 24px !important;
+  font-family: var(--font-body--family), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: #4A5568 !important;
+  margin-bottom: 32px !important;
   max-width: 800px;
 }
 
@@ -339,11 +382,11 @@
 
 /* Accordion Row */
 #faq-section-{{ section.id }} .faq-accordion {
-  border-top: 1px solid #E5E5E5 !important;
+  border-top: 1px solid var(--faq-divider-color) !important;
 }
 
 #faq-section-{{ section.id }} .faq-accordion-item {
-  border-bottom: 1px solid #E5E5E5 !important;
+  border-bottom: 1px solid var(--faq-divider-color) !important;
 }
 
 #faq-section-{{ section.id }} .faq-accordion-header {
@@ -354,24 +397,28 @@
 #faq-section-{{ section.id }} .faq-accordion-trigger {
   background: none;
   border: none;
-  padding: 14px 0 !important;
+  padding: 22px 0 !important;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   cursor: pointer;
   text-align: left;
-  color: rgb(12, 65, 104) !important;
+  transition: color 0.25s ease;
 }
 
 #faq-section-{{ section.id }} .faq-question-text {
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: var(--font-heading--family), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 18px !important;
-  font-weight: 700 !important;
-  line-height: 21.6px !important;
-  letter-spacing: 0.36px !important;
-  color: rgb(12, 65, 104) !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  color: #0c4168 !important;
+  transition: color 0.25s ease;
+}
+
+#faq-section-{{ section.id }} .faq-accordion-trigger:hover .faq-question-text {
+  color: var(--faq-active-color) !important;
 }
 
 #faq-section-{{ section.id }} .faq-icon-wrap {
@@ -381,288 +428,392 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform var(--faq-anim-speed) cubic-bezier(0.4, 0, 0.2, 1);
-  color: rgb(12, 65, 104) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #0c4168 !important;
+}
+
+#faq-section-{{ section.id }} .faq-accordion-trigger:hover .faq-icon-wrap {
+  color: var(--faq-active-color) !important;
 }
 
 #faq-section-{{ section.id }} .faq-accordion-trigger[aria-expanded="true"] .faq-icon-wrap {
   transform: rotate(45deg);
+  color: var(--faq-active-color) !important;
 }
 
 #faq-section-{{ section.id }} .faq-accordion-content {
   overflow: hidden;
-  transition: max-height var(--faq-anim-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 0;
+  transition: max-height var(--faq-anim-speed) cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 #faq-section-{{ section.id }} .faq-accordion-inner {
-  padding-bottom: 20px !important;
-  margin-top: 5px !important;
-  font-family: Helvetica, Arial, sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 19.32px !important;
-  color: #2D3748 !important;
+  padding-bottom: 24px !important;
+  padding-top: 4px !important;
+  font-family: var(--font-body--family), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  color: #4A5568 !important;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+#faq-section-{{ section.id }} .faq-accordion-content.is-open .faq-accordion-inner {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 #faq-section-{{ section.id }} .faq-accordion-inner ul,
 #faq-section-{{ section.id }} .faq-accordion-inner ol {
-  margin: 5px 0 0 5px;
+  margin: 8px 0 0 16px;
   padding: 0;
 }
 
 #faq-section-{{ section.id }} .faq-accordion-inner li {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-/* Responsive Mobile Rules */
+/* Responsive Table/Tablet & Mobile Rules */
+@media (max-width: 1024px) and (min-width: 769px) {
+  #faq-section-{{ section.id }} .faq-layout {
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+  }
+  #faq-section-{{ section.id }} .faq-container {
+    padding: 0 32px;
+  }
+}
+
 @media (max-width: 768px) {
   #faq-section-{{ section.id }} {
     padding-top: var(--faq-pt-mobile) !important;
     padding-bottom: var(--faq-pb-mobile) !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: hidden !important;
   }
 
   #faq-section-{{ section.id }} .faq-container {
-    padding: 0 16px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
+    padding: 0 24px !important;
   }
 
   #faq-section-{{ section.id }} .faq-main-heading {
-    margin-bottom: 10px !important;
-    font-size: 24px !important;
-    padding: 0 !important;
-    width: 100% !important;
-    word-break: normal !important;
-    overflow-wrap: normal !important;
-    white-space: normal !important;
+    margin-bottom: 24px !important;
+    font-size: 28px !important;
     text-align: left !important;
   }
 
-  /* Stack layout vertically on mobile */
   #faq-section-{{ section.id }} .faq-layout {
     grid-template-columns: 1fr !important;
     gap: 24px !important;
-    width: 100% !important;
-    max-width: 100% !important;
   }
 
-  /* Horizontal scrolling navigation on mobile */
+  /* Dropdown container styling on mobile */
   #faq-section-{{ section.id }} .faq-nav {
-    position: sticky !important;
+    position: relative !important;
     top: 0 !important;
-    background: #F8F9FA !important;
-    margin: 0 -16px 20px -16px !important;
-    padding: 12px 16px !important;
-    border-bottom: 1px solid var(--faq-divider-color) !important;
-    width: auto !important;
-    max-width: none !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch !important;
+    z-index: 2 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
     border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-mobile-trigger {
+    display: flex !important;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px !important;
+    background: #ffffff;
+    border: 1px solid #0c4168 !important;
+    border-radius: 0 !important;
+    font-family: var(--font-body--family), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: var(--faq-text-color) !important;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(12, 65, 104, 0.02) !important;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    box-sizing: border-box;
+  }
+
+  #faq-section-{{ section.id }} .faq-mobile-trigger:hover {
+    border-color: #0c4168 !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-mobile-trigger-icon {
+    transition: transform 0.25s ease;
+    color: var(--faq-text-color);
+  }
+
+  #faq-section-{{ section.id }} .faq-mobile-trigger[aria-expanded="true"] .faq-mobile-trigger-icon {
+    transform: rotate(180deg);
   }
 
   #faq-section-{{ section.id }} .faq-nav-list {
     display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    gap: 24px !important;
-    padding: 0 0 4px 0 !important;
-    margin: 0 !important;
-    width: max-content !important;
-    min-width: max-content !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid #0c4168 !important;
+    border-radius: 0 !important;
+    box-shadow: 0 8px 24px rgba(12, 65, 104, 0.08) !important;
+    padding: 8px !important;
     list-style: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-8px) scale(0.98) !important;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 100;
   }
 
-  #faq-section-{{ section.id }} .faq-nav-item {
-    scroll-snap-align: start !important;
-    flex: 0 0 auto !important;
-    display: block !important;
+  #faq-section-{{ section.id }} .faq-nav-list.is-open {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
   }
 
   #faq-section-{{ section.id }} .faq-nav-btn {
+    width: 100% !important;
+    padding: 12px 16px !important;
+    border-radius: 0 !important;
     font-size: 14px !important;
-    padding: 8px 0 !important;
-    min-height: 44px !important;
-    white-space: nowrap !important;
-    opacity: 0.4 !important;
-    border-bottom: 2px solid transparent !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    color: #4A5568 !important;
+    opacity: 1 !important;
+    display: block !important;
+    text-align: left !important;
+    box-shadow: none !important;
+  }
+
+  #faq-section-{{ section.id }} .faq-nav-btn:hover {
+    background-color: rgba(12, 65, 104, 0.02) !important;
+    transform: none !important;
   }
 
   #faq-section-{{ section.id }} .faq-nav-btn.is-active {
-    opacity: 1 !important;
-    border-bottom: 2px solid var(--faq-active-color) !important;
-  }
-
-  #faq-section-{{ section.id }} .faq-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  #faq-section-{{ section.id }} .faq-category-panel {
-    width: 100% !important;
-    max-width: 100% !important;
+    background-color: rgba(12, 65, 104, 0.04) !important;
+    color: var(--faq-active-color) !important;
+    font-weight: 600 !important;
   }
 
   #faq-section-{{ section.id }} .faq-category-intro {
-    font-size: 16px !important;
+    font-size: 15px !important;
     margin-bottom: 24px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    overflow-wrap: break-word !important;
-    word-break: normal !important;
-  }
-
-  #faq-section-{{ section.id }} .faq-accordion {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  #faq-section-{{ section.id }} .faq-accordion-item {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  #faq-section-{{ section.id }} .faq-accordion-trigger {
-    padding: 16px 0 !important;
-    min-height: 48px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    gap: 12px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
   }
 
   #faq-section-{{ section.id }} .faq-question-text {
     font-size: 16px !important;
-    flex: 1 !important;
-    min-width: 0 !important;
-    white-space: normal !important;
-    overflow-wrap: break-word !important;
-    word-break: normal !important;
   }
 
-  #faq-section-{{ section.id }} .faq-accordion-content {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  #faq-section-{{ section.id }} .faq-accordion-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    overflow-wrap: break-word !important;
-    box-sizing: border-box !important;
-    padding-bottom: 16px !important;
+  #faq-section-{{ section.id }} .faq-icon-wrap {
+    width: 24px;
+    height: 24px;
   }
 }
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const faqSection = document.getElementById('faq-section-{{ section.id }}');
-  if (!faqSection) return;
+(function() {
+  function initFaq() {
+    const faqSection = document.getElementById('faq-section-{{ section.id }}');
+    if (!faqSection || faqSection.dataset.faqInitialized === 'true') return;
+    faqSection.dataset.faqInitialized = 'true';
 
-  // 1. Category Switching functionality
-  const navButtons = faqSection.querySelectorAll('.faq-nav-btn');
-  const panels = faqSection.querySelectorAll('.faq-category-panel');
+    const navButtons = faqSection.querySelectorAll('.faq-nav-btn');
+    const panels = faqSection.querySelectorAll('.faq-category-panel');
+    const mobileTrigger = faqSection.querySelector('.faq-mobile-trigger');
+    const mobileTriggerText = faqSection.querySelector('.faq-mobile-trigger-text');
+    const navList = faqSection.querySelector('.faq-nav-list');
 
-  navButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
+    // 1. Category Switching functionality
+    function switchCategory(targetCat) {
+      const activePanel = faqSection.querySelector('.faq-category-panel.is-active');
+      const targetPanel = faqSection.querySelector(`#faq-panel-${targetCat}`);
       
-      const targetCat = this.getAttribute('data-target-cat');
-      
-      // Update active nav button states
-      navButtons.forEach(btn => {
-        btn.classList.remove('is-active');
-        btn.setAttribute('aria-selected', 'false');
-      });
-      this.classList.add('is-active');
-      this.setAttribute('aria-selected', 'true');
+      if (activePanel === targetPanel) return;
 
-      // Show targeted panel and hide others
-      panels.forEach(panel => {
-        if (panel.getAttribute('data-cat') === targetCat) {
-          panel.style.display = 'block';
-          panel.classList.add('is-active');
-          // Collapse all open answers in newly active panel
-          panel.querySelectorAll('.faq-accordion-trigger').forEach(trigger => {
-            trigger.setAttribute('aria-expanded', 'false');
-            const content = trigger.closest('.faq-accordion-item').querySelector('.faq-accordion-content');
-            if (content) {
-              content.style.maxHeight = '0px';
-              content.setAttribute('aria-hidden', 'true');
-            }
-          });
-        } else {
-          panel.style.display = 'none';
-          panel.classList.remove('is-active');
-        }
-      });
-
-      // Smooth scroll target item into view on mobile sticky tab bar
-      if (window.innerWidth <= 768) {
-        this.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      if (activePanel) {
+        activePanel.classList.remove('is-visible');
+        setTimeout(() => {
+          activePanel.style.display = 'none';
+          activePanel.classList.remove('is-active');
+          showTargetPanel(targetPanel);
+        }, 200);
+      } else {
+        showTargetPanel(targetPanel);
       }
-    });
-  });
+    }
 
-  // 2. Accordion expand/collapse functionality (Only 1 open at a time per category panel)
-  const accordionTriggers = faqSection.querySelectorAll('.faq-accordion-trigger');
-
-  accordionTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function() {
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
-      const currentItem = this.closest('.faq-accordion-item');
-      const currentPanel = this.closest('.faq-category-panel');
-      const currentContent = currentItem.querySelector('.faq-accordion-content');
-
-      // Collapse all other accordion items in the active panel
-      currentPanel.querySelectorAll('.faq-accordion-item').forEach(item => {
-        if (item !== currentItem) {
-          const otherTrigger = item.querySelector('.faq-accordion-trigger');
-          const otherContent = item.querySelector('.faq-accordion-content');
-          if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
-          if (otherContent) {
-            otherContent.style.maxHeight = '0px';
-            otherContent.setAttribute('aria-hidden', 'true');
+    function showTargetPanel(panel) {
+      if (!panel) return;
+      panel.style.display = 'block';
+      panel.offsetHeight; // force reflow
+      panel.classList.add('is-active');
+      
+      // Set active accordion states based on settings
+      const triggers = panel.querySelectorAll('.faq-accordion-trigger');
+      triggers.forEach((trigger, index) => {
+        const content = trigger.closest('.faq-accordion-item').querySelector('.faq-accordion-content');
+        const shouldOpen = index === 0 && {% if section.settings.open_first %}true{% else %}false{% endif %};
+        
+        if (shouldOpen) {
+          trigger.setAttribute('aria-expanded', 'true');
+          if (content) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.setAttribute('aria-hidden', 'false');
+            content.classList.add('is-open');
+          }
+        } else {
+          trigger.setAttribute('aria-expanded', 'false');
+          if (content) {
+            content.style.maxHeight = '0px';
+            content.setAttribute('aria-hidden', 'true');
+            content.classList.remove('is-open');
           }
         }
       });
 
-      // Toggle state of clicked item
-      if (isExpanded) {
-        this.setAttribute('aria-expanded', 'false');
-        currentContent.style.maxHeight = '0px';
-        currentContent.setAttribute('aria-hidden', 'true');
-      } else {
-        this.setAttribute('aria-expanded', 'true');
-        currentContent.style.maxHeight = currentContent.scrollHeight + 'px';
-        currentContent.setAttribute('aria-hidden', 'false');
-      }
-    });
-  });
-
-  // 3. Set first accordion item of the active panel open by default if setting is enabled
-  {% if section.settings.open_first %}
-    const activePanel = faqSection.querySelector('.faq-category-panel.is-active');
-    if (activePanel) {
-      const firstTrigger = activePanel.querySelector('.faq-accordion-trigger');
-      if (firstTrigger) {
-        firstTrigger.click();
-      }
+      setTimeout(() => {
+        panel.classList.add('is-visible');
+      }, 20);
     }
-  {% endif %}
-});
+
+    navButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetCat = this.getAttribute('data-target-cat');
+        
+        // Update active nav button states
+        navButtons.forEach(btn => {
+          btn.classList.remove('is-active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('is-active');
+        this.setAttribute('aria-selected', 'true');
+
+        // Update mobile trigger label
+        if (mobileTriggerText) {
+          mobileTriggerText.textContent = this.textContent.trim();
+        }
+
+        // Close mobile dropdown list
+        if (mobileTrigger) {
+          mobileTrigger.setAttribute('aria-expanded', 'false');
+        }
+        if (navList) {
+          navList.classList.remove('is-open');
+        }
+
+        switchCategory(targetCat);
+      });
+    });
+
+    // Mobile navigation trigger toggle
+    if (mobileTrigger && navList) {
+      mobileTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        navList.classList.toggle('is-open');
+      });
+
+      // Close mobile dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!mobileTrigger.contains(e.target) && !navList.contains(e.target)) {
+          mobileTrigger.setAttribute('aria-expanded', 'false');
+          navList.classList.remove('is-open');
+        }
+      });
+    }
+
+    // 2. Accordion expand/collapse functionality (Only 1 open at a time per category panel)
+    const accordionTriggers = faqSection.querySelectorAll('.faq-accordion-trigger');
+
+    accordionTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        const currentItem = this.closest('.faq-accordion-item');
+        const currentPanel = this.closest('.faq-category-panel');
+        const currentContent = currentItem.querySelector('.faq-accordion-content');
+
+        // Collapse all other accordion items in the active panel
+        currentPanel.querySelectorAll('.faq-accordion-item').forEach(item => {
+          if (item !== currentItem) {
+            const otherTrigger = item.querySelector('.faq-accordion-trigger');
+            const otherContent = item.querySelector('.faq-accordion-content');
+            if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+            if (otherContent) {
+              otherContent.style.maxHeight = '0px';
+              otherContent.setAttribute('aria-hidden', 'true');
+              otherContent.classList.remove('is-open');
+            }
+          }
+        });
+
+        // Toggle state of clicked item
+        if (isExpanded) {
+          this.setAttribute('aria-expanded', 'false');
+          if (currentContent) {
+            currentContent.style.maxHeight = '0px';
+            currentContent.setAttribute('aria-hidden', 'true');
+            currentContent.classList.remove('is-open');
+          }
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          if (currentContent) {
+            currentContent.style.maxHeight = currentContent.scrollHeight + 'px';
+            currentContent.setAttribute('aria-hidden', 'false');
+            currentContent.classList.add('is-open');
+          }
+        }
+      });
+    });
+
+    // 3. Set first accordion item of the active panel open by default if setting is enabled
+    {% if section.settings.open_first %}
+      const activePanel = faqSection.querySelector('.faq-category-panel.is-active');
+      if (activePanel) {
+        const firstTrigger = activePanel.querySelector('.faq-accordion-trigger');
+        if (firstTrigger) {
+          const firstContent = firstTrigger.closest('.faq-accordion-item').querySelector('.faq-accordion-content');
+          firstTrigger.setAttribute('aria-expanded', 'true');
+          if (firstContent) {
+            firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+            firstContent.setAttribute('aria-hidden', 'false');
+            firstContent.classList.add('is-open');
+          }
+        }
+      }
+    {% endif %}
+
+    // Set visible class on initial load for the default active panel
+    const initialPanel = faqSection.querySelector('.faq-category-panel.is-active');
+    if (initialPanel) {
+      initialPanel.classList.add('is-visible');
+    }
+  }
+
+  // Run initialization on ready state or DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq);
+  } else {
+    initFaq();
+  }
+
+  // Support Shopify section editor dynamic reload events
+  document.addEventListener('shopify:section:load', function(e) {
+    if (e.detail.sectionId === '{{ section.id }}') {
+      initFaq();
+    }
+  });
+})();
 </script>
 
 {% schema %}
@@ -782,13 +933,13 @@ document.addEventListener('DOMContentLoaded', function() {
           "options": [
             { "value": "About Woblee", "label": "About Woblee" },
             { "value": "Our Products", "label": "Our Products" },
-            { "value": "Sizing & Fit", "label": "Sizing & Fit" },
-            { "value": "Fabric & Quality", "label": "Fabric & Quality" },
-            { "value": "Design & Techniques", "label": "Design & Techniques" },
+            { "value": "Sizing and Fit", "label": "Sizing and Fit" },
+            { "value": "Fabric and Quality", "label": "Fabric and Quality" },
+            { "value": "Design and Techniques", "label": "Design and Techniques" },
             { "value": "Product Care", "label": "Product Care" },
-            { "value": "Orders & Payments", "label": "Orders & Payments" },
-            { "value": "Contact & Support", "label": "Contact & Support" },
-            { "value": "Shipping, Returns & Exchanges", "label": "Shipping, Returns & Exchanges" }
+            { "value": "Orders and Payments", "label": "Orders and Payments" },
+            { "value": "Shipping, Returns and Exchanges", "label": "Shipping, Returns and Exchanges" },
+            { "value": "Contact and Support", "label": "Contact and Support" }
           ],
           "default": "About Woblee"
         },

@@ -151,55 +151,63 @@
     <span>{{ section.settings.heading }}</span>
   </h3>
 
-  <div class="shop-mobile-track">
+  <div class="shop-mobile-slider-container">
+    <button type="button" class="shop-mobile-arrow shop-mobile-arrow--left" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="shop-mobile-track" id="shopMobileTrack">
 
-    {% for i in (1..8) %}
+      {% for i in (1..8) %}
 
-      {% liquid
-        assign desktop_key = 'desktop_image_' | append: i
-        assign mobile_key = 'mobile_image_' | append: i
-        assign link_key = 'link_' | append: i
+        {% liquid
+          assign desktop_key = 'desktop_image_' | append: i
+          assign mobile_key = 'mobile_image_' | append: i
+          assign link_key = 'link_' | append: i
 
-        assign desktop_image = section.settings[desktop_key]
-        assign mobile_image = section.settings[mobile_key]
+          assign desktop_image = section.settings[desktop_key]
+          assign mobile_image = section.settings[mobile_key]
 
-        if mobile_image == blank
-          assign mobile_image = desktop_image
-        endif
+          if mobile_image == blank
+            assign mobile_image = desktop_image
+          endif
 
-        if desktop_image == blank
-          assign desktop_image = mobile_image
-        endif
-      %}
+          if desktop_image == blank
+            assign desktop_image = mobile_image
+          endif
+        %}
 
-      <a
-        class="shop-mobile-slide"
-        href="{{ section.settings[link_key] | default: '#' }}"
-      >
+        <a
+          class="shop-mobile-slide"
+          href="{{ section.settings[link_key] | default: '#' }}"
+        >
 
-        <picture>
+          <picture>
 
-          {% if mobile_image != blank %}
-            <source
-              media="(max-width:749px)"
-              srcset="{{ mobile_image | image_url: width: 800 }}"
-            >
-          {% endif %}
+            {% if mobile_image != blank %}
+              <source
+                media="(max-width:749px)"
+                srcset="{{ mobile_image | image_url: width: 800 }}"
+              >
+            {% endif %}
 
-          {% if desktop_image != blank %}
-            {{
-              desktop_image
-              | image_url: width: 1200
-              | image_tag
-            }}
-          {% endif %}
+            {% if desktop_image != blank %}
+              {{
+                desktop_image
+                | image_url: width: 1200
+                | image_tag
+              }}
+            {% endif %}
 
-        </picture>
+          </picture>
 
-      </a>
+        </a>
 
-    {% endfor %}
+      {% endfor %}
 
+    </div>
+    <button type="button" class="shop-mobile-arrow shop-mobile-arrow--right" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
   </div>
 
 </div>
@@ -378,6 +386,14 @@ h3.t4s-section-title.t4s-title.shop-bnd{
     transition:all .25s ease;
   }
 
+  .shop-mobile-arrow {
+    display: none;
+  }
+  .shop-mobile-slider-container {
+    position: relative;
+    width: 100%;
+  }
+
   .shop-mobile-dot.is-active{
     width:24px;
     background:#8f8f8f;
@@ -385,56 +401,133 @@ h3.t4s-section-title.t4s-title.shop-bnd{
   .t4s-container-fluid{
   padding: 0 !important;
 }
+
+  .shop-mobile-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: #ffffff;
+    padding: 0;
+    z-index: 10;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+
+  .shop-mobile-arrow:active {
+    opacity: 0.5;
+    transform: translateY(-50%) scale(0.85);
+  }
+
+  .shop-mobile-arrow--left {
+    left: 12px;
+  }
+
+  .shop-mobile-arrow--right {
+    right: 12px;
+  }
 }
 
 </style>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const track = document.getElementById('shopMobileTrack');
-  const slides = track ? Array.from(track.querySelectorAll('.shop-mobile-slide')) : [];
-  const dots = Array.from(document.querySelectorAll('.shop-mobile-dot'));
+(function() {
+  function initMobileSlider() {
+    const track = document.getElementById('shopMobileTrack');
+    const slides = track ? Array.from(track.querySelectorAll('.shop-mobile-slide')) : [];
+    const dots = Array.from(document.querySelectorAll('.shop-mobile-dot'));
 
-  if (!track || !slides.length || !dots.length) return;
+    if (!track || !slides.length) return;
 
-  const setActive = (index) => {
-    const safeIndex = Math.max(0, Math.min(index, dots.length - 1));
-    dots.forEach((dot, i) => dot.classList.toggle('is-active', i === safeIndex));
-  };
+    const setActive = (index) => {
+      const safeIndex = Math.max(0, Math.min(index, dots.length - 1));
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === safeIndex));
+    };
 
-  const getNearestIndex = () => {
-    const center = track.scrollLeft + track.clientWidth / 2;
-    let nearestIndex = 0;
-    let nearestDistance = Infinity;
+    const getNearestIndex = () => {
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let nearestIndex = 0;
+      let nearestDistance = Infinity;
 
-    slides.forEach((slide, index) => {
-      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-      const distance = Math.abs(slideCenter - center);
-      if (distance < nearestDistance) {
-        nearestDistance = distance;
-        nearestIndex = index;
-      }
-    });
+      slides.forEach((slide, index) => {
+        const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        const distance = Math.abs(slideCenter - center);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
 
-    return nearestIndex;
-  };
+      return nearestIndex;
+    };
 
-  let ticking = false;
+    let ticking = false;
 
-  const handleScroll = () => {
-    if (ticking) return;
-    ticking = true;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
 
-    requestAnimationFrame(() => {
-      setActive(getNearestIndex());
-      ticking = false;
-    });
-  };
+      requestAnimationFrame(() => {
+        if (dots.length) {
+          setActive(getNearestIndex());
+        }
+        ticking = false;
+      });
+    };
 
-  track.addEventListener('scroll', handleScroll, { passive: true });
-  window.addEventListener('resize', handleScroll);
+    track.removeEventListener('scroll', handleScroll);
+    track.addEventListener('scroll', handleScroll, { passive: true });
 
-  setActive(0);
-});
+    if (dots.length) {
+      setActive(0);
+    }
+
+    // Mobile arrows navigation logic
+    const prevBtn = document.querySelector('.shop-mobile-arrow--left');
+    const nextBtn = document.querySelector('.shop-mobile-arrow--right');
+    
+    if (prevBtn && nextBtn) {
+      // Clone buttons to clear existing listeners if any
+      const newPrevBtn = prevBtn.cloneNode(true);
+      const newNextBtn = nextBtn.cloneNode(true);
+      prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+      nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+
+      newPrevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const slideWidth = slides[0].offsetWidth + 12; // slide width + gap
+        track.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+      });
+      
+      newNextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const slideWidth = slides[0].offsetWidth + 12; // slide width + gap
+        track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileSlider);
+  } else {
+    initMobileSlider();
+  }
+
+  // Also bind to Shopify theme editor events
+  document.addEventListener('shopify:section:load', function(e) {
+    if (e.target.querySelector('#shopMobileTrack')) {
+      initMobileSlider();
+    }
+  });
+})();
 </script>
 
 

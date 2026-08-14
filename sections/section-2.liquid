@@ -267,15 +267,19 @@
   font-family: Helvetica;
   font-size: var(--wau-button-size);
   font-weight: var(--wau-button-weight);
-  width: var(--wau-button-width);
-  min-width: var(--wau-button-width);
-  height: var(--wau-button-height);
-  min-height: var(--wau-button-height);
+  width: 250px !important;
+  min-width: 250px !important;
+  max-width: 250px !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  max-height: 52px !important;
   background: var(--wau-button-bg);
   color: var(--wau-button-text);
   padding: 0 14px;
   transition: all .3s ease;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
+  flex: 0 0 220px !important;
+  align-self: flex-start !important;
 }
 
 .wau-cta::after {
@@ -300,7 +304,7 @@
 /* Stats */
 .wau-stats {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 12px;
   margin-bottom: 36px;
   opacity: 0;
@@ -323,6 +327,10 @@
   gap: 3px;
   backdrop-filter: blur(10px);
   transition: background 0.25s, border-color 0.25s;
+
+  max-width: 220px !important;
+  box-sizing: border-box !important;
+  align-self: flex-start !important;
 }
 
 .wau-stat-pill:hover {
@@ -579,20 +587,17 @@ background: var(--wau-accent);
     left: 200px;
     top: 50px;
   }
-}
 
-@media  (min-width: 769px){
-    .wau-section.wau-visible .wau-cta{
-    width: 50%;
+  .wau-cta,
+  .wau-stat-pill {
+    align-self: center !important;
+    margin: 0 auto !important;
   }
 }
 
 @media (max-width: 768px) {
   .wau-heading {
     font-size: var(--wau-heading-size-mobile) !important;
-  }
-  .wau-section.wau-visible .wau-cta{
-    width: 83%;
   }
 
   .wau-body {
@@ -607,14 +612,22 @@ background: var(--wau-accent);
     font-size: var(--wau-stats-label-size-mobile);
   }
 
+  .wau-cta,
+  .wau-stat-pill {
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 270px !important;
+    align-self: center !important;
+    margin: 0 auto !important;
+  }
+
   .wau-cta {
-    width: var(--wau-button-width-mobile);
-    min-width: var(--wau-button-width-mobile);
-    height: var(--wau-button-height-mobile);
-    min-height: var(--wau-button-height-mobile);
-    font-size: var(--wau-button-size-mobile);
-    padding: 0 8px;
-    gap: 6px;
+    height: 52px !important;
+    min-height: 52px !important;
+    max-height: 52px !important;
+    font-size: var(--wau-button-size-mobile) !important;
+    padding: 0 8px !important;
+    gap: 6px !important;
   }
 }
 

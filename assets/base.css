@@ -1497,9 +1497,7 @@ summary {
   padding-block: var(--padding-sm);
 }
 
-summary:hover {
-  color: var(--color-primary-hover);
-}
+
 
 summary .svg-wrapper {
   margin-inline-start: auto;
@@ -4592,6 +4590,7 @@ p.jm-text.jm-other-products-reviews-text{
   width: 100% !important;
   max-width: 100% !important;
   white-space: nowrap !important;
+  text-transform: uppercase;
 }
 
 /* 3. CENTER THE WRITE REVIEW BUTTON & CLUSTERS */
