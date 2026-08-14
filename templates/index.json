@@ -601,18 +601,18 @@
           "type": "grid_item",
           "settings": {
             "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png",
-            "caption": "Explore the incredible materials we use",
+            "caption": "Retro Reboot Boy's Tee",
             "explore_label": "",
-            "link": ""
+            "link": "shopify://products/retro-reboot-boys-tee"
           }
         },
         "grid_item_x33UQJ": {
           "type": "grid_item",
           "settings": {
             "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png",
-            "caption": "Read about our amazing factory partners",
+            "caption": "Perfect Fusion Boy's Tee",
             "explore_label": "",
-            "link": ""
+            "link": "shopify://products/perfect-fusion-boys-tee"
           }
         },
         "grid_item_BYHQCe": {
