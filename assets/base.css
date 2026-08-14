@@ -4722,5 +4722,5 @@ p.jm-text.jm-other-products-reviews-text{
 }
 
 .product-grid__item .wishlist-btn:hover {
-  scale:1;
+  scale:1 !important;
 }
