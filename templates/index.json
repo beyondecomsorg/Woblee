@@ -619,18 +619,18 @@
           "type": "grid_item",
           "settings": {
             "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png",
-            "caption": "Our promise of great quality",
+            "caption": "Learn Grow Repeat Girl's Tee",
             "explore_label": "",
-            "link": ""
+            "link": "shopify://products/learn-grow-repeat-girls-tee"
           }
         },
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
             "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png",
-            "caption": "Discover our pursuit of sustainability",
+            "caption": "Learn Grow Repeat Girl's Tee",
             "explore_label": "",
-            "link": ""
+            "link": "shopify://products/learn-grow-repeat-girls-tee"
           }
         }
       },
