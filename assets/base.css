@@ -4720,3 +4720,7 @@ p.jm-text.jm-other-products-reviews-text{
   width: 100% !important;
   display: block !important;
 }
+
+.product-grid__item .wishlist-btn:hover {
+  scale:1;
+}
