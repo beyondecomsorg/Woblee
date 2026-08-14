@@ -124,7 +124,7 @@
         "disabled": false,
         "settings": {
           "is_added_selector": true,
-          "collection_icon_selector": ".product-card",
+          "collection_icon_selector": ".product-grid__item",
           "collection_icon_type": "outline",
           "collection_icon_background_type": "icon_no_background",
           "collection_icon_size": 16,
