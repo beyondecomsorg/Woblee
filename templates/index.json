@@ -1089,7 +1089,7 @@
         "price_color": "#444444",
         "compare_price_color": "#444444",
         "price_size_desktop": 14,
-        "price_size_mobile": 10,
+        "price_size_mobile": 15,
         "price_weight": "500",
         "arrow_color": "#0c4168",
         "arrow_bg_color": "rgba(0,0,0,0)",
