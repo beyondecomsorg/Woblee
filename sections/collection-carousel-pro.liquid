@@ -64,11 +64,44 @@
       <div class="collection-carousel-flickity" id="flickity-{{ section.id }}">
         {% for block in section.blocks %}
           {% if block.type == 'card' %}
+            {%- liquid
+              assign card_product = null
+              assign link_setting = block.settings.link | default: block.settings.card_link
+
+              if link_setting.type == 'product' and link_setting.value != blank
+                assign card_product = link_setting.value
+              elsif link_setting.object != blank and link_setting.type == 'product'
+                assign card_product = link_setting.object
+              endif
+
+              if card_product == blank or card_product.title == blank
+                assign link_url_str = link_setting | default: ''
+                if link_url_str contains '/products/'
+                  assign product_handle = link_url_str | split: '/products/' | last | split: '?' | first | split: '#' | first
+                  assign card_product = all_products[product_handle]
+                elsif link_url_str contains 'shopify://products/'
+                  assign product_handle = link_url_str | split: 'shopify://products/' | last | split: '?' | first | split: '#' | first
+                  assign card_product = all_products[product_handle]
+                endif
+              endif
+
+              assign card_url = '#'
+              if card_product != blank and card_product.url != blank
+                assign card_url = card_product.url
+              elsif link_setting != blank
+                assign card_url = link_setting
+              endif
+
+              assign display_image = block.settings.image
+              if display_image == blank and card_product != blank and card_product.featured_image != blank
+                assign display_image = card_product.featured_image
+              endif
+            -%}
             <div class="collection-carousel-pro__slide" {{ block.shopify_attributes }}>
-              <div class="collection-carousel-pro__card">
-                {% if block.settings.image != blank %}
+              <a href="{{ card_url }}" class="collection-carousel-pro__card">
+                {% if display_image != blank %}
                   {% if forloop.index0 < 3 %}
-                    {{ block.settings.image | image_url: width: 1200 | image_tag:
+                    {{ display_image | image_url: width: 1200 | image_tag:
                       loading: 'eager',
                       fetchpriority: 'high',
                       class: 'collection-carousel-pro__image',
@@ -76,7 +109,7 @@
                       sizes: '(max-width: 767px) 90vw, 50vw'
                     }}
                   {% else %}
-                    {{ block.settings.image | image_url: width: 1200 | image_tag:
+                    {{ display_image | image_url: width: 1200 | image_tag:
                       loading: 'lazy',
                       class: 'collection-carousel-pro__image',
                       widths: '400, 600, 800, 1200',
@@ -85,10 +118,23 @@
                   {% endif %}
                 {% endif %}
                 <div class="collection-carousel-pro__overlay"></div>
-                {% if block.settings.title != blank %}
-                  <div class="collection-carousel-pro__title">{{ block.settings.title }}</div>
-                {% endif %}
-              </div>
+                <div class="collection-carousel-pro__info">
+                  {% if card_product != blank and card_product.title != blank %}
+                    <div class="collection-carousel-pro__title">{{ card_product.title }}</div>
+                    <div class="collection-carousel-pro__price">
+                      {% if card_product.compare_at_price > card_product.price %}
+                        <s class="collection-carousel-pro__price-compare">{% render 'format-price', price: card_product.compare_at_price %}</s>
+                      {% endif %}
+                      <span class="collection-carousel-pro__price-regular">
+                        {%- capture regular_price -%}{% render 'format-price', price: card_product.price %}{%- endcapture -%}
+                        {{ regular_price | replace: '.00', '' }}
+                      </span>
+                    </div>
+                  {% elsif block.settings.title != blank %}
+                    <div class="collection-carousel-pro__title">{{ block.settings.title }}</div>
+                  {% endif %}
+                </div>
+              </a>
             </div>
           {% endif %}
         {% endfor %}
@@ -118,8 +164,8 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   gap: 40px;
   overflow: hidden;
 }
@@ -147,7 +193,7 @@
   line-height: 1;
   word-break: normal;
   text-transform: uppercase;
-  margin: 0 0 24px;
+  margin: 0 0 16px;
 }
 
 .collection-carousel-pro__description {
@@ -185,7 +231,7 @@
   width: var(--shop-all-btn-width-desktop);
   height: var(--shop-all-btn-height-desktop);
   font-size: var(--shop-all-btn-font-size-desktop);
-  margin-top: var(--shop-all-btn-margin-top);
+  margin-top: 16px;
   margin-bottom: var(--shop-all-btn-margin-bottom);
 }
 
@@ -210,6 +256,7 @@
 
 .collection-carousel-pro__card {
   position: relative;
+  display: block;
   width: 100%;
   height: var(--card-height-desktop);
   border-radius: var(--card-radius);
@@ -220,6 +267,7 @@
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  text-decoration: none;
 }
 
 .collection-carousel-pro__image {
@@ -247,18 +295,44 @@
   pointer-events: none;
 }
 
-.collection-carousel-pro__title {
+.collection-carousel-pro__info {
   position: absolute;
   left: 30px;
   bottom: 30px;
+  right: 30px;
   z-index: 2;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.collection-carousel-pro__title {
   color: var(--card-title-color);
   font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
-  font-size: {{ section.settings.card_title_size }}px;
+  font-size: 18px;
   font-weight: {{ section.settings.card_title_weight }};
-  text-transform: uppercase;
-  line-height: 1;
-  pointer-events: none;
+
+  line-height: 1.15;
+  margin-bottom: 5px;
+}
+
+.collection-carousel-pro__price {
+  color: var(--card-title-color);
+  font-family: {{ section.settings.section_font.family }}, {{ section.settings.section_font.fallback_families }};
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.15;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.collection-carousel-pro__price-compare {
+  opacity: 0.65;
+  text-decoration: line-through;
 }
 
 /* Flickity arrow overrides */
@@ -269,7 +343,7 @@
 }
 
 .collection-carousel-flickity .flickity-button-icon {
-  fill: var(--arrow-color);
+  fill: #0c4168;
 }
 
 .collection-carousel-flickity .flickity-button:focus {
@@ -290,10 +364,10 @@
 
   .collection-carousel-pro__container {
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     overflow: visible;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
   .collection-carousel-pro__content {
@@ -314,7 +388,7 @@
 
   .collection-carousel-pro__heading {
     font-size: {{ section.settings.main_heading_size_mobile }}px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
   }
 
   .collection-carousel-pro__shop-all-btn--desktop {
@@ -327,6 +401,12 @@
     height: var(--shop-all-btn-height-mobile);
     font-size: var(--shop-all-btn-font-size-mobile);
     margin: var(--shop-all-btn-margin-top) auto var(--shop-all-btn-margin-bottom);
+  }
+
+  @media screen and (max-width: 767px) {
+    .collection-carousel-pro__shop-all-btn--mobile {
+      margin-top: 0px !important;
+    }
   }
 
   .collection-carousel-pro__slider-wrapper {
@@ -343,10 +423,20 @@
     height: var(--card-height-mobile);
   }
 
-  .collection-carousel-pro__title {
-    font-size: 22px;
+  .collection-carousel-pro__info {
     left: 20px;
     bottom: 20px;
+    right: 20px;
+    gap: 4px;
+  }
+
+  .collection-carousel-pro__title {
+    font-size: 18px;
+  }
+
+  .collection-carousel-pro__price {
+    font-size: 16px;
+
   }
 
   .collection-carousel-flickity .flickity-page-dots {
@@ -481,7 +571,6 @@
       "name": "Collection Card",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Card Image" },
-        { "type": "text", "id": "title", "label": "Card Title", "default": "COLLECTION" },
         { "type": "url", "id": "link", "label": "Card Link" }
       ]
     }

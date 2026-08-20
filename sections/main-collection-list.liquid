@@ -1,5 +1,111 @@
 
 
+{%- style -%}
+  /* Section Spacing Gaps & Container Padding overrides */
+  #shopify-section-{{ section.id }} .resource-list--grid {
+    --resource-list-column-gap-desktop: 16px !important;
+    --resource-list-row-gap-desktop: 24px !important;
+    --resource-list-column-gap: 16px !important;
+    --resource-list-row-gap: 24px !important;
+    gap: 24px 16px !important;
+  }
+  
+  #shopify-section-{{ section.id }} .section-resource-list {
+    padding-inline: 24px !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .resource-list--grid {
+      --resource-list-columns-per-row: 5 !important;
+      grid-template-columns: repeat(5, 1fr) !important;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .resource-list--grid {
+      --resource-list-column-gap: 10px !important;
+      --resource-list-row-gap: 16px !important;
+      gap: 16px 10px !important;
+    }
+    #shopify-section-{{ section.id }} .section-resource-list {
+      padding-inline: 12px !important;
+    }
+  }
+
+  /* Collection Card Image rounded corners */
+  #shopify-section-{{ section.id }} .collection-card {
+    position: relative !important;
+    border-radius: 0px !important;
+    overflow: hidden !important;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__inner {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 17px !important;
+    width: 100% !important;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__image,
+  #shopify-section-{{ section.id }} .collection-card__image-wrapper,
+  #shopify-section-{{ section.id }} .collection-card__image svg,
+  #shopify-section-{{ section.id }} .collection-card__image img {
+    border-radius: 0px !important;
+    overflow: hidden !important;
+  }
+
+  /* Collection Card content container positioned below the image */
+  #shopify-section-{{ section.id }} .collection-card__content {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: transparent !important;
+    width: 100% !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    z-index: 3 !important;
+  }
+
+  /* Target the text block wrapper inside collection-card__content */
+  #shopify-section-{{ section.id }} .collection-card__content > * {
+    background: #ffffff !important;
+    color: #0c4168 !important;
+    padding: 6px 12px !important;
+    border-radius: 0px !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    width: auto !important;
+    max-width: 100% !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+    display: inline-block !important;
+    box-sizing: border-box !important;
+  }
+
+  /* If the text block contains nested paragraphs or links, ensure they inherit styling */
+  #shopify-section-{{ section.id }} .collection-card__content p,
+  #shopify-section-{{ section.id }} .collection-card__content a,
+  #shopify-section-{{ section.id }} .collection-card__content span {
+    color: #0c4168 !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+  }
+
+  /* Hide default overlay gradient if any */
+  #shopify-section-{{ section.id }} .collection-card::before {
+    display: none !important;
+  }
+{%- endstyle -%}
+
 {% liquid
   assign section_collections = collections
   assign max_items = 20

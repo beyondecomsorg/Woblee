@@ -234,7 +234,10 @@ a.contents.user-select-text p{
       color: white;
     }
 
-
+    .jm-stack.jm-stack--space-300.jm-review-widget.jm-review-widget--minimal-header{
+      padding: 0 !important;
+    }
+    
 
     @media only screen and (max-width: 768px){
         #timeline-tabs-template--20344750243991__tab_section_PXmk7b, .war-static,
@@ -264,19 +267,25 @@ a.contents.user-select-text p{
       margin-top: 1rem !important;
     }
     .ess-section{
-      margin-bottom: 2rem;
+      margin-bottom: 30px;
     }
     .content-for-layout > .shopify-section:last-child{
       margin-top: 1rem;
     }
     .wau-pcard__caption{
       font-size: 9px !important;
+      padding: 5px !important;
    
     }
     .template-collection .group-block-content.layout-panel-flex.layout-panel-flex--column.mobile-column, product-price.text-block.text-left.h6.spacing-style{
-    margin-top: 10px !important;
-    gap : 10px !important;
+    margin-top: 0px !important;
+    gap : 0px !important;
     }
+
+    .product-grid{
+      gap: 0px !important;
+    }
+
       .product-meta-modal__title{
       margin-bottom: 0;
     }
@@ -460,7 +469,7 @@ p.resource-card__title.paragraph{
         --wb-letter-tight: -0.04em;
         --wb-letter-normal: 0;
         --wb-letter-wide: 0.08em;
-        --wb-letter-xwide: 0.22em;
+        --wb-letter-xwide: 1px;
         --wb-line-tight: 0.95;
         --wb-line-heading: 1.05;
         --wb-line-body: 1.6;
@@ -471,7 +480,7 @@ p.resource-card__title.paragraph{
         --wb-btn-radius: 0px;
         --wb-btn-font-size: 14px;
         --wb-btn-font-weight: 800;
-        --wb-btn-letter-spacing: 0.08em;
+        --wb-btn-letter-spacing: 1px;
         --wb-btn-bg: var(--wb-color-lime);
         --wb-btn-text: var(--wb-color-blue);
         --wb-btn-border: var(--wb-color-lime);
@@ -763,7 +772,7 @@ button.account-button,
         margin: 0;
         font-size: 18px;
         font-weight: 700;
-        letter-spacing: -0.01em;
+        letter-spacing: 1px;
       }
 
       .size-chart-dialog__close {
@@ -1160,6 +1169,57 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
       } else {
         observeWishlistButtons();
       }
+    })();
+    </script>
+    <script>
+    (function() {
+      function injectShadowStyles(el) {
+        if (!el || !el.shadowRoot) return;
+        if (el.shadowRoot.querySelector('#custom-shadow-style')) return;
+        
+        const style = document.createElement('style');
+        style.id = 'custom-shadow-style';
+        
+        if (el.tagName.toLowerCase() === 'shopify-account') {
+          style.textContent = `
+            .account__item-wrapper,
+            .account__item-wrapper *,
+            .account__item-text,
+            .account__item {
+              color: #0c4168 !important;
+            }
+          `;
+        } else if (el.tagName.toLowerCase() === 'shopify-login-form') {
+          style.textContent = `
+            .login-form__marketing-consent-checkbox:checked + .login-form__marketing-consent-visual {
+              background-color: #0a3557 !important;
+              box-shadow: 0 0 0 calc(var(--font-size-sm) / 2) #0a3557 inset !important;
+            }
+          `;
+        }
+        
+        el.shadowRoot.appendChild(style);
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        const elements = document.querySelectorAll('shopify-account, shopify-login-form');
+        elements.forEach((el) => {
+          if (el.shadowRoot) {
+            injectShadowStyles(el);
+          } else {
+            const checkInterval = setInterval(() => {
+              if (el.shadowRoot) {
+                clearInterval(checkInterval);
+                injectShadowStyles(el);
+              }
+            }, 50);
+            setTimeout(() => clearInterval(checkInterval), 3000);
+          }
+        });
+      });
+
+      observer.observe(document.body, { childList: true, subtree: true });
+      document.querySelectorAll('shopify-account, shopify-login-form').forEach(injectShadowStyles);
     })();
     </script>
   </body>

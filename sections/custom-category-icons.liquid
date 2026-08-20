@@ -179,7 +179,7 @@
   font-size: var(--wci-heading-size);
   font-weight: var(--wci-heading-weight);
   color: var(--wci-heading-color);
-  margin: 0 0 var(--wci-heading-mb);
+  margin: 0 0 16px;
   letter-spacing: var(--wci-heading-tracking);
   line-height: var(--wci-heading-lh);
   text-transform: var(--wci-heading-transform);
@@ -218,7 +218,7 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  margin-bottom: var(--wci-icons-mb);
+  margin-bottom: 0;
 }
 
 .wci-scroll-wrap::-webkit-scrollbar {
@@ -229,7 +229,7 @@
   display: flex;
   justify-content: center;
   gap: var(--wci-icon-gap);
-  padding: 8px 16px;
+  padding: 0px 16px;
   min-width: max-content;
   margin: 0 auto;
 }
@@ -455,7 +455,7 @@
     padding-right: 20px !important;
   }
   .wci-cta-btn {
-  letter-spacing: 0;
+  letter-spacing: 1px;
   }
 </style>
 
@@ -540,9 +540,9 @@
       "label": "Heading letter spacing",
       "options": [
         { "value": "-0.04", "label": "Tight (-0.04em)" },
-        { "value": "-0.02", "label": "Snug (-0.02em)" },
+        { "value": "-0.02", "label": "Snug (-1px)" },
         { "value": "0",     "label": "Normal (0)" },
-        { "value": "0.02",  "label": "Wide (0.02em)" },
+        { "value": "0.02",  "label": "Wide (1px)" },
         { "value": "0.05",  "label": "Wider (0.05em)" }
       ],
       "default": "0"

@@ -1296,7 +1296,7 @@ button.shopify-payment-button__button--unbranded {
   text-align: var(--text-align);
   color: var(--button-color);
   appearance: none;
-  background-color: var(--button-background-color);
+  background-color: #0c4168;
   border: none;
   font-family: var(--font-paragraph--family);
   font-style: var(--font-paragraph--style);
@@ -1384,7 +1384,7 @@ button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
 
 .button-secondary {
   --button-color: var(--color-secondary-button-text);
-  --button-background-color: var(--color-secondary-button-background);
+  --button-background-color: #0c4168;
   --button-border-color: var(--color-secondary-button-border);
   --button-border-width: var(--style-border-width-secondary);
 }
@@ -1669,7 +1669,7 @@ zoom-dialog dialog {
   justify-content: center;
 
   /* For the outline radius */
-  border-radius: 50%;
+  border-radius: 0%;
 }
 
 /* This triggers iOS < 16.4. The outline bug is not recognized as a lack of @supports */
@@ -2863,7 +2863,7 @@ form.payment-terms {
   width: var(--checkbox-size);
   flex-shrink: 0;
   border: var(--checkbox-border);
-  border-radius: var(--checkbox-border-radius);
+  border-radius: 0;
   background-color: var(--color-background);
 }
 
@@ -3090,6 +3090,19 @@ color: #444;
   }
 }
 
+.account-button.header-actions__action.color-scheme-1 .account__item,
+.account-button.header-actions__action.color-scheme-1 span.account__item-text,
+.account__item-wrapper,
+.account__item-wrapper a,
+.account__item-wrapper span,
+.account__item-wrapper button,
+.account__item-text {
+  color: #0c4168 !important;
+  font-size: 16px !important;
+}
+.login-form__marketing-consent-checkbox:checked+.login-form__marketing-consent-visual{
+  background-color: #0a3557 !important;
+}
 .product-form-buttons:has(.add-to-cart-button.button-secondary) .quantity-selector {
   border-radius: var(--style-border-radius-buttons-secondary);
 }
@@ -4287,7 +4300,7 @@ product-recommendations:has([data-has-recommendations='false']) {
   font-size: 20px;
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: 1px;
          text-transform: capitalize;
 }
 
@@ -4317,7 +4330,7 @@ product-recommendations:has([data-has-recommendations='false']) {
   font-weight: 700;
   color: #21f010;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 1px;
 }
 
 /* Product title - desktop */
@@ -4444,6 +4457,10 @@ a[ref="productTitleLink"] p {
 }
 body.template-collection.modal-open .quick-add-modal__content :is( .variant-option legend, .variant-option__button-label__text, .details-content, .details-content p, .details-content li, .details-content span, .details-content strong, .quick-view__description-content, .quick-view__description-content p, .quick-view__description-content li ){
   width: 100%;
+}
+.jm-cluster{
+  margin-top: 10px !important;
+  gap: 16px !important;
 }
 .variant-option__legend-flex{
   width: 100%;
@@ -4581,12 +4598,44 @@ p.jm-text.jm-other-products-reviews-text{
   text-align: center !important;
 }
 
-[data-widget-container="review-widget"] .jm-no-reviews-state__text {
+.collection-carousel-pro__title{
+color: #0a3557 !important;
+font-size: 15px !important;
+}
+.collection-carousel-pro__price{
+ color: #444444 !important;
+ font-size: 15px !important;
+ font-weight: 700 !important;
+}
+.jm-center.jm-center--center-text.jm-center--intrinsic.jm-no-reviews-state,
+.jm-stack.jm-stack--space-600.jm-review-widget__header.jm-review-widget-minimal-header{
+  margin-bottom: 0px !important;
+}
+p.jm-text.jm-other-products-reviews-text{
+  padding-top: 4px !important;
+}
+
+.jm-stack.jm-stack--space-600.jdgm-review-list{
+  padding-top: 0px;
+}
+@media screen and (min-width: 750px) {
+  .collection-carousel-pro__title{
+color: #0a3557 !important;
+font-size: 16px !important;
+}
+.collection-carousel-pro__price{
+ color: #444444 !important;
+ font-size: 14px !important;
+}
+}
+
+[data-widget-container="review-widget"] .jm-no-reviews-state__text,
+p.jm-text.jm-other-products-reviews-text {
   font-family: Helvetica, Arial, sans-serif !important;
   font-size: 15px !important;
   font-weight: 700 !important;
   color: rgb(12, 65, 104) !important;
-  letter-spacing: -0.6px !important;
+  letter-spacing: 1px !important;
   text-align: center !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -4594,6 +4643,13 @@ p.jm-text.jm-other-products-reviews-text{
   text-transform: uppercase;
 }
 
+body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h3, h4, h5, h6){
+ line-height: 30px !important;
+}
+
+.custom-footer__input{
+  letter-spacing: 1px;
+}
 /* 3. CENTER THE WRITE REVIEW BUTTON & CLUSTERS */
 [data-widget-container="review-widget"] .jm-no-reviews-state__action-buttons,
 [data-widget-container="review-widget"] .jm-no-reviews-state .jm-action-buttons {
@@ -4686,7 +4742,7 @@ p.jm-text.jm-other-products-reviews-text{
 }
 
 [data-widget-container="review-widget"] .jm-no-reviews-state__text {
-  margin-block-end: 14px !important;
+  margin-block-end: 16px !important;
 }
 
 [data-widget-container="review-widget"] .jm-no-reviews-state__action-buttons {

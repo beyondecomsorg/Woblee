@@ -323,7 +323,8 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: calc(var(--ecg-underline-offset) - var(--ecg-underline-h));
+
+  bottom: 1px;
   width: 100%;
   height: var(--ecg-underline-h);
   background: currentColor;
@@ -375,7 +376,7 @@
 
   .ecg-btn {
     font-size: var(--ecg-btn-size-mob);
-    padding: 8px 0;
+    padding: 6px 0;
     font-weight: 400;
   }
 }
@@ -837,9 +838,9 @@
       "label": "Heading letter spacing",
       "options": [
         { "value": "-0.04", "label": "Tight (-0.04em)" },
-        { "value": "-0.02", "label": "Snug (-0.02em)" },
+        { "value": "-0.02", "label": "Snug (-1px)" },
         { "value": "0",     "label": "Normal (0)" },
-        { "value": "0.02",  "label": "Wide (0.02em)" },
+        { "value": "0.02",  "label": "Wide (1px)" },
         { "value": "0.05",  "label": "Wider (0.05em)" },
         { "value": "0.08",  "label": "Widest (0.08em)" }
       ],

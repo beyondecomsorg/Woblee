@@ -233,7 +233,7 @@
             {% render 'resource-list-carousel',
               ref: 'resourceListCarousel',
               slides: slides,
-              slide_count: recommendations.products.size,
+              slide_count: slides.size,
               settings: section.settings
             %}
         {% endcase %}
@@ -257,7 +257,7 @@
           {% render 'resource-list-carousel',
             ref: 'resourceListCarouselMobile',
             slides: slides,
-            slide_count: recommendations.products.size,
+            slide_count: slides.size,
             settings: section.settings
           %}
         </div>

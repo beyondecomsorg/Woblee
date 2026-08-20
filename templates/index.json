@@ -331,47 +331,16 @@
     "collection_carousel_pro_pAhcyP": {
       "type": "collection-carousel-pro",
       "blocks": {
-        "card_hjY9gV": {
+        "card_BVNFUN": {
           "type": "card",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/1.png",
-            "title": "",
-            "link": "shopify://products/strive-to-conquer-mens-graphic-tee"
-          }
-        },
-        "card_rxyi84": {
-          "type": "card",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/New_Arri_2.png",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_WDQtQc": {
-          "type": "card",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/New_Arri_3.png",
-            "title": "",
-            "link": ""
-          }
-        },
-        "card_8ew7Bf": {
-          "type": "card",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/New_Arri_4.png",
-            "title": "",
-            "link": ""
+            "link": "shopify://products/11-11-make-a-wish-womens-tee"
           }
         },
         "card_d3fLwH": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/1.png",
-            "title": "",
             "link": ""
           }
         },
@@ -379,7 +348,6 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/2.png",
-            "title": "",
             "link": ""
           }
         },
@@ -387,16 +355,12 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/3.png",
-            "title": "",
             "link": ""
           }
         }
       },
       "block_order": [
-        "card_hjY9gV",
-        "card_rxyi84",
-        "card_WDQtQc",
-        "card_8ew7Bf",
+        "card_BVNFUN",
         "card_d3fLwH",
         "card_tM8P6i",
         "card_MNgmtT"
@@ -458,6 +422,76 @@
         "padding_bottom": 12,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0
+      }
+    },
+    "collection_splider_KfQeUw": {
+      "type": "collection-splider",
+      "name": "Collection Slider",
+      "settings": {
+        "heading": "",
+        "collection": "bestsellers",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "button_label": "SHOP ALL",
+        "section_bg_color": "#ffffff",
+        "wrapper_width": 94,
+        "section_padding_top": 40,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 30,
+        "section_padding_bottom_mobile": 0,
+        "heading_color": "#0c4168",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 32,
+        "heading_weight": "800",
+        "heading_alignment": "left",
+        "heading_alignment_mobile": "center",
+        "heading_margin_bottom": 24,
+        "card_bg_color": "rgba(0,0,0,0)",
+        "image_bg_color": "#f7f7f7",
+        "image_ratio_desktop": "3 / 3.6",
+        "image_ratio_mobile": "3 / 3.6",
+        "card_width_desktop": 240,
+        "card_width_tablet": 210,
+        "card_width_mobile": 180,
+        "card_gap_desktop": 16,
+        "card_gap_mobile": 12,
+        "card_info_spacing": 12,
+        "title_color": "#0c4168",
+        "title_size_desktop": 16,
+        "title_size_mobile": 14,
+        "title_weight": "700",
+        "price_color": "#444444",
+        "compare_price_color": "#444444",
+        "price_size_desktop": 14,
+        "price_size_mobile": 15,
+        "price_weight": "500",
+        "arrow_color": "#0c4168",
+        "arrow_bg_color": "rgba(0,0,0,0)",
+        "arrow_size_desktop": 40,
+        "arrow_size_mobile": 32,
+        "arrow_offset_desktop": 44,
+        "arrow_offset_tablet": 10,
+        "arrow_border_radius": 0,
+        "button_margin_top": 36,
+        "button_width_desktop": 150,
+        "button_height_desktop": 40,
+        "button_width_mobile": 144,
+        "button_height_mobile": 40,
+        "button_font_size_desktop": 14,
+        "button_font_size_mobile": 10,
+        "button_font_weight": "700",
+        "button_border_width": 2,
+        "button_border_radius": 0,
+        "button_padding_x": 14,
+        "button_padding_y": 10,
+        "button_padding_x_mobile": 10,
+        "button_padding_y_mobile": 10,
+        "button_text_color": "#0c4168",
+        "button_bg_color": "#ffffff",
+        "button_border_color": "#0c4168",
+        "button_hover_text_color": "#ffffff",
+        "button_hover_bg_color": "#0c4168",
+        "button_hover_border_color": "#0c4168"
       }
     },
     "custom_category_icons_fa4BTq": {
@@ -724,7 +758,7 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
+        "padding_bottom_mobile": 6,
         "heading_color": "#0c4168",
         "heading_weight": "600",
         "heading_weight_mobile": "700",
@@ -1026,7 +1060,7 @@
         "show_view_all": true,
         "button_label": "SHOP ALL",
         "section_bg_color": "#ffffff",
-        "wrapper_width": 94,
+        "wrapper_width": 82,
         "section_padding_top": 60,
         "section_padding_bottom": 60,
         "section_padding_top_mobile": 30,
@@ -1040,7 +1074,7 @@
         "heading_margin_bottom": 24,
         "card_bg_color": "rgba(0,0,0,0)",
         "image_bg_color": "#f7f7f7",
-        "image_ratio_desktop": "3 / 3.6",
+        "image_ratio_desktop": "",
         "image_ratio_mobile": "3 / 3.6",
         "card_width_desktop": 240,
         "card_width_tablet": 210,
@@ -1305,8 +1339,8 @@
         "rotating_text_weight_mobile": 700,
         "sub_text_weight_mobile": 400,
         "interval": 2,
-        "padding_top": 10,
-        "padding_bottom": 10
+        "padding_top": 16,
+        "padding_bottom": 16
       }
     },
     "tab_section_PXmk7b": {
@@ -1686,6 +1720,7 @@
     "marquee_izzYrQ",
     "custom_editorial_CCz9Yx",
     "collection_carousel_pro_pAhcyP",
+    "collection_splider_KfQeUw",
     "custom_category_icons_fa4BTq",
     "custom_editorial_seaction_mHFt7p",
     "custom_category_grid_dyNMWU",

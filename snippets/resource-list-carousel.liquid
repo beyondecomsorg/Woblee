@@ -44,7 +44,7 @@
     class: 'resource-list__carousel',
     slides: slides,
     show_arrows: show_arrows,
-    icon_style: settings.icons_style,
+    icon_style: 'chevron',
     icon_shape: settings.icons_shape,
     auto_hide_controls: false,
     infinite: false,
@@ -106,7 +106,19 @@
   }
 
   .resource-list__carousel slideshow-arrows {
-    padding-inline: var(--util-page-margin-offset);
+    padding-inline: 15px !important;
+    mix-blend-mode: normal !important;
+  }
+
+  .resource-list__carousel slideshow-arrows .slideshow-control {
+    opacity: 1 !important;
+    color: #0c4168 !important;
+    --icon-stroke-width: 2.5px !important;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .resource-list__carousel slideshow-arrows .slideshow-control:hover {
+    transform: scale(1.1);
   }
 
   .resource-list__carousel .resource-list__slide {
