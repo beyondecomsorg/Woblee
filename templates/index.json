@@ -625,7 +625,7 @@
         "background_color": "#ffffff",
         "padding_top": 60,
         "padding_bottom": 60,
-        "padding_top_mobile": 0,
+        "padding_top_mobile": 30,
         "padding_bottom_mobile": 30
       }
     },
