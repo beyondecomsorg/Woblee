@@ -426,6 +426,7 @@
     },
     "collection_splider_KfQeUw": {
       "type": "collection-splider",
+      "disabled": true,
       "name": "Collection Slider",
       "settings": {
         "heading": "",
