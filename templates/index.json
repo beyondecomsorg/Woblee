@@ -1340,8 +1340,8 @@
         "rotating_text_weight_mobile": 700,
         "sub_text_weight_mobile": 400,
         "interval": 2,
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 6,
+        "padding_bottom": 6
       }
     },
     "tab_section_PXmk7b": {
