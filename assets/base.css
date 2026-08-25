@@ -787,7 +787,7 @@ h2,
   font-weight: var(--font-h2--weight);
   font-size: var(--font-h2--size);
   line-height: var(--font-h2--line-height);
-  letter-spacing: var(--font-h2--letter-spacing);
+  letter-spacing: 1px;
   text-transform: var(--font-h2--case);
   color: var(--color, var(--font-h2-color));
 }
@@ -1317,7 +1317,7 @@ button.shopify-payment-button__button--unbranded {
 .button {
   font-family: var(--button-font-family-primary);
   text-transform: var(--button-text-case-primary);
-  border-radius: var(--style-border-radius-buttons-primary);
+  border-radius: 0;
 }
 
 .button:not(.button-secondary, .button-unstyled) {
