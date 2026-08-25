@@ -542,6 +542,9 @@ class SwatchesVariantPickerComponent extends VariantPicker {
 
     // Listen for variant updates to apply pending URL changes
     this.addEventListener(ThemeEvents.variantUpdate, this.#handleCardVariantUrlUpdate.bind(this));
+
+    // Listen for click event to redirect to PDP
+    this.addEventListener('click', this.#handleSwatchClick.bind(this));
   }
 
   /**
@@ -557,43 +560,52 @@ class SwatchesVariantPickerComponent extends VariantPicker {
   }
 
   /**
-   * Override the variantChanged method to handle unavailable swatches with available alternatives.
+   * Redirects to the corresponding PDP on swatch click.
+   * @param {Event} event - The click event.
+   */
+  #handleSwatchClick(event) {
+    // Only redirect to PDP if we are inside a product card (e.g., collection/search page)
+    if (!this.parentProductCard) return;
+
+    if (!(event.target instanceof Element)) return;
+
+    const swatchLabel = event.target.closest('.variant-option__button-label--has-swatch');
+    const swatchInput = event.target.closest('input[type="radio"][name*="-swatch"]') || (swatchLabel && swatchLabel.querySelector('input[type="radio"]'));
+
+    if (swatchInput) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const variantId = swatchInput.dataset.variantId || swatchInput.dataset.firstAvailableOrFirstVariantId;
+
+      let productUrl = this.parentProductCard.productPageUrl;
+      if (!productUrl) {
+        productUrl = this.parentProductCard.refs.productCardLink?.href;
+      }
+
+      if (productUrl) {
+        const url = new URL(productUrl, window.location.origin);
+        if (variantId) {
+          url.searchParams.set('variant', variantId);
+        }
+        window.location.href = url.href;
+      }
+    }
+  }
+
+  /**
+   * Override the variantChanged method to prevent default behavior when a swatch is changed.
    * @param {Event} event - The variant change event.
    */
   variantChanged(event) {
     if (!(event.target instanceof HTMLElement)) return;
 
-    // Check if this is a swatch input
+    // Check if this is a swatch input on a product card
     const isSwatchInput = event.target instanceof HTMLInputElement && event.target.name?.includes('-swatch');
-    const clickedSwatch = event.target;
-    const availableCount = parseInt(clickedSwatch.dataset.availableCount || '0');
-    const firstAvailableVariantId = clickedSwatch.dataset.firstAvailableOrFirstVariantId;
 
-    // For swatch inputs, check if we need special handling
-    if (isSwatchInput && availableCount > 0 && firstAvailableVariantId) {
-      // If this is an unavailable variant but there are available alternatives
-      // Prevent the default handling
+    if (this.parentProductCard && isSwatchInput) {
+      event.preventDefault();
       event.stopPropagation();
-
-      // Update the selected option visually
-      this.updateSelectedOption(clickedSwatch);
-
-      // Build request URL with the first available variant
-      const productUrl = this.dataset.productUrl?.split('?')[0];
-
-      if (!productUrl) return;
-
-      const url = new URL(productUrl, window.location.origin);
-      url.searchParams.set('variant', firstAvailableVariantId);
-      url.searchParams.set('section_id', 'section-rendering-product-card');
-
-      const requestUrl = url.href;
-
-      // Store the variant ID we want to apply to the URL
-      this.pendingVariantId = firstAvailableVariantId;
-
-      // Use parent's fetch method
-      this.fetchUpdatedSection(requestUrl);
       return;
     }
 
