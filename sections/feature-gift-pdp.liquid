@@ -311,8 +311,8 @@
 
 #features-grid-{{ section.id }} {
   background-color: var(--fg-bg);
-  padding-top: 16px !important;
-  padding-bottom: 16px !important;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
 }
 
 #features-grid-{{ section.id }} .features-grid__container {
@@ -330,7 +330,7 @@
   color: var(--fg-text);
   font-size: var(--fg-section-title-size);
   font-weight: var(--fg-section-title-weight);
-  margin: 0 0 16px;
+  margin: 0 0 30px;
   line-height: 1.2;
 }
 
@@ -389,7 +389,7 @@
 
   .features-grid__card {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 14px;
     padding: 0;
   }
@@ -399,7 +399,10 @@
   }
 
   .features-grid__subheading {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  .features-grid__heading{
+    margin: 0 0 1px 0 !important;
   }
 
   .features-grid__desc p {
@@ -417,8 +420,11 @@
   }
 
   #features-grid-{{ section.id }} {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+  .features-grid__img-wrap img{
+    object-fit: scale-down;
   }
 
   .features-grid__img-wrap {

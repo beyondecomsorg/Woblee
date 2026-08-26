@@ -208,6 +208,7 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  line-height: 22px;
 }
 
 .wrap-text {
@@ -306,7 +307,7 @@ p:empty {
 
 /* Focus */
 *:focus-visible {
-  outline: var(--focus-outline-width) solid currentcolor;
+  /* outline: var(--focus-outline-width) solid currentcolor; */
   outline-offset: var(--focus-outline-offset);
 }
 
@@ -1495,7 +1496,7 @@ summary {
   align-items: center;
   cursor: pointer;
   list-style: none;
-  padding-block: var(--padding-sm);
+  padding-block: 16px;
 }
 
 
@@ -2412,7 +2413,7 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) .volume-pricing-note {
 }
 
 .compare-at-price {
-  opacity: 0.4;
+  opacity: 0.7;
   text-decoration-line: line-through;
   text-decoration-thickness: 1.5px;
 }
@@ -4308,7 +4309,7 @@ product-recommendations:has([data-has-recommendations='false']) {
 .price-item--regular {
   font-size: 14px;
   font-weight: 500;
-  color: #8c8c8c;
+  color: #000000;
   text-decoration: line-through;
   margin-right: 8px;
 }
@@ -4775,6 +4776,117 @@ body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h
   text-align: center !important;
   width: 100% !important;
   display: block !important;
+}
+
+.jm-cluster,
+body [data-widget-container="review-widget"] p.jm-text.jm-other-products-reviews-text, [data-widget-container="review-widget"] .jm-other-products-reviews-text{
+  margin: 0px !important;
+  
+}
+.jm-stack.jm-stack--space-400.jm-review-item__content,
+.jm-review-widget__header-and-body{
+  gap: 16px !important;
+
+}
+p.jm-text.jm-review-widget-minimal-header__title{
+  text-align: center !important;
+}
+
+body p.jm-text.jm-other-products-reviews-text{
+  margin-bottom: 16px !important;
+  padding-bottom: 16px !important;
+}
+
+/* Mobile responsive styling for Judge.me widget */
+@media screen and (max-width: 749px) {
+  .border-style.custom-section-content{
+    padding-top: 20px;
+  }
+  .jm-box.jm-box--inherit-color.jm-review-item{
+    padding-bottom: 30px !important;
+  }
+  /* 1. Reset all stacked margins/gaps inside the widget to standard 16px */
+  [data-widget-container="review-widget"] .jm-review-widget__header {
+    margin-bottom: 16px !important;
+    margin-block-end: 16px !important;
+    --52156a25: 16px !important; /* judge.me space variable */
+  }
+
+  [data-widget-container="review-widget"] .jm-no-reviews-state {
+    margin-bottom: 16px !important;
+    margin-block-end: 16px !important;
+  }
+
+  [data-widget-container="review-widget"] .jm-no-reviews-state__text {
+    margin-bottom: 16px !important;
+    margin-block-end: 16px !important;
+    text-align: center !important;
+  }
+
+  [data-widget-container="review-widget"] .jm-no-reviews-state__action-buttons {
+    margin-bottom: 16px !important;
+    margin-block-end: 16px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  [data-widget-container="review-widget"] p.jm-text.jm-other-products-reviews-text,
+  [data-widget-container="review-widget"] .jm-other-products-reviews-text {
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+    text-align: left !important;
+  }
+
+  /* 2. Review List and Item elements spacing */
+  [data-widget-container="review-widget"] .jdgm-review-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding-top: 0px !important;
+  }
+
+  [data-widget-container="review-widget"] .jm-review-item {
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+  }
+ 
+  [data-widget-container="review-widget"] .jm-review-item__content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Zero out individual margins on inner review items and use consistent 16px bottom margins */
+  [data-widget-container="review-widget"] .jm-star-rating {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+    display: flex !important;
+  }
+
+  [data-widget-container="review-widget"] .jm-reviewer-info {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  [data-widget-container="review-widget"] .jm-review-content {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+  }
+
+  [data-widget-container="review-widget"] .jm-product-variant-card {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Left alignment of headers */
+  [data-widget-container="review-widget"] .jm-review-widget-minimal-header__title,
+  [data-widget-container="review-widget"] .jm-review-widget-minimal-header__title * {
+    text-align: left !important;
+  }
 }
 
 .product-grid__item .wishlist-btn:hover {

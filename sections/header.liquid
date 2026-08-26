@@ -1118,6 +1118,50 @@
     font-family: var(--menu-localization-font);
     font-size: var(--menu-localization-font-size);
   }
+  /* Mobile Header Icon Normalization */
+  @media screen and (max-width: 989px) {
+    .header__icon--menu, 
+    .search-action, 
+    .hulk-wishlist-header-action, 
+    .account-button, 
+    .header-actions__cart-icon {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .header__icon--menu svg, 
+    .search-action svg, 
+    .account-button svg, 
+    .header-actions__cart-icon svg,
+    .hulk-wishlist-header-action svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+
+    .hulk-wishlist-header-action i {
+      font-size: 22px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      vertical-align: middle !important;
+    }
+
+    header-actions {
+      display: flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+    }
+
+    .header__columns {
+      column-gap: 4px !important;
+    }
+  }
 {% endstylesheet %}
 
 {% unless request.design_mode %}

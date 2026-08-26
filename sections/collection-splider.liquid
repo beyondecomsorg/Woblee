@@ -95,9 +95,8 @@
 
 <style>
   .fcs-track-container {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
 }
 .fcs-card-title {
   display: -webkit-box;
@@ -278,6 +277,9 @@
   .fcs-card {
    flex: 0 0 68%;
   }
+  .fcs-view-all-wrap{
+    margin-top: 30px !important;
+  }
 }
 
 .fcs-card:hover {
@@ -285,15 +287,17 @@
 }
 
 .fcs-card-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-decoration: none;
   color: inherit;
 }
 
 /* Image */
 .fcs-card-image-wrap {
-  width: 100%;
   aspect-ratio: var(--fcs-image-ratio);
+  width: 100%;
   background: var(--fcs-image-bg);
   overflow: hidden;
   display: flex;
@@ -304,7 +308,7 @@
 .fcs-card-img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
   display: block;
   transition: transform 0.4s ease;
 }
@@ -432,6 +436,12 @@
   .fcs-card-title {
     font-size: 15px;
     line-height: 1.4;
+      white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
   }
 .timeline-tabs{
   padding-top: 0px !important;
@@ -738,7 +748,7 @@
       "id": "section_padding_bottom_mobile",
       "label": "Padding bottom mobile",
       "min": 0,
-      "max": 100,
+      "max": 80,
       "step": 2,
       "default": 30,
       "unit": "px"

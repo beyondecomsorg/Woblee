@@ -167,9 +167,23 @@
 .wau-section {
   position: relative;
   overflow: hidden;
-  padding-top: var(--wau-pt);
+  padding-top: 50px;
   padding-bottom: var(--wau-pb);
   background: var(--wau-bg);
+}
+@media (max-width: 900px) {
+  .wau-left{
+      padding-top: 30px !important;
+  }
+  .wau-left{
+    padding-top: 0px !important;
+
+  }
+  }
+@media only screen and (max-width: 749px){
+  .wau-left{
+      padding-top: 30px !important;
+  }
 }
 
 .wau-bg-img {
@@ -233,7 +247,7 @@
   font-size: var(--wau-body-size);
   font-weight: var(--wau-body-weight);
   color: var(--wau-body-color);
-  line-height: 1.7;
+  line-height: 22px;
   max-width: 450px;
   margin-bottom: 36px;
 }
@@ -241,6 +255,7 @@
 .wau-section.wau-visible .wau-body {
   opacity: 1;
   transform: translateX(0);
+  letter
 }
 
 /* CTA */
@@ -251,7 +266,7 @@
 .wau-stat-pill strong,
 .wau-stat-pill span {
   font-family: Helvetica;
-  letter-spacing: 1.2px;
+  letter-spacing: 1px;
 }
 .wau-pcard__caption{
 
@@ -351,7 +366,7 @@
 .wau-stat-pill span {
   font-size: var(--wau-stats-label-size);
   font-weight: var(--wau-stats-label-weight);
-  letter-spacing: var(--wb-letter-wide, 0.1em);
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: rgba(255,255,255,0.5);
   font-family: Helvetica;
@@ -544,7 +559,7 @@ background: var(--wau-accent);
   .wau-inner {
     grid-template-columns: 1fr;
     padding: 0 24px 60px;
-    gap: 52px;
+    gap: 30px;
     min-height: unset;
   }
 

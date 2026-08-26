@@ -639,37 +639,191 @@
   }
 
   @media screen and (max-width: 749px) {
-    header-actions {
-      gap: 6px !important; /* reduce gap between icons on mobile */
+    /* Restore display: contents for column wrappers so elements are direct grid items */
+    #header-component .header__column {
+      display: contents !important;
     }
 
+    /* Redefine grid for mobile header row to center the logo and distribute columns symmetrically */
+    #header-component .header__columns {
+      display: grid !important;
+      grid-template-areas: 'leftA leftB center rightA rightB' !important;
+      grid-template-columns: 32px 32px 1fr 32px 32px !important;
+      column-gap: 12px !important;
+      align-items: center !important;
+      padding: 0 16px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    #header-component .header-logo {
+      grid-area: center !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+    }
+
+    #header-component .menu-drawer-container {
+      grid-area: leftA !important;
+    }
+
+    #header-component .search-action:not(.search-action--hidden-on-drawer):not(.search-action--hidden-on-menu) {
+      grid-area: leftB !important;
+    }
+
+    #header-component header-actions {
+      grid-area: rightB !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-end !important;
+      gap: 12px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: visible !important;
+    }
+
+    /* Remove extra spacing from wishlist wrapper */
     .hulk-wishlist-header-action {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      margin: 0 !important;
     }
-    .hulk-wishlist-icon{
-      padding-right: 0 !important;
-    }
-    header-actions{
-      gap: 0 !important;
+    .hulk-wishlist-icon {
+      padding: 0 !important;
     }
 
-    .hulk-header-icon {
-      min-width: 32px !important;
-      height: 32px !important;
+    /* Explicitly hide inactive duplicate search icons on mobile */
+    #header-component .search-action.search-action--hidden-on-drawer {
+      display: none !important;
+    }
+
+    /* Normalize all header icon buttons to identical 32px wide × 40px tall bounding boxes */
+    #header-component .header__icon--menu, 
+    #header-component .search-action:not(.search-action--hidden-on-drawer), 
+    #header-component .hulk-wishlist-header-action, 
+    #header-component .account-button, 
+    #header-component .header-actions__cart-icon,
+    #header-component .hulk-header-icon,
+    #header-component .header-actions__action,
+    #header-component cart-drawer-component,
+    #header-component .header-actions__action {
       width: 32px !important;
+      height: 40px !important;
+      min-width: 32px !important;
+      max-width: 32px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+    }
+body #header-component .search-action:not(.search-action--hidden-on-drawer) svg,
+ body #header-component .header-actions__cart-icon svg{
+  width: 30px !important;
+      height: 26px !important;
+ }
+ body .header__icon--summary .header-drawer-icon{
+    width: 30px !important;
+      height: 30px !important;
+ }
+    /* Set uniform sizes for SVG icons */
+    #header-component .header__icon--menu svg, 
+    #header-component .search-action:not(.search-action--hidden-on-drawer) svg, 
+    #header-component .account-button svg, 
+    #header-component .header-actions__cart-icon svg,
+    #header-component .hulk-wishlist-header-action svg,
+    #header-component .hulk-header-icon svg {
+      width: 20px !important;
+      height: 20px !important;
+      display: block !important;
+      margin: 0 auto !important;
     }
 
-    .hulk-header-icon .icon-wishlist-heart-empty {
-      font-size: 18px !important;
+    /* Set uniform font icon size for Wishlist */
+    #header-component .hulk-wishlist-header-action i,
+    #header-component .hulk-header-icon i {
+      font-size: 20px !important;
+      width: 20px !important;
+      height: 20px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      color: #bebebe !important;
     }
 
-    .hulk-header-icon .header-count.count {
-      top: 0px !important;
-      right: -2px !important;
+    #header-component shopify-account {
+      width: 32px !important;
+      height: 40px !important;
+      min-width: 32px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Reposition and normalize bubbles/counts relative to the 32px wide containers */
+    #header-component .header-actions__cart-icon .cart-bubble {
+      width: 14px !important;
+      height: 14px !important;
+      min-width: 14px !important;
+      min-height: 14px !important;
+      top: 3px !important;
+      right: -1px !important;
+    }
+    #header-component .header-actions__cart-icon .cart-bubble__text {
+      font-size: 8px !important;
+      line-height: 1 !important;
+    }
+    #header-component .hulk-header-icon .header-count.count {
+      top: 3px !important;
+      right: -1px !important;
       min-width: 14px !important;
       height: 14px !important;
       font-size: 8px !important;
+      border-radius: 50% !important;
+      padding: 0 !important;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    /* Adjust grid template columns, gap, and padding for smaller mobile screens */
+    #header-component .header__columns {
+      grid-template-columns: 30px 30px 1fr 30px 30px !important;
+      column-gap: 6px !important;
+      padding: 0 8px !important;
+    }
+
+    #header-component header-actions {
+      gap: 6px !important;
+    }
+
+    #header-component .header__icon--menu, 
+    #header-component .search-action:not(.search-action--hidden-on-drawer), 
+    #header-component .hulk-wishlist-header-action, 
+    #header-component .account-button, 
+    #header-component .header-actions__cart-icon,
+    #header-component .hulk-header-icon,
+    #header-component .header-actions__action,
+    #header-component cart-drawer-component,
+    #header-component .header-actions__action {
+      width: 30px !important;
+      min-width: 30px !important;
+      max-width: 30px !important;
+    }
+
+    #header-component shopify-account {
+      width: 30px !important;
+      min-width: 30px !important;
+    }
+
+    /* Adjust cart and wishlist bubble positions for 30px container */
+    #header-component .header-actions__cart-icon .cart-bubble {
+      top: 3px !important;
+      right: -2px !important;
+    }
+    #header-component .hulk-header-icon .header-count.count {
+      top: 3px !important;
+      right: -2px !important;
     }
   }
 

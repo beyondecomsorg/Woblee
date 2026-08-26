@@ -710,8 +710,8 @@
         "subheading": "",
         "scroll_speed": 60,
         "section_bg": "#ffffff",
-        "padding_top_desktop": 30,
-        "padding_bottom_desktop": 30,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 40,
         "padding_top_mobile": 30,
         "padding_bottom_mobile": 30,
         "font_family": "sans_serif_n4",
@@ -951,8 +951,8 @@
         "popup_add_to_cart_font_size_desktop": 14,
         "popup_add_to_cart_font_size_mobile": 14,
         "popup_add_to_cart_font_weight": "700",
-        "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-start": 50,
+        "padding-block-end": 50
       }
     }
   },

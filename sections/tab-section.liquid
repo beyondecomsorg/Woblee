@@ -126,7 +126,7 @@
 #{{ section_id }} .timeline-tabs__heading-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 #{{ section_id }} .timeline-tabs__heading {
@@ -151,6 +151,9 @@
 @media only screen and (max-width: 749px){
   #{{ section_id }} .timeline-tabs__inner.page-width .timeline-tabs__tabs {
   justify-content: flex-start;
+}
+#{{ section_id }} .timeline-tabs__heading-wrap {
+  margin-bottom: 10px;
 }
 }
 
@@ -259,6 +262,7 @@
   font-weight: {{ section.settings.content_heading_weight }};
   line-height: 1.2;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 #{{ section_id }} .timeline-tabs__text {
@@ -280,13 +284,17 @@
 /* Tablet */
 
 @media screen and (max-width: 990px) {
+  #{{ section_id }} .timeline-tabs__text p {
+  margin: 0 0 12px;
+
+}
 #{{ section_id }} {
   padding-top: {{ section.settings.section_padding_top_mobile }}px !important;
   padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px !important;
 }
   #{{ section_id }} .timeline-tabs__layout {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 30px;
     align-items: start;
   }
 
@@ -356,6 +364,7 @@
   #{{ section_id }} .timeline-tabs__title {
     font-size: {{ section.settings.content_heading_size_mobile }}px;
     font-weight: {{ section.settings.content_heading_weight_mobile }};
+    margin: 0 0 10px;
   }
 
   #{{ section_id }} .timeline-tabs__text {
@@ -421,7 +430,7 @@
       "label": "Padding Top",
       "min": 0,
       "max": 150,
-      "step": 5,
+      "step": 2,
       "unit": "px",
       "default": 20
     },
@@ -431,7 +440,7 @@
       "label": "Padding Bottom",
       "min": 0,
       "max": 150,
-      "step": 5,
+      "step": 2,
       "unit": "px",
       "default": 30
     },
@@ -441,7 +450,7 @@
   "label": "Padding Top - Mobile",
   "min": 0,
   "max": 150,
-  "step": 5,
+  "step": 2,
   "unit": "px",
   "default": 20
 },
@@ -450,8 +459,8 @@
   "id": "section_padding_bottom_mobile",
   "label": "Padding Bottom - Mobile",
   "min": 0,
-  "max": 150,
-  "step": 5,
+  "max": 80,
+  "step": 2,
   "unit": "px",
   "default": 30
 },

@@ -20,7 +20,7 @@
             "text": "SECURE CHECKOUT",
             "usp_bg": "#ffffff",
             "usp_text_color": "#0c4168",
-            "usp_icon_color": "#32ff00"
+            "usp_icon_color": "#21F010"
           }
         },
         "usp_p6d6yW": {
@@ -29,7 +29,7 @@
             "text": "STORY-LED GRAPHICS",
             "usp_bg": "#ffffff",
             "usp_text_color": "#0c4168",
-            "usp_icon_color": "#32ff00"
+            "usp_icon_color": "#21F010"
           }
         },
         "usp_38aENB": {
@@ -198,7 +198,7 @@
         "copyright_text": "© 2026, Woblee - All rights reserved.",
         "footer_bg": "#0c4168",
         "footer_right_bg": "#0b3a5d",
-        "footer_text": "#FDFCFC",
+        "footer_text": "#fdfcfc",
         "footer_muted": "#cccccc",
         "footer_accent": "#32ff00",
         "footer_border": "#2b5f88",

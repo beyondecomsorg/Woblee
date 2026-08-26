@@ -783,6 +783,19 @@
     height: var(--icon-size-xs);
   }
 
+  @media screen and (max-width: 749px) {
+    /* Hamburger SVG is now 20×20 viewBox (same as search/cart).
+       Target the SVG directly so it renders at the same 20px as other icons. */
+    .header__icon--summary .header-drawer-icon svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+
+    .menu-drawer-container .header__icon--summary {
+      padding: 12px; /* reduce from var(--padding-lg) to maintain 44px touch in 44px column */
+    }
+  }
+
   .menu-drawer__featured-content {
     z-index: var(--layer-base);
     container-type: inline-size;

@@ -123,7 +123,7 @@
         "heading_font_size_mobile": 24,
         "description_font_size": 14,
         "button_font_size_desktop": 14,
-        "button_font_size_mobile": 10,
+        "button_font_size_mobile": 12,
         "caption_position": "bottom_left",
         "content_offset_h": 4,
         "content_offset_v": 8,
@@ -276,8 +276,8 @@
         "color_burgundy": "#851828",
         "max_width": 1600,
         "section_padding_horizontal": 0,
-        "padding_top": 60,
-        "padding_bottom": 60,
+        "padding_top": 52,
+        "padding_bottom": 52,
         "mobile_padding_top": 32,
         "mobile_padding_bottom": 32,
         "desktop_cols": 4,
@@ -321,7 +321,7 @@
         "link_font": "Helvetica",
         "link_font_weight": "700",
         "link_size_desktop": 14,
-        "link_size_mobile": 10,
+        "link_size_mobile": 12,
         "link_letter_spacing": "0.08",
         "underline_thickness": 2,
         "underline_offset": 6,
@@ -341,21 +341,21 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/1.png",
-            "link": ""
+            "link": "shopify://products/blooming-warrior-womens-tee"
           }
         },
         "card_tM8P6i": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/2.png",
-            "link": ""
+            "link": "shopify://products/perfect-fusion-boys-tee"
           }
         },
         "card_MNgmtT": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/3.png",
-            "link": ""
+            "link": "shopify://products/move-smart-stay-real-mens-tee"
           }
         }
       },
@@ -378,7 +378,7 @@
         "shop_all_button_width_mobile": 100,
         "shop_all_button_height_mobile": 40,
         "shop_all_button_font_size_desktop": 14,
-        "shop_all_button_font_size_mobile": 10,
+        "shop_all_button_font_size_mobile": 12,
         "shop_all_button_font_weight": 600,
         "shop_all_button_border_radius": 0,
         "shop_all_button_border_width": 1,
@@ -623,8 +623,8 @@
         "btn_border_radius": 0,
         "btn_hover_lift": 2,
         "background_color": "#ffffff",
-        "padding_top": 60,
-        "padding_bottom": 60,
+        "padding_top": 52,
+        "padding_bottom": 52,
         "padding_top_mobile": 30,
         "padding_bottom_mobile": 30
       }
@@ -683,9 +683,9 @@
         "h_padding": 20,
         "mobile_side_padding": 12,
         "padding_top": 0,
-        "padding_bottom": 60,
+        "padding_bottom": 52,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 0,
+        "padding_bottom_mobile": 14,
         "left_image": "shopify://shop_images/New_Arrivals_700x700_afcee856-07e8-41b4-924a-404dd0cd9065.png",
         "left_content_padding": 32,
         "left_content_padding_mobile": 20,
@@ -715,9 +715,9 @@
         "cta_size": 14,
         "cta_size_mobile": 24,
         "cta_weight": "700",
-        "caption_size": 14,
-        "caption_size_mobile": 14,
-        "caption_weight": "500",
+        "caption_size": 16,
+        "caption_size_mobile": 15,
+        "caption_weight": "600",
         "explore_size": 14,
         "explore_size_mobile": 10,
         "explore_weight": "700",
@@ -759,7 +759,7 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 6,
+        "padding_bottom_mobile": 8,
         "heading_color": "#0c4168",
         "heading_weight": "600",
         "heading_weight_mobile": "700",
@@ -857,10 +857,10 @@
         "subheading": "",
         "scroll_speed": 30,
         "section_bg": "#ffffff",
-        "padding_top_desktop": 40,
+        "padding_top_desktop": 30,
         "padding_bottom_desktop": 10,
-        "padding_top_mobile": 6,
-        "padding_bottom_mobile": 18,
+        "padding_top_mobile": 14,
+        "padding_bottom_mobile": 30,
         "font_family": "sans_serif_n4",
         "heading_size_desktop": 40,
         "heading_size_mobile": 24,
@@ -889,40 +889,13 @@
         "card_hover_border": "#0c4168",
         "title_hover_color": "#ffffff",
         "text_hover_color": "#ffffff",
-        "icon_hover_bg": "#1af354",
+        "icon_hover_bg": "#21f010",
         "fade_color": "#ffffff"
       }
     },
     "collection_banner_kBPTxj": {
       "type": "collection-banner",
       "blocks": {
-        "slide_EHTaEb": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Lookbook1_Desktop.webp",
-            "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
-            "heading": "Collection Spotlight",
-            "subtext": "",
-            "button_1_label": "SHOP NOW",
-            "button_1_link": "",
-            "button_2_label": "",
-            "button_2_link": "",
-            "override_colors": false,
-            "heading_color": "#ffffff",
-            "desc_color": "#ffffff",
-            "btn1_bg": "#ffffff",
-            "btn1_text": "#000000",
-            "btn2_bg": "#ffffff",
-            "btn2_text": "#000000",
-            "override_overlay": false,
-            "overlay_color": "#000000",
-            "overlay_opacity": 40,
-            "override_alignment": false,
-            "text_alignment": "left",
-            "button_alignment": "flex-start"
-          }
-        },
         "slide_99W6bA": {
           "type": "slide",
           "settings": {
@@ -951,7 +924,6 @@
         }
       },
       "block_order": [
-        "slide_EHTaEb",
         "slide_99W6bA"
       ],
       "name": "Collection Slideshow",
@@ -1007,8 +979,8 @@
         "btn1_height_mobile": 40,
         "btn1_padding_x": 20,
         "btn1_padding_y": 12,
-        "btn1_size": 14,
-        "btn1_weight": "600",
+        "btn1_size": 12,
+        "btn1_weight": "700",
         "btn1_letter_spacing": 1,
         "btn1_hover_bg": "#0c4168",
         "btn1_hover_text": "#ffffff",
@@ -1062,8 +1034,8 @@
         "button_label": "SHOP ALL",
         "section_bg_color": "#ffffff",
         "wrapper_width": 82,
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
+        "section_padding_top": 52,
+        "section_padding_bottom": 52,
         "section_padding_top_mobile": 30,
         "section_padding_bottom_mobile": 30,
         "heading_color": "#0c4168",
@@ -1105,7 +1077,7 @@
         "button_width_mobile": 100,
         "button_height_mobile": 40,
         "button_font_size_desktop": 14,
-        "button_font_size_mobile": 10,
+        "button_font_size_mobile": 12,
         "button_font_weight": "700",
         "button_border_width": 2,
         "button_border_radius": 0,
@@ -1195,7 +1167,7 @@
         "button_hover_bg": "#0c4168",
         "button_hover_text": "#ffffff",
         "button_font_size": 14,
-        "button_font_size_mobile": 10,
+        "button_font_size_mobile": 12,
         "button_font_weight": 700,
         "button_width_desktop": 150,
         "button_height_desktop": 40,
@@ -1216,7 +1188,7 @@
         "padding_desktop-bottom": 0,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 0,
-        "padding_top": 84,
+        "padding_top": 32,
         "padding_bottom": 0
       }
     },
@@ -1328,7 +1300,7 @@
       ],
       "name": "We Are — Rotating Banner",
       "settings": {
-        "background_color": "#13ff00",
+        "background_color": "#21f010",
         "rotating_text_color": "#0c4168",
         "sub_text_color": "#0c4168",
         "rotating_text_size_desktop": 28,
@@ -1404,9 +1376,9 @@
       "settings": {
         "heading": "About us",
         "section_bg": "#ffffff",
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "section_padding_top_mobile": 15,
+        "section_padding_top": 50,
+        "section_padding_bottom": 50,
+        "section_padding_top_mobile": 14,
         "section_padding_bottom_mobile": 30,
         "heading_color": "#0c4168",
         "heading_size": 40,

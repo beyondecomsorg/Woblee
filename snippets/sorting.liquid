@@ -174,14 +174,15 @@
   .sorting-filter__select-wrapper {
     display: flex;
     position: relative;
-    border-radius: var(--variant-picker-button-radius);
+    border-radius: 0px;
+    border: 1px solid transparent;
     align-items: center;
     overflow: clip;
     padding: var(--padding-2xs) var(--padding-xs);
   }
 
   .sorting-filter__select-wrapper:has(:focus-visible) {
-    outline: var(--focus-outline-width) solid currentcolor;
+    /* outline: var(--focus-outline-width) solid currentcolor; */
     outline-offset: var(--focus-outline-offset);
   }
 
@@ -190,6 +191,7 @@
   }
 
   .sorting-filter__container .sorting-filter__select {
+    color: rgb(12 65 104 / 1.0);
     appearance: none;
     border: 0;
     margin: 0;
