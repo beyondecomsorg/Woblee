@@ -62,7 +62,7 @@ input,
 textarea,
 select {
   font: inherit;
-  border-radius: var(--style-border-radius-inputs);
+  border-radius: 0px;
 }
 
 input:hover,
@@ -1378,7 +1378,7 @@ button.shopify-payment-button__button--unbranded {
 
 .button:hover,
 button.shopify-payment-button__button--unbranded:hover:not([disabled]) {
-  --button-color: var(--color-primary-button-hover-text);
+  --button-color: #21f010;
   --button-background-color: var(--color-primary-button-hover-background);
   --button-border-color: var(--color-primary-button-hover-border);
 }
@@ -2077,7 +2077,7 @@ deferred-media[class] :is(.deferred-media__poster-button img, .deferred-media__p
   padding-block: var(--padding-sm);
   padding-inline: var(--padding-lg);
   border: var(--options-border-width) solid var(--color-variant-border);
-  border-radius: var(--options-border-radius);
+  border-radius: 0;
   overflow: clip;
   justify-content: center;
   min-height: 3.25em;
@@ -2689,7 +2689,7 @@ form.payment-terms {
 .field__input {
   flex-grow: 1;
   text-align: left;
-  border-radius: var(--style-border-radius-inputs);
+  border-radius: 0px;
   transition: box-shadow var(--animation-speed) ease, background-color var(--animation-speed) ease;
   padding: var(--input-padding);
   box-shadow: var(--input-box-shadow);
@@ -3121,6 +3121,11 @@ color: #444;
   height: var(--minimum-touch-target);
   flex-shrink: 0;
   color: var(--color-input-text);
+}
+.hulk__wishlist-wrap .wishlist-view,
+.hulk__wishlist-wrap .wishlist-grid-view .wishlist-card,
+.wishlist-status .wishlist-btn{
+ border-radius: 0 !important;
 }
 
 .quantity-selector .quantity-minus {
@@ -4436,7 +4441,7 @@ a[ref="productTitleLink"] p {
   gap: 8px !important;
   background-color: #fff5f5 !important;
   border: 1px solid #feb2b2 !important;
-  border-radius: 8px !important;
+  border-radius: 0px !important;
   padding: 8px 12px !important;
   margin: 12px 0 0 0 !important;
   font-size: 13px !important;
@@ -4564,13 +4569,47 @@ div[id^="shopify-section-"][class*="section-wrapper"]:has(.jdgm-widget),
 [data-widget-container="review-widget"] {
   font-family: var(--font-body--family, sans-serif) !important;
 }
+p.jm-text.jm-review-widget-minimal-header__title{
+      font-size: 40px !important;
+    font-weight: 700 !important;
+    color: #0c4168 !important;
+    text-transform: uppercase !important;
+
+}
+@media only screen and (max-width: 768px){
+p.jm-text.jm-review-widget-minimal-header__title {
+    font-size: 26px !important;
+
+}
+body p.jm-text.jm-no-reviews-state__text{
+      font-size: 12px !important;
+      text-transform: math-auto;
+}
+body p.jm-text.jm-other-products-reviews-text{
+  font-size: 14px !important;
+
+}
+}
+
+
+p.jm-text.jm-no-reviews-state__text{
+    color: #444444 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+p.jm-text.jm-other-products-reviews-text{
+  font-size: 18px !important;
+
+}
 .jdgm-empty-state[data-v-4be2343c], .jm-other-products-reviews-text[data-v-4be2343c],
 span.jm-text.jm-reviewer-info__name,
 p.jm-text.jm-other-products-reviews-text{
   color: #0c4168 !important;
 }
 /* 1. CENTER THE REVIEW HEADER */
-[data-widget-container="review-widget"] .jm-review-widget-minimal-header__title,
+[data-widget-container="review-widget"] .jm-review-widget-minimal-header__title
 [data-widget-container="review-widget"] .jm-review-widget-minimal-header__title * {
   font-family: Helvetica, Arial, sans-serif !important;
   font-size: 40px !important;
@@ -4633,7 +4672,7 @@ font-size: 16px !important;
 [data-widget-container="review-widget"] .jm-no-reviews-state__text,
 p.jm-text.jm-other-products-reviews-text {
   font-family: Helvetica, Arial, sans-serif !important;
-  font-size: 15px !important;
+  font-size: 18px !important;
   font-weight: 700 !important;
   color: rgb(12, 65, 104) !important;
   letter-spacing: 1px !important;
@@ -4680,8 +4719,11 @@ body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h
   align-items: center !important;
   --cluster-justify: center !important;
   width: 100% !important;
+  margin-top: 16px !important;
 }
-
+.jm-cluster.jm-reviewer-info{
+  margin-top: 16px !important;
+}
 [data-widget-container="review-widget"] .jm-no-reviews-state .jm-stack {
   display: flex !important;
   flex-direction: column !important;
@@ -4709,10 +4751,12 @@ body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h
 }
 
 [data-widget-container="review-widget"] button.jm-button.jm-button--primary.jm-action-buttons__button:hover {
-  background-color: #21F010 !important;
-  color: #ffffff !important;
+  color: #21F010 !important;
 }
-
+.quick-add-modal[open]{
+  border-radius: 0px !important;
+}
+  
 /* 4. CENTER "NO ITEMS FOUND" & EMPTY STATE */
 [data-widget-container="review-widget"] .jdgm-empty-state {
   display: flex !important;
@@ -4722,7 +4766,7 @@ body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h
   margin: 0 auto !important;
 }
 
-[data-widget-container="review-widget"] .jdgm-empty-state .jm-text {
+/* [data-widget-container="review-widget"] .jdgm-empty-state .jm-text {
   font-family: Helvetica, Arial, sans-serif !important;
   font-size: 14px !important;
   font-weight: 500 !important;
@@ -4730,7 +4774,7 @@ body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h
   line-height: 19.32px !important;
   width: 100% !important;
   text-align: center !important;
-}
+} */
 
 /* 5. FIX EXCESSIVE VERTICAL SPACING */
 [data-widget-container="review-widget"] .jm-review-widget__header {
@@ -4744,6 +4788,7 @@ body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h
 
 [data-widget-container="review-widget"] .jm-no-reviews-state__text {
   margin-block-end: 16px !important;
+  margin-bottom: 16px !important;
 }
 
 [data-widget-container="review-widget"] .jm-no-reviews-state__action-buttons {

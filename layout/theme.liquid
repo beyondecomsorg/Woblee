@@ -42,9 +42,13 @@
   font-weight: 700;   
   font-size: 40px !important;
     }
+    .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers{
+      margin-top: 10px;
+    }
     @media (min-width: 768px){
    body.template-product .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers{
       width: 95%;
+      margin-top: 10px;
     }
     }
 
@@ -179,6 +183,19 @@ a.contents.user-select-text p{
     .template-product summary.details__header{
       text-transform: uppercase;
     }
+    /* Accordion border color override */
+    .template-product .accordion--dividers accordion-custom:not(:first-child) .details,
+    .quick-view-pdp-accordions.accordion--dividers accordion-custom:not(:first-child) .details {
+      border-block-start-color: #D8D8D8;
+    }
+    .template-product .accordion--dividers accordion-custom:first-child .details,
+    .quick-view-pdp-accordions.accordion--dividers accordion-custom:first-child .details {
+      border-block-start-color: #D8D8D8;
+    }
+    .template-product .accordion--dividers accordion-custom:last-child .details,
+    .quick-view-pdp-accordions.accordion--dividers accordion-custom:last-child .details {
+      border-block-end-color: #D8D8D8;
+    }
       .quick-add-modal__content .accordion.accordion--plus.accordion--dividers.pdp-accordion-only{
    display: none !important;
     }
@@ -198,6 +215,9 @@ a.contents.user-select-text p{
 
     
     @media only screen and (max-width: 767px){
+      .product-information.section.section--full-width.spacing-style.color-scheme-5.relative{
+        padding-bottom: 10px !important;
+      }
           ul.menu-drawer__featured-content-list.menu-drawer__animated-element.list-unstyled{
       display: none;
     }
@@ -304,6 +324,9 @@ a.contents.user-select-text p{
      body.template-collection .content-for-layout > .shopify-section:last-child{
        margin-top: 0rem;
     }
+    body.template-product .content-for-layout > .shopify-section:last-child{
+      margin-top: 0rem;
+    }
 
     .product-grid{
       width: 95%;
@@ -356,7 +379,7 @@ a.contents.user-select-text p{
       padding-top: 0;
     }
       :is(main>.shopify-section:first-child .section:not(.disable-section-top-offset).spacing-style,main>.shopify-section:first-child .section:not(.disable-section-top-offset) .spacing-style) :is(.spacing-style,.inherit-spacing){
-      width: 100%;
+      width: 100% !important;
       padding: 0px;
   }
 
@@ -425,7 +448,18 @@ display: none;
     dialog[open] .quick-add-modal__content .product-details{
       width: 100%;
     }
+
+     span.price-item--regular.compare-at-price{
+      font-weight: 300 !important;
+     }
     @media only screen and (min-width: 750px) {
+      .group-block.group-block--height-fit.group-block--width-fill.border-style.spacing-style.size-style{
+        width: 100% !important;
+      }
+      .spacing-style.layout-panel-flex.layout-panel-flex--column.section-content-wrapper.mobile-column{
+        padding: 50px;
+        margin-top: 0 !important;
+      }
 .product-details.sticky-content--desktop{
   width: 50%;
   margin: auto;

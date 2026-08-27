@@ -70,7 +70,7 @@
     <!-- ═══ LEFT ═══ -->
 <div class="wau-left">
   {% if section.settings.heading != blank %}
-    <h2 class="wau-heading">
+    <h2 class="wau-heading aaa">
       {{ section.settings.heading }}
     </h2>
   {% endif %}
@@ -167,13 +167,13 @@
 .wau-section {
   position: relative;
   overflow: hidden;
-  padding-top: 50px;
-  padding-bottom: var(--wau-pb);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   background: var(--wau-bg);
 }
 @media (max-width: 900px) {
   .wau-left{
-      padding-top: 30px !important;
+      padding-top: 0px !important;
   }
   .wau-left{
     padding-top: 0px !important;
@@ -182,7 +182,7 @@
   }
 @media only screen and (max-width: 749px){
   .wau-left{
-      padding-top: 30px !important;
+      padding-top: 0px !important;
   }
 }
 
@@ -206,18 +206,17 @@
   position: relative;
   z-index: 2;
   max-width: 100%;
-  margin: 0 auto;
-  padding: 0 60px var(--wau-pb, 80px);
+  margin: 0 auto; 
+  padding: 50px 60px 50px !important;
   display: grid;
   grid-template-columns: 44% 1fr;
   gap: 0;
   align-items: center;
-  min-height: 500px;
+  min-height: 200px;
 }
 
 /* ══ LEFT ══════════════════════════════ */
 .wau-left {
-    gap: 16px;
   color: var(--wb-color-white);
   padding-right: 40px;
       width: 82%;
@@ -234,12 +233,13 @@
   line-height: 1.1;
     letter-spacing: 1px;
   text-transform: uppercase;
-  margin-bottom: 28px;
+  margin-bottom: 12px;
 }
 
 .wau-section.wau-visible .wau-heading {
   opacity: 1;
   transform: translateX(0);
+  margin-bottom: 16px !important;
 }
 
 .wau-body {
@@ -249,13 +249,13 @@
   color: var(--wau-body-color);
   line-height: 22px;
   max-width: 450px;
-  margin-bottom: 36px;
+  margin-bottom: 12px;
 }
 
 .wau-section.wau-visible .wau-body {
   opacity: 1;
   transform: translateX(0);
-  letter
+   margin-bottom: 16px !important;
 }
 
 /* CTA */
@@ -323,7 +323,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 12px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.8s ease 0.38s, transform 0.8s ease 0.38s;
@@ -332,6 +332,7 @@
 .wau-section.wau-visible .wau-stats {
   opacity: 1;
   transform: translateY(0);
+  margin-bottom: 16px !important; 
 }
 
 .wau-stat-pill {
@@ -381,7 +382,7 @@
 .wau-fan-wrap {
   position: relative;
   width: 50%;
-  height: 520px;
+  height: 360px;
   margin: auto !important;
   display: flex;
   align-items: center;
@@ -391,9 +392,9 @@
 /* Base polaroid card */
 .wau-pcard {
   position: absolute;
-  width: 220px;
+  width: 200px;
   background: var(--wb-color-white, #fff);
-  padding: 10px 10px 36px;
+  padding: 10px 10px 24px;
   box-shadow: var(--wb-shadow-md, 0 24px 60px rgba(0,0,0,0.38));
   cursor: pointer;
   transform-origin: center bottom;
@@ -408,22 +409,22 @@
 
 /* Fan positions — staggered like scattered photos */
 .wau-pcard--0 {
-  left: 50px;
-  top: 50px;
+  left: 30px;
+  top: 15px;
   z-index: 10;
   --base-rot: -12deg;
 }
-
+ 
 .wau-pcard--1 {
-  left: 160px;
-  top: 20px;
+  left: 130px;
+  top: 5px;
   z-index: 11;
   --base-rot: 2deg;
 }
-
+ 
 .wau-pcard--2 {
-  left: 270px;
-  top: 60px;
+  left: 230px;
+  top: 25px;
   z-index: 12;
   --base-rot: 14deg;
 }
@@ -550,23 +551,30 @@ background: var(--wau-accent);
 
 
   .shopify-section.wau-section-wrapper{
-    padding-top: {{ section.settings.padding_desktop-top }}px;
-  padding-bottom: {{ section.settings.padding_desktop-bottom }}px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
 /* ══ RESPONSIVE ═══════════════════════ */
 @media (max-width: 900px) {
   .wau-inner {
     grid-template-columns: 1fr;
-    padding: 0 24px 60px;
+    padding: 30px 24px 10px !important;
     gap: 30px;
     min-height: unset;
+  }
+  .wau-section.wau-visible .wau-heading,
+  .wau-section.wau-visible .wau-body{
+    margin-bottom: 10px !important;
+  }
+  .wau-section.wau-visible .wau-stats{
+    margin-bottom: 16px !important;
   }
 
 
   .shopify-section.wau-section-wrapper{
-    padding-top: {{ section.settings.padding_top_mobile }}px;
-  padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
   {% comment %} .wau-section {
   padding-top: var(--wau-pt-mobile);
@@ -582,8 +590,8 @@ background: var(--wau-accent);
   }
 
   .wau-fan-wrap {
-    height: 380px;
-    width: 77% !important;
+    height: 280px;
+    width: 85% !important;
   }
 
   .wau-pcard {
@@ -591,17 +599,17 @@ background: var(--wau-accent);
   }
 
   .wau-pcard--0 {
-    left: 20px;
+    left: 30px;
     top: 40px;
   }
 
   .wau-pcard--1 {
-    left: 110px;
+    left: 105px;
     top: 15px;
   }
 
   .wau-pcard--2 {
-    left: 200px;
+    left: 180px;
     top: 50px;
   }
 
@@ -648,7 +656,8 @@ background: var(--wau-accent);
 
 @media (max-width: 480px) {
   .wau-fan-wrap {
-    height: 300px;
+    height: 280px;
+    width: 92% !important;
   }
 
   .wau-pcard {
@@ -657,17 +666,17 @@ background: var(--wau-accent);
   }
 
   .wau-pcard--0 {
-    left: 10px;
+    left: 25px;
     top: 30px;
   }
 
   .wau-pcard--1 {
-    left: 82px;
+    left: 83px;
     top: 10px;
   }
 
   .wau-pcard--2 {
-    left: 155px;
+    left: 141px;
     top: 45px;
   }
 

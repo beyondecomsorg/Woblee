@@ -54,11 +54,13 @@
     <div class="ess-right">
       {% for block in section.blocks %}
         {% if block.type == 'grid_item' %}
-          <a class="ess-grid-item" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+          {%- assign block_product = block.settings.product -%}
+          {%- assign block_url = block_product.url | default: '#' -%}
+          <a class="ess-grid-item" href="{{ block_url }}" {{ block.shopify_attributes }}>
             {% if block.settings.image != blank %}
               <img
                 src="{{ block.settings.image | image_url: width: 700 }}"
-                alt="{{ block.settings.caption | escape }}"
+                alt="{{ block_product.title | default: '' | escape }}"
                 class="ess-grid-img"
                 loading="lazy"
                 width="700"
@@ -71,12 +73,12 @@
 
             <div class="ess-grid-overlay">
               <div class="ess-grid-bottom">
-                {% if block.settings.caption != blank %}
-                  <p class="ess-caption">{{ block.settings.caption }}</p>
+                {% if block_product.title != blank %}
+                  <p class="ess-caption">{{ block_product.title }}</p>
                 {% endif %}
-                {% if block.settings.explore_label != blank %}
+                {% if block_product != blank %}
                   <span class="ess-explore">
-                    {{ block.settings.explore_label }}
+                    {{ block_product.price | money_without_trailing_zeros }}
                   </span>
                 {% endif %}
               </div>
@@ -284,7 +286,7 @@
 .ess-grid-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--ess-overlay-start) 0%, var(--ess-overlay-end) 60%);
+  background: linear-gradient(to top, var(--ess-overlay-start) -1%, var(--ess-overlay-end) 23%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -299,11 +301,13 @@
 
 .ess-caption {
   font-family: Helvetica;
-  font-size: var(--ess-caption-size);
-  color: var(--ess-caption-color);
+  font-size: 16px;
+  color: #0a3557 ;
   margin: 0;
-  line-height: 22px;
-  font-weight: var(--ess-caption-weight);
+  line-height: 1.3;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ess-explore:hover{
@@ -312,31 +316,27 @@
 }
 
 .ess-explore {
-  display: grid;
-  text-align: center;
-  align-items: center;
-  gap: 10px;
+  display: block;
+  text-align: left;
   font-family: var(--wb-font-heading);
-  font-size: var(--ess-explore-size);
-  font-weight: var(--ess-explore-weight);
-  text-transform: uppercase;
-  line-height: 1;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: none;
+  line-height: 1.4;
   position: relative;
   cursor: pointer;
   transition: all 0.35s ease;
-  padding: var(--ess-explore-padding-y) var(--ess-explore-padding-x);
-  background: {{ section.settings.explore_bg }};
-  color: {{ section.settings.explore_text_color }};
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
-  overflow: hidden;
-  width: var(--ess-explore-width);
-  min-width: var(--ess-explore-width);
-  height: var(--ess-explore-height);
-  min-height: var(--ess-explore-height);
-  border-radius: var(--ess-explore-radius);
+  padding: 0;
+  background: transparent;
+  color: #444444;
+  box-shadow: none;
+  border-radius: 0;
   box-sizing: border-box;
+  white-space: nowrap;
 }
-
+.ess-grid-bottom{
+ color: #444444;
+}
 
 .ess-explore::before {
   content: "";
@@ -413,12 +413,8 @@
     row-gap: 16px;
   }
   .ess-explore{
-    font-size: var(--ess-explore-size-mobile);
-    width: var(--ess-explore-width-mobile);
-    min-width: var(--ess-explore-width-mobile);
-    height: var(--ess-explore-height-mobile);
-    min-height: var(--ess-explore-height-mobile);
-    padding: var(--ess-explore-padding-y-mobile) var(--ess-explore-padding-x-mobile);
+    font-size: 15px;
+
   }
   .ess-cta{
     font-size: 24px;
@@ -520,7 +516,7 @@ padding-top: 8rem;
       "label": "Horizontal padding (px)",
       "min": 0,
       "max": 80,
-      "step": 4,
+      "step": 2,
       "default": 20
     },
     {
@@ -538,7 +534,7 @@ padding-top: 8rem;
       "label": "Section top padding (px)",
       "min": 0,
       "max": 120,
-      "step": 4,
+      "step": 2,
       "default": 40
     },
     {
@@ -547,7 +543,7 @@ padding-top: 8rem;
       "label": "Section bottom padding (px)",
       "min": 0,
       "max": 120,
-      "step": 4,
+      "step": 2,
       "default": 40
     },
         {
@@ -1112,27 +1108,16 @@ padding-top: 8rem;
       "name": "Grid Image",
       "settings": [
         {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "Title appears as caption. Price appears on the button. Card links to the product page."
+        },
+        {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "caption",
-          "label": "Caption text",
-          "default": "Explore the incredible materials we use"
-        },
-        {
-          "type": "text",
-          "id": "explore_label",
-          "label": "Explore link label",
-          "default": "EXPLORE",
-          "info": "Leave blank to hide"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link URL"
+          "label": "Image",
+          "info": "Custom image — not replaced by the product image."
         }
       ]
     }
@@ -1141,34 +1126,10 @@ padding-top: 8rem;
     {
       "name": "Custom Editorial Split",
       "blocks": [
-        {
-          "type": "grid_item",
-          "settings": {
-            "caption": "Explore the incredible materials we use",
-            "explore_label": "EXPLORE"
-          }
-        },
-        {
-          "type": "grid_item",
-          "settings": {
-            "caption": "Read about our amazing factory partners",
-            "explore_label": "EXPLORE"
-          }
-        },
-        {
-          "type": "grid_item",
-          "settings": {
-            "caption": "Our promise of great quality",
-            "explore_label": "EXPLORE"
-          }
-        },
-        {
-          "type": "grid_item",
-          "settings": {
-            "caption": "Discover our pursuit of sustainability",
-            "explore_label": "EXPLORE"
-          }
-        }
+        { "type": "grid_item" },
+        { "type": "grid_item" },
+        { "type": "grid_item" },
+        { "type": "grid_item" }
       ]
     }
   ],

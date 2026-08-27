@@ -276,10 +276,10 @@
         "color_burgundy": "#851828",
         "max_width": 1600,
         "section_padding_horizontal": 0,
-        "padding_top": 52,
-        "padding_bottom": 52,
-        "mobile_padding_top": 32,
-        "mobile_padding_bottom": 32,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
         "desktop_cols": 4,
         "tablet_cols": 2,
         "mobile_cols": 2,
@@ -623,7 +623,7 @@
         "btn_border_radius": 0,
         "btn_hover_lift": 2,
         "background_color": "#ffffff",
-        "padding_top": 52,
+        "padding_top": 50,
         "padding_bottom": 52,
         "padding_top_mobile": 30,
         "padding_bottom_mobile": 30
@@ -635,37 +635,29 @@
         "grid_item_TpiJNJ": {
           "type": "grid_item",
           "settings": {
-            "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png",
-            "caption": "Retro Reboot Boy's Tee",
-            "explore_label": "",
-            "link": "shopify://products/retro-reboot-boys-tee"
+            "product": "find-your-purpose-mens-tee",
+            "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png"
           }
         },
         "grid_item_x33UQJ": {
           "type": "grid_item",
           "settings": {
-            "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png",
-            "caption": "Perfect Fusion Boy's Tee",
-            "explore_label": "",
-            "link": "shopify://products/perfect-fusion-boys-tee"
+            "product": "self-expression-girls-tee",
+            "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png"
           }
         },
         "grid_item_BYHQCe": {
           "type": "grid_item",
           "settings": {
-            "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png",
-            "caption": "Learn Grow Repeat Girl's Tee",
-            "explore_label": "",
-            "link": "shopify://products/learn-grow-repeat-girls-tee"
+            "product": "chaai-pe-chugli-womens-tee",
+            "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png"
           }
         },
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
-            "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png",
-            "caption": "Learn Grow Repeat Girl's Tee",
-            "explore_label": "",
-            "link": "shopify://products/learn-grow-repeat-girls-tee"
+            "product": "little-nature-explorer-boys-tee",
+            "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png"
           }
         }
       },
@@ -683,7 +675,7 @@
         "h_padding": 20,
         "mobile_side_padding": 12,
         "padding_top": 0,
-        "padding_bottom": 52,
+        "padding_bottom": 50,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 14,
         "left_image": "shopify://shop_images/New_Arrivals_700x700_afcee856-07e8-41b4-924a-404dd0cd9065.png",
@@ -1034,8 +1026,8 @@
         "button_label": "SHOP ALL",
         "section_bg_color": "#ffffff",
         "wrapper_width": 82,
-        "section_padding_top": 52,
-        "section_padding_bottom": 52,
+        "section_padding_top": 50,
+        "section_padding_bottom": 50,
         "section_padding_top_mobile": 30,
         "section_padding_bottom_mobile": 30,
         "heading_color": "#0c4168",
