@@ -3202,7 +3202,6 @@ color: #444;
   gap: var(--gap-sm);
   min-width: 48px;
   padding: 6px 12px;
-  border-radius: var(--style-border-radius-pills);
   cursor: pointer;
   background-color: var(--pills-pill-background-color);
   transition: background-color var(--animation-speed) var(--animation-easing);
