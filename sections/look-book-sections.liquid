@@ -123,6 +123,12 @@
    text-transform: uppercase;
 }
 
+@media only screen and (max-width: 749px){
+  .featured-content-banner__title {
+    line-height: 1.6rem !important;
+  }
+}
+
 .featured-content-banner__date {
   margin-bottom: 20px;
   font-family: {{ section.settings.date_font.family }}, {{ section.settings.date_font.fallback_families }};
