@@ -41,7 +41,7 @@
             <a class="wci-item" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
               <div class="wci-circle" style="background-color: {{ block.settings.circle_bg }};">
                 {% if block.settings.image != blank %}
-                  <div class="wci-icon-stack">
+                  <div class="wci-icon-stack{% if block.settings.image_hover != blank %} wci-icon-stack--has-hover{% endif %}">
                     <img
                       src="{{ block.settings.image | image_url: width: 200 }}"
                       alt="{{ block.settings.label | escape }}"
@@ -290,11 +290,11 @@
   z-index: 2;
 }
 
-.wci-item:hover .wci-icon-img--default {
+.wci-item:hover .wci-icon-stack--has-hover .wci-icon-img--default {
   opacity: 0;
 }
 
-.wci-item:hover .wci-icon-img--hover {
+.wci-item:hover .wci-icon-stack--has-hover .wci-icon-img--hover {
   opacity: 1;
 }
 
