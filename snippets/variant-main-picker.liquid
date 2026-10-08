@@ -74,6 +74,7 @@
           <fieldset
             class="variant-option variant-option--buttons{% if variant_style == 'swatch' %} variant-option--swatches{% else %} variant-option--{{ button_width }}{% endif %}{% if option_name_downcase contains 'size' %} variant-option--size-buttons{% endif %}{% if product_option.values.size == 1 %} variant-option--single-value{% endif %}"
             data-fieldset-index="{{ fieldset_index }}"
+            data-option-name="{{ product_option.name | escape }}"
             ref="fieldsets[]"
             {{ option_id_attribute }}
           >
@@ -189,7 +190,7 @@
             endif
           %}
 
-          <div class="variant-option variant-option--dropdowns{% if option_name_downcase == 'size' %} variant-option--size-dropdowns{% endif %}">
+          <div class="variant-option variant-option--dropdowns{% if option_name_downcase == 'size' %} variant-option--size-dropdowns{% endif %}" data-option-name="{{ product_option.name | escape }}">
             <div class="variant-option__legend-flex">
               <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
               {%- if option_name_downcase == 'size' and product.metafields.custom.size_chart != blank -%}

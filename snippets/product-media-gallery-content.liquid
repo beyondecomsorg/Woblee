@@ -24,8 +24,12 @@
     type="module"
   ></script>
 {%- endif -%}
+
 {%- liquid
   assign selected_product = closest.product
+  if selected_product == blank
+    assign selected_product = product
+  endif
   assign selected_variant = selected_product.selected_or_first_available_variant
   assign selected_variant_media = selected_variant.featured_media
   assign first_3d_model = selected_product.media | where: 'media_type', 'model' | first
@@ -128,19 +132,7 @@
     assign sorted_media = selected_product.media
   endif
 
-  assign split_gallery = false
-  if split_gallery_images
-    assign split_gallery = true
-  endif
-
-  if split_gallery and sorted_media.size > 3
-    assign sliced_media = '' | split: ','
-    for media in sorted_media limit: 3
-      assign single_media_array = sorted_media | where: 'id', media.id
-      assign sliced_media = sliced_media | concat: single_media_array
-    endfor
-    assign sorted_media = sliced_media
-  endif
+  # Do not slice sorted_media to 3 items when dynamic variant filtering is enabled so that all media elements are present in the DOM for JS filtering.
 
   assign has_image_drop = sorted_media | has: 'media_type', 'image'
 
@@ -378,6 +370,33 @@
     data-presentation="{{ media_presentation }}"
     {{ block_shopify_attributes }}
   >
+    <script type="application/json" data-media-gallery-json>
+      {
+        "options": {{ selected_product.options | json }},
+        "options_with_values": [
+          {% for option in selected_product.options_with_values %}
+            {
+              "name": {{ option.name | json }},
+              "values": [
+                {% for val in option.values %}
+                  {{ val.name | default: val | json }}{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+              ]
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+        "media": [
+          {% for media in selected_product.media %}
+            {
+              "id": {{ media.id | json }},
+              "alt": {{ media.alt | json }},
+              "position": {{ media.position | json }},
+              "media_type": {{ media.media_type | json }}
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }
+    </script>
     {% capture slides %}
       {% for media in sorted_media %}
         {% capture children %}
@@ -554,6 +573,7 @@
                   <button
                     type="button"
                     class="button button-unstyled dialog-thumbnails-list__thumbnail"
+                    data-media-id="{{ media.id }}"
                     aria-label="{{ 'accessibility.scroll_to' | t: title: media.alt | default: media.media_type }}"
                     on:click="/handleThumbnailClick/{{ forloop.index0 }}"
                     on:pointerenter="/handleThumbnailPointerEnter/{{ forloop.index0 }}"
@@ -590,6 +610,7 @@
             {%- for media in sorted_media -%}
               <li
                 id="product-{{ media.id}}-{{ forloop.index }}"
+                data-media-id="{{ media.id }}"
                 class="{{ product_media_container_class | remove: 'media-fit-cover' }} product-media-container--{{ media.media_type }}{% if media.media_type == 'image' %} product-media-container--zoomable{% endif %}"
                 style="{% if block_settings.aspect_ratio == 'adapt' %} --media-preview-ratio: {{ media.preview_image.aspect_ratio | default: 1.0 }};{% endif %}"
                 ref="media[]"

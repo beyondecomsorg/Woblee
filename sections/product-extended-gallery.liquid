@@ -1,15 +1,15 @@
 {% comment %}
   Product Extended Gallery Section
-  Displays the remaining product images (from the 4th onward) when the split gallery setting is active.
+  Displays the remaining product images (from the 5th onward) when the split gallery setting is active.
 {% endcomment %}
 
-{%- if product.media.size > 3 -%}
+{%- if product.media.size > 4 -%}
   <div class="product-extended-gallery-wrapper" style="display: none;">
     <div class="page-width">
       <div class="product-extended-gallery">
         <div class="product-extended-gallery__grid">
-          {%- for media in product.media offset: 3 -%}
-            <div class="product-extended-gallery__item">
+          {%- for media in product.media offset: 4 -%}
+            <div class="product-extended-gallery__item" data-media-id="{{ media.id }}">
               {%- case media.media_type -%}
                 {%- when 'image' -%}
                   {{ media | image_url: width: 1200 | image_tag: 
