@@ -113,6 +113,9 @@
   text-decoration: none;
 }
 
+.featured-content-banner__date{
+  margin-top: 10px;
+}
 .featured-content-banner__title {
   margin: 0 0 16px;
   font-family: {{ section.settings.title_font.family }}, {{ section.settings.title_font.fallback_families }};
@@ -123,8 +126,15 @@
    text-transform: uppercase;
 }
 
+@media only screen and (max-width: 749px){
+  .featured-content-banner__title {
+    line-height: 1.6rem !important;
+    margin-bottom: 1rem;
+  }
+}
+
 .featured-content-banner__date {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-family: {{ section.settings.date_font.family }}, {{ section.settings.date_font.fallback_families }};
   font-size: {{ section.settings.date_size }}px;
   font-weight: {{ section.settings.date_weight }};
