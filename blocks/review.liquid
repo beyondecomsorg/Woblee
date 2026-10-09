@@ -159,6 +159,7 @@
   }
 
   /* Ensure review badge and rating stars stay side-by-side on both desktop and mobile */
+  [data-block-id="group_reviews_header"] .group-block-content,
   .group-block-content:has(.jdgm-widget):has(.rating-wrapper),
   .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) {
     display: flex !important;
@@ -168,21 +169,22 @@
     gap: 12px !important;
   }
 
+  [data-block-id="group_reviews_header"] .group-block-content > *,
+  [data-block-id="group_reviews_header"] .jdgm-widget,
+  [data-block-id="group_reviews_header"] .jdgm-prev-badge,
+  [data-block-id="group_reviews_header"] .jdgm-preview-badge,
+  [data-block-id="group_reviews_header"] .rating-wrapper,
   .group-block-content:has(.jdgm-widget):has(.rating-wrapper) .jdgm-widget,
   .group-block-content:has(.jdgm-widget):has(.rating-wrapper) .jdgm-prev-badge,
   .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .jdgm-widget,
-  .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .jdgm-prev-badge {
-    display: inline-flex !important;
-    width: auto !important;
-    max-width: max-content !important;
-    margin: 0 !important;
-  }
-
+  .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .jdgm-prev-badge,
   .group-block-content:has(.jdgm-widget):has(.rating-wrapper) .rating-wrapper,
   .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .rating-wrapper {
     display: inline-flex !important;
     width: auto !important;
+    max-width: max-content !important;
     margin: 0 !important;
+    vertical-align: middle !important;
   }
 {% endstylesheet %}
 
