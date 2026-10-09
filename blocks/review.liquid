@@ -157,6 +157,33 @@
   .filled-star {
     fill: var(--star-fill-color);
   }
+
+  /* Ensure review badge and rating stars stay side-by-side on both desktop and mobile */
+  .group-block-content:has(.jdgm-widget):has(.rating-wrapper),
+  .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .group-block-content:has(.jdgm-widget):has(.rating-wrapper) .jdgm-widget,
+  .group-block-content:has(.jdgm-widget):has(.rating-wrapper) .jdgm-prev-badge,
+  .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .jdgm-widget,
+  .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .jdgm-prev-badge {
+    display: inline-flex !important;
+    width: auto !important;
+    max-width: max-content !important;
+    margin: 0 !important;
+  }
+
+  .group-block-content:has(.jdgm-widget):has(.rating-wrapper) .rating-wrapper,
+  .group-block-content:has(.jdgm-prev-badge):has(.rating-wrapper) .rating-wrapper {
+    display: inline-flex !important;
+    width: auto !important;
+    margin: 0 !important;
+  }
 {% endstylesheet %}
 
 {% schema %}
