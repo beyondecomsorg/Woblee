@@ -184,11 +184,13 @@ a.contents.user-select-text p{
       text-transform: uppercase;
     }
 
-    /* Force ONLY group_reviews_header to align side-by-side without affecting parent title/header group */
+    /* Force ONLY group_reviews_header to align side-by-side with nowrap on mobile and desktop */
     [data-block-id="group_reviews_header"] > .group-block-content {
       display: flex !important;
       flex-direction: row !important;
-      flex-wrap: wrap !important;
+      flex-wrap: nowrap !important;
+      --flex-wrap: nowrap !important;
+      --flex-wrap-mobile: nowrap !important;
       align-items: center !important;
       justify-content: flex-start !important;
       gap: 12px !important;

@@ -158,11 +158,13 @@
     fill: var(--star-fill-color);
   }
 
-  /* Ensure ONLY group_reviews_header aligns side-by-side */
+  /* Ensure ONLY group_reviews_header aligns side-by-side with nowrap */
   [data-block-id="group_reviews_header"] > .group-block-content {
     display: flex !important;
     flex-direction: row !important;
-    flex-wrap: wrap !important;
+    flex-wrap: nowrap !important;
+    --flex-wrap: nowrap !important;
+    --flex-wrap-mobile: nowrap !important;
     align-items: center !important;
     justify-content: flex-start !important;
     gap: 12px !important;
