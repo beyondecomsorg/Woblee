@@ -62,7 +62,7 @@
       "name": "Custom Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/1.jpg",
-        "mobile_image": "shopify://shop_images/WWLookbook-MobileTopBanner-1-Women-NA-Lookbook-5THJUNE.webp",
+        "mobile_image": "shopify://shop_images/11.jpg",
         "section_width": "full",
         "banner_height": "fit",
         "banner_link": "",
@@ -75,7 +75,7 @@
       "name": "Custom Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/2.jpg",
-        "mobile_image": "shopify://shop_images/WWLookbook-MobileBannerSunAndSand-1-Women-NA-Lookbook-5thJune.webp",
+        "mobile_image": "shopify://shop_images/22_6d7e94e8-067e-4874-86cf-976f6a2c54eb.jpg",
         "section_width": "full",
         "banner_height": "fit",
         "banner_link": "",
@@ -88,7 +88,7 @@
       "name": "Custom Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/3.jpg",
-        "mobile_image": "shopify://shop_images/WWLookbook-MobileBannerFreeSpirited-1-Women-NA-Lookbook-5thJune.webp",
+        "mobile_image": "shopify://shop_images/33_8eb5ecd7-d8f7-453a-879c-e91fae983d4b.jpg",
         "section_width": "full",
         "banner_height": "fit",
         "banner_link": "",
@@ -101,7 +101,7 @@
       "name": "Custom Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/4.jpg",
-        "mobile_image": "shopify://shop_images/WWLookbook-MobileBannerSunshineReady-1-Women-NA-Lookbook-5thJune.webp",
+        "mobile_image": "shopify://shop_images/44_a1aaf594-b0a5-443e-8089-879dd958bf43.jpg",
         "section_width": "full",
         "banner_height": "fit",
         "banner_link": "",
@@ -114,7 +114,7 @@
       "name": "Collection Slider",
       "settings": {
         "heading": "",
-        "collection": "regular-tees-copy",
+        "collection": "artistic",
         "products_to_show": 8,
         "show_view_all": true,
         "button_label": "SHOP ALL",
