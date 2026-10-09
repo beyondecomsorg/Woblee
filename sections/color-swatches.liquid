@@ -61,7 +61,8 @@
 
     {%- for block in section.blocks -%}
       {%- if block.type == 'color_swatch' -%}
-        {%- assign swatch_key = block.settings.color_name | downcase | strip | replace: ' ', '-' -%}
+        {%- assign swatch_color_name = block.settings.title | default: block.settings.color_name -%}
+        {%- assign swatch_key = swatch_color_name | downcase | strip | replace: ' ', '-' -%}
         {%- if swatch_key != blank and block.settings.hex_code != blank -%}
           --swatch-color-{{ swatch_key }}: {{ block.settings.hex_code }};
           --swatch-border-{{ swatch_key }}: solid;
@@ -83,7 +84,7 @@
       "settings": [
         {
           "type": "text",
-          "id": "color_name",
+          "id": "title",
           "label": "Color Name",
           "info": "Must match the variant color option value (e.g. Orchid Purple)"
         },
@@ -99,35 +100,35 @@
     {
       "name": "Color Swatches",
       "blocks": [
-        { "type": "color_swatch", "settings": { "color_name": "Jet Black", "hex_code": "#0A0A0A" } },
-        { "type": "color_swatch", "settings": { "color_name": "Pure White", "hex_code": "#FFFFFF" } },
-        { "type": "color_swatch", "settings": { "color_name": "Off-white", "hex_code": "#F2EEE4" } },
-        { "type": "color_swatch", "settings": { "color_name": "Classic Red", "hex_code": "#C8102E" } },
-        { "type": "color_swatch", "settings": { "color_name": "Sky Blue", "hex_code": "#87CEEB" } },
-        { "type": "color_swatch", "settings": { "color_name": "Teal Blue", "hex_code": "#158C93" } },
-        { "type": "color_swatch", "settings": { "color_name": "Diesel Blue", "hex_code": "#2C3E50" } },
-        { "type": "color_swatch", "settings": { "color_name": "Medieval Blue", "hex_code": "#1B3F7A" } },
-        { "type": "color_swatch", "settings": { "color_name": "Director Blue", "hex_code": "#1F3A5F" } },
-        { "type": "color_swatch", "settings": { "color_name": "Air Force Blue", "hex_code": "#5D8AA8" } },
-        { "type": "color_swatch", "settings": { "color_name": "Brittany Blue", "hex_code": "#3B6FA0" } },
-        { "type": "color_swatch", "settings": { "color_name": "Orchid Purple", "hex_code": "#9B59B6" } },
-        { "type": "color_swatch", "settings": { "color_name": "Lilac Purple", "hex_code": "#C8A2C8" } },
-        { "type": "color_swatch", "settings": { "color_name": "Berry Purple", "hex_code": "#6B2C5F" } },
-        { "type": "color_swatch", "settings": { "color_name": "Wine Purple", "hex_code": "#5B1A34" } },
-        { "type": "color_swatch", "settings": { "color_name": "Fuchsia Pink", "hex_code": "#C74375" } },
-        { "type": "color_swatch", "settings": { "color_name": "Light Pink", "hex_code": "#FFB6C1" } },
-        { "type": "color_swatch", "settings": { "color_name": "Lime Green", "hex_code": "#9ACD32" } },
-        { "type": "color_swatch", "settings": { "color_name": "Moss Green", "hex_code": "#8A9A5B" } },
-        { "type": "color_swatch", "settings": { "color_name": "Bottle Green", "hex_code": "#006A4E" } },
-        { "type": "color_swatch", "settings": { "color_name": "Honey Yellow", "hex_code": "#E8A33D" } },
-        { "type": "color_swatch", "settings": { "color_name": "Solar Yellow", "hex_code": "#FFD700" } },
-        { "type": "color_swatch", "settings": { "color_name": "Burnt Orange", "hex_code": "#CC5500" } },
-        { "type": "color_swatch", "settings": { "color_name": "Coral Orange", "hex_code": "#FF6F4C" } },
-        { "type": "color_swatch", "settings": { "color_name": "Rusty Red", "hex_code": "#B7410E" } },
-        { "type": "color_swatch", "settings": { "color_name": "Mocha Brown", "hex_code": "#6F4E37" } },
-        { "type": "color_swatch", "settings": { "color_name": "Irish Cream", "hex_code": "#F3E5AB" } },
-        { "type": "color_swatch", "settings": { "color_name": "Mist Grey", "hex_code": "#B0B7BD" } },
-        { "type": "color_swatch", "settings": { "color_name": "Luna Grey", "hex_code": "#8E8E93" } }
+        { "type": "color_swatch", "settings": { "title": "Jet Black", "hex_code": "#0A0A0A" } },
+        { "type": "color_swatch", "settings": { "title": "Pure White", "hex_code": "#FFFFFF" } },
+        { "type": "color_swatch", "settings": { "title": "Off-white", "hex_code": "#F2EEE4" } },
+        { "type": "color_swatch", "settings": { "title": "Classic Red", "hex_code": "#C8102E" } },
+        { "type": "color_swatch", "settings": { "title": "Sky Blue", "hex_code": "#87CEEB" } },
+        { "type": "color_swatch", "settings": { "title": "Teal Blue", "hex_code": "#158C93" } },
+        { "type": "color_swatch", "settings": { "title": "Diesel Blue", "hex_code": "#2C3E50" } },
+        { "type": "color_swatch", "settings": { "title": "Medieval Blue", "hex_code": "#1B3F7A" } },
+        { "type": "color_swatch", "settings": { "title": "Director Blue", "hex_code": "#1F3A5F" } },
+        { "type": "color_swatch", "settings": { "title": "Air Force Blue", "hex_code": "#5D8AA8" } },
+        { "type": "color_swatch", "settings": { "title": "Brittany Blue", "hex_code": "#3B6FA0" } },
+        { "type": "color_swatch", "settings": { "title": "Orchid Purple", "hex_code": "#9B59B6" } },
+        { "type": "color_swatch", "settings": { "title": "Lilac Purple", "hex_code": "#C8A2C8" } },
+        { "type": "color_swatch", "settings": { "title": "Berry Purple", "hex_code": "#6B2C5F" } },
+        { "type": "color_swatch", "settings": { "title": "Wine Purple", "hex_code": "#5B1A34" } },
+        { "type": "color_swatch", "settings": { "title": "Fuchsia Pink", "hex_code": "#C74375" } },
+        { "type": "color_swatch", "settings": { "title": "Light Pink", "hex_code": "#FFB6C1" } },
+        { "type": "color_swatch", "settings": { "title": "Lime Green", "hex_code": "#9ACD32" } },
+        { "type": "color_swatch", "settings": { "title": "Moss Green", "hex_code": "#8A9A5B" } },
+        { "type": "color_swatch", "settings": { "title": "Bottle Green", "hex_code": "#006A4E" } },
+        { "type": "color_swatch", "settings": { "title": "Honey Yellow", "hex_code": "#E8A33D" } },
+        { "type": "color_swatch", "settings": { "title": "Solar Yellow", "hex_code": "#FFD700" } },
+        { "type": "color_swatch", "settings": { "title": "Burnt Orange", "hex_code": "#CC5500" } },
+        { "type": "color_swatch", "settings": { "title": "Coral Orange", "hex_code": "#FF6F4C" } },
+        { "type": "color_swatch", "settings": { "title": "Rusty Red", "hex_code": "#B7410E" } },
+        { "type": "color_swatch", "settings": { "title": "Mocha Brown", "hex_code": "#6F4E37" } },
+        { "type": "color_swatch", "settings": { "title": "Irish Cream", "hex_code": "#F3E5AB" } },
+        { "type": "color_swatch", "settings": { "title": "Mist Grey", "hex_code": "#B0B7BD" } },
+        { "type": "color_swatch", "settings": { "title": "Luna Grey", "hex_code": "#8E8E93" } }
       ]
     }
   ]

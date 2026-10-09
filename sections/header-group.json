@@ -164,203 +164,203 @@
         "color_swatch_CrKTin": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Jet Black",
+            "title": "Jet Black",
             "hex_code": "#0a0a0a"
           }
         },
         "color_swatch_MmzXLc": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Pure White",
+            "title": "Pure White",
             "hex_code": "#ffffff"
           }
         },
         "color_swatch_VMdxMq": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Off-white",
+            "title": "Off-white",
             "hex_code": "#f2eee4"
           }
         },
         "color_swatch_EA7qf6": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Classic Red",
+            "title": "Classic Red",
             "hex_code": "#c8102e"
           }
         },
         "color_swatch_mmd4Uh": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Sky Blue",
+            "title": "Sky Blue",
             "hex_code": "#87ceeb"
           }
         },
         "color_swatch_pkUYtR": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Teal Blue",
+            "title": "Teal Blue",
             "hex_code": "#158c93"
           }
         },
         "color_swatch_eLe69U": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Diesel Blue",
+            "title": "Diesel Blue",
             "hex_code": "#2c3e50"
           }
         },
         "color_swatch_YehgtU": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Medieval Blue",
+            "title": "Medieval Blue",
             "hex_code": "#1b3f7a"
           }
         },
         "color_swatch_F9wxih": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Director Blue",
+            "title": "Director Blue",
             "hex_code": "#1f3a5f"
           }
         },
         "color_swatch_FpwB7J": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Air Force Blue",
+            "title": "Air Force Blue",
             "hex_code": "#5d8aa8"
           }
         },
         "color_swatch_xzEtNc": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Brittany Blue",
+            "title": "Brittany Blue",
             "hex_code": "#3b6fa0"
           }
         },
         "color_swatch_AHx3f9": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Orchid Purple",
+            "title": "Orchid Purple",
             "hex_code": "#9b59b6"
           }
         },
         "color_swatch_CGRnym": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Lilac Purple",
-            "hex_code": "#c8a2c8"
+            "title": "Lilac Purple",
+            "hex_code": "#749d98"
           }
         },
         "color_swatch_xgrDmT": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Berry Purple",
+            "title": "Berry Purple",
             "hex_code": "#6b2c5f"
           }
         },
         "color_swatch_hwYrLc": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Wine Purple",
+            "title": "Wine Purple",
             "hex_code": "#5b1a34"
           }
         },
         "color_swatch_zHewKz": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Fuchsia Pink",
+            "title": "Fuchsia Pink",
             "hex_code": "#c74375"
           }
         },
         "color_swatch_e7h6NP": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Light Pink",
+            "title": "Light Pink",
             "hex_code": "#ffb6c1"
           }
         },
         "color_swatch_MkjKPU": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Lime Green",
+            "title": "Lime Green",
             "hex_code": "#9acd32"
           }
         },
         "color_swatch_GJj4xG": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Moss Green",
+            "title": "Moss Green",
             "hex_code": "#8a9a5b"
           }
         },
         "color_swatch_yjqncQ": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Bottle Green",
+            "title": "Bottle Green",
             "hex_code": "#006a4e"
           }
         },
         "color_swatch_ca8y83": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Honey Yellow",
+            "title": "Honey Yellow",
             "hex_code": "#e8a33d"
           }
         },
         "color_swatch_FHLcd4": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Solar Yellow",
+            "title": "Solar Yellow",
             "hex_code": "#ffd700"
           }
         },
         "color_swatch_iKFpCL": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Burnt Orange",
+            "title": "Burnt Orange",
             "hex_code": "#cc5500"
           }
         },
         "color_swatch_aqzWE8": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Coral Orange",
+            "title": "Coral Orange",
             "hex_code": "#ff6f4c"
           }
         },
         "color_swatch_DaURtR": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Rusty Red",
+            "title": "Rusty Red",
             "hex_code": "#b7410e"
           }
         },
         "color_swatch_RWEqnE": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Mocha Brown",
+            "title": "Mocha Brown",
             "hex_code": "#6f4e37"
           }
         },
         "color_swatch_8mhJ64": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Irish Cream",
+            "title": "Irish Cream",
             "hex_code": "#f3e5ab"
           }
         },
         "color_swatch_hCWP7E": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Mist Grey",
+            "title": "Mist Grey",
             "hex_code": "#b0b7bd"
           }
         },
         "color_swatch_xPkBAq": {
           "type": "color_swatch",
           "settings": {
-            "color_name": "Luna Grey",
+            "title": "Luna Grey",
             "hex_code": "#8e8e93"
           }
         }
