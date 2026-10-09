@@ -47,7 +47,7 @@
     }
     @media (min-width: 768px){
    body.template-product .quick-view-pdp-accordions.accordion.accordion--plus.accordion--dividers{
-      width: 95%;
+      width: 100%;
       margin-top: 10px;
     }
     }
@@ -289,6 +289,10 @@ a.contents.user-select-text p{
     
     .jm-box.jm-box--inherit-color.jm-product-variant-card{
       border-radius: 0px !important;
+    }
+
+    product-recommendations h2{
+       margin-bottom: 15px !important;
     }
     @media only screen and (min-width: 769px){
             .section.section--page-width.color-scheme-1.section-resource-list.spacing-style.gap-style{
@@ -719,9 +723,15 @@ button.account-button,
       {%- render 'theme-editor' -%}
     {% endif %}
 
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     {{ content_for_header }}
     {% # theme-check-enable RemoteAsset %}
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"></noscript>
   <script type="text/javascript">if(typeof window.hulkappsWishlist === 'undefined') {
                             window.hulkappsWishlist = {};
                         }
@@ -826,19 +836,60 @@ button.account-button,
       Image URL is set dynamically from data-size-chart-url on the trigger.
       =====================================================================
     {%- endcomment -%}
-    <dialog id="size-chart-dialog" class="size-chart-dialog" aria-label="Size Chart">
+    <dialog id="size-chart-dialog" class="size-chart-dialog" aria-label="Size Chart" data-active-unit="cm">
       <div class="size-chart-dialog__inner">
         <header class="size-chart-dialog__header">
-          <h2 class="size-chart-dialog__title">Size Chart</h2>
-          <button class="size-chart-dialog__close" aria-label="Close size chart">
+          <div class="size-chart-dialog__header-left">
+            <h2 class="size-chart-dialog__title">Size Chart</h2>
+            <div class="size-chart-dialog__tabs" role="tablist" aria-label="Size chart measurement units">
+              <button
+                type="button"
+                class="size-chart-dialog__tab is-active"
+                data-unit="cm"
+                role="tab"
+                aria-selected="true"
+                aria-controls="size-chart-col-cm"
+              >
+                CM
+              </button>
+              <button
+                type="button"
+                class="size-chart-dialog__tab"
+                data-unit="inches"
+                role="tab"
+                aria-selected="false"
+                aria-controls="size-chart-col-inches"
+              >
+                INCHES
+              </button>
+            </div>
+          </div>
+          <button type="button" class="size-chart-dialog__close" aria-label="Close size chart">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </header>
+
         <div class="size-chart-dialog__body">
-          <img id="size-chart-dialog-img" class="size-chart-dialog__img" src="" alt="Size Chart" loading="lazy">
+          <div class="size-chart-dialog__grid">
+            <!-- CM column (Left on Desktop) -->
+            <div class="size-chart-dialog__col size-chart-dialog__col--cm" id="size-chart-col-cm" role="tabpanel" aria-label="Centimeters">
+              <div class="size-chart-dialog__col-label">CM (Centimeters)</div>
+              <div class="size-chart-dialog__img-wrap">
+                <img id="size-chart-dialog-img-cm" class="size-chart-dialog__img" src="" alt="Size Chart (CM)" loading="lazy">
+              </div>
+            </div>
+
+            <!-- Inches column (Right on Desktop) -->
+            <div class="size-chart-dialog__col size-chart-dialog__col--inches" id="size-chart-col-inches" role="tabpanel" aria-label="Inches">
+              <div class="size-chart-dialog__col-label">Inches (IN)</div>
+              <div class="size-chart-dialog__img-wrap">
+                <img id="size-chart-dialog-img-inches" class="size-chart-dialog__img" src="" alt="Size Chart (Inches)" loading="lazy">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </dialog>
@@ -849,27 +900,36 @@ button.account-button,
         border: none;
         padding: 0;
         border-radius: 16px;
-        background: #fff;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-        max-width: min(860px, 94vw);
+        background: #ffffff;
+        box-shadow: 0 24px 64px rgba(12, 65, 104, 0.2), 0 4px 18px rgba(0, 0, 0, 0.08);
+        max-width: min(1350px, 96vw);
         width: 100%;
         overflow: hidden;
-        /* Native <dialog> handles centering + top-layer automatically */
+      }
+
+      #size-chart-dialog.has-only-cm,
+      #size-chart-dialog.has-only-inches {
+        max-width: min(640px, 94vw);
       }
 
       #size-chart-dialog::backdrop {
-        background: rgba(0, 0, 0, 0.55);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        background: rgba(12, 65, 104, 0.45);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
       }
 
-      /* Entry animation: scale up from 95% */
+      /* Entry animation */
       @keyframes size-chart-in {
-        from { opacity: 0; transform: scale(0.94); }
+        from { opacity: 0; transform: scale(0.95); }
         to   { opacity: 1; transform: scale(1); }
       }
       #size-chart-dialog[open] {
         animation: size-chart-in 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      /* Prevent background scroll when dialog is active */
+      body.size-chart-open {
+        overflow: hidden !important;
       }
 
       .size-chart-dialog__inner {
@@ -881,15 +941,52 @@ button.account-button,
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 20px 24px;
-        border-bottom: 1px solid #ebebeb;
+        padding: 18px 24px;
+        border-bottom: 1px solid #eef2f6;
+        background: #ffffff;
+        position: relative;
+        z-index: 2;
+      }
+
+      .size-chart-dialog__header-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
       }
 
       .size-chart-dialog__title {
         margin: 0;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
-        letter-spacing: 1px;
+        color: #0c4168;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+      }
+
+      /* Mobile tabs - hidden by default on desktop */
+      .size-chart-dialog__tabs {
+        display: none;
+      }
+
+      .size-chart-dialog__tab {
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 6px 16px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: #556b82;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .size-chart-dialog__tab.is-active {
+        background: #0c4168;
+        color: #ffffff;
+        box-shadow: 0 2px 6px rgba(12, 65, 104, 0.28);
       }
 
       .size-chart-dialog__close {
@@ -901,55 +998,175 @@ button.account-button,
         background: none;
         border: none;
         border-radius: 50%;
+        color: #0c4168;
         cursor: pointer;
         transition: background 0.15s, transform 0.2s;
         flex-shrink: 0;
       }
       .size-chart-dialog__close:hover {
-        background: #f4f4f4;
+        background: #f0f4f8;
         transform: rotate(90deg);
       }
 
       .size-chart-dialog__body {
-        padding: 24px;
+        padding: 22px 24px;
         overflow-y: auto;
-        max-height: calc(90vh - 80px);
+        max-height: calc(88vh - 76px);
         -webkit-overflow-scrolling: touch;
+        background: #ffffff;
+      }
+
+      /* Desktop Grid Layout (Side by Side) */
+      .size-chart-dialog__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        align-items: start;
+      }
+
+      #size-chart-dialog.has-only-cm .size-chart-dialog__grid,
+      #size-chart-dialog.has-only-inches .size-chart-dialog__grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .size-chart-dialog__col {
+        display: flex;
+        flex-direction: column;
+        background: #fafbfc;
+        border: 1px solid #eef2f6;
+        border-radius: 12px;
+        padding: 14px;
+        box-sizing: border-box;
+      }
+
+      #size-chart-dialog.has-only-cm .size-chart-dialog__col--inches,
+      #size-chart-dialog.has-only-inches .size-chart-dialog__col--cm {
+        display: none !important;
+      }
+
+      .size-chart-dialog__col-label {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        color: #0c4168;
+        text-align: center;
+        margin-bottom: 12px;
+        padding: 4px 14px;
+        background: rgba(12, 65, 104, 0.07);
+        border-radius: 6px;
+        align-self: center;
+      }
+
+      .size-chart-dialog__img-wrap {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .size-chart-dialog__img {
         display: block;
         width: 100%;
         height: auto;
-        border-radius: 8px;
+        max-width: 100%;
+        object-fit: contain;
+        border-radius: 6px;
       }
 
+      /* ── Mobile Layout (< 750px) ── */
       @media (max-width: 749px) {
-            .hulk-pdp-wishlist-btn-wrapper .wishlist-btn{
-         margin-top: 0rem !important;
-    }
+        .hulk-pdp-wishlist-btn-wrapper .wishlist-btn {
+          margin-top: 0rem !important;
+        }
+
         #size-chart-dialog {
-          max-width: 96vw;
-          border-radius: 12px;
-          margin: auto 2vw;
+          max-width: 95vw;
+          border-radius: 14px;
+          margin: auto;
         }
+
         .size-chart-dialog__header {
-          padding: 16px 18px;
+          padding: 14px 16px;
+          gap: 10px;
         }
+
+        .size-chart-dialog__header-left {
+          gap: 12px;
+        }
+
+        .size-chart-dialog__title {
+          font-size: 18px;
+        }
+
+        /* Show mobile tabs only when both images exist */
+        #size-chart-dialog.has-both .size-chart-dialog__tabs {
+          display: inline-flex;
+          align-items: center;
+          background: #eef3f7;
+          border-radius: 20px;
+          padding: 3px;
+          gap: 2px;
+        }
+
+        #size-chart-dialog.has-only-cm .size-chart-dialog__tabs,
+        #size-chart-dialog.has-only-inches .size-chart-dialog__tabs {
+          display: none !important;
+        }
+
+        .size-chart-dialog__tab {
+          padding: 5px 14px;
+          font-size: 12px;
+        }
+
         .size-chart-dialog__body {
-          padding: 16px 18px;
-          max-height: calc(85vh - 70px);
+          padding: 14px 16px;
+          max-height: calc(85vh - 65px);
+          overflow-x: hidden;
+        }
+
+        /* Single column layout on mobile */
+        .size-chart-dialog__grid {
+          display: block;
+        }
+
+        /* Show active tab on mobile */
+        #size-chart-dialog.has-both[data-active-unit="cm"] .size-chart-dialog__col--inches {
+          display: none !important;
+        }
+        #size-chart-dialog.has-both[data-active-unit="inches"] .size-chart-dialog__col--cm {
+          display: none !important;
+        }
+        #size-chart-dialog.has-both[data-active-unit="cm"] .size-chart-dialog__col--cm {
+          display: block !important;
+        }
+        #size-chart-dialog.has-both[data-active-unit="inches"] .size-chart-dialog__col--inches {
+          display: block !important;
+        }
+
+        .size-chart-dialog__col {
+          padding: 8px;
+          background: transparent;
+          border: none;
+        }
+
+        .size-chart-dialog__col-label {
+          display: none; /* Mobile tabs already indicate unit */
         }
       }
-      @media only screen and (min-width: 749px){
-            .hulk-pdp-wishlist-btn-wrapper .wishlist-btn{
-         margin-top: 8px !important;
-    }
+
+      @media only screen and (min-width: 749px) {
+        .hulk-pdp-wishlist-btn-wrapper .wishlist-btn {
+          margin-top: 8px !important;
+        }
       }
+
       .product-meta-modal__body,
-.meta-card-content {
-  white-space: pre-line;
-}
+      .meta-card-content {
+        white-space: pre-line;
+      }
     </style>
 
     <script>
@@ -957,27 +1174,79 @@ button.account-button,
         'use strict';
 
         const dialog = document.getElementById('size-chart-dialog');
-        const dialogImg = document.getElementById('size-chart-dialog-img');
-        if (!dialog || !dialogImg) return;
+        const imgCm = document.getElementById('size-chart-dialog-img-cm');
+        const imgInches = document.getElementById('size-chart-dialog-img-inches');
+        if (!dialog || !imgCm || !imgInches) return;
+
+        const tabButtons = dialog.querySelectorAll('.size-chart-dialog__tab');
+
+        function setActiveUnit(unit) {
+          dialog.dataset.activeUnit = unit;
+          tabButtons.forEach(function (btn) {
+            const isActive = btn.dataset.unit === unit;
+            btn.classList.toggle('is-active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+        }
+
+        tabButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            setActiveUnit(this.dataset.unit);
+          });
+        });
 
         // ── Open ──
-        // Any .variant-option__size-chart-btn anywhere on the page (Product Page OR Quick View)
+        // Triggered by existing .variant-option__size-chart-btn (containing .variant-option__size-chart-text)
         document.addEventListener('click', function (e) {
           const btn = e.target.closest('.variant-option__size-chart-btn');
           if (!btn) return;
           e.preventDefault();
           e.stopPropagation();
 
-          // Swap image if needed (different product's size chart)
-          const url = btn.dataset.sizeChartUrl || '';
-          if (url && dialogImg.src !== url) {
-            dialogImg.src = url;
+          const cmUrl = btn.dataset.sizeChartCm || '';
+          const inchesUrl = btn.dataset.sizeChartInches || '';
+          // Fallback to legacy single data-size-chart-url if cmUrl wasn't set
+          const effectiveCmUrl = cmUrl || (!inchesUrl ? (btn.dataset.sizeChartUrl || '') : '');
+
+          const hasCm = Boolean(effectiveCmUrl);
+          const hasInches = Boolean(inchesUrl);
+
+          if (!hasCm && !hasInches) return;
+
+          if (hasCm) {
+            if (imgCm.src !== effectiveCmUrl) imgCm.src = effectiveCmUrl;
+          } else {
+            imgCm.src = '';
           }
 
-          // showModal() uses the native top-layer — no z-index fights, ever
+          if (hasInches) {
+            if (imgInches.src !== inchesUrl) imgInches.src = inchesUrl;
+          } else {
+            imgInches.src = '';
+          }
+
+          dialog.classList.remove('has-both', 'has-only-cm', 'has-only-inches');
+          if (hasCm && hasInches) {
+            dialog.classList.add('has-both');
+            setActiveUnit('cm');
+          } else if (hasCm) {
+            dialog.classList.add('has-only-cm');
+            setActiveUnit('cm');
+          } else {
+            dialog.classList.add('has-only-inches');
+            setActiveUnit('inches');
+          }
+
           if (!dialog.open) {
             dialog.showModal();
+            document.body.classList.add('size-chart-open');
           }
+        });
+
+        // ── Close event (handles ESC, dialog.close(), form submit, etc.) ──
+        dialog.addEventListener('close', function () {
+          document.body.classList.remove('size-chart-open');
         });
 
         // ── Close via close button ──
@@ -987,23 +1256,19 @@ button.account-button,
           }
         });
 
-        // ── Close via clicking the ::backdrop ──
-        // When the click target is the <dialog> itself (not its inner content), it's on the backdrop
+        // ── Close via clicking the backdrop ──
         dialog.addEventListener('click', function (e) {
           if (e.target === dialog) {
             dialog.close();
           }
         });
 
-        // ── ESC key closes dialog ── (native behavior, but double-guard)
+        // ── ESC key closes dialog ──
         dialog.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') dialog.close();
+          if (e.key === 'Escape') {
+            dialog.close();
+          }
         });
-
-        // ── Scroll-lock guard ──
-        // The theme's dialog.js checks for [open] on native <dialog> elements, so
-        // showModal() / close() automatically satisfies the checkScrollLockSafeguard.
-        // No manual body.style manipulation needed here.
       })();
     </script>
 
@@ -1050,7 +1315,7 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
 </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/js/splide.min.js" defer></script>
     
     <style>
     /* Custom Wishlist Pop and Particle styles */
@@ -1347,45 +1612,54 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
       document.querySelectorAll('shopify-account, shopify-login-form').forEach(injectShadowStyles);
     })();
     </script>
-    <style>
-      /* Image & Site protection styling: prevent selection, callouts, and dragging */
-      html, body, img, picture, svg, canvas, video, .product-media, .product-media-container {
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
-        user-select: none !important;
-        -webkit-user-drag: none !important;
-        user-drag: none !important;
-        -webkit-touch-callout: none !important;
-      }
-    </style>
-    <script>
-      (function() {
-        // Prevent right-click context menu storewide (prevents Inspect, Save As, Copy Image Address, etc.)
-        document.addEventListener('contextmenu', function(e) {
-          e.preventDefault();
-          return false;
-        }, true);
+    {%- comment -%}
+      SITE PROTECTION TOGGLE:
+      Set to true to block Right-Click & Inspect Element.
+      Set to false when you want to use Inspect Element.
+    {%- endcomment -%}
+    {%- assign enable_site_protection = false -%}
 
-        // Prevent dragging any element or image
-        document.addEventListener('dragstart', function(e) {
-          e.preventDefault();
-          return false;
-        }, true);
-
-        // Prevent inspect element & view source keyboard shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S)
-        document.addEventListener('keydown', function(e) {
-          if (
-            e.keyCode === 123 || 
-            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
-            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))
-          ) {
+    {%- if enable_site_protection -%}
+      <style>
+        /* Image & Site protection styling: prevent selection, callouts, and dragging */
+        html, body, img, picture, svg, canvas, video, .product-media, .product-media-container {
+          -webkit-user-select: none !important;
+          -moz-user-select: none !important;
+          -ms-user-select: none !important;
+          user-select: none !important;
+          -webkit-user-drag: none !important;
+          user-drag: none !important;
+          -webkit-touch-callout: none !important;
+        }
+      </style>
+      <script>
+        (function() {
+          // Prevent right-click context menu storewide (prevents Inspect, Save As, Copy Image Address, etc.)
+          document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
-          }
-        }, true);
-      })();
-    </script>
+          }, true);
+
+          // Prevent dragging any element or image
+          document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+          }, true);
+
+          // Prevent inspect element & view source keyboard shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S)
+          document.addEventListener('keydown', function(e) {
+            if (
+              e.keyCode === 123 || 
+              (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+              (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))
+            ) {
+              e.preventDefault();
+              return false;
+            }
+          }, true);
+        })();
+      </script>
+    {%- endif -%}
   </body>
 </html>
 

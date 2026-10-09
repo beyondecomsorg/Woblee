@@ -2443,6 +2443,9 @@ form.payment-terms {
 
 .card-gallery {
   position: relative;
+  aspect-ratio: var(--gallery-aspect-ratio, 4 / 5);
+  width: 100%;
+  overflow: hidden;
 }
 
 @container (max-width: 70px) {

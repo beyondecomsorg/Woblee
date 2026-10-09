@@ -430,12 +430,19 @@
           {%- capture attributes -%}on:click="#zoom-dialog-{{ block_id }}/open/{{ forloop.index0 }}"{% if settings.transition_to_main_product and forloop.first %} data-view-transition-type="product-image-transition"{% endif %}{% endcapture -%}
         {% endif %}
 
+        {% liquid
+          assign is_slide_hidden = false
+          if forloop.index > 4
+            assign is_slide_hidden = true
+          endif
+        %}
         {% render 'slideshow-slide',
           slide_id: media.id,
           index: forloop.index0,
           children: children,
           class: class,
           style: style,
+          hidden: is_slide_hidden,
           attributes: attributes,
           media_fit: block_settings.media_fit,
         %}
@@ -494,11 +501,20 @@
         data-testid="media-gallery-grid"
       >
         {% for media in sorted_media %}
+          {% liquid
+            assign is_item_hidden = false
+            if forloop.index > 4
+              assign is_item_hidden = true
+            endif
+          %}
           <li
             ref="media[]"
             data-media-id="{{ media.id }}"
             class="{{ product_media_container_class }} product-media-container--{{ media.media_type }} {% unless block_settings.aspect_ratio == 'adapt' %}product-media-container--force-aspect{% endunless %}"
-            style="{% if block_settings.aspect_ratio == 'adapt' %} --media-preview-ratio: {{ media.preview_image.aspect_ratio | default: 1.0 }};{% endif %} --media-radius: {{ block_settings.media_radius }}px;"
+            style="{% if block_settings.aspect_ratio == 'adapt' %} --media-preview-ratio: {{ media.preview_image.aspect_ratio | default: 1.0 }};{% endif %} --media-radius: {{ block_settings.media_radius }}px;{% if is_item_hidden %} display: none !important;{% endif %}"
+            {% if is_item_hidden %}
+              hidden
+            {% endif %}
             {% if settings.transition_to_main_product and forloop.first %}
               data-view-transition-type="product-image-transition"
             {% endif %}

@@ -34,6 +34,7 @@
     assign fetch_priority = 'auto'
     if is_main_product_media
       assign fetch_priority = 'high'
+      assign loading = 'eager'
     endif
     assign focal_point_style = '--focal-point: ' | append: media.presentation.focal_point | append: ';'
   %}

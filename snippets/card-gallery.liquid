@@ -134,7 +134,12 @@
             continue
           endif
 
-          if forloop.first and section.index == null or section.index < 5
+          assign is_above_fold_section = false
+          if section.index == null or section.index < 3
+            assign is_above_fold_section = true
+          endif
+
+          if forloop.first and is_above_fold_section
             assign loading = 'eager'
             assign sizes = image_sizes
           endif

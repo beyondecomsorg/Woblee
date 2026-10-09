@@ -108,9 +108,11 @@
   assign mobile_widths_array = mobile_widths | split: ', '
 
   assign fetch_priority = 'auto'
+  assign loading = 'lazy'
 
   if section.index == 1
     assign fetch_priority = 'high'
+    assign loading = 'eager'
   endif
 %}
 
@@ -142,6 +144,7 @@
           alt: section.settings.image_1.alt,
           class: 'hero__media',
           sizes: sizes,
+          loading: loading,
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-1'
       }}
@@ -158,6 +161,7 @@
           alt: section.settings.image_1.alt,
           class: 'hero__media',
           sizes: sizes,
+          loading: loading,
           fetchpriority: fetch_priority,
           data-testid: 'hero-desktop-image-1'
       }}

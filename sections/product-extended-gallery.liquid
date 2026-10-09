@@ -4,37 +4,63 @@
 {% endcomment %}
 
 {%- if product.media.size > 4 -%}
-  <div class="product-extended-gallery-wrapper" style="display: none;">
-    <div class="page-width">
-      <div class="product-extended-gallery">
-        <div class="product-extended-gallery__grid">
-          {%- for media in product.media offset: 4 -%}
-            <div class="product-extended-gallery__item" data-media-id="{{ media.id }}">
-              {%- case media.media_type -%}
-                {%- when 'image' -%}
-                  {{ media | image_url: width: 1200 | image_tag: 
-                    loading: 'lazy', 
-                    class: 'product-extended-gallery__image',
-                    sizes: '(min-width: 990px) calc((100vw - 100px) / 3), (min-width: 750px) calc((100vw - 60px) / 2), calc(100vw - 30px)' 
-                  }}
-                {%- when 'video' -%}
-                  {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: true, class: 'product-extended-gallery__video' }}
-                {%- else -%}
-                  {{ media | media_tag: class: 'product-extended-gallery__media' }}
-              {%- endcase -%}
-            </div>
-          {%- endfor -%}
-        </div>
+  <div class="product-extended-gallery-wrapper">
+    <div class="product-extended-gallery">
+      <div class="product-extended-gallery__grid">
+        {%- for media in product.media offset: 4 -%}
+          <div class="product-extended-gallery__item" data-media-id="{{ media.id }}">
+            {%- case media.media_type -%}
+              {%- when 'image' -%}
+                {{ media | image_url: width: 1400 | image_tag: 
+                  loading: 'lazy', 
+                  class: 'product-extended-gallery__image',
+                  sizes: '(min-width: 990px) 400px, (min-width: 750px) 350px, 100vw' 
+                }}
+              {%- when 'video' -%}
+                {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: true, class: 'product-extended-gallery__video' }}
+              {%- else -%}
+                {{ media | media_tag: class: 'product-extended-gallery__media' }}
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
       </div>
     </div>
   </div>
+
+  <script>
+    (function() {
+      function alignExtendedGallery() {
+        const galleryWrapper = document.querySelector('.product-extended-gallery-wrapper');
+        if (!galleryWrapper) return;
+
+        const productInfo = document.querySelector('.product-information');
+        const productDetails = document.querySelector('.product-details');
+        
+        // Move wrapper outside of product-details to main section container for full width
+        const mainSection = productInfo || (productDetails ? productDetails.closest('.section') || productDetails.parentNode : null);
+        if (mainSection && mainSection.parentNode) {
+          if (galleryWrapper.parentNode !== mainSection.parentNode || galleryWrapper.previousElementSibling !== mainSection) {
+            mainSection.parentNode.insertBefore(galleryWrapper, mainSection.nextElementSibling);
+          }
+        }
+      }
+
+      alignExtendedGallery();
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', alignExtendedGallery);
+      } else {
+        alignExtendedGallery();
+      }
+      document.addEventListener('shopify:section:load', alignExtendedGallery);
+    })();
+  </script>
 {%- endif -%}
 
 {% schema %}
 {
   "name": "Product extended gallery",
   "tag": "section",
-  "class": "section",
+  "class": "section product-extended-gallery-section",
   "settings": [],
   "presets": [
     {
@@ -45,26 +71,48 @@
 {% endschema %}
 
 {% stylesheet %}
+  .product-extended-gallery-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0px auto 0px auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+  }
+
   .product-extended-gallery {
     padding-top: 0;
+    width: 100%;
   }
 
   .product-extended-gallery__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 1.25rem;
     width: 100%;
+    margin: 0 auto;
   }
 
   @media only screen and (min-width: 768px){
-      .product-extended-gallery__grid {
-    margin: auto;
-    width: 80%;
-  }
-  body .product-extended-gallery__image{
-    object-fit: contain !important;
-    aspect-radio: auto !important;
-  }
+    body.template-product .product-extended-gallery-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      /* margin: 35px auto 40px auto; */
+      padding: 0 1.5rem;
+    }
+
+    .product-extended-gallery__grid {
+      margin: 0 auto;
+      width: 100%;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    body .product-extended-gallery__image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover !important;
+      aspect-ratio: auto !important;
+    }
   }
 
   .product-extended-gallery__item {
@@ -74,14 +122,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    aspect-ratio: 3 / 4;
   }
 
   .product-extended-gallery__image {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
-    object-fit: fill;
-
+    object-fit: cover;
   }
 
   .product-extended-gallery__video {
@@ -98,17 +146,22 @@
     aspect-ratio: 1 / 1.25;
   }
 
-  @media screen and (max-width: 989px) {
+  @media screen and (max-width: 767px) {
+    .product-extended-gallery-wrapper {
+      width: 100%;
+      padding: 0 1rem;
+      margin: 0px auto;
+    }
+
     .product-extended-gallery__grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
   }
 
-  @media screen and (max-width: 749px) {
-    .product-extended-gallery__grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
+  /* Hide empty section after moving wrapper */
+  .product-extended-gallery-section:empty,
+  .product-extended-gallery-section:not(:has(.product-extended-gallery-wrapper)) {
+    display: none !important;
   }
 {% endstylesheet %}

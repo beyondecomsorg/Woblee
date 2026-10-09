@@ -86,9 +86,43 @@
                     <span class="variant-option__swatch-value">{{ product_option.selected_value }}</span>
                   {%- endif %}
                 </span>
-                {%- if option_name_downcase == 'size' and product.metafields.custom.size_chart != blank -%}
-                  {%- assign size_chart_img_url = product.metafields.custom.size_chart | image_url: width: 1200 -%}
-                  <button type="button" class="variant-option__size-chart-btn" aria-haspopup="dialog" aria-controls="size-chart-dialog" data-size-chart-url="{{ size_chart_img_url }}">
+                {%- liquid
+                  assign current_prod = product_resource | default: product
+                  assign sc_cm_url = ''
+                  if current_prod.metafields.custom.size_chart != blank
+                    assign sc_cm_url = current_prod.metafields.custom.size_chart | image_url: width: 1400
+                  elsif product.metafields.custom.size_chart != blank
+                    assign sc_cm_url = product.metafields.custom.size_chart | image_url: width: 1400
+                  endif
+
+                  assign sc_inches_url = ''
+                  if current_prod.metafields.custom.size_chart_inches != blank
+                    assign sc_inches_url = current_prod.metafields.custom.size_chart_inches | image_url: width: 1400
+                  elsif product.metafields.custom.size_chart_inches != blank
+                    assign sc_inches_url = product.metafields.custom.size_chart_inches | image_url: width: 1400
+                  endif
+
+                  assign show_size_chart = false
+                  if option_name_downcase == 'size'
+                    if sc_cm_url != '' or sc_inches_url != ''
+                      assign show_size_chart = true
+                    endif
+                  endif
+                -%}
+                {%- if show_size_chart -%}
+                  {%- assign default_sc_url = sc_cm_url -%}
+                  {%- if default_sc_url == '' -%}
+                    {%- assign default_sc_url = sc_inches_url -%}
+                  {%- endif -%}
+                  <button
+                    type="button"
+                    class="variant-option__size-chart-btn"
+                    aria-haspopup="dialog"
+                    aria-controls="size-chart-dialog"
+                    data-size-chart-url="{{ default_sc_url }}"
+                    data-size-chart-cm="{{ sc_cm_url }}"
+                    data-size-chart-inches="{{ sc_inches_url }}"
+                  >
                     <span class="variant-option__size-chart-icon">📐</span>
                     <span class="variant-option__size-chart-text">Size Chart</span>
                   </button>
@@ -193,9 +227,43 @@
           <div class="variant-option variant-option--dropdowns{% if option_name_downcase == 'size' %} variant-option--size-dropdowns{% endif %}" data-option-name="{{ product_option.name | escape }}">
             <div class="variant-option__legend-flex">
               <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
-              {%- if option_name_downcase == 'size' and product.metafields.custom.size_chart != blank -%}
-                {%- assign size_chart_img_url = product.metafields.custom.size_chart | image_url: width: 1200 -%}
-                <button type="button" class="variant-option__size-chart-btn" aria-haspopup="dialog" aria-controls="size-chart-dialog" data-size-chart-url="{{ size_chart_img_url }}">
+              {%- liquid
+                assign current_prod = product_resource | default: product
+                assign sc_cm_url = ''
+                if current_prod.metafields.custom.size_chart != blank
+                  assign sc_cm_url = current_prod.metafields.custom.size_chart | image_url: width: 1400
+                elsif product.metafields.custom.size_chart != blank
+                  assign sc_cm_url = product.metafields.custom.size_chart | image_url: width: 1400
+                endif
+
+                assign sc_inches_url = ''
+                if current_prod.metafields.custom.size_chart_inches != blank
+                  assign sc_inches_url = current_prod.metafields.custom.size_chart_inches | image_url: width: 1400
+                elsif product.metafields.custom.size_chart_inches != blank
+                  assign sc_inches_url = product.metafields.custom.size_chart_inches | image_url: width: 1400
+                endif
+
+                assign show_size_chart = false
+                if option_name_downcase == 'size'
+                  if sc_cm_url != '' or sc_inches_url != ''
+                    assign show_size_chart = true
+                  endif
+                endif
+              -%}
+              {%- if show_size_chart -%}
+                {%- assign default_sc_url = sc_cm_url -%}
+                {%- if default_sc_url == '' -%}
+                  {%- assign default_sc_url = sc_inches_url -%}
+                {%- endif -%}
+                <button
+                  type="button"
+                  class="variant-option__size-chart-btn"
+                  aria-haspopup="dialog"
+                  aria-controls="size-chart-dialog"
+                  data-size-chart-url="{{ default_sc_url }}"
+                  data-size-chart-cm="{{ sc_cm_url }}"
+                  data-size-chart-inches="{{ sc_inches_url }}"
+                >
                   <span class="variant-option__size-chart-icon">📐</span>
                   <span class="variant-option__size-chart-text">Size Chart</span>
                 </button>

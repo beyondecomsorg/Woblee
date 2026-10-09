@@ -380,9 +380,9 @@
       "scheme-7": {
         "settings": {
           "background": "#0c4168",
-          "foreground_heading": "#000000",
+          "foreground_heading": "#ffffff",
           "foreground": "#ffffff",
-          "primary": "#000000",
+          "primary": "#ffffff",
           "primary_hover": "#000000",
           "border": "#e6e6e6",
           "shadow": "#000000",

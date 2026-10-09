@@ -65,8 +65,13 @@
       assign current_color_scheme = block_settings.color_scheme
       assign parent_color_scheme = section.settings[color_scheme_setting_id]
 
-      if parent_color_scheme.id != current_color_scheme.id
-        assign color_scheme_classes = ' color-' | append: current_color_scheme
+      assign parent_id = parent_color_scheme.id | default: parent_color_scheme
+      assign current_id = current_color_scheme.id | default: current_color_scheme
+
+      if parent_id != current_id and current_id != blank
+        assign color_scheme_classes = ' color-' | append: current_id
+      else
+        assign color_scheme_classes = ' color-scheme-1'
       endif
 
       if parent_color_scheme.settings.background.rgb == current_color_scheme.settings.background.rgb
@@ -222,7 +227,7 @@
 
 {% style %}
   .header__underlay {
-    --color-submenu: rgb({{ block_settings.color_scheme.settings.background.rgba }});
+    --color-submenu: #ffffff;
   }
 {% endstyle %}
 

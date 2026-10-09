@@ -298,6 +298,7 @@
 
 <header-component
   id="header-component"
+  data-menu-style="menu"
   class="{{ class }}"
   data-theme-color="rgb({{ section.settings.color_scheme_top.settings.background.rgb }})"
   {% if transparent %}
@@ -315,8 +316,9 @@
     data-transparent-color-scheme="{{ transparent_color_scheme_value }}"
   {% endif %}
   style="
-    --color-scheme-top-row: rgba({{ section.settings.color_scheme_top.settings.background.rgba }});
-    --color-scheme-bottom-row: rgba({{ section.settings.color_scheme_bottom.settings.background.rgba }});
+    --color-scheme-top-row: {{ section.settings.color_scheme_top.settings.background | default: '#0c4168' }};
+    --color-scheme-bottom-row: {{ section.settings.color_scheme_bottom.settings.background | default: section.settings.color_scheme_top.settings.background | default: '#0c4168' }};
+    --top-row-height: 100%;
     {% if section.settings.actions_display_style == 'text' %}
       --header-actions-font-size: {{ section.settings.actions_font_size | default: '1rem' }};
       --header-actions-font-family: var(--font-{{ section.settings.actions_font | default: 'heading' }}--family);
@@ -419,6 +421,12 @@
     --transparent-header-offset-boolean: 0; /* stylelint-disable-line declaration-property-value-disallowed-list */
   }
 
+  #header-group,
+  .header-section,
+  #header-component {
+    background-color: transparent;
+  }
+
   .header {
     /* Set header paddings based on height setting */
     --header-padding: var(--padding-sm);
@@ -446,6 +454,10 @@
     #header-component[data-menu-style='menu'] :is(.header-menu, .dropdown-localization) {
       display: flex;
     }
+    #header-component .menu-drawer-container,
+    #header-component .header__icon--menu {
+      display: none !important;
+    }
   }
 
   #header-component[data-menu-style='drawer'] .header__column {
@@ -456,6 +468,24 @@
     #header-component[data-menu-style='menu'] .header__navigation-bar-row {
       display: none;
     }
+  }
+
+  /* Mega menu flyout dropdown background and link text colors */
+  #header-component .menu-list__submenu,
+  #header-component .menu-list__submenu-inner,
+  #header-component .mega-menu,
+  #header-component .mega-menu__grid {
+    background-color: #ffffff !important;
+    color: #0c4168 !important;
+  }
+
+  #header-component .menu-list__submenu a,
+  #header-component .menu-list__submenu .mega-menu__link,
+  #header-component .menu-list__submenu .mega-menu__link-title,
+  #header-component .menu-list__submenu .mega-menu__link--parent,
+  #header-component .menu-list__submenu .menu-list__link-title,
+  #header-component .menu-list__submenu .mega-menu__column span {
+    color: #0c4168 !important;
   }
 
   .header[transparent] {
@@ -596,21 +626,20 @@
   .header__underlay-closed {
     height: var(--closed-underlay-height, 100%);
     z-index: var(--layer-lowest);
-    background: linear-gradient(
-      var(--color-scheme-top-row) 0 var(--top-row-height),
-      var(--color-scheme-bottom-row) var(--top-row-height) var(--header-height)
-    );
+    background-color: #0c4168;
+    background: #0c4168;
     transition: height var(--animation-speed-slow) var(--ease-out-cubic);
   }
 
   .header__underlay-open {
     height: var(--full-open-header-height);
+    z-index: var(--layer-lowest);
+    background-color: #ffffff;
     background: linear-gradient(
-      var(--color-scheme-top-row) 0 var(--top-row-height),
-      var(--color-scheme-bottom-row) var(--top-row-height) var(--header-height),
-      var(--color-submenu) var(--header-height) 100%
+      #0c4168 0 var(--top-row-height, 60px),
+      #0c4168 var(--top-row-height, 60px) var(--header-height, 60px),
+      #ffffff var(--header-height, 60px) 100%
     );
-    /* header-height is updated via js, the transition works automagically */
     transition: height var(--submenu-animation-speed) var(--ease-out-cubic);
   }
 

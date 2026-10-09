@@ -15,6 +15,12 @@
     height: 100%;
   }
 
+  media-gallery slideshow-container {
+    aspect-ratio: var(--ratio, 3 / 4);
+    width: 100%;
+    overflow: hidden;
+  }
+
   @media screen and (min-width: 750px) {
     .media-gallery--two-column .media-gallery__grid {
       grid-template-columns: repeat(2, 1fr);
@@ -44,6 +50,10 @@ media-gallery:where(.media-gallery--grid) .media-gallery__grid::-webkit-scrollba
 }
     media-gallery.media-gallery--grid .media-gallery__grid .product-media-container{
           flex: 0 0 25%;
+          aspect-ratio: 3 / 4 !important;
+    }
+    media-gallery.media-gallery--grid .media-gallery__grid .product-media {
+          aspect-ratio: 3 / 4 !important;
     }
   }
 
