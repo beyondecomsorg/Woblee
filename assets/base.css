@@ -2647,7 +2647,7 @@ form.payment-terms {
   }
 
   .layout-panel-flex--row:not(.mobile-column) {
-    flex-wrap: var(--flex-wrap-mobile);
+    flex-wrap: nowrap;
     height: auto;
 
     > .menu {
