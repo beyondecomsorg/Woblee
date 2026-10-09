@@ -242,6 +242,7 @@
       "name": "Custom Banner",
       "settings": {
         "desktop_image": "shopify://shop_images/5_f80508a0-c15e-426e-805f-05c4b053a09a.jpg",
+        "mobile_image": "shopify://shop_images/55_61205e88-254a-4007-a690-b3d759002f84.jpg",
         "section_width": "full",
         "banner_height": "fit",
         "banner_link": "",
