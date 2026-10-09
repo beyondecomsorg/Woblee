@@ -83,13 +83,24 @@
 
 .custom-banner-link {
   display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   color: inherit;
 }
 
+.custom-banner picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .custom-banner__image {
   width: 100%;
+  height: 100%;
   display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* -----------------------------
@@ -111,6 +122,13 @@
   height: 100vh;
 }
 
+.banner-height-500 .custom-banner picture,
+.banner-height-650 .custom-banner picture,
+.banner-height-800 .custom-banner picture,
+.banner-height-full .custom-banner picture {
+  height: 100%;
+}
+
 .banner-height-500 .custom-banner__image,
 .banner-height-650 .custom-banner__image,
 .banner-height-800 .custom-banner__image,
@@ -118,6 +136,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 /* -----------------------------
@@ -127,10 +146,15 @@
   height: auto;
 }
 
+.banner-height-fit .custom-banner picture {
+  height: auto;
+}
+
 .banner-height-fit .custom-banner__image {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* -----------------------------
@@ -175,6 +199,11 @@
 
   .banner-height-full .custom-banner {
     height: 100vh;
+  }
+
+  .custom-banner picture,
+  .custom-banner__image {
+    width: 100%;
   }
 
   .custom-banner__placeholder {
