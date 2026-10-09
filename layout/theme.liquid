@@ -184,35 +184,24 @@ a.contents.user-select-text p{
       text-transform: uppercase;
     }
 
-    /* Force product header review badge and rating stars side-by-side on mobile and desktop */
-    [data-block-id="group_reviews_header"] .group-block-content,
-    .group-block-content:has(.jdgm-widget),
-    .group-block-content:has(.jdgm-prev-badge),
-    .group-block-content:has(.shopify-app-block) {
+    /* Force ONLY group_reviews_header to align side-by-side without affecting parent title/header group */
+    [data-block-id="group_reviews_header"] > .group-block-content {
       display: flex !important;
       flex-direction: row !important;
-      flex-wrap: nowrap !important;
+      flex-wrap: wrap !important;
       align-items: center !important;
       justify-content: flex-start !important;
       gap: 12px !important;
       width: 100% !important;
     }
 
-    [data-block-id="group_reviews_header"] .group-block-content > *,
-    [data-block-id="group_reviews_header"] .group-block-content .shopify-block,
-    [data-block-id="group_reviews_header"] .group-block-content .shopify-app-block,
+    [data-block-id="group_reviews_header"] > .group-block-content > *,
+    [data-block-id="group_reviews_header"] .shopify-block,
+    [data-block-id="group_reviews_header"] .shopify-app-block,
     [data-block-id="group_reviews_header"] .jdgm-widget,
     [data-block-id="group_reviews_header"] .jdgm-prev-badge,
     [data-block-id="group_reviews_header"] .jdgm-preview-badge,
-    [data-block-id="group_reviews_header"] .rating-wrapper,
-    .shopify-app-block:has(.jdgm-widget),
-    .shopify-app-block:has(.jdgm-prev-badge),
-    .shopify-block:has(.jdgm-widget),
-    .shopify-block:has(.jdgm-prev-badge),
-    .jdgm-widget,
-    .jdgm-prev-badge,
-    .jdgm-preview-badge,
-    .jdgm-preview-badge-wrapper {
+    [data-block-id="group_reviews_header"] .rating-wrapper {
       display: inline-flex !important;
       width: auto !important;
       max-width: max-content !important;
