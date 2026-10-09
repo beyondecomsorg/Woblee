@@ -1349,33 +1349,42 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
     })();
     </script>
     <style>
-      /* Image protection styling: prevent image selection & dragging */
-      img, picture, svg, .product-media, .product-media-container {
+      /* Image & Site protection styling: prevent selection, callouts, and dragging */
+      html, body, img, picture, svg, canvas, video, .product-media, .product-media-container {
         -webkit-user-select: none !important;
         -moz-user-select: none !important;
         -ms-user-select: none !important;
         user-select: none !important;
         -webkit-user-drag: none !important;
         user-drag: none !important;
+        -webkit-touch-callout: none !important;
       }
     </style>
     <script>
       (function() {
-        // Prevent right-click context menu (Copy Image, Save Image As...) on all website images
+        // Prevent right-click context menu storewide (prevents Inspect, Save As, Copy Image Address, etc.)
         document.addEventListener('contextmenu', function(e) {
-          if (e.target.tagName === 'IMG' || e.target.closest('img') || e.target.closest('picture') || e.target.closest('.product-media') || e.target.closest('.media-gallery')) {
-            e.preventDefault();
-            return false;
-          }
-        }, false);
+          e.preventDefault();
+          return false;
+        }, true);
 
-        // Prevent dragging images
+        // Prevent dragging any element or image
         document.addEventListener('dragstart', function(e) {
-          if (e.target.tagName === 'IMG' || e.target.closest('img') || e.target.closest('picture')) {
+          e.preventDefault();
+          return false;
+        }, true);
+
+        // Prevent inspect element & view source keyboard shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S)
+        document.addEventListener('keydown', function(e) {
+          if (
+            e.keyCode === 123 || 
+            (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+            (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))
+          ) {
             e.preventDefault();
             return false;
           }
-        }, false);
+        }, true);
       })();
     </script>
   </body>
