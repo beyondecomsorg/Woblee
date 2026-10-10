@@ -6,6 +6,19 @@
 {% endcomment %}
 
 {% assign s = section.settings %}
+{% assign first_block = section.blocks.first %}
+{% assign desktop_aspect = 2.4 %}
+{% assign mobile_aspect = 1.0 %}
+
+{% if first_block and first_block.settings.image != blank %}
+  {% assign desktop_aspect = first_block.settings.image.aspect_ratio %}
+{% endif %}
+
+{% if first_block and first_block.settings.mobile_image != blank %}
+  {% assign mobile_aspect = first_block.settings.mobile_image.aspect_ratio %}
+{% elsif first_block and first_block.settings.image != blank %}
+  {% assign mobile_aspect = first_block.settings.image.aspect_ratio %}
+{% endif %}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
 
@@ -29,8 +42,23 @@
   --heading-color: var(--brand-white);
   --subtext-color: var(--brand-white);
 
-  --section-height-desktop: 780px;
-  --section-height-mobile: 620px;
+  {% case s.desktop_height_mode %}
+    {% when 'adapt' %}
+      --section-height-desktop: auto;
+      --section-aspect-desktop: {{ desktop_aspect }};
+    {% when 'full' %}
+      --section-height-desktop: 100vh;
+    {% else %}
+      --section-height-desktop: {{ s.desktop_height | default: 650 }}px;
+  {% endcase %}
+
+  {% case s.mobile_height_mode %}
+    {% when 'adapt' %}
+      --section-height-mobile: auto;
+      --section-aspect-mobile: {{ mobile_aspect }};
+    {% else %}
+      --section-height-mobile: {{ s.mobile_height | default: 480 }}px;
+  {% endcase %}
 }
 .hs-section .splide__arrow {
   width: 56px;
@@ -97,6 +125,10 @@
   position: relative;
   width: 100%;
   height: var(--section-height-desktop);
+  {% if s.desktop_height_mode == 'adapt' %}
+    aspect-ratio: var(--section-aspect-desktop);
+    height: auto;
+  {% endif %}
   overflow: hidden;
   background: var(--brand-blue);
 }
@@ -107,7 +139,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: {{ s.image_fit | default: 'cover' }};
   display: block;
 }
 
@@ -308,6 +340,12 @@
 @media (max-width: 768px) {
   .hs-slide {
     height: var(--section-height-mobile);
+    {% if s.mobile_height_mode == 'adapt' %}
+      aspect-ratio: var(--section-aspect-mobile);
+      height: auto;
+    {% else %}
+      aspect-ratio: unset;
+    {% endif %}
   }
   .hs-slide__buttons{
   flex-wrap: nowrap; 
@@ -494,6 +532,10 @@
                 </div>
 
               {% else %}
+                {% assign focal_d = b.image_focal_point | default: 'center center' %}
+                {% assign focal_m = b.mobile_image_focal_point | default: focal_d %}
+                {% assign img_fit = s.image_fit | default: 'cover' %}
+
                 {%- comment -%} ── DESKTOP IMAGE ── {%- endcomment -%}
                 {% if b.image != blank %}
                   {{ b.image | image_url: width: 2400 | image_tag:
@@ -501,7 +543,8 @@
                     loading: 'eager',
                     widths: '800,1200,1600,2000,2400',
                     sizes: '100vw',
-                    alt: b.image.alt
+                    alt: b.image.alt,
+                    style: 'object-position: ' | append: focal_d | append: '; object-fit: ' | append: img_fit
                   }}
                 {% else %}
                   {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide__bg hs-slide__bg--desktop placeholder-svg' }}
@@ -514,7 +557,8 @@
                     loading: 'eager',
                     widths: '400,600,800,1000,1200',
                     sizes: '100vw',
-                    alt: b.mobile_image.alt
+                    alt: b.mobile_image.alt,
+                    style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
                   }}
                 {% else %}
                   {% comment %}
@@ -527,7 +571,8 @@
                       loading: 'eager',
                       widths: '400,600,800,1000,1200',
                       sizes: '100vw',
-                      alt: b.image.alt
+                      alt: b.image.alt,
+                      style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
                     }}
                   {% else %}
                     {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide__bg hs-slide__bg--mobile placeholder-svg' }}
@@ -687,6 +732,60 @@
   "class": "hs-section-wrapper",
   "settings": [
 
+    {
+      "type": "header",
+      "content": "━━  Banner Height & Fitting  ━━"
+    },
+    {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop Height Mode",
+      "options": [
+        { "value": "adapt",  "label": "Adapt to First Image (Aspect Ratio)" },
+        { "value": "custom", "label": "Custom Fixed Height" },
+        { "value": "full",   "label": "Full Screen (100vh)" }
+      ],
+      "default": "custom"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop Height (px)",
+      "min": 350,
+      "max": 950,
+      "step": 10,
+      "default": 650
+    },
+    {
+      "type": "select",
+      "id": "mobile_height_mode",
+      "label": "Mobile Height Mode",
+      "options": [
+        { "value": "adapt",  "label": "Adapt to First Mobile Image" },
+        { "value": "custom", "label": "Custom Fixed Height" }
+      ],
+      "default": "custom"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile Height (px)",
+      "min": 250,
+      "max": 800,
+      "step": 10,
+      "default": 480
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Object Fit",
+      "options": [
+        { "value": "cover",   "label": "Cover (fill container, crop excess)" },
+        { "value": "contain", "label": "Contain (fit full image, no crop)" },
+        { "value": "fill",    "label": "Fill (stretch to exact dimensions)" }
+      ],
+      "default": "cover"
+    },
     {
       "type": "header",
       "content": "━━  Slideshow Behaviour  ━━"

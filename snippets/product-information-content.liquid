@@ -442,37 +442,104 @@ function openModal(title, content) {
           'PURE COTTON'
         ];
 
-        let sections = [];
-        let currentSection = null;
+        function inferHeading(line) {
+          const l = line.toLowerCase();
+          if (l.includes('pure cotton') || l.includes('naturally breathable')) {
+            return 'PURE COTTON';
+          }
+          if (l.includes('soft, flexible knit') || l.includes('single jersey') || l.includes('smooth outer surface')) {
+            return 'SINGLE JERSEY - 180-190 GSM';
+          }
+          if (l.includes('double-knit construction') || l.includes('interlock')) {
+            return 'INTERLOCK - 210 GSM';
+          }
+          if (l.includes('loop knit') || l.includes('terry')) {
+            return 'TERRY / LOOP KNIT';
+          }
+          if (l.includes('enzyme-based finish') || l.includes('loose surface fibres') || l.includes('bio wash')) {
+            return 'BIO WASH';
+          }
+          if (l.includes('pre-construction washing') || l.includes('cpl wash') || l.includes('fabric shrinkage')) {
+            return 'CPL WASH';
+          }
+          if (l.includes('specialised enzymes') || l.includes('specialized enzymes') || l.includes('heavy enzyme') || l.includes('enzyme wash')) {
+            return 'ENZYME WASH';
+          }
+          if (l.includes('why we chose it')) {
+            return 'WHY WE CHOSE IT';
+          }
+          return null;
+        }
 
-        lines.forEach(line => {
+        const hasExplicitHeading = lines.some(line => {
           let lineUpper = line.toUpperCase().trim();
-          let isHeading = knownHeadings.some(h => {
+          return knownHeadings.some(h => {
             return lineUpper === h || 
                    lineUpper.startsWith(h + ' ') || 
                    lineUpper.startsWith(h + '-') || 
                    lineUpper.startsWith(h + ' -') || 
                    lineUpper.indexOf(h) === 0;
           });
-
-          if (isHeading) {
-            if (currentSection) sections.push(currentSection);
-            currentSection = {
-              heading: line,
-              descriptions: []
-            };
-          } else {
-            if (currentSection) {
-              currentSection.descriptions.push(line);
-            } else {
-              currentSection = {
-                heading: '',
-                descriptions: [line]
-              };
-            }
-          }
         });
-        if (currentSection) sections.push(currentSection);
+
+        let sections = [];
+        let currentSection = null;
+
+        if (hasExplicitHeading) {
+          lines.forEach(line => {
+            let lineUpper = line.toUpperCase().trim();
+            let isHeading = knownHeadings.some(h => {
+              return lineUpper === h || 
+                     lineUpper.startsWith(h + ' ') || 
+                     lineUpper.startsWith(h + '-') || 
+                     lineUpper.startsWith(h + ' -') || 
+                     lineUpper.indexOf(h) === 0;
+            });
+
+            if (isHeading) {
+              if (currentSection) sections.push(currentSection);
+              currentSection = {
+                heading: line,
+                descriptions: []
+              };
+            } else {
+              if (currentSection) {
+                currentSection.descriptions.push(line);
+              } else {
+                currentSection = {
+                  heading: '',
+                  descriptions: [line]
+                };
+              }
+            }
+          });
+          if (currentSection) sections.push(currentSection);
+        } else {
+          lines.forEach(line => {
+            const inferred = inferHeading(line);
+            if (inferred) {
+              if (currentSection && currentSection.heading === inferred) {
+                currentSection.descriptions.push(line);
+              } else {
+                if (currentSection) sections.push(currentSection);
+                currentSection = {
+                  heading: inferred,
+                  descriptions: [line]
+                };
+              }
+            } else {
+              if (currentSection) {
+                currentSection.descriptions.push(line);
+              } else {
+                currentSection = {
+                  heading: '',
+                  descriptions: [line]
+                };
+              }
+            }
+          });
+          if (currentSection) sections.push(currentSection);
+        }
 
         // Build HTML output: Heading -> Description -> Image (with side-by-side layout for 2nd section / GSM)
         let newHtml = '';
