@@ -1083,22 +1083,24 @@ button.account-button,
         }
 
         #size-chart-dialog {
-          max-width: 95vw;
-          border-radius: 14px;
+          width: calc(100vw - 16px);
+          max-width: 96vw;
+          border-radius: 16px;
           margin: auto;
+          box-shadow: 0 16px 48px rgba(12, 65, 104, 0.25), 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .size-chart-dialog__header {
-          padding: 14px 16px;
-          gap: 10px;
+          padding: 12px 14px;
+          gap: 8px;
         }
 
         .size-chart-dialog__header-left {
-          gap: 12px;
+          gap: 10px;
         }
 
         .size-chart-dialog__title {
-          font-size: 18px;
+          font-size: 17px;
         }
 
         /* Show mobile tabs only when both images exist */
@@ -1122,14 +1124,18 @@ button.account-button,
         }
 
         .size-chart-dialog__body {
-          padding: 14px 16px;
-          max-height: calc(85vh - 65px);
+          padding: 10px 8px;
+          max-height: calc(85dvh - 58px);
+          max-height: calc(85vh - 58px);
+          overflow-y: auto;
           overflow-x: hidden;
+          -webkit-overflow-scrolling: touch;
         }
 
         /* Single column layout on mobile */
         .size-chart-dialog__grid {
           display: block;
+          width: 100%;
         }
 
         /* Show active tab on mobile */
@@ -1147,13 +1153,32 @@ button.account-button,
         }
 
         .size-chart-dialog__col {
-          padding: 8px;
+          padding: 0;
           background: transparent;
           border: none;
+          width: 100%;
         }
 
         .size-chart-dialog__col-label {
           display: none; /* Mobile tabs already indicate unit */
+        }
+
+        .size-chart-dialog__img-wrap {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+        }
+
+        .size-chart-dialog__img {
+          display: block;
+          width: 100% !important;
+          max-width: 100% !important;
+          height: auto !important;
+          object-fit: contain;
+          border-radius: 4px;
         }
       }
 
