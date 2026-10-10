@@ -35,7 +35,7 @@
             "overlay_opacity": 40,
             "override_alignment": false,
             "text_alignment": "left",
-            "button_alignment": "flex-start"
+            "button_position": "middle_left"
           }
         },
         "slide_nRfpCw": {
@@ -61,7 +61,7 @@
             "overlay_opacity": 40,
             "override_alignment": false,
             "text_alignment": "left",
-            "button_alignment": "flex-start"
+            "button_position": "middle_left"
           }
         }
       },
@@ -69,6 +69,7 @@
         "slide_pVVWxW",
         "slide_nRfpCw"
       ],
+      "disabled": true,
       "name": "Collection Slideshow",
       "settings": {
         "section_bg": "#ffffff",
@@ -79,8 +80,11 @@
         "margin_top": 0,
         "margin_bottom": 0,
         "content_max_width": 2000,
+        "desktop_height_mode": "adapt",
         "desktop_image_height": 840,
+        "mobile_height_mode": "custom",
         "mobile_image_height": 500,
+        "image_fit": "cover",
         "desktop_overlay_color": "#000000",
         "desktop_overlay_opacity": 0,
         "mobile_overlay_color": "#000000",
