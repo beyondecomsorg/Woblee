@@ -265,7 +265,7 @@
         "collection_item_3c4Dti": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Artistic.png",
+            "image": "shopify://shop_images/Artistic_a60ba8d8-5c5a-48b0-8d26-b75773f7a1ac.png",
             "heading": "ARTISTIC",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -279,7 +279,7 @@
         "collection_item_W9xTnk": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Graphic.png",
+            "image": "shopify://shop_images/Graphic_e3555d00-4fa4-4177-9dfc-fc48b75cecd7.png",
             "heading": "GRAPHIC",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -293,7 +293,7 @@
         "collection_item_EGfkLq": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Essentials.png",
+            "image": "shopify://shop_images/Essential.png",
             "heading": "ESSENTIALS",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -307,7 +307,7 @@
         "collection_item_GJtwzb": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Statement_-_replace_smart_casual_with_this.png",
+            "image": "shopify://shop_images/Statement.png",
             "heading": "STATEMENT",
             "card_bg_override": "",
             "heading_color_override": "",
