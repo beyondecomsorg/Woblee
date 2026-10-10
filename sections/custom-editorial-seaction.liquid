@@ -437,8 +437,26 @@
   }
 
   .ess-left {
-    min-height: var(--ess-left-min-height-mobile);
-    aspect-ratio: 3 / 4;
+    min-height: unset !important;
+    aspect-ratio: unset !important;
+    height: auto !important;
+    background: transparent !important;
+    position: relative;
+  }
+
+  .ess-left-img {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    display: block;
+  }
+
+  .ess-left-content {
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
   }
 
   .ess-right {
