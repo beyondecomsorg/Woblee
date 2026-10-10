@@ -629,7 +629,7 @@
             "image": "shopify://shop_images/Boxy.png",
             "image_hover": "shopify://shop_images/Boxy-Blue.png",
             "label": "Boxy",
-            "link": "shopify://collections/regular-tees-copy",
+            "link": "shopify://collections/boxy1",
             "circle_bg": "#ffffff"
           }
         }
