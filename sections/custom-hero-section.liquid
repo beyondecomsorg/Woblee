@@ -20,7 +20,7 @@
   {% assign mobile_aspect = first_block.settings.image.aspect_ratio %}
 {% endif %}
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+<link rel="stylesheet" href="{{ 'splide.min.css' | asset_url }}">
 
 <style>
 #shopify-section-{{ section.id }} {
@@ -59,6 +59,22 @@
     {% else %}
       --section-height-mobile: {{ s.mobile_height | default: 480 }}px;
   {% endcase %}
+}
+
+/* Pre-mount state: show slide 1 immediately at 100% width before Splide JS mounts */
+.hs-section .splide:not(.is-active) .splide__track {
+  overflow: hidden;
+}
+.hs-section .splide:not(.is-active) .splide__list {
+  display: flex;
+}
+.hs-section .splide:not(.is-active) .splide__slide:first-child {
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  display: block !important;
+}
+.hs-section .splide:not(.is-active) .splide__slide:not(:first-child) {
+  display: none !important;
 }
 .hs-section .splide__arrow {
   width: 56px;
@@ -388,6 +404,9 @@
 }
 
 @media (max-width: 768px) {
+  .hs-slide__caption{
+    padding: 0px 0px 10px;
+  }
   .hs-slide {
     height: var(--section-height-mobile);
     {% if s.mobile_height_mode == 'adapt' %}
@@ -589,13 +608,22 @@
                 {% assign focal_d = b.image_focal_point | default: 'center center' %}
                 {% assign focal_m = b.mobile_image_focal_point | default: focal_d %}
                 {% assign img_fit = s.image_fit | default: 'cover' %}
+                {% if forloop.first %}
+                  {% assign load_mode = 'eager' %}
+                  {% assign fetch_priority = 'high' %}
+                {% else %}
+                  {% assign load_mode = 'lazy' %}
+                  {% assign fetch_priority = 'low' %}
+                {% endif %}
 
                 {%- comment -%} ── DESKTOP IMAGE ── {%- endcomment -%}
                 {% if b.image != blank %}
-                  {{ b.image | image_url: width: 2400 | image_tag:
+                  {{ b.image | image_url: width: 2000 | image_tag:
                     class: 'hs-slide__bg hs-slide__bg--desktop',
-                    loading: 'eager',
-                    widths: '800,1200,1600,2000,2400',
+                    loading: load_mode,
+                    fetchpriority: fetch_priority,
+                    preload: forloop.first,
+                    widths: '800,1200,1600,2000',
                     sizes: '100vw',
                     alt: b.image.alt,
                     style: 'object-position: ' | append: focal_d | append: '; object-fit: ' | append: img_fit
@@ -606,10 +634,12 @@
 
                 {%- comment -%} ── MOBILE IMAGE (falls back to desktop if not set) ── {%- endcomment -%}
                 {% if b.mobile_image != blank %}
-                  {{ b.mobile_image | image_url: width: 1200 | image_tag:
+                  {{ b.mobile_image | image_url: width: 1000 | image_tag:
                     class: 'hs-slide__bg hs-slide__bg--mobile',
-                    loading: 'eager',
-                    widths: '400,600,800,1000,1200',
+                    loading: load_mode,
+                    fetchpriority: fetch_priority,
+                    preload: forloop.first,
+                    widths: '400,600,800,1000',
                     sizes: '100vw',
                     alt: b.mobile_image.alt,
                     style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
@@ -620,10 +650,12 @@
                     so CSS swap still works cleanly.
                   {% endcomment %}
                   {% if b.image != blank %}
-                    {{ b.image | image_url: width: 1200 | image_tag:
+                    {{ b.image | image_url: width: 1000 | image_tag:
                       class: 'hs-slide__bg hs-slide__bg--mobile',
-                      loading: 'eager',
-                      widths: '400,600,800,1000,1200',
+                      loading: load_mode,
+                      fetchpriority: fetch_priority,
+                      preload: forloop.first,
+                      widths: '400,600,800,1000',
                       sizes: '100vw',
                       alt: b.image.alt,
                       style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
@@ -723,13 +755,15 @@
   </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" defer></script>
+<script src="{{ 'splide.min.js' | asset_url }}" defer></script>
 
 <script>
 (function() {
-  function initSlider() {
+  function tryInit() {
     var el = document.querySelector('#hs-{{ section.id }} [data-hs-splide]');
-    if (!el) return;
+    if (!el) return false;
+    if (el.classList.contains('is-active') || el.classList.contains('is-initialized')) return true;
+    if (typeof Splide === 'undefined') return false;
 
     var autoplay   = el.dataset.autoplay === 'true';
     var speed      = parseInt(el.dataset.autoplaySpeed) || 5000;
@@ -744,11 +778,10 @@
       autoplay    : autoplay,
       interval    : speed,
       pauseOnHover: true,
-      speed       : {{ s.transition_speed }},
+      speed       : {{ s.transition_speed | default: 700 }},
       arrows      : arrows,
       pagination  : dots,
       drag        : true,
-      lazyLoad    : 'nearby',
     });
 
     splide.mount();
@@ -759,7 +792,7 @@
       if (video) {
         video.play().catch(function(){});
         // Optionally pause autoplay while video is playing
-        if (autoplay && {{ s.video_pause_autoplay }}) {
+        if (autoplay && {{ s.video_pause_autoplay | default: false }}) {
           splide.Components.Autoplay.pause();
         }
       }
@@ -772,20 +805,19 @@
         video.currentTime = 0;
       }
     });
+
+    return true;
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSlider);
-  } else {
+  // Attempt mount immediately, then poll every 30ms until Splide script has loaded
+  if (!tryInit()) {
     var attempts = 0;
-    var check = setInterval(function() {
+    var timer = setInterval(function() {
       attempts++;
-      if (typeof Splide !== 'undefined') {
-        clearInterval(check);
-        initSlider();
+      if (tryInit() || attempts > 200) {
+        clearInterval(timer);
       }
-      if (attempts > 30) clearInterval(check);
-    }, 100);
+    }, 30);
   }
 })();
 </script>

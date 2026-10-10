@@ -4385,17 +4385,32 @@ a[ref="productTitleLink"] p {
 }
 
 @media (max-width: 749px) {
-  a[ref="productTitleLink"] p {
-    display: -webkit-box !important;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  a[ref="productTitleLink"],
+  a.contents.user-select-text {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
 
-    overflow: hidden;
-    text-overflow: ellipsis;
+  a[ref="productTitleLink"] p,
+  a.contents.user-select-text p {
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 
     white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
     line-height: 1.35;
-    height: 2.7em;
     min-height: 2.7em;
     max-height: 2.7em;
   }

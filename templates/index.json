@@ -73,8 +73,8 @@
             "btn2_new_tab": false,
             "btn2_custom_bg": "",
             "btn2_custom_text": "",
-            "btn3_label": "EXPLORE",
-            "btn3_link": "shopify://collections/all",
+            "btn3_label": "",
+            "btn3_link": "",
             "btn3_new_tab": false,
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
@@ -748,8 +748,8 @@
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
-            "product": "little-nature-explorer-boys-tee",
-            "image": "shopify://shop_images/9.png"
+            "product": "base-camp-boys-tee",
+            "image": "shopify://shop_images/13-8715.jpg"
           }
         }
       },

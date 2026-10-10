@@ -33,18 +33,21 @@
   endif
 %}
 
-{%- if resource_type == 'product' and settings.transition_to_main_product -%}
-  <product-card-link
-    data-product-id="{{ resource.id }}"
-    data-featured-media-url="{{ featured_media_url }}"
-    data-product-transition="true"
-    on:click="/handleViewTransition"
+{%- if resource == blank and request.design_mode == false -%}
+  {%- comment -%} Do not render blank placeholder card outside theme editor {%- endcomment -%}
+{%- else -%}
+  {%- if resource_type == 'product' and settings.transition_to_main_product -%}
+    <product-card-link
+      data-product-id="{{ resource.id }}"
+      data-featured-media-url="{{ featured_media_url }}"
+      data-product-transition="true"
+      on:click="/handleViewTransition"
+    >
+  {%- endif -%}
+  <div
+    class="resource-card{% if style == 'overlay' %} resource-card--overlay{% endif %}"
+    data-resource-type="{{ resource_type }}"
   >
-{%- endif -%}
-<div
-  class="resource-card{% if style == 'overlay' %} resource-card--overlay{% endif %}"
-  data-resource-type="{{ resource_type }}"
->
   <a
     class="resource-card__link"
     href="{{ resource.url }}"
@@ -157,8 +160,9 @@
     {% endif %}
   </div>
 </div>
-{%- if resource_type == 'product' and settings.transition_to_main_product -%}
-  </product-card-link>
+  {%- if resource_type == 'product' and settings.transition_to_main_product -%}
+    </product-card-link>
+  {%- endif -%}
 {%- endif -%}
 
 {% stylesheet %}

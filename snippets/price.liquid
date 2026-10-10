@@ -21,7 +21,9 @@
   endif
 
   if product_resource == blank
-    assign raw_price = 1999
+    if request.design_mode
+      assign raw_price = 1999
+    endif
   endif
 
   # Check if variant has volume pricing

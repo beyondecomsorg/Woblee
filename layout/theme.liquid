@@ -85,13 +85,29 @@ a.contents.user-select-text p{
   border-radius: 0 !important;
 }
 
-a[ref="productTitleLink"] p {
+a[ref="productTitleLink"],
+a.contents.user-select-text {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+a[ref="productTitleLink"] p,
+a.contents.user-select-text p {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .price, .price-item--sale{
@@ -393,7 +409,7 @@ a.contents.user-select-text p{
     }
 
     .product-grid{
-      gap: 0px !important;
+      gap: var(--product-grid-gap-mobile, var(--product-grid-gap, 0px));
     }
 
       .product-meta-modal__title{
@@ -730,8 +746,8 @@ button.account-button,
 
     {{ content_for_header }}
     {% # theme-check-enable RemoteAsset %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4/dist/css/splide.min.css"></noscript>
+    <link rel="stylesheet" href="{{ 'splide.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'splide.min.css' | asset_url }}"></noscript>
   <script type="text/javascript">if(typeof window.hulkappsWishlist === 'undefined') {
                             window.hulkappsWishlist = {};
                         }

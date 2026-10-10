@@ -406,17 +406,29 @@ class PredictiveSearchComponent extends Component {
 
       const parsedRecentlyViewedMarkup = new DOMParser().parseFromString(recentlyViewedMarkup, 'text/html');
       const recentlyViewedProductsHtml = parsedRecentlyViewedMarkup.getElementById('predictive-search-products');
-      if (!recentlyViewedProductsHtml) return;
+      const validCards = recentlyViewedProductsHtml.querySelectorAll('.predictive-search-results__card');
+      if (validCards.length === 0) {
+        RecentlyViewed.clearProducts();
+      } else {
+        const validProductIds = Array.from(
+          recentlyViewedProductsHtml.querySelectorAll('[data-product-id]')
+        ).map((el) => el.getAttribute('data-product-id'));
+        if (validProductIds.length > 0 && validProductIds.length < viewedProducts.length) {
+          const pruned = viewedProducts.filter((id) => validProductIds.includes(String(id)));
+          localStorage.setItem('viewedProducts', JSON.stringify(pruned));
+        }
 
-      for (const child of recentlyViewedProductsHtml.children) {
-        if (child instanceof HTMLElement) {
-          child.setAttribute('ref', 'recentlyViewedWrapper');
+        for (const child of recentlyViewedProductsHtml.children) {
+          if (child instanceof HTMLElement) {
+            child.setAttribute('ref', 'recentlyViewedWrapper');
+          }
+        }
+
+        const collectionElement = parsedEmptySectionMarkup.querySelector('#predictive-search-products');
+        if (collectionElement) {
+          collectionElement.prepend(...recentlyViewedProductsHtml.children);
         }
       }
-
-      const collectionElement = parsedEmptySectionMarkup.querySelector('#predictive-search-products');
-      if (!collectionElement) return;
-      collectionElement.prepend(...recentlyViewedProductsHtml.children);
     }
 
     if (abortController.signal.aborted) return;
