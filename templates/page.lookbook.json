@@ -65,7 +65,7 @@
         "mobile_image": "shopify://shop_images/11.jpg",
         "section_width": "full",
         "banner_height": "fit",
-        "banner_link": "",
+        "banner_link": "shopify://collections/all",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -78,7 +78,7 @@
         "mobile_image": "shopify://shop_images/22_6d7e94e8-067e-4874-86cf-976f6a2c54eb.jpg",
         "section_width": "full",
         "banner_height": "fit",
-        "banner_link": "",
+        "banner_link": "shopify://collections/men-women",
         "padding_top": 20,
         "padding_bottom": 0
       }
@@ -91,7 +91,7 @@
         "mobile_image": "shopify://shop_images/33_8eb5ecd7-d8f7-453a-879c-e91fae983d4b.jpg",
         "section_width": "full",
         "banner_height": "fit",
-        "banner_link": "",
+        "banner_link": "shopify://collections/need-a-break-1",
         "padding_top": 20,
         "padding_bottom": 0
       }
@@ -104,7 +104,7 @@
         "mobile_image": "shopify://shop_images/44_a1aaf594-b0a5-443e-8089-879dd958bf43.jpg",
         "section_width": "full",
         "banner_height": "fit",
-        "banner_link": "",
+        "banner_link": "shopify://collections/kids",
         "padding_top": 20,
         "padding_bottom": 0
       }
@@ -245,7 +245,7 @@
         "mobile_image": "shopify://shop_images/55_61205e88-254a-4007-a690-b3d759002f84.jpg",
         "section_width": "full",
         "banner_height": "fit",
-        "banner_link": "",
+        "banner_link": "shopify://collections/all",
         "padding_top": 20,
         "padding_bottom": 0
       }
