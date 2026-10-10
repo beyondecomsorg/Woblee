@@ -588,17 +588,19 @@
               {% unless b.hide_content %}
                 <div class="hs-slide__caption">
 
-                  {% if b.eyebrow != blank %}
-                    <p class="hs-slide__eyebrow">{{ b.eyebrow }}</p>
-                  {% endif %}
+                  {% unless b.hide_text_overlay %}
+                    {% if b.eyebrow != blank %}
+                      <p class="hs-slide__eyebrow">{{ b.eyebrow }}</p>
+                    {% endif %}
 
-                  {% if b.heading != blank %}
-                    <h2 class="hs-slide__heading">{{ b.heading }}</h2>
-                  {% endif %}
+                    {% if b.heading != blank %}
+                      <h2 class="hs-slide__heading">{{ b.heading }}</h2>
+                    {% endif %}
 
-                  {% if b.subtext != blank %}
-                    <p class="hs-slide__subtext">{{ b.subtext }}</p>
-                  {% endif %}
+                    {% if b.subtext != blank %}
+                      <p class="hs-slide__subtext">{{ b.subtext }}</p>
+                    {% endif %}
+                  {% endunless %}
 
                   {% comment %} 3 CTA buttons {% endcomment %}
                   {% assign has_btn = false %}
@@ -1274,6 +1276,13 @@
           "id": "hide_content",
           "label": "Hide all text & buttons",
           "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_text_overlay",
+          "label": "Hide heading & description text (keep buttons only)",
+          "default": false,
+          "info": "Useful when banner images already have text baked into the graphic."
         },
         {
           "type": "text",
