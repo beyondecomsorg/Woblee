@@ -396,28 +396,28 @@
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/1_014e0307-e18f-4ccd-be64-9f1cf67b676f.png",
-            "link": "shopify://products/11-11-make-a-wish-womens-tee"
+            "link": "shopify://products/day-dreamer-girls-tee"
           }
         },
         "card_d3fLwH": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/2_4248afbb-ff9d-4a54-ae75-be069a5beb62.png",
-            "link": "shopify://products/blooming-warrior-womens-tee"
+            "link": "shopify://products/believer-womens-tee"
           }
         },
         "card_tM8P6i": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/3_6416b348-0aeb-4fc7-8a90-192e7def0534.png",
-            "link": "shopify://products/perfect-fusion-boys-tee"
+            "link": "shopify://products/base-camp-boys-tee"
           }
         },
         "card_MNgmtT": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/4_69d41a1f-b86b-4d8e-bb13-5bbda7272266.png",
-            "link": "shopify://products/move-smart-stay-real-mens-tee"
+            "link": "shopify://products/strive-to-conquer-mens-tee"
           }
         }
       },
