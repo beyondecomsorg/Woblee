@@ -17,7 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/1_ebc68634-0a48-43f1-a03e-8d5bb5c8c4ca.png",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/Banner_1_mob.png",
+            "mobile_image": "shopify://shop_images/link_to_men_women_kids.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -50,6 +50,7 @@
           "settings": {
             "image": "shopify://shop_images/2_c8b383a2-f9f6-457a-8a6a-6a29a27f12e4.png",
             "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/link_to_nab_women_and_nab_men.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -82,7 +83,7 @@
           "settings": {
             "image": "shopify://shop_images/3_23fb94dc-5c32-401a-9ae4-496d1c0f6cba.png",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image": "shopify://shop_images/link_to_whites_-_men_and_whites_-_women.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -115,7 +116,7 @@
           "settings": {
             "image": "shopify://shop_images/4.png",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image": "shopify://shop_images/link_to_color_-_men_and_color_-_women_and_color_-_kids.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -148,7 +149,7 @@
           "settings": {
             "image": "shopify://shop_images/5.png",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image": "shopify://shop_images/link_to_girls_and_boys.png",
             "mobile_image_focal_point": "center center",
             "video_url_mp4": "",
             "video_url_webm": "",
