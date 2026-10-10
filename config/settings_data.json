@@ -9,16 +9,15 @@
  */
 {
   "current": {
-    "menu_title_1": "Men",
-    "menu_image_1": "shopify://shop_images/807aa052ae6e876691f2007ba68eea30.webp",
-    "menu_title_2": "Men",
+    "menu_title_1": "",
+    "menu_title_2": "",
     "menu_image_2": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
-    "menu_title_3": "women",
+    "menu_title_3": "",
     "menu_image_3": "shopify://shop_images/8_39eafd6b-af28-4049-b163-26dea5a977ee.webp",
-    "menu_title_4": "women",
+    "menu_title_4": "",
     "menu_image_4": "shopify://shop_images/206_f40e1f60-9d03-4fcd-8ebe-4ad14798c9c5.webp",
-    "menu_title_5": "Kids",
-    "menu_title_6": "kids",
+    "menu_title_5": "",
+    "menu_title_6": "",
     "logo": "shopify://shop_images/Logo_Green_Cropped.png",
     "logo_inverse": "shopify://shop_images/Logo_Green_Cropped.png",
     "logo_height": 40,
