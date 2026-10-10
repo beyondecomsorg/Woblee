@@ -493,10 +493,10 @@
         "content_width": 30,
         "card_gap": 24,
         "slide_width_desktop": 31,
-        "image_fit": "cover",
-        "image_position": "top center",
         "card_width_desktop": 460,
         "card_height_desktop": 460,
+        "image_fit": "cover",
+        "image_position": "top center",
         "card_width_mobile": 280,
         "card_height_mobile": 380,
         "card_radius": 0,
@@ -837,7 +837,7 @@
       "type": "custom-category-grid",
       "name": "Drop collections",
       "settings": {
-        "heading": "SHOP OUR COLLECTIONS",
+        "heading": "COLLECTIONS",
         "heading_size": 40,
         "heading_size_mobile": 24,
         "section_bg": "#ffffff",
@@ -1187,21 +1187,21 @@
         "card_KDWbQm": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/navy_blue_2365f016-36c6-4538-aa3d-8d13aa0c2925.webp",
+            "card_image": "shopify://shop_images/1_be54fbd1-757a-495b-a225-832ee0c9be04.png",
             "card_label": "Pure Confidence"
           }
         },
         "card_KMLL9L": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/black.webp",
+            "card_image": "shopify://shop_images/2_405932be-cd10-4d01-ad38-7b28cc3b8614.png",
             "card_label": "Born Bold"
           }
         },
         "card_r6TGtV": {
           "type": "card",
           "settings": {
-            "card_image": "shopify://shop_images/white_t_986b5a43-b2bd-4b8f-81e4-c4037d2bef48.webp",
+            "card_image": "shopify://shop_images/3_4acee706-fc44-402b-b373-f2250048c4f6.png",
             "card_label": "Fearless Spirit"
           }
         },
