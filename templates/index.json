@@ -698,28 +698,28 @@
           "type": "grid_item",
           "settings": {
             "product": "find-your-purpose-mens-tee",
-            "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png"
+            "image": "shopify://shop_images/6_32078090-7532-4add-b77f-decac2787500.png"
           }
         },
         "grid_item_x33UQJ": {
           "type": "grid_item",
           "settings": {
             "product": "self-expression-girls-tee",
-            "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png"
+            "image": "shopify://shop_images/7.png"
           }
         },
         "grid_item_BYHQCe": {
           "type": "grid_item",
           "settings": {
             "product": "chaai-pe-chugli-womens-tee",
-            "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png"
+            "image": "shopify://shop_images/8.png"
           }
         },
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
             "product": "little-nature-explorer-boys-tee",
-            "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png"
+            "image": "shopify://shop_images/9.png"
           }
         }
       },
@@ -740,7 +740,7 @@
         "padding_bottom": 50,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 14,
-        "left_image": "shopify://shop_images/New_Arrivals_700x700_afcee856-07e8-41b4-924a-404dd0cd9065.png",
+        "left_image": "shopify://shop_images/5_ffa0f2ca-0717-4482-914d-4472c8a31807.png",
         "left_content_padding": 32,
         "left_content_padding_mobile": 20,
         "left_min_height": 520,
