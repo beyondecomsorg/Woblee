@@ -15,7 +15,7 @@
         "slide_jWfnFU": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_1.png",
+            "image": "shopify://shop_images/1_ebc68634-0a48-43f1-a03e-8d5bb5c8c4ca.png",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/Banner_1_mob.png",
             "mobile_image_focal_point": "center center",
@@ -31,12 +31,41 @@
             "btn1_custom_bg": "",
             "btn1_custom_text": "",
             "btn2_label": "woMEN",
-            "btn2_link": "shopify://collections/men-copy",
+            "btn2_link": "shopify://collections/women",
             "btn2_new_tab": false,
             "btn2_custom_bg": "",
             "btn2_custom_text": "",
             "btn3_label": "kids",
-            "btn3_link": "shopify://collections/women-copy",
+            "btn3_link": "shopify://collections/kids",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
+        "slide_nYR4U9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2_c8b383a2-f9f6-457a-8a6a-6a29a27f12e4.png",
+            "image_focal_point": "center center",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "",
+            "heading": "New for Summer",
+            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
+            "btn1_label": "WOMEN'S NEW ARRIVALS",
+            "btn1_link": "",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "MEN'S NEW ARRIVALS",
+            "btn2_link": "",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "EXPLORE THE CAMPAIGN",
+            "btn3_link": "",
             "btn3_new_tab": false,
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
@@ -45,7 +74,7 @@
         "slide_B6rmj8": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_2_web.png",
+            "image": "shopify://shop_images/3_23fb94dc-5c32-401a-9ae4-496d1c0f6cba.png",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/Banner_2_mob.png",
             "mobile_image_focal_point": "center center",
@@ -61,12 +90,12 @@
             "btn1_custom_bg": "",
             "btn1_custom_text": "",
             "btn2_label": "woMEN",
-            "btn2_link": "shopify://collections/men-copy",
+            "btn2_link": "shopify://collections/women",
             "btn2_new_tab": false,
             "btn2_custom_bg": "",
             "btn2_custom_text": "",
             "btn3_label": "kids",
-            "btn3_link": "shopify://collections/women-copy",
+            "btn3_link": "shopify://collections/kids",
             "btn3_new_tab": false,
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
@@ -75,7 +104,7 @@
         "slide_VNKUdd": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_2_web.png",
+            "image": "shopify://shop_images/4.png",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/Banner_2_mob.png",
             "mobile_image_focal_point": "center center",
@@ -91,12 +120,42 @@
             "btn1_custom_bg": "",
             "btn1_custom_text": "",
             "btn2_label": "woMEN",
-            "btn2_link": "shopify://collections/men-copy",
+            "btn2_link": "shopify://collections/women",
             "btn2_new_tab": false,
             "btn2_custom_bg": "",
             "btn2_custom_text": "",
             "btn3_label": "kids",
-            "btn3_link": "shopify://collections/women-copy",
+            "btn3_link": "shopify://collections/kids",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
+        "slide_Bagc3W": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/5.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "PLAYFUL. VIBRANT. FULL OF ENERGY.",
+            "heading": "Shop The Color Edit",
+            "subtext": "From bright statements to soft pastels, find shades built for self-expression. Premium fabric, unmistakable Woblee energy.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/women",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/kids",
             "btn3_new_tab": false,
             "btn3_custom_bg": "",
             "btn3_custom_text": ""
@@ -105,8 +164,10 @@
       },
       "block_order": [
         "slide_jWfnFU",
+        "slide_nYR4U9",
         "slide_B6rmj8",
-        "slide_VNKUdd"
+        "slide_VNKUdd",
+        "slide_Bagc3W"
       ],
       "name": "Hero Slideshow Custom",
       "settings": {
@@ -204,7 +265,7 @@
         "collection_item_3c4Dti": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Artistic.png",
+            "image": "shopify://shop_images/Artistic_a60ba8d8-5c5a-48b0-8d26-b75773f7a1ac.png",
             "heading": "ARTISTIC",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -218,7 +279,7 @@
         "collection_item_W9xTnk": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Graphic.png",
+            "image": "shopify://shop_images/Graphic_e3555d00-4fa4-4177-9dfc-fc48b75cecd7.png",
             "heading": "GRAPHIC",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -232,7 +293,7 @@
         "collection_item_EGfkLq": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Essentials.png",
+            "image": "shopify://shop_images/Essential.png",
             "heading": "ESSENTIALS",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -246,7 +307,7 @@
         "collection_item_GJtwzb": {
           "type": "collection_item",
           "settings": {
-            "image": "shopify://shop_images/Statement_-_replace_smart_casual_with_this.png",
+            "image": "shopify://shop_images/Statement.png",
             "heading": "STATEMENT",
             "card_bg_override": "",
             "heading_color_override": "",
@@ -334,28 +395,29 @@
         "card_BVNFUN": {
           "type": "card",
           "settings": {
-            "link": "shopify://products/11-11-make-a-wish-womens-tee"
+            "image": "shopify://shop_images/1_014e0307-e18f-4ccd-be64-9f1cf67b676f.png",
+            "link": "shopify://products/day-dreamer-girls-tee"
           }
         },
         "card_d3fLwH": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/1.png",
-            "link": "shopify://products/blooming-warrior-womens-tee"
+            "image": "shopify://shop_images/2_4248afbb-ff9d-4a54-ae75-be069a5beb62.png",
+            "link": "shopify://products/believer-womens-tee"
           }
         },
         "card_tM8P6i": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/2.png",
-            "link": "shopify://products/perfect-fusion-boys-tee"
+            "image": "shopify://shop_images/3_6416b348-0aeb-4fc7-8a90-192e7def0534.png",
+            "link": "shopify://products/base-camp-boys-tee"
           }
         },
         "card_MNgmtT": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/3.png",
-            "link": "shopify://products/move-smart-stay-real-mens-tee"
+            "image": "shopify://shop_images/4_69d41a1f-b86b-4d8e-bb13-5bbda7272266.png",
+            "link": "shopify://products/strive-to-conquer-mens-tee"
           }
         }
       },
@@ -636,28 +698,28 @@
           "type": "grid_item",
           "settings": {
             "product": "find-your-purpose-mens-tee",
-            "image": "shopify://shop_images/New_Arriv_1_367aa058-8eb4-4406-9e71-e4b076dc1fd2.png"
+            "image": "shopify://shop_images/6_32078090-7532-4add-b77f-decac2787500.png"
           }
         },
         "grid_item_x33UQJ": {
           "type": "grid_item",
           "settings": {
             "product": "self-expression-girls-tee",
-            "image": "shopify://shop_images/New_Arri_2_36d89784-b794-4427-8e3d-88e8a0c6086b.png"
+            "image": "shopify://shop_images/7.png"
           }
         },
         "grid_item_BYHQCe": {
           "type": "grid_item",
           "settings": {
             "product": "chaai-pe-chugli-womens-tee",
-            "image": "shopify://shop_images/New_Arri_3_9283c0be-c235-4834-b5ac-40317bc4f77a.png"
+            "image": "shopify://shop_images/8.png"
           }
         },
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
             "product": "little-nature-explorer-boys-tee",
-            "image": "shopify://shop_images/New_Arri_4_06715282-7284-4087-860e-665957a05ead.png"
+            "image": "shopify://shop_images/9.png"
           }
         }
       },
@@ -678,7 +740,7 @@
         "padding_bottom": 50,
         "padding_top_mobile": 0,
         "padding_bottom_mobile": 14,
-        "left_image": "shopify://shop_images/New_Arrivals_700x700_afcee856-07e8-41b4-924a-404dd0cd9065.png",
+        "left_image": "shopify://shop_images/5_ffa0f2ca-0717-4482-914d-4472c8a31807.png",
         "left_content_padding": 32,
         "left_content_padding_mobile": 20,
         "left_min_height": 520,
@@ -686,8 +748,8 @@
         "left_min_height_small_mobile": 340,
         "logo_width": 80,
         "logo_margin_bottom": 28,
-        "stats_text": "Every season comes with a new perspective.\nEach piece begins with an idea and ends with a story worth wearing.",
-        "body_text": "Discover our latest collection of premium essentials and expressive designs, created for those who wear their vibe with confidence.",
+        "stats_text": "",
+        "body_text": "",
         "cta_label": "New Arrivals",
         "cta_url": "",
         "grid_overlay_padding": 16,
@@ -1369,9 +1431,9 @@
         "heading": "About us",
         "section_bg": "#ffffff",
         "section_padding_top": 50,
-        "section_padding_bottom": 50,
+        "section_padding_bottom": 0,
         "section_padding_top_mobile": 14,
-        "section_padding_bottom_mobile": 30,
+        "section_padding_bottom_mobile": 0,
         "heading_color": "#0c4168",
         "heading_size": 40,
         "heading_weight": "700",
