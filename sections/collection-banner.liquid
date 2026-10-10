@@ -22,6 +22,18 @@
   else
     assign justify_content = 'center'
   endif
+
+  assign first_slide = section.blocks.first
+  assign desktop_aspect = 2.4
+  assign mobile_aspect = 1.0
+  if first_slide and first_slide.settings.image != blank
+    assign desktop_aspect = first_slide.settings.image.aspect_ratio
+  endif
+  if first_slide and first_slide.settings.mobile_image != blank
+    assign mobile_aspect = first_slide.settings.mobile_image.aspect_ratio
+  elsif first_slide and first_slide.settings.image != blank
+    assign mobile_aspect = first_slide.settings.image.aspect_ratio
+  endif
 -%}
 
 {%- unless section.settings.heading_font.system? -%}
@@ -45,8 +57,27 @@
     --mb: {{ section.settings.margin_bottom }}px;
     --content-max-width: {{ section.settings.content_max_width }}px;
 
-    --desktop-height: {{ section.settings.desktop_image_height }}px;
-    --mobile-height: {{ section.settings.mobile_image_height }}px;
+    {% case section.settings.desktop_height_mode %}
+      {% when 'adapt' %}
+        --desktop-height: auto;
+        --desktop-aspect: {{ desktop_aspect }};
+      {% when 'full' %}
+        --desktop-height: 100vh;
+      {% else %}
+        --desktop-height: {{ section.settings.desktop_image_height | default: 500 }}px;
+    {% endcase %}
+
+    {% case section.settings.mobile_height_mode %}
+      {% when 'adapt' %}
+        --mobile-height: auto;
+        --mobile-aspect: {{ mobile_aspect }};
+      {% when 'full' %}
+        --mobile-height: 100vh;
+      {% else %}
+        --mobile-height: {{ section.settings.mobile_image_height | default: 500 }}px;
+    {% endcase %}
+
+    --img-fit: {{ section.settings.image_fit | default: 'cover' }};
 
     --overlay-color-desktop: {{ section.settings.desktop_overlay_color }};
     --overlay-opacity-desktop: {{ section.settings.desktop_overlay_opacity | divided_by: 100.0 }};
@@ -182,6 +213,10 @@
     position: relative;
     width: 100%;
     height: var(--desktop-height);
+    {% if section.settings.desktop_height_mode == 'adapt' %}
+      aspect-ratio: var(--desktop-aspect);
+      height: auto;
+    {% endif %}
     border-radius: var(--img-border-radius);
     overflow: hidden;
   }
@@ -191,7 +226,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: var(--img-fit, cover);
     object-position: var(--obj-pos-desktop);
     display: block;
   }
@@ -379,6 +414,12 @@
     }
     .hero-slideshow__media {
       height: var(--mobile-height);
+      {% if section.settings.mobile_height_mode == 'adapt' %}
+        aspect-ratio: var(--mobile-aspect);
+        height: auto;
+      {% else %}
+        aspect-ratio: unset;
+      {% endif %}
     }
     .hero-slideshow__img {
       object-position: var(--obj-pos-mobile);
@@ -748,7 +789,7 @@
       "id": "margin_top",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "label": "Section Margin Top",
       "default": 0
@@ -758,7 +799,7 @@
       "id": "margin_bottom",
       "min": 0,
       "max": 100,
-      "step": 2,
+      "step": 1,
       "unit": "px",
       "label": "Section Margin Bottom",
       "default": 0
@@ -767,8 +808,8 @@
       "type": "range",
       "id": "content_max_width",
       "min": 800,
-      "max": 2000,
-      "step": 20,
+      "max": 3000,
+      "step": 50,
       "unit": "px",
       "label": "Section Maximum Width",
       "default": 2000
@@ -778,24 +819,57 @@
       "content": "Desktop & Mobile Image Settings"
     },
     {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop Height Mode",
+      "options": [
+        { "value": "adapt", "label": "Adapt to First Image (Aspect Ratio)" },
+        { "value": "custom", "label": "Custom Fixed Height" },
+        { "value": "full", "label": "Full Screen (100vh)" }
+      ],
+      "default": "adapt"
+    },
+    {
       "type": "range",
       "id": "desktop_image_height",
       "min": 200,
       "max": 1200,
-      "step": 20,
+      "step": 10,
       "unit": "px",
       "label": "Desktop Image Height",
-      "default": 840
+      "default": 500
+    },
+    {
+      "type": "select",
+      "id": "mobile_height_mode",
+      "label": "Mobile Height Mode",
+      "options": [
+        { "value": "adapt", "label": "Adapt to First Image (Aspect Ratio)" },
+        { "value": "custom", "label": "Custom Fixed Height" },
+        { "value": "full", "label": "Full Screen (100vh)" }
+      ],
+      "default": "custom"
     },
     {
       "type": "range",
       "id": "mobile_image_height",
       "min": 200,
       "max": 1000,
-      "step": 20,
+      "step": 10,
       "unit": "px",
       "label": "Mobile Image Height",
       "default": 500
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Object Fit",
+      "options": [
+        { "value": "cover", "label": "Cover (fill container, crop excess)" },
+        { "value": "contain", "label": "Contain (fit full image, no crop)" },
+        { "value": "fill", "label": "Fill (stretch to exact dimensions)" }
+      ],
+      "default": "cover"
     },
     {
       "type": "color",
@@ -811,7 +885,7 @@
       "step": 1,
       "unit": "%",
       "label": "Desktop Overlay Opacity",
-      "default": 40
+      "default": 0
     },
     {
       "type": "color",
@@ -827,7 +901,7 @@
       "step": 1,
       "unit": "%",
       "label": "Mobile Overlay Opacity",
-      "default": 40
+      "default": 0
     },
     {
       "type": "select",
@@ -1728,14 +1802,20 @@
         },
         {
           "type": "select",
-          "id": "button_alignment",
-          "label": "Button Alignment",
+          "id": "button_position",
+          "label": "Button Position",
           "options": [
-            { "value": "flex-start", "label": "Left" },
-            { "value": "center", "label": "Center" },
-            { "value": "flex-end", "label": "Right" }
+            { "value": "top_left",      "label": "Top Left"      },
+            { "value": "top_center",    "label": "Top Center"    },
+            { "value": "top_right",     "label": "Top Right"     },
+            { "value": "middle_left",   "label": "Middle Left"   },
+            { "value": "middle_center", "label": "Middle Center" },
+            { "value": "middle_right",  "label": "Middle Right"  },
+            { "value": "bottom_left",   "label": "Bottom Left"   },
+            { "value": "bottom_center", "label": "Bottom Center" },
+            { "value": "bottom_right",  "label": "Bottom Right"  }
           ],
-          "default": "flex-start"
+          "default": "middle_left"
         }
       ]
     }

@@ -187,44 +187,84 @@
   max-width: 68%;
   padding: 24px 32px;
   color: var(--brand-white);
-  {% case s.caption_position %}
-    {% when 'top_left' %}
-      top: {{ s.content_offset_v }}%;
-      left: {{ s.content_offset_h }}%;
-      transform: none;
-    {% when 'top_center' %}
-      top: {{ s.content_offset_v }}%;
-      left: 50%;
-      transform: translateX(-50%);
-    {% when 'top_right' %}
-      top: {{ s.content_offset_v }}%;
-      right: {{ s.content_offset_h }}%;
-      transform: none;
-    {% when 'middle_left' %}
-      top: 50%;
-      left: {{ s.content_offset_h }}%;
-      transform: translateY(-50%);
-    {% when 'middle_center' %}
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    {% when 'middle_right' %}
-      top: 50%;
-      right: {{ s.content_offset_h }}%;
-      transform: translateY(-50%);
-    {% when 'bottom_left' %}
-      bottom: {{ s.content_offset_v }}%;
-      left: {{ s.content_offset_h }}%;
-      transform: none;
-    {% when 'bottom_center' %}
-      bottom: {{ s.content_offset_v }}%;
-      left: 50%;
-      transform: translateX(-50%);
-    {% when 'bottom_right' %}
-      bottom: {{ s.content_offset_v }}%;
-      right: {{ s.content_offset_h }}%;
-      transform: none;
-  {% endcase %}
+}
+
+.hs-slide__caption--top_left {
+  top: {{ s.content_offset_v | default: 8 }}%;
+  left: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  right: auto;
+  transform: none;
+}
+
+.hs-slide__caption--top_center {
+  top: {{ s.content_offset_v | default: 8 }}%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hs-slide__caption--top_right {
+  top: {{ s.content_offset_v | default: 8 }}%;
+  right: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  text-align: right;
+}
+
+.hs-slide__caption--middle_left {
+  top: 50%;
+  left: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  right: auto;
+  transform: translateY(-50%);
+}
+
+.hs-slide__caption--middle_center {
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hs-slide__caption--middle_right {
+  top: 50%;
+  right: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  left: auto;
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.hs-slide__caption--bottom_left {
+  bottom: {{ s.content_offset_v | default: 8 }}%;
+  left: {{ s.content_offset_h | default: 4 }}%;
+  top: auto;
+  right: auto;
+  transform: none;
+}
+
+.hs-slide__caption--bottom_center {
+  bottom: {{ s.content_offset_v | default: 8 }}%;
+  left: 50%;
+  top: auto;
+  right: auto;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hs-slide__caption--bottom_right {
+  bottom: {{ s.content_offset_v | default: 8 }}%;
+  right: {{ s.content_offset_h | default: 4 }}%;
+  top: auto;
+  left: auto;
+  transform: none;
+  text-align: right;
 }
 
 .hs-slide__eyebrow {
@@ -262,12 +302,22 @@
 .hs-slide__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: {{ s.button_gap }}px;
-  {% case s.button_align %}
-    {% when 'center' %} justify-content: center;
-    {% when 'right' %} justify-content: flex-end;
-    {% else %} justify-content: flex-start;
-  {% endcase %}
+  gap: {{ s.button_gap | default: 16 }}px;
+  z-index: 3;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+.hs-slide__buttons--left {
+  justify-content: flex-start;
+}
+
+.hs-slide__buttons--center {
+  justify-content: center;
+}
+
+.hs-slide__buttons--right {
+  justify-content: flex-end;
 }
 
 .hs-btn {
@@ -586,7 +636,9 @@
 
               {% comment %} Caption {% endcomment %}
               {% unless b.hide_content %}
-                <div class="hs-slide__caption">
+                {% assign block_caption_pos = b.caption_position | default: b.button_position | default: s.caption_position | default: 'bottom_left' %}
+                {% assign block_btn_align = b.button_align | default: s.button_align | default: 'left' %}
+                <div class="hs-slide__caption hs-slide__caption--{{ block_caption_pos }}">
 
                   {% unless b.hide_text_overlay %}
                     {% if b.eyebrow != blank %}
@@ -609,7 +661,7 @@
                   {% if b.btn3_label != blank %}{% assign has_btn = true %}{% endif %}
 
                   {% if has_btn %}
-                    <div class="hs-slide__buttons">
+                    <div class="hs-slide__buttons hs-slide__buttons--{{ block_btn_align }}">
 
                       {% if b.btn1_label != blank %}
                         <a
@@ -1103,6 +1155,23 @@
     },
     {
       "type": "select",
+      "id": "button_position",
+      "label": "Button Position",
+      "options": [
+        { "value": "top_left",      "label": "Top Left"      },
+        { "value": "top_center",    "label": "Top Center"    },
+        { "value": "top_right",     "label": "Top Right"     },
+        { "value": "middle_left",   "label": "Middle Left"   },
+        { "value": "middle_center", "label": "Middle Center" },
+        { "value": "middle_right",  "label": "Middle Right"  },
+        { "value": "bottom_left",   "label": "Bottom Left"   },
+        { "value": "bottom_center", "label": "Bottom Center" },
+        { "value": "bottom_right",  "label": "Bottom Right"  }
+      ],
+      "default": "middle_left"
+    },
+    {
+      "type": "select",
       "id": "button_align",
       "label": "Button alignment",
       "options": [
@@ -1305,6 +1374,44 @@
           "placeholder": "Subtitle text"
         },
 
+        {
+          "type": "header",
+          "content": "🔗  Button Settings & Position"
+        },
+        {
+          "type": "select",
+          "id": "caption_position",
+          "label": "Caption Position",
+          "options": [
+            { "value": "top_left",      "label": "Top Left"      },
+            { "value": "top_center",    "label": "Top Center"    },
+            { "value": "top_right",     "label": "Top Right"     },
+            { "value": "middle_left",   "label": "Middle Left"   },
+            { "value": "middle_center", "label": "Middle Center" },
+            { "value": "middle_right",  "label": "Middle Right"  },
+            { "value": "bottom_left",   "label": "Bottom Left"   },
+            { "value": "bottom_center", "label": "Bottom Center" },
+            { "value": "bottom_right",  "label": "Bottom Right"  }
+          ],
+          "default": "bottom_left"
+        },
+        {
+          "type": "select",
+          "id": "button_position",
+          "label": "Button Position",
+          "options": [
+            { "value": "top_left",      "label": "Top Left"      },
+            { "value": "top_center",    "label": "Top Center"    },
+            { "value": "top_right",     "label": "Top Right"     },
+            { "value": "middle_left",   "label": "Middle Left"   },
+            { "value": "middle_center", "label": "Middle Center" },
+            { "value": "middle_right",  "label": "Middle Right"  },
+            { "value": "bottom_left",   "label": "Bottom Left"   },
+            { "value": "bottom_center", "label": "Bottom Center" },
+            { "value": "bottom_right",  "label": "Bottom Right"  }
+          ],
+          "default": "middle_left"
+        },
         {
           "type": "header",
           "content": "🔗  Button 1"
