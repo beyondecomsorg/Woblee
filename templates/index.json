@@ -15,7 +15,7 @@
         "slide_jWfnFU": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_1.png",
+            "image": "shopify://shop_images/1_ebc68634-0a48-43f1-a03e-8d5bb5c8c4ca.png",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/Banner_1_mob.png",
             "mobile_image_focal_point": "center center",
@@ -42,10 +42,39 @@
             "btn3_custom_text": ""
           }
         },
+        "slide_nYR4U9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/2_c8b383a2-f9f6-457a-8a6a-6a29a27f12e4.png",
+            "image_focal_point": "center center",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "",
+            "heading": "New for Summer",
+            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
+            "btn1_label": "WOMEN'S NEW ARRIVALS",
+            "btn1_link": "",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "MEN'S NEW ARRIVALS",
+            "btn2_link": "",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "EXPLORE THE CAMPAIGN",
+            "btn3_link": "",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
         "slide_B6rmj8": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_2_web.png",
+            "image": "shopify://shop_images/3_23fb94dc-5c32-401a-9ae4-496d1c0f6cba.png",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/Banner_2_mob.png",
             "mobile_image_focal_point": "center center",
@@ -75,7 +104,37 @@
         "slide_VNKUdd": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Banner_2_web.png",
+            "image": "shopify://shop_images/4.png",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/Banner_2_mob.png",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "eyebrow": "PLAYFUL. VIBRANT. FULL OF ENERGY.",
+            "heading": "Shop The Color Edit",
+            "subtext": "From bright statements to soft pastels, find shades built for self-expression. Premium fabric, unmistakable Woblee energy.",
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/women",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/kids",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
+        "slide_Bagc3W": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/5.png",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/Banner_2_mob.png",
             "mobile_image_focal_point": "center center",
@@ -105,8 +164,10 @@
       },
       "block_order": [
         "slide_jWfnFU",
+        "slide_nYR4U9",
         "slide_B6rmj8",
-        "slide_VNKUdd"
+        "slide_VNKUdd",
+        "slide_Bagc3W"
       ],
       "name": "Hero Slideshow Custom",
       "settings": {
