@@ -101,19 +101,21 @@
               <a href="{{ card_url }}" class="collection-carousel-pro__card">
                 {% if display_image != blank %}
                   {% if forloop.index0 < 3 %}
-                    {{ display_image | image_url: width: 1200 | image_tag:
+                    {{ display_image | image_url: width: 2000 | image_tag:
                       loading: 'eager',
                       fetchpriority: 'high',
                       class: 'collection-carousel-pro__image',
-                      widths: '400, 600, 800, 1200',
-                      sizes: '(max-width: 767px) 90vw, 50vw'
+                      widths: '500, 700, 900, 1200, 1600, 2000',
+                      sizes: '(max-width: 767px) 85vw, 600px',
+                      alt: card_product.title | default: block.settings.title | default: section.settings.main_heading | escape
                     }}
                   {% else %}
-                    {{ display_image | image_url: width: 1200 | image_tag:
+                    {{ display_image | image_url: width: 2000 | image_tag:
                       loading: 'lazy',
                       class: 'collection-carousel-pro__image',
-                      widths: '400, 600, 800, 1200',
-                      sizes: '(max-width: 767px) 90vw, 50vw'
+                      widths: '500, 700, 900, 1200, 1600, 2000',
+                      sizes: '(max-width: 767px) 85vw, 600px',
+                      alt: card_product.title | default: block.settings.title | default: section.settings.main_heading | escape
                     }}
                   {% endif %}
                 {% endif %}
@@ -250,7 +252,7 @@
 }
 
 .collection-carousel-pro__slide {
-  width: 40%;
+  width: {{ section.settings.slide_width_desktop | default: 31 }}%;
   margin-right: var(--card-gap);
 }
 
@@ -263,28 +265,23 @@
   overflow: hidden;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
   text-decoration: none;
+  background: #f0efef;
 }
 
 .collection-carousel-pro__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: {{ section.settings.image_fit | default: 'cover' }};
+  object-position: {{ section.settings.image_position | default: 'top center' }};
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
   transition: transform 0.5s ease;
-  will-change: transform;
 }
 
 .collection-carousel-pro__card:hover .collection-carousel-pro__image {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .collection-carousel-pro__overlay {
@@ -548,8 +545,30 @@
     { "type": "range", "id": "content_width", "label": "Left Content Width (%)", "min": 20, "max": 50, "step": 1, "default": 40 },
     { "type": "range", "id": "card_gap", "label": "Card Gap", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 },
     { "type": "header", "content": "Desktop Card Settings" },
+    { "type": "range", "id": "slide_width_desktop", "label": "Card Slide Width Desktop (%)", "min": 25, "max": 45, "step": 1, "unit": "%", "default": 31, "info": "31% creates a balanced 3:4 portrait card ratio so apparel images aren't cropped." },
     { "type": "range", "id": "card_width_desktop", "label": "Card Width Desktop", "min": 250, "max": 700, "step": 10, "unit": "px", "default": 500 },
     { "type": "range", "id": "card_height_desktop", "label": "Card Height Desktop", "min": 300, "max": 900, "step": 10, "unit": "px", "default": 650 },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "options": [
+        { "value": "cover", "label": "Cover (Fill card)" },
+        { "value": "contain", "label": "Contain (Fit full image uncropped)" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Alignment / Position",
+      "options": [
+        { "value": "top center", "label": "Top Center (Recommended for models/apparel)" },
+        { "value": "center center", "label": "Center" },
+        { "value": "bottom center", "label": "Bottom Center" }
+      ],
+      "default": "top center"
+    },
     { "type": "header", "content": "Mobile Card Settings" },
     { "type": "range", "id": "card_width_mobile", "label": "Card Width Mobile", "min": 180, "max": 400, "step": 5, "unit": "px", "default": 280 },
     { "type": "range", "id": "card_height_mobile", "label": "Card Height Mobile", "min": 220, "max": 500, "step": 5, "unit": "px", "default": 380 },

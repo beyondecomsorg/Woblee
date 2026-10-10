@@ -428,7 +428,7 @@
     width: 100%;
     max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
     padding: 20px 16px;
-    bottom: 0%;
+    bottom: var(--slide-mobile-bottom, 0%) !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     box-sizing: border-box;
@@ -438,6 +438,10 @@
       transform: none !important;
       background: var(--brand-blue);
     {% endif %}
+  }
+
+  .hs-slide--first-slide .hs-slide__caption {
+    bottom: var(--slide-mobile-bottom, 16%) !important;
   }
 
   .hs-slide__eyebrow {
@@ -545,7 +549,7 @@
             {% assign has_video = true %}
           {% endif %}
 
-          <li class="splide__slide" {{ block.shopify_attributes }}>
+          <li class="splide__slide{% if forloop.first %} hs-slide--first-slide{% endif %}" {{ block.shopify_attributes }}>
             <div class="hs-slide">
 
               {% if has_video %}
@@ -638,7 +642,14 @@
               {% unless b.hide_content %}
                 {% assign block_caption_pos = b.caption_position | default: b.button_position | default: s.caption_position | default: 'bottom_left' %}
                 {% assign block_btn_align = b.button_align | default: s.button_align | default: 'left' %}
-                <div class="hs-slide__caption hs-slide__caption--{{ block_caption_pos }}">
+                <div
+                  class="hs-slide__caption hs-slide__caption--{{ block_caption_pos }}"
+                  {% if b.mobile_caption_bottom != blank and b.mobile_caption_bottom > 0 %}
+                    style="--slide-mobile-bottom: {{ b.mobile_caption_bottom }}%;"
+                  {% elsif forloop.first %}
+                    style="--slide-mobile-bottom: 16%;"
+                  {% endif %}
+                >
 
                   {% unless b.hide_text_overlay %}
                     {% if b.eyebrow != blank %}
@@ -1411,6 +1422,17 @@
             { "value": "bottom_right",  "label": "Bottom Right"  }
           ],
           "default": "middle_left"
+        },
+        {
+          "type": "range",
+          "id": "mobile_caption_bottom",
+          "label": "Mobile Bottom Position (%)",
+          "min": 0,
+          "max": 70,
+          "step": 1,
+          "unit": "%",
+          "default": 0,
+          "info": "Elevates the buttons/caption from the bottom on mobile (e.g. 30% for slide 1)."
         },
         {
           "type": "header",

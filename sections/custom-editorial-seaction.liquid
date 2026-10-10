@@ -8,11 +8,16 @@
   <div class="ess-inner">
 
     {% comment %} LEFT PANEL {% endcomment %}
-    <div class="ess-left">
+    {%- assign left_link = section.settings.left_image_link | default: section.settings.cta_url -%}
+    {% if left_link != blank %}
+      <a href="{{ left_link }}" class="ess-left ess-left--clickable">
+    {% else %}
+      <div class="ess-left">
+    {% endif %}
       {% if section.settings.left_image != blank %}
         <img
           src="{{ section.settings.left_image | image_url: width: 1000 }}"
-          alt="{{ section.settings.heading | escape }}"
+          alt="{{ section.settings.cta_label | default: section.settings.heading | escape }}"
           class="ess-left-img"
           loading="lazy"
           width="1000"
@@ -48,7 +53,11 @@
           </h2>
         {% endif %}
       </div>
-    </div>
+    {% if left_link != blank %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
 
     {% comment %} RIGHT PANEL — 2x2 grid {% endcomment %}
     <div class="ess-right">
@@ -179,6 +188,13 @@
   overflow: hidden;
   min-height: var(--ess-left-min-height);
   background: var(--ess-left-panel-bg);
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ess-left--clickable {
+  cursor: pointer;
 }
 
 .ess-left-img,
@@ -189,6 +205,15 @@
   display: block;
   position: absolute;
   inset: 0;
+  transition: transform 0.5s ease;
+}
+
+.ess-left--clickable:hover .ess-left-img {
+  transform: scale(1.03);
+}
+
+.ess-left--clickable:hover .ess-cta {
+  color: var(--ess-cta-hover-color);
 }
 
 .ess-left-placeholder {
@@ -601,6 +626,12 @@
       "type": "image_picker",
       "id": "left_image",
       "label": "Left hero image"
+    },
+    {
+      "type": "url",
+      "id": "left_image_link",
+      "label": "Left image link",
+      "info": "Link to open when the left image is clicked"
     },
     {
       "type": "range",
