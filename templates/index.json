@@ -297,10 +297,10 @@
             "card_bg_override": "",
             "heading_color_override": "",
             "accent_color_override": "",
-            "button_1_label": "Women",
-            "button_1_url": "shopify://collections/women-artistic",
-            "button_2_label": "Men",
-            "button_2_url": "shopify://collections/men-artistic-tee"
+            "button_1_label": "men",
+            "button_1_url": "shopify://collections/men-artistic-tee",
+            "button_2_label": "women",
+            "button_2_url": "shopify://collections/women-artistic"
           }
         },
         "collection_item_W9xTnk": {
@@ -311,10 +311,10 @@
             "card_bg_override": "",
             "heading_color_override": "",
             "accent_color_override": "",
-            "button_1_label": "Women",
-            "button_1_url": "shopify://collections/women-graphic",
-            "button_2_label": "Men",
-            "button_2_url": "shopify://collections/men-graphic"
+            "button_1_label": "men",
+            "button_1_url": "shopify://collections/men-graphic",
+            "button_2_label": "women",
+            "button_2_url": "shopify://collections/women-graphic"
           }
         },
         "collection_item_EGfkLq": {
