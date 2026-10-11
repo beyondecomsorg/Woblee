@@ -728,29 +728,29 @@
         "grid_item_TpiJNJ": {
           "type": "grid_item",
           "settings": {
-            "product": "find-your-purpose-mens-tee",
-            "image": "shopify://shop_images/6_32078090-7532-4add-b77f-decac2787500.png"
+            "product": "k-se-coffee-womens-tee",
+            "image": "shopify://shop_images/13-0295.jpg"
           }
         },
         "grid_item_x33UQJ": {
           "type": "grid_item",
           "settings": {
-            "product": "self-expression-girls-tee",
-            "image": "shopify://shop_images/7.png"
+            "product": "humanoid-with-heart-mens-tee",
+            "image": "shopify://shop_images/05-13483.jpg"
           }
         },
         "grid_item_BYHQCe": {
           "type": "grid_item",
           "settings": {
-            "product": "chaai-pe-chugli-womens-tee",
-            "image": "shopify://shop_images/8.png"
+            "product": "strive-to-conquer-mens-tee",
+            "image": "shopify://shop_images/4_69d41a1f-b86b-4d8e-bb13-5bbda7272266.png"
           }
         },
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
-            "product": "base-camp-boys-tee",
-            "image": "shopify://shop_images/13-8715.jpg"
+            "product": "believer-womens-tee",
+            "image": "shopify://shop_images/2_4248afbb-ff9d-4a54-ae75-be069a5beb62.png"
           }
         }
       },
