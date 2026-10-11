@@ -1,0 +1,818 @@
+{% comment %}
+  Launch Celebration Animation Section
+  - Automatically triggers within 1 second after page loads
+  - Plays continuously for 8 seconds, then smoothly fades out and disables completely
+  - Non-blocking: pointer-events are disabled so clicks, scrolling, buttons, cart, and checkout work 100% uninterrupted
+  - Clean HTML5 canvas particle physics with continuous float/twinkle
+{% endcomment %}
+
+{%- if section.settings.enable_celebration -%}
+  <div
+    id="LaunchCelebration-{{ section.id }}"
+    class="launch-celebration launch-celebration--hidden"
+    data-section-id="{{ section.id }}"
+    data-delay="{{ section.settings.delay_seconds }}"
+    data-duration="{{ section.settings.duration_seconds }}"
+    data-once-per-session="{{ section.settings.once_per_session }}"
+    data-particle-density="{{ section.settings.particle_density }}"
+    data-color-palette="{{ section.settings.color_palette }}"
+    aria-hidden="true"
+  >
+    <canvas id="LaunchCelebrationCanvas-{{ section.id }}" class="launch-celebration__canvas"></canvas>
+
+    <div class="launch-celebration__center-wrapper">
+      <div class="launch-celebration__card launch-celebration__card--{{ section.settings.badge_style }}">
+        {%- if section.settings.show_eyebrow_badge -%}
+          <div class="launch-celebration__eyebrow">
+            <span class="launch-celebration__pulse-dot"></span>
+            <span class="launch-celebration__eyebrow-text">{{ section.settings.eyebrow_text | default: 'OFFICIAL LAUNCH' }}</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="launch-celebration__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="launch-celebration__subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        <div class="launch-celebration__shimmer-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Launch Celebration Container - completely non-blocking */
+    .launch-celebration {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none !important;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .launch-celebration--active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .launch-celebration--fading-out {
+      opacity: 0 !important;
+      visibility: visible;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .launch-celebration--hidden {
+      display: none !important;
+    }
+
+    /* Fullscreen Particle Canvas */
+    .launch-celebration__canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none !important;
+      display: block;
+    }
+
+    /* Centered Message Container */
+    .launch-celebration__center-wrapper {
+      position: relative;
+      z-index: 2;
+      pointer-events: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Premium Launch Badge / Card */
+    .launch-celebration__card {
+      position: relative;
+      pointer-events: none !important;
+      padding: 28px 48px;
+      border-radius: {{ section.settings.card_border_radius }}px;
+      text-align: center;
+      max-width: 480px;
+      width: 90vw;
+      box-sizing: border-box;
+      transform: translateY(14px) scale(0.92);
+      filter: blur(6px);
+      opacity: 0;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+      overflow: hidden;
+    }
+
+    .launch-celebration--active .launch-celebration__card {
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+      opacity: 1;
+    }
+
+    .launch-celebration--fading-out .launch-celebration__card {
+      transform: translateY(-8px) scale(0.96);
+      filter: blur(4px);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s ease, filter 0.7s ease;
+    }
+
+    /* Style Presets */
+    .launch-celebration__card--glass_light {
+      background: {{ section.settings.card_bg_color | default: 'rgba(255, 255, 255, 0.94)' }};
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow:
+        0 24px 60px -12px rgba(12, 65, 104, 0.22),
+        0 10px 24px -6px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(212, 175, 55, 0.3) inset;
+    }
+
+    .launch-celebration__card--glass_dark {
+      background: rgba(12, 65, 104, 0.94);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow:
+        0 30px 70px -12px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(212, 175, 55, 0.35) inset;
+    }
+
+    .launch-celebration__card--minimal_gold {
+      background: #ffffff;
+      border: 2px solid #D4AF37;
+      box-shadow:
+        0 24px 60px -12px rgba(212, 175, 55, 0.25),
+        0 8px 24px -4px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Eyebrow Pill Badge */
+    .launch-celebration__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .launch-celebration__pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #D4AF37;
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.8);
+      animation: launchPulse 1.8s infinite ease-in-out;
+    }
+
+    .launch-celebration__eyebrow-text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9B7922;
+      line-height: 1;
+    }
+
+    .launch-celebration__card--glass_dark .launch-celebration__eyebrow-text {
+      color: #F3E5AB;
+    }
+
+    /* Main Heading */
+    .launch-celebration__heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      color: {{ section.settings.heading_color }};
+      word-break: normal;
+    }
+
+    .launch-celebration__card--glass_dark .launch-celebration__heading {
+      color: #ffffff;
+    }
+
+    /* Subtitle */
+    .launch-celebration__subtitle {
+      font-size: {{ section.settings.subtitle_size_desktop }}px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      margin: 0;
+      color: {{ section.settings.subtitle_color }};
+    }
+
+    .launch-celebration__card--glass_dark .launch-celebration__subtitle {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Shimmer Accent Line */
+    .launch-celebration__shimmer-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        rgba(212, 175, 55, 0) 0%,
+        rgba(212, 175, 55, 0.8) 50%,
+        rgba(212, 175, 55, 0) 100%
+      );
+      animation: launchShimmerSlide 2.5s infinite linear;
+    }
+
+    @keyframes launchPulse {
+      0%, 100% {
+        transform: scale(0.85);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.25);
+        opacity: 1;
+      }
+    }
+
+    @keyframes launchShimmerSlide {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    /* Mobile Adaptations */
+    @media screen and (max-width: 767px) {
+      .launch-celebration__card {
+        padding: 22px 28px;
+        border-radius: {{ section.settings.card_border_radius | at_most: 24 }}px;
+        max-width: 88vw;
+      }
+
+      .launch-celebration__heading {
+        font-size: {{ section.settings.heading_size_mobile }}px;
+        margin-bottom: 6px;
+      }
+
+      .launch-celebration__subtitle {
+        font-size: {{ section.settings.subtitle_size_mobile }}px;
+      }
+
+      .launch-celebration__eyebrow {
+        padding: 3px 10px;
+        margin-bottom: 10px;
+      }
+
+      .launch-celebration__eyebrow-text {
+        font-size: 10px;
+      }
+    }
+
+    /* Accessibility - Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .launch-celebration__canvas {
+        display: none !important;
+      }
+
+      .launch-celebration {
+        transition: opacity 0.4s ease !important;
+      }
+
+      .launch-celebration__card {
+        transform: none !important;
+        filter: none !important;
+        transition: opacity 0.4s ease !important;
+      }
+
+      .launch-celebration__pulse-dot,
+      .launch-celebration__shimmer-line {
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var rootEl = document.getElementById('LaunchCelebration-{{ section.id }}');
+      if (!rootEl) return;
+
+      var delaySec = parseFloat(rootEl.getAttribute('data-delay'));
+      if (isNaN(delaySec) || delaySec < 0) delaySec = 1;
+
+      var durationSec = parseFloat(rootEl.getAttribute('data-duration'));
+      if (isNaN(durationSec) || durationSec <= 0) durationSec = 8;
+
+      var oncePerSession = rootEl.getAttribute('data-once-per-session') === 'true';
+      var density = rootEl.getAttribute('data-particle-density') || 'balanced';
+      var paletteName = rootEl.getAttribute('data-color-palette') || 'luxury_gold';
+      var canvas = document.getElementById('LaunchCelebrationCanvas-{{ section.id }}');
+      var isDesignMode = typeof Shopify !== 'undefined' && Shopify.designMode;
+
+      var STORAGE_KEY = 'woblee_launch_celebration_shown_v1';
+
+      if (!isDesignMode && oncePerSession) {
+        try {
+          if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
+            return;
+          }
+        } catch (e) {}
+      }
+
+      var prefersReducedMotion = false;
+      try {
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      } catch (e) {}
+
+      // Color Palettes
+      var palettes = {
+        luxury_gold: [
+          '#D4AF37', '#F3E5AB', '#E5C158', '#FBF5DE', '#C5A059', '#FFE699'
+        ],
+        brand_theme: [
+          '#0C4168', '#165B8C', '#22C55E', '#D4AF37', '#F3E5AB', '#38BDF8', '#FFFFFF'
+        ],
+        colorful_pastel: [
+          '#F472B6', '#60A5FA', '#34D399', '#FBBF24', '#A78BFA', '#FDE68A', '#38BDF8'
+        ]
+      };
+
+      var activeColors = palettes[paletteName] || palettes.luxury_gold;
+
+      var ctx = canvas ? canvas.getContext('2d') : null;
+      var particles = [];
+      var animationFrameId = null;
+      var isRunning = false;
+      var startTime = 0;
+      var totalDurationMs = durationSec * 1000;
+
+      function getParticleCount() {
+        var isMobile = window.innerWidth <= 767;
+        if (density === 'subtle') {
+          return isMobile ? 24 : 45;
+        } else if (density === 'festive') {
+          return isMobile ? 50 : 100;
+        }
+        return isMobile ? 34 : 70;
+      }
+
+      function resizeCanvas() {
+        if (!canvas) return;
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        if (ctx) {
+          ctx.scale(dpr, dpr);
+        }
+      }
+
+      function createParticle(w, h, originBurst) {
+        var shapeType = Math.random() < 0.65 ? 'rect' : (Math.random() < 0.6 ? 'star' : 'circle');
+        var color = activeColors[Math.floor(Math.random() * activeColors.length)];
+
+        var startX = originBurst
+          ? (w * 0.5 + (Math.random() - 0.5) * w * 0.55)
+          : Math.random() * w;
+        var startY = originBurst
+          ? (h * 0.45 + (Math.random() - 0.5) * h * 0.3)
+          : (Math.random() * -40);
+
+        var angle = (Math.random() * Math.PI * 2);
+        var speed = originBurst ? (Math.random() * 5.5 + 2.5) : (Math.random() * 2.5 + 1);
+
+        return {
+          x: startX,
+          y: startY,
+          vx: Math.cos(angle) * speed * (originBurst ? 1.3 : 0.8),
+          vy: originBurst ? (Math.sin(angle) * speed - 3.8) : (Math.random() * 1.8 + 1),
+          color: color,
+          size: Math.random() * 8 + 6,
+          shape: shapeType,
+          tilt: Math.random() * 10,
+          tiltAngle: Math.random() * Math.PI,
+          tiltAngleSpeed: Math.random() * 0.08 + 0.03,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 4,
+          gravity: Math.random() * 0.12 + 0.12,
+          drag: 0.988,
+          opacity: 1
+        };
+      }
+
+      function initParticles() {
+        particles = [];
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var count = getParticleCount();
+
+        for (var i = 0; i < count; i++) {
+          particles.push(createParticle(w, h, true));
+        }
+      }
+
+      function drawStar(context, cx, cy, spikes, outerRadius, innerRadius) {
+        var rot = Math.PI / 2 * 3;
+        var x = cx;
+        var y = cy;
+        var step = Math.PI / spikes;
+
+        context.beginPath();
+        context.moveTo(cx, cy - outerRadius);
+        for (var i = 0; i < spikes; i++) {
+          x = cx + Math.cos(rot) * outerRadius;
+          y = cy + Math.sin(rot) * outerRadius;
+          context.lineTo(x, y);
+          rot += step;
+
+          x = cx + Math.cos(rot) * innerRadius;
+          y = cy + Math.sin(rot) * innerRadius;
+          context.lineTo(x, y);
+          rot += step;
+        }
+        context.lineTo(cx, cy - outerRadius);
+        context.closePath();
+      }
+
+      function renderFrame(timestamp) {
+        if (!isRunning || !ctx || !canvas) return;
+
+        if (!startTime) startTime = timestamp;
+        var elapsed = timestamp - startTime;
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        ctx.clearRect(0, 0, w, h);
+
+        var fadeProgress = 1;
+        // Start particle alpha fade during final 900ms
+        if (elapsed > totalDurationMs - 900) {
+          fadeProgress = Math.max(0, (totalDurationMs - elapsed) / 900);
+        }
+
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+
+          p.vx *= p.drag;
+          p.vy += p.gravity;
+          p.x += p.vx + Math.sin(p.tiltAngle) * 0.8;
+          p.y += p.vy;
+
+          p.tiltAngle += p.tiltAngleSpeed;
+          p.rotation += p.rotationSpeed;
+          p.tilt = Math.sin(p.tiltAngle) * 12;
+
+          // Respawn fallen particles while celebration is active (before final 1.5s)
+          if (p.y > h + 30 && elapsed < totalDurationMs - 1500) {
+            p.y = -20;
+            p.x = Math.random() * w;
+            p.vx = (Math.random() - 0.5) * 2;
+            p.vy = Math.random() * 2 + 1;
+          }
+
+          var alpha = p.opacity * fadeProgress;
+          if (alpha <= 0.01) continue;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = p.color;
+
+          if (p.shape === 'rect') {
+            var cosTilt = Math.cos(p.tiltAngle);
+            ctx.fillRect(
+              -p.size * 0.5,
+              -p.size * 0.3 * cosTilt,
+              p.size,
+              p.size * 1.5 * Math.abs(cosTilt) + 2
+            );
+          } else if (p.shape === 'star') {
+            ctx.shadowColor = p.color;
+            ctx.shadowBlur = 6;
+            drawStar(ctx, 0, 0, 4, p.size * 0.8, p.size * 0.35);
+            ctx.fill();
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        }
+
+        if (elapsed < totalDurationMs + 400) {
+          animationFrameId = requestAnimationFrame(renderFrame);
+        }
+      }
+
+      function startCelebration() {
+        if (isRunning) return;
+        isRunning = true;
+        startTime = 0;
+
+        rootEl.classList.remove('launch-celebration--hidden');
+        void rootEl.offsetWidth;
+        rootEl.classList.add('launch-celebration--active');
+
+        if (!prefersReducedMotion && canvas && ctx) {
+          resizeCanvas();
+          initParticles();
+          animationFrameId = requestAnimationFrame(renderFrame);
+        }
+
+        // Schedule graceful fade-out at end of duration
+        setTimeout(function () {
+          rootEl.classList.add('launch-celebration--fading-out');
+        }, totalDurationMs - 800);
+
+        // Schedule final cleanup after fade completes (at exactly totalDurationMs)
+        setTimeout(function () {
+          isRunning = false;
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+          }
+          if (ctx && canvas) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+          }
+          rootEl.classList.remove('launch-celebration--active');
+          rootEl.classList.remove('launch-celebration--fading-out');
+          rootEl.classList.add('launch-celebration--hidden');
+
+          if (oncePerSession) {
+            try {
+              sessionStorage.setItem(STORAGE_KEY, 'true');
+            } catch (e) {}
+          }
+        }, totalDurationMs);
+      }
+
+      // Automatically trigger 1s after load
+      function scheduleTrigger() {
+        setTimeout(function () {
+          startCelebration();
+        }, delaySec * 1000);
+      }
+
+      window.addEventListener('resize', function () {
+        if (isRunning) {
+          resizeCanvas();
+        }
+      }, { passive: true });
+
+      // Theme Editor preview support (instant playback on section select)
+      if (isDesignMode) {
+        document.addEventListener('shopify:section:select', function (e) {
+          if (e.target && e.target.id === 'shopify-section-{{ section.id }}') {
+            startCelebration();
+          }
+        });
+        document.addEventListener('shopify:section:load', function (e) {
+          if (e.target && e.target.id === 'shopify-section-{{ section.id }}') {
+            startCelebration();
+          }
+        });
+      }
+
+      // Execute on DOM ready or immediately without waiting indefinitely for window.onload
+      if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        scheduleTrigger();
+      } else {
+        document.addEventListener('DOMContentLoaded', scheduleTrigger, { once: true });
+      }
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Launch Celebration",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Celebration Behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_celebration",
+      "label": "Enable Launch Celebration",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delay_seconds",
+      "label": "Delay Before Animation (Seconds)",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "s",
+      "default": 1,
+      "info": "Automatically starts after this delay once the page loads."
+    },
+    {
+      "type": "range",
+      "id": "duration_seconds",
+      "label": "Celebration Duration (Seconds)",
+      "min": 2,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "default": 8,
+      "info": "Duration the celebration remains visible before fading out."
+    },
+    {
+      "type": "checkbox",
+      "id": "once_per_session",
+      "label": "Show Only Once Per Browser Session",
+      "default": false,
+      "info": "Prevents the animation from re-appearing during subsequent visits in the same session."
+    },
+    {
+      "type": "header",
+      "content": "Message Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_eyebrow_badge",
+      "label": "Show Top Eyebrow Tag",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Tag Text",
+      "default": "OFFICIAL LAUNCH"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "We’re Live! 🎉"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Welcome to our new website"
+    },
+    {
+      "type": "header",
+      "content": "Visual Styling"
+    },
+    {
+      "type": "select",
+      "id": "badge_style",
+      "label": "Message Card Style",
+      "options": [
+        {
+          "value": "glass_light",
+          "label": "Frosted Glass (Light Luxury)"
+        },
+        {
+          "value": "glass_dark",
+          "label": "Frosted Glass (Deep Navy)"
+        },
+        {
+          "value": "minimal_gold",
+          "label": "Minimalist Gold Border"
+        }
+      ],
+      "default": "glass_light"
+    },
+    {
+      "type": "select",
+      "id": "color_palette",
+      "label": "Confetti & Sparkle Palette",
+      "options": [
+        {
+          "value": "luxury_gold",
+          "label": "Champagne & Gold"
+        },
+        {
+          "value": "brand_theme",
+          "label": "Woblee Brand (Navy, Emerald & Gold)"
+        },
+        {
+          "value": "colorful_pastel",
+          "label": "Festive Pastels"
+        }
+      ],
+      "default": "luxury_gold"
+    },
+    {
+      "type": "select",
+      "id": "particle_density",
+      "label": "Particle Density",
+      "options": [
+        {
+          "value": "subtle",
+          "label": "Subtle & Minimal"
+        },
+        {
+          "value": "balanced",
+          "label": "Balanced & Elegant"
+        },
+        {
+          "value": "festive",
+          "label": "Rich & Festive"
+        }
+      ],
+      "default": "balanced"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "rgba(255, 255, 255, 0.94)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#5A6B7C"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Border Radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Typography Sizes"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size Desktop",
+      "min": 20,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size Mobile",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 23
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_desktop",
+      "label": "Subtitle Size Desktop",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle Size Mobile",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    }
+  ],
+  "presets": [
+    {
+      "name": "Launch Celebration"
+    }
+  ]
+}
+{% endschema %}
