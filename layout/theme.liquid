@@ -912,6 +912,11 @@ button.account-button,
 
     <style>
       /* ── Size Chart Dialog ── */
+      dialog:not([open]),
+      #size-chart-dialog:not([open]) {
+        display: none !important;
+      }
+
       #size-chart-dialog {
         border: none;
         padding: 0;
@@ -1096,6 +1101,11 @@ button.account-button,
       @media (max-width: 749px) {
         .hulk-pdp-wishlist-btn-wrapper .wishlist-btn {
           margin-top: 0rem !important;
+        }
+
+        dialog:not([open]),
+        #size-chart-dialog:not([open]) {
+          display: none !important;
         }
 
         #size-chart-dialog {
