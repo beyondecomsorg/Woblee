@@ -728,29 +728,29 @@
         "grid_item_TpiJNJ": {
           "type": "grid_item",
           "settings": {
-            "product": "k-se-coffee-womens-tee",
-            "image": "shopify://shop_images/13-0295.jpg"
+            "product": "find-your-purpose-mens-tee",
+            "image": "shopify://shop_images/6_55580d9b-9b54-411c-9ae0-49581fd209de.png"
           }
         },
         "grid_item_x33UQJ": {
           "type": "grid_item",
           "settings": {
-            "product": "humanoid-with-heart-mens-tee",
-            "image": "shopify://shop_images/05-13483.jpg"
+            "product": "shape-theory-womens-tee",
+            "image": "shopify://shop_images/8_150fd586-46c8-4d5a-a127-70a277ca2729.png"
           }
         },
         "grid_item_BYHQCe": {
           "type": "grid_item",
           "settings": {
-            "product": "strive-to-conquer-mens-tee",
-            "image": "shopify://shop_images/4_69d41a1f-b86b-4d8e-bb13-5bbda7272266.png"
+            "product": "lil-miss-sunshine-girls-tee",
+            "image": "shopify://shop_images/7_7af3eb72-8b4f-49ec-8119-01d4211c6e43.png"
           }
         },
         "grid_item_bGrG7w": {
           "type": "grid_item",
           "settings": {
-            "product": "believer-womens-tee",
-            "image": "shopify://shop_images/2_4248afbb-ff9d-4a54-ae75-be069a5beb62.png"
+            "product": "perfect-fusion-boys-tee",
+            "image": "shopify://shop_images/9_34dcc2a9-1713-49b5-a486-7a4e17e1a792.png"
           }
         }
       },
