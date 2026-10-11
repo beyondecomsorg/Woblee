@@ -4384,33 +4384,60 @@ a[ref="productTitleLink"] p {
   }
 }
 
+/* Product card container & title constraints to prevent title overlap */
+.product-card,
+.product-card__content,
+.product-grid__card,
+.product-card .group-block,
+.product-card .group-block-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.product-card a[ref="productTitleLink"],
+.product-card a.contents.user-select-text,
+.product-card .text-block,
+.product-grid__card .text-block {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+  overflow: hidden !important;
+}
+
+.product-card a[ref="productTitleLink"] p,
+.product-card a.contents.user-select-text p,
+.product-grid__card a[ref="productTitleLink"] p,
+.product-grid__card a.contents.user-select-text p,
+.product-card .text-block :is(h1, h2, h3, h4, h5, h6, p),
+.product-grid__card .text-block :is(h1, h2, h3, h4, h5, h6, p) {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  align-self: stretch !important;
+  line-height: 1.35 !important;
+}
+
 @media (max-width: 749px) {
-  a[ref="productTitleLink"],
-  a.contents.user-select-text {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  a[ref="productTitleLink"] p,
-  a.contents.user-select-text p {
-    display: -webkit-box !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-line-clamp: 2 !important;
-
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-
-    white-space: normal !important;
-    word-break: break-word !important;
-    overflow-wrap: break-word !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-    line-height: 1.35;
+  .product-card a[ref="productTitleLink"] p,
+  .product-card a.contents.user-select-text p,
+  .product-grid__card a[ref="productTitleLink"] p,
+  .product-grid__card a.contents.user-select-text p,
+  .product-card .text-block :is(h1, h2, h3, h4, h5, h6, p),
+  .product-grid__card .text-block :is(h1, h2, h3, h4, h5, h6, p) {
     min-height: 2.7em;
     max-height: 2.7em;
   }

@@ -433,7 +433,7 @@
         "quick_view_add_to_cart_font_weight": 700,
         "product_grid_width": "full-width",
         "full_width_on_mobile": true,
-        "columns_gap_horizontal": 5,
+        "columns_gap_horizontal": 12,
         "columns_gap_vertical": 16,
         "padding-inline-start": 15,
         "padding-inline-end": 21,
