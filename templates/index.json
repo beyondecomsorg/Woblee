@@ -317,20 +317,6 @@
             "button_2_url": "shopify://collections/women-graphic"
           }
         },
-        "collection_item_EGfkLq": {
-          "type": "collection_item",
-          "settings": {
-            "image": "shopify://shop_images/Essential.png",
-            "heading": "ESSENTIALS",
-            "card_bg_override": "",
-            "heading_color_override": "",
-            "accent_color_override": "",
-            "button_1_label": "Men",
-            "button_1_url": "shopify://collections/men-essentials",
-            "button_2_label": "Women",
-            "button_2_url": "shopify://collections/women-essentials"
-          }
-        },
         "collection_item_GJtwzb": {
           "type": "collection_item",
           "settings": {
@@ -344,13 +330,27 @@
             "button_2_label": "Women",
             "button_2_url": "shopify://collections/women-statement"
           }
+        },
+        "collection_item_EGfkLq": {
+          "type": "collection_item",
+          "settings": {
+            "image": "shopify://shop_images/Essential.png",
+            "heading": "ESSENTIALS",
+            "card_bg_override": "",
+            "heading_color_override": "",
+            "accent_color_override": "",
+            "button_1_label": "Men",
+            "button_1_url": "shopify://collections/men-essentials",
+            "button_2_label": "Women",
+            "button_2_url": "shopify://collections/women-essentials"
+          }
         }
       },
       "block_order": [
         "collection_item_3c4Dti",
         "collection_item_W9xTnk",
-        "collection_item_EGfkLq",
-        "collection_item_GJtwzb"
+        "collection_item_GJtwzb",
+        "collection_item_EGfkLq"
       ],
       "name": "Custom Editorial",
       "settings": {
@@ -1843,7 +1843,7 @@
         "badge_style": "glass_light",
         "color_palette": "luxury_gold",
         "particle_density": "balanced",
-        "card_bg_color": "rgba(255, 255, 255, 0.92)",
+        "card_bg_color": "#ffffffeb",
         "heading_color": "#0c4168",
         "subtitle_color": "#5a6b7c",
         "card_border_radius": 20,
