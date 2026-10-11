@@ -1495,7 +1495,7 @@
         "image_height_desktop": 440,
         "image_height_mobile": 400,
         "image_radius": 0,
-        "image_fit": "cover",
+        "image_fit": "contain",
         "layout_gap": 40
       }
     },
