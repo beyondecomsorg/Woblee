@@ -31,12 +31,14 @@
       display: none;
     }
 
+media-gallery.media-gallery--grid .media-gallery__grid,
 media-gallery:where(.media-gallery--grid) .media-gallery__grid {
   display: flex;
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
   gap: 1rem;
+  justify-content: center;
 }
 .layout-panel-flex{
       gap: 0px !important;

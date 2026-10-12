@@ -99,12 +99,15 @@
           const isScrollable = maxScrollLeft > 8;
 
           if (!isScrollable) {
+            grid.style.justifyContent = 'center';
             prevBtn.style.opacity = '0';
             prevBtn.style.pointerEvents = 'none';
             nextBtn.style.opacity = '0';
             nextBtn.style.pointerEvents = 'none';
             if (dotsContainer) dotsContainer.style.display = 'none';
             return;
+          } else {
+            grid.style.justifyContent = '';
           }
 
           // Update arrow visibility
@@ -310,6 +313,7 @@
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x pan-y;
     overscroll-behavior-x: contain;
+    justify-content: safe center;
   }
 
   .product-extended-gallery__grid::-webkit-scrollbar {
