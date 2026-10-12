@@ -79,9 +79,12 @@
   endif
 
   assign slideshow_controls_style = block_settings.slideshow_controls_style
-  # Use a counter instead of dots when there are many images to avoid cropping/overflow.
+  # Do not show count below the main product image
   if slideshow_controls_style == 'dots' and selected_product.media.size > 15
-    assign slideshow_controls_style = 'counter'
+    assign slideshow_controls_style = 'none'
+  endif
+  if slideshow_controls_style == 'counter'
+    assign slideshow_controls_style = 'none'
   endif
 
   assign render_slideshow_arrows = false
@@ -90,10 +93,7 @@
     assign slideshow_class = 'product-media-gallery__slideshow--single-media slideshow--single-media'
   else
     assign slideshow_class = ''
-
-    if media_presentation == 'carousel'
-      assign render_slideshow_arrows = true
-    endif
+    assign render_slideshow_arrows = true
   endif
 
   if slideshow_controls_style == 'thumbnails'
@@ -481,7 +481,7 @@
 
     {% if render_slideshow_arrows %}
       {% capture slideshow_arrows %}
-        {% render 'slideshow-arrows', class: 'mobile:hidden', icon_style: block_settings.icons_style %}
+        {% render 'slideshow-arrows', icon_style: block_settings.icons_style, icon_shape: 'circle' %}
       {% endcapture %}
     {% endif %}
 

@@ -89,4 +89,83 @@ media-gallery:where(.media-gallery--grid) .media-gallery__grid::-webkit-scrollba
   .product-media-container--zoomable.product-media-container--image {
     cursor: zoom-in;
   }
+
+  /* Hide count / counter below main product image */
+  media-gallery .slideshow-controls__counter,
+  media-gallery .media-gallery__mobile-controls:has(.slideshow-controls__counter),
+  media-gallery slideshow-controls:has(.slideshow-controls__counter),
+  media-gallery .slideshow-controls__counter * {
+    display: none !important;
+  }
+
+  /* Main product image navigation arrows */
+  media-gallery slideshow-arrows {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 14px;
+    pointer-events: none;
+    z-index: var(--layer-heightened, 4);
+    mix-blend-mode: normal !important;
+  }
+
+  media-gallery slideshow-arrows .slideshow-control {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    color: #111111 !important;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    padding: 0 !important;
+  }
+
+  media-gallery slideshow-arrows .slideshow-control:hover {
+    background-color: #ffffff !important;
+    transform: scale(1.08);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.22) !important;
+  }
+
+  media-gallery slideshow-arrows .slideshow-control:active {
+    transform: scale(0.95);
+  }
+
+  media-gallery slideshow-arrows .slideshow-control svg,
+  media-gallery slideshow-arrows .slideshow-control .svg-wrapper {
+    width: 20px !important;
+    height: 20px !important;
+    color: #111111 !important;
+    display: block;
+  }
+
+  @media screen and (max-width: 749px) {
+    media-gallery slideshow-arrows {
+      padding: 0 10px;
+    }
+
+    media-gallery slideshow-arrows .slideshow-control {
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
+      min-height: 40px !important;
+    }
+
+    media-gallery slideshow-arrows .slideshow-control svg,
+    media-gallery slideshow-arrows .slideshow-control .svg-wrapper {
+      width: 18px !important;
+      height: 18px !important;
+    }
+  }
 {% endstylesheet %}
