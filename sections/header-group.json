@@ -45,6 +45,7 @@
         },
         "announcement_4Hm9Yf": {
           "type": "_announcement",
+          "disabled": true,
           "settings": {
             "text": "&nbsp;Website Launch Offer — Use Code: <strong>WOBLEELAUNCH7&nbsp;</strong>",
             "link": "",
