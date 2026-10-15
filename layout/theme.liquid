@@ -1668,7 +1668,7 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
       Set to true to block Right-Click & Inspect Element.
       Set to false when you want to use Inspect Element.
     {%- endcomment -%}
-    {%- assign enable_site_protection = false -%}
+    {%- assign enable_site_protection = true -%}
 
     {%- if enable_site_protection -%}
       <style>
@@ -1679,6 +1679,9 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
           -ms-user-select: none !important;
           user-select: none !important;
           -webkit-user-drag: none !important;
+          -khtml-user-drag: none !important;
+          -moz-user-drag: none !important;
+          -o-user-drag: none !important;
           user-drag: none !important;
           -webkit-touch-callout: none !important;
         }
@@ -1697,12 +1700,13 @@ document.querySelectorAll('.product-meta-modal__body').forEach((body) => {
             return false;
           }, true);
 
-          // Prevent inspect element & view source keyboard shortcuts (F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S)
+          // Prevent inspect element & view source keyboard shortcuts (F12, Ctrl/Cmd+Shift+I/J/C, Cmd+Opt+I/J/C, Ctrl/Cmd+U, Ctrl/Cmd+S)
           document.addEventListener('keydown', function(e) {
+            var isCtrlOrCmd = e.ctrlKey || e.metaKey;
             if (
               e.keyCode === 123 || 
-              (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
-              (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))
+              (isCtrlOrCmd && (e.shiftKey || e.altKey) && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+              (isCtrlOrCmd && (e.keyCode === 85 || e.keyCode === 83))
             ) {
               e.preventDefault();
               return false;
