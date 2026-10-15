@@ -987,6 +987,7 @@
           "settings": {
             "image": "shopify://shop_images/KIDS_BANNER.png",
             "mobile_image": "shopify://shop_images/KIDS_BANNER.png",
+            "slide_link": "",
             "heading": "",
             "subtext": "",
             "button_1_label": "",
@@ -1412,7 +1413,7 @@
           "type": "timeline_item",
           "settings": {
             "year": "ORIGIN",
-            "image": "shopify://shop_images/sneha123_jpg.jpg",
+            "image": "shopify://shop_images/sneha345_jpg.jpg",
             "title": "IT STARTED WITH A FEELING",
             "text": "<p>Most brands start with a gap in the market. Woblee started with a gap in how clothing made people feel. KSK Aircon has spent years earning trust the slow way - through engineering discipline and consistency. We asked a different question: what happens when you apply that same discipline to something as personal as what someone wears every day.</p><p>The answer became Woblee. Not a pivot, not a side project - a second venture built with the same intent, just pointed at a different kind of craftsmanship. Snehlata Jaiswal, our founder and creative director, brought a NIFT-trained eye for fabric, fit, and construction, and a belief that fashion should say something rather than just cover something.</p><p>That belief hasn't changed since day one. Every collection we've shipped has been an attempt to turn a feeling into a design worth wearing - not chasing a trend, but building a point of view.</p>"
           }
