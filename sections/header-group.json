@@ -17,6 +17,7 @@
         "announcement_a4JB6J": {
           "type": "_announcement",
           "name": "t:names.announcement",
+          "disabled": true,
           "settings": {
             "text": "We Are Now Live&nbsp;!",
             "link": "",
@@ -35,7 +36,7 @@
             "text": "Free Shipping & Easy Returns",
             "link": "",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
+            "font_size": "0.875rem",
             "weight": "",
             "letter_spacing": "normal",
             "case": "none"
