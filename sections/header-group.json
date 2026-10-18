@@ -29,6 +29,19 @@
           },
           "blocks": {}
         },
+        "announcement_4Hm9Yf": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Festive Vibes & Exclusive Deals - Use Code: <strong>FESTIVE10&nbsp;</strong>",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_yU99TY": {
           "type": "_announcement",
           "name": "t:names.announcement",
@@ -42,25 +55,12 @@
             "case": "none"
           },
           "blocks": {}
-        },
-        "announcement_4Hm9Yf": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Festive Vibes & Exclusive Deals - Use Code: <strong>FESTIVE10&nbsp;</strong>",
-            "link": "",
-            "font": "var(--font-body--family)",
-            "font_size": "0.875rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
         }
       },
       "block_order": [
         "announcement_a4JB6J",
-        "announcement_yU99TY",
-        "announcement_4Hm9Yf"
+        "announcement_4Hm9Yf",
+        "announcement_yU99TY"
       ],
       "custom_css": [
         "slideshow-slide.announcement-bar__slide {text-align: center;}",
