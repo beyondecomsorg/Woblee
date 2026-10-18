@@ -197,12 +197,40 @@
   z-index: 1;
 }
 
+.hs-slide--has-link {
+  cursor: pointer;
+}
+
+.hs-slide__link-mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .hs-slide__caption {
   position: absolute;
   z-index: 2;
   max-width: 68%;
   padding: 24px 32px;
   color: var(--brand-white);
+}
+
+.hs-slide--has-link .hs-slide__caption {
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hs-slide--has-link .hs-slide__buttons,
+.hs-slide--has-link .hs-btn {
+  pointer-events: auto;
+  position: relative;
+  z-index: 4;
 }
 
 .hs-slide__caption--top_left {
@@ -376,6 +404,7 @@
   opacity: 1;
   width: 48px;
   height: 48px;
+  z-index: 10;
 }
 
 .hs-section .splide__arrow svg {
@@ -388,6 +417,10 @@
 
 .hs-section .splide__arrow:hover svg {
   fill: var(--brand-blue);
+}
+
+.hs-section .splide__pagination {
+  z-index: 10;
 }
 
 .hs-section .splide__pagination__page {
@@ -569,8 +602,23 @@
             {% assign has_video = true %}
           {% endif %}
 
+          {% assign slide_link = b.slide_link %}
+          {% if slide_link == blank and b.btn1_label == blank and b.btn1_link != blank %}
+            {% assign slide_link = b.btn1_link %}
+          {% elsif slide_link == blank and b.btn1_label == blank and b.btn2_label == blank and b.btn2_link != blank %}
+            {% assign slide_link = b.btn2_link %}
+          {% endif %}
+
           <li class="splide__slide{% if forloop.first %} hs-slide--first-slide{% endif %}" {{ block.shopify_attributes }}>
-            <div class="hs-slide">
+            <div class="hs-slide{% if slide_link != blank %} hs-slide--has-link{% endif %}">
+              {% if slide_link != blank %}
+                <a
+                  href="{{ slide_link }}"
+                  class="hs-slide__link-mask"
+                  aria-label="{{ b.heading | default: b.eyebrow | default: b.image.alt | default: 'Slide link' | escape }}"
+                  {% if b.slide_link_new_tab %}target="_blank" rel="noopener"{% endif %}
+                ></a>
+              {% endif %}
 
               {% if has_video %}
                 {%- comment -%} ── VIDEO BACKGROUND ── {%- endcomment -%}
@@ -1352,6 +1400,22 @@
           ],
           "default": "center center"
         },
+        {
+          "type": "header",
+          "content": "🔗  Image / Slide Link"
+        },
+        {
+          "type": "url",
+          "id": "slide_link",
+          "label": "Image / Slide link",
+          "info": "Makes the entire banner image clickable. If Button 1 label is left blank and Button 1 link is provided, it will automatically use that link."
+        },
+        {
+          "type": "checkbox",
+          "id": "slide_link_new_tab",
+          "label": "Open image link in new tab",
+          "default": false
+        },
 
         {
           "type": "header",
@@ -1477,11 +1541,6 @@
           "label": "Button 1 label",
           "default": "WOMEN'S NEW ARRIVALS",
           "placeholder": "Button label"
-        },
-        {
-          "type": "url",
-          "id": "img_link",
-          "label": "Image link"
         },
         {
           "type": "url",
