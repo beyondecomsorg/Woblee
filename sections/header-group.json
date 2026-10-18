@@ -31,9 +31,8 @@
         "announcement_yU99TY": {
           "type": "_announcement",
           "name": "t:names.announcement",
-          "disabled": true,
           "settings": {
-            "text": "Banana Slip On Sale is LIVE — Shop Now",
+            "text": "Free Shipping & Easy Returns",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
@@ -45,9 +44,8 @@
         },
         "announcement_4Hm9Yf": {
           "type": "_announcement",
-          "disabled": true,
           "settings": {
-            "text": "&nbsp;Website Launch Offer — Use Code: <strong>WOBLEELAUNCH7&nbsp;</strong>",
+            "text": "Festive Vibes & Exclusive Deals - Use Code: <strong>FESTIVE10&nbsp;</strong>",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
