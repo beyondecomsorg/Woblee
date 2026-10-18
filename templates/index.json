@@ -12,6 +12,40 @@
     "custom_hero_section_jrfcFp": {
       "type": "custom-hero-section",
       "blocks": {
+        "slide_9Mqacm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/FESTIVE_DESKTOP_BANNER.jpg-10mb.jpg",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/FESTIVE_MOBILE_jpg.jpg",
+            "mobile_image_focal_point": "center center",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "hide_content": false,
+            "hide_text_overlay": true,
+            "eyebrow": "",
+            "heading": "",
+            "subtext": "",
+            "caption_position": "bottom_right",
+            "button_position": "bottom_right",
+            "mobile_caption_bottom": 0,
+            "btn1_label": "Men",
+            "btn1_link": "shopify://collections/men",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "woMEN",
+            "btn2_link": "shopify://collections/women",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "kids",
+            "btn3_link": "shopify://collections/kids",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
         "slide_jWfnFU": {
           "type": "slide",
           "settings": {
@@ -184,6 +218,7 @@
         }
       },
       "block_order": [
+        "slide_9Mqacm",
         "slide_jWfnFU",
         "slide_nYR4U9",
         "slide_B6rmj8",
