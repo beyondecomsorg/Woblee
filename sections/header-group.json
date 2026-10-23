@@ -363,6 +363,13 @@
             "title": "Luna Grey",
             "hex_code": "#8e8e93"
           }
+        },
+        "color_swatch_QqAQmF": {
+          "type": "color_swatch",
+          "settings": {
+            "title": "Navy Blue",
+            "hex_code": "#282D42"
+          }
         }
       },
       "block_order": [
@@ -394,7 +401,8 @@
         "color_swatch_RWEqnE",
         "color_swatch_8mhJ64",
         "color_swatch_hCWP7E",
-        "color_swatch_xPkBAq"
+        "color_swatch_xPkBAq",
+        "color_swatch_QqAQmF"
       ],
       "name": "Color Swatches",
       "settings": {}
