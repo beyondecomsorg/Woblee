@@ -178,12 +178,7 @@
                     endif
                   %}
 
-                  {% render 'swatch',
-                    swatch: product_option_value.swatch,
-                    variant_image: featured_media,
-                    mode: 'unscaled',
-                    color_name: product_option_value.name | default: product_option_value
-                  %}
+                  {% render 'swatch', swatch: product_option_value.swatch, variant_image: featured_media, mode: 'unscaled', color_name: product_option_value.name, default: product_option_value %}
                 {% else %}
                   {% if product_option_value.available == true %}
                     <span
@@ -632,3 +627,21 @@
     color: inherit !important;
   }
 {% endstylesheet %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'swatch',
+                        swatch: product_option_value.swatch,
+                        variant_image: featured_media,
+                        mode: 'unscaled',
+                        color_name: product_option_value.name | default: product_option_value
+                      %}
+  to: "{% render 'swatch', swatch: product_option_value.swatch, variant_image: featured_media,
+    mode: 'unscaled', color_name: product_option_value.name, default: product_option_value
+    %}"
+  position: 9008..9185
+{% endcomment %}

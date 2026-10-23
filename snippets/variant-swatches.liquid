@@ -175,11 +175,7 @@
                   data-variant-id="{{ first_available_variant.id | default: product_option_value.variant.id }}"
                   data-first-available-or-first-variant-id="{{ first_available_variant.id | default: product_option_value.variant.id }}"
                 >
-                {% render 'swatch',
-                  swatch: product_option_value.swatch,
-                  variant_image: featured_media,
-                  color_name: product_option_value.name | default: product_option_value
-                %}
+                {% render 'swatch', swatch: product_option_value.swatch, variant_image: featured_media, color_name: product_option_value.name, default: product_option_value %}
                 {% render 'strikethrough-variant', product_option: product_option_value %}
               </label>
             </li>
@@ -206,3 +202,19 @@
     </script>
   </form>
 </swatches-variant-picker-component>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'swatch',
+                      swatch: product_option_value.swatch,
+                      variant_image: featured_media,
+                      color_name: product_option_value.name | default: product_option_value
+                    %}
+  to: "{% render 'swatch', swatch: product_option_value.swatch, variant_image: featured_media,
+    color_name: product_option_value.name, default: product_option_value %}"
+  position: 7830..7989
+{% endcomment %}
