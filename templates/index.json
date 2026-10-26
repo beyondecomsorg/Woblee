@@ -14,6 +14,7 @@
       "blocks": {
         "slide_9Mqacm": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/FESTIVE_DESKTOP_BANNER.jpg-15mb.jpg",
             "image_focal_point": "center center",
