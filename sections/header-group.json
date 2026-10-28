@@ -31,6 +31,7 @@
         },
         "announcement_4Hm9Yf": {
           "type": "_announcement",
+          "disabled": true,
           "settings": {
             "text": "Festive Vibes & Exclusive Deals - Use Code: <strong>FESTIVE10&nbsp;</strong>",
             "link": "",
@@ -368,7 +369,7 @@
           "type": "color_swatch",
           "settings": {
             "title": "Navy Blue",
-            "hex_code": "#282D42"
+            "hex_code": "#282d42"
           }
         }
       },
