@@ -496,6 +496,28 @@
     bottom: var(--slide-mobile-bottom, 16%) !important;
   }
 
+  /* Second slide: bit bottom (-2%) and left: 46% */
+  .hs-slide--second-slide .hs-slide__caption,
+  .hs-slide-block--slide_nYR4U9 .hs-slide__caption {
+    bottom: var(--slide-mobile-bottom, -2%) !important;
+    left: var(--slide-mobile-left, 46%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Third slide: right side */
+  .hs-slide--third-slide .hs-slide__caption,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__caption,
+  .hs-slide--mobile-right .hs-slide__caption {
+    left: auto !important;
+    right: 4% !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+  }
+
   .hs-slide__eyebrow {
     font-size: 11px;
     letter-spacing: 1px;
@@ -517,6 +539,42 @@
   .hs-slide__buttons {
     gap: 12px;
     justify-content: flex-start !important;
+  }
+
+  .hs-slide--third-slide .hs-slide__buttons,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__buttons,
+  .hs-slide--mobile-right .hs-slide__buttons {
+    justify-content: flex-end !important;
+  }
+
+  .hs-slide--third-slide .hs-slide__heading,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__heading,
+  .hs-slide--mobile-right .hs-slide__heading,
+  .hs-slide--third-slide .hs-slide__subtext,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__subtext,
+  .hs-slide--mobile-right .hs-slide__subtext {
+    text-align: right;
+  }
+
+  .hs-slide--mobile-left .hs-slide__caption {
+    left: 4% !important;
+    right: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .hs-slide--mobile-left .hs-slide__buttons {
+    justify-content: flex-start !important;
+  }
+
+  .hs-slide--mobile-center .hs-slide__caption {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
   }
 
   .hs-btn {
@@ -588,6 +646,7 @@
   >
     <div class="splide__track">
       <ul class="splide__list">
+        {% assign btn_slide_index = 0 %}
         {% for block in section.blocks %}
           {% assign b = block.settings %}
 
@@ -609,7 +668,32 @@
             {% assign slide_link = b.btn2_link %}
           {% endif %}
 
-          <li class="splide__slide{% if forloop.first %} hs-slide--first-slide{% endif %}" {{ block.shopify_attributes }}>
+          {% assign has_btn = false %}
+          {% if b.btn1_label != blank or b.btn2_label != blank or b.btn3_label != blank %}
+            {% assign has_btn = true %}
+            {% assign btn_slide_index = btn_slide_index | plus: 1 %}
+          {% endif %}
+
+          {% assign is_first_slide = false %}
+          {% assign is_second_slide = false %}
+          {% assign is_third_slide = false %}
+
+          {% if forloop.first or btn_slide_index == 1 and forloop.index <= 2 %}
+            {% assign is_first_slide = true %}
+          {% endif %}
+
+          {% if btn_slide_index == 2 or b.mobile_image contains 'nab_women' or b.image contains '2_' %}
+            {% assign is_second_slide = true %}
+          {% endif %}
+
+          {% if btn_slide_index == 3 or b.mobile_image contains 'whites' or b.image contains '3_' or b.mobile_button_position_h == 'right' %}
+            {% assign is_third_slide = true %}
+          {% endif %}
+
+          <li
+            class="splide__slide hs-slide--slide-{{ forloop.index }} hs-slide-block--{{ block.id }}{% if is_first_slide %} hs-slide--first-slide{% endif %}{% if is_second_slide %} hs-slide--second-slide{% endif %}{% if is_third_slide %} hs-slide--third-slide{% endif %}{% if b.mobile_button_position_h != blank and b.mobile_button_position_h != 'default' %} hs-slide--mobile-{{ b.mobile_button_position_h }}{% endif %}"
+            {{ block.shopify_attributes }}
+          >
             <div class="hs-slide{% if slide_link != blank %} hs-slide--has-link{% endif %}">
               {% if slide_link != blank %}
                 <a
@@ -725,9 +809,11 @@
                 {% assign block_btn_align = b.button_align | default: s.button_align | default: 'left' %}
                 <div
                   class="hs-slide__caption hs-slide__caption--{{ block_caption_pos }}"
-                  {% if b.mobile_caption_bottom != blank and b.mobile_caption_bottom > 0 %}
-                    style="--slide-mobile-bottom: {{ b.mobile_caption_bottom }}%;"
-                  {% elsif forloop.first %}
+                  {% if b.mobile_caption_bottom != blank and b.mobile_caption_bottom != 0 %}
+                    style="--slide-mobile-bottom: {{ b.mobile_caption_bottom }}%;{% if b.mobile_caption_left != blank and b.mobile_caption_left != 50 %}--slide-mobile-left: {{ b.mobile_caption_left }}%;{% elsif is_second_slide %}--slide-mobile-left: 46%;{% endif %}"
+                  {% elsif is_second_slide %}
+                    style="--slide-mobile-bottom: -2%; --slide-mobile-left: 46%;"
+                  {% elsif is_first_slide %}
                     style="--slide-mobile-bottom: 16%;"
                   {% endif %}
                 >
@@ -1524,12 +1610,36 @@
           "type": "range",
           "id": "mobile_caption_bottom",
           "label": "Mobile Bottom Position (%)",
-          "min": 0,
+          "min": -20,
           "max": 70,
           "step": 1,
           "unit": "%",
           "default": 0,
-          "info": "Elevates the buttons/caption from the bottom on mobile (e.g. 30% for slide 1)."
+          "info": "Elevates or lowers the buttons/caption from the bottom on mobile (e.g. -2% for slide 2, 16% for slide 1)."
+        },
+        {
+          "type": "select",
+          "id": "mobile_button_position_h",
+          "label": "Mobile Horizontal Alignment",
+          "options": [
+            { "value": "default", "label": "Default" },
+            { "value": "center",  "label": "Center" },
+            { "value": "left",    "label": "Left" },
+            { "value": "right",   "label": "Right" }
+          ],
+          "default": "default",
+          "info": "Align buttons horizontally on mobile (e.g. Right for slide 3)."
+        },
+        {
+          "type": "range",
+          "id": "mobile_caption_left",
+          "label": "Mobile Left Offset (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50,
+          "info": "Horizontal offset percentage when centered (default 46% for slide 2)."
         },
         {
           "type": "header",
