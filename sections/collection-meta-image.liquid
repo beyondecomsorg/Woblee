@@ -1,0 +1,71 @@
+{% liquid
+  assign desktop_banner = collection.metafields.custom.collection_banner_desktop.value
+  assign mobile_banner = collection.metafields.custom.collection_banner_mobile.value
+%}
+
+{% if desktop_banner != blank or mobile_banner != blank %}
+  <section class="collection-banner">
+    <picture>
+      {% if mobile_banner != blank %}
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ mobile_banner | image_url: width: 1200 }}"
+        >
+      {% endif %}
+
+      {% if desktop_banner != blank %}
+        <img
+          src="{{ desktop_banner | image_url: width: 2400 }}"
+          alt="{{ collection.title | escape }}"
+          loading="eager"
+          width="{{ desktop_banner.width }}"
+          height="{{ desktop_banner.height }}"
+        >
+      {% elsif mobile_banner != blank %}
+        <img
+          src="{{ mobile_banner | image_url: width: 1200 }}"
+          alt="{{ collection.title | escape }}"
+          loading="eager"
+          width="{{ mobile_banner.width }}"
+          height="{{ mobile_banner.height }}"
+        >
+      {% endif %}
+    </picture>
+  </section>
+{% endif %}
+
+<style>
+  .collection-banner {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .collection-banner picture {
+    display: block;
+    width: 100%;
+  }
+
+  .collection-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-banner {
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Banner",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Collection Banner"
+    }
+  ]
+}
+{% endschema %}
