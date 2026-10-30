@@ -17,6 +17,7 @@
           "settings": {
             "image": "shopify://shop_images/Lookbook1_Desktop.webp",
             "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "slide_link": "",
             "heading": "",
             "subtext": "",
             "button_1_label": "",
@@ -43,6 +44,7 @@
           "settings": {
             "image": "shopify://shop_images/Lookbook1_Desktop.webp",
             "mobile_image": "shopify://shop_images/ExploreSecondary_Hero_86cc3b2d-8357-4e4b-85b3-37776ba6e186.webp",
+            "slide_link": "",
             "heading": "",
             "subtext": "",
             "button_1_label": "",
@@ -441,9 +443,15 @@
         "padding-block-start": 23,
         "padding-block-end": 24
       }
+    },
+    "collection_meta_image_BntWdT": {
+      "type": "collection-meta-image",
+      "name": "Collection Banner Meta",
+      "settings": {}
     }
   },
   "order": [
+    "collection_meta_image_BntWdT",
     "collection_banner_wgRUAX",
     "section",
     "main-collection"
