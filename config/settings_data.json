@@ -144,6 +144,11 @@
         "type": "shopify://apps/ab-google-analytics/blocks/analytics/2fc433fa-79f5-4d1d-bab2-983d42099561",
         "disabled": false,
         "settings": {}
+      },
+      "9821119549312728669": {
+        "type": "shopify://apps/pavo-snowfall-effect/blocks/app-embed/60bb33b7-8405-4f41-b11b-232589b2becb",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
