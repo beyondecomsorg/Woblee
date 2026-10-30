@@ -16,10 +16,11 @@
           "type": "slide",
           "disabled": true,
           "settings": {
+            "image": "shopify://shop_images/halloween_banner-01-9mb.jpg",
             "image_focal_point": "center center",
             "mobile_image": "shopify://shop_images/halloween_banner-02.jpg",
             "mobile_image_focal_point": "center center",
-            "slide_link": "shopify://collections/bestsellers",
+            "slide_link": "",
             "slide_link_new_tab": false,
             "video_url_mp4": "",
             "video_url_webm": "",
