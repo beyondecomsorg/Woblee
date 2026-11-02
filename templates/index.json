@@ -14,11 +14,10 @@
       "blocks": {
         "slide_9Mqacm": {
           "type": "slide",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/halloween_banner-01-9mb.jpg",
+            "image": "shopify://shop_images/DIWALI_BANNER-01.jpg-12mb_1.jpg",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/halloween_banner-02.jpg",
+            "mobile_image": "shopify://shop_images/DIWALI_BANNER-02_jpg.jpg",
             "mobile_image_focal_point": "center center",
             "slide_link": "shopify://collections/bestsellers",
             "slide_link_new_tab": false,
