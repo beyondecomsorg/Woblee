@@ -870,7 +870,7 @@
         "desktop_height": 650,
         "mobile_height_mode": "adapt",
         "mobile_height": 480,
-        "image_fit": "cover",
+        "image_fit": "contain",
         "autoplay": true,
         "autoplay_speed": 5000,
         "transition_type": "fade",
