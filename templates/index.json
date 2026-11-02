@@ -865,7 +865,7 @@
         "slide_CiehWH"
       ],
       "custom_css": [
-        "@media only screen and (max-width: 769px) {hs-template--20536556716183__custom_hero_section_9HEf9N {height: 100px; }}"
+        "@media only screen and (max-width: 769px) {selector {height: 100px; }}"
       ],
       "name": "Hero Slideshow Custom",
       "settings": {
