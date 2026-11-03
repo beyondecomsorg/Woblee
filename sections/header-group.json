@@ -43,6 +43,20 @@
           },
           "blocks": {}
         },
+        "announcement_igBCkn": {
+          "type": "_announcement",
+          "name": "t:names.announcement",
+          "settings": {
+            "text": "&nbsp;🪔 Diwali Sale: Use code <strong>DIWALI10</strong> for 10% OFF&nbsp;",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.875rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
+          },
+          "blocks": {}
+        },
         "announcement_yU99TY": {
           "type": "_announcement",
           "name": "t:names.announcement",
@@ -61,6 +75,7 @@
       "block_order": [
         "announcement_a4JB6J",
         "announcement_4Hm9Yf",
+        "announcement_igBCkn",
         "announcement_yU99TY"
       ],
       "custom_css": [
