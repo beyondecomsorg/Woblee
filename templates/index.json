@@ -823,6 +823,7 @@
     },
     "video_banner_JUrcTL": {
       "type": "video-banner",
+      "disabled": true,
       "name": "Responsive Video",
       "settings": {
         "desktop_video": "shopify://files/videos/banner-video.mp4",
