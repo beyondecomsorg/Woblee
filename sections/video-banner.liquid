@@ -1,15 +1,11 @@
 {% liquid
   assign desktop_video = section.settings.desktop_video
   assign mobile_video = section.settings.mobile_video
-
-  if mobile_video == blank
-    assign mobile_video = desktop_video
-  endif
 %}
 
 <section
-  id="custom-responsive-video-{{ section.id }}"
-  class="custom-responsive-video"
+  id="responsive-video-{{ section.id }}"
+  class="responsive-video-section"
   style="
     --desktop-padding-top: {{ section.settings.desktop_padding_top }}px;
     --desktop-padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
@@ -17,12 +13,12 @@
     --mobile-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
   "
 >
-  <div class="custom-responsive-video__wrapper">
+  <div class="responsive-video-wrapper">
 
     {% if section.settings.video_link != blank %}
       <a
         href="{{ section.settings.video_link }}"
-        class="custom-responsive-video__link"
+        class="responsive-video-link"
         {% if section.settings.open_new_tab %}
           target="_blank"
           rel="noopener noreferrer"
@@ -30,45 +26,65 @@
       >
     {% endif %}
 
-    <picture class="custom-responsive-video__media">
+    {% comment %}
+      DESKTOP VIDEO
+    {% endcomment %}
 
-      {% if mobile_video != blank %}
-        <source
-          media="(max-width: 749px)"
-          srcset="{{ mobile_video.sources[1].url }}"
-        >
-      {% endif %}
+    {% if desktop_video != blank %}
+      <div class="responsive-video responsive-video--desktop">
+        {{
+          desktop_video
+          | video_tag:
+            autoplay: section.settings.autoplay,
+            loop: section.settings.loop,
+            muted: section.settings.muted,
+            controls: section.settings.controls,
+            playsinline: true,
+            preload: 'metadata'
+        }}
+      </div>
+    {% endif %}
 
-      {% if desktop_video != blank %}
-        <video
-          class="custom-responsive-video__video"
-          {% if section.settings.autoplay %}
-            autoplay
-          {% endif %}
-          {% if section.settings.loop %}
-            loop
-          {% endif %}
-          {% if section.settings.muted %}
-            muted
-          {% endif %}
-          {% if section.settings.controls %}
-            controls
-          {% endif %}
-          playsinline
-          preload="metadata"
-          {% if desktop_video.preview_image %}
-            poster="{{ desktop_video.preview_image | image_url: width: 2400 }}"
-          {% endif %}
-        >
-          {% for source in desktop_video.sources %}
-            {% if source.format == 'mp4' %}
-              <source src="{{ source.url }}" type="video/mp4">
-            {% endif %}
-          {% endfor %}
-        </video>
-      {% endif %}
 
-    </picture>
+    {% comment %}
+      MOBILE VIDEO
+    {% endcomment %}
+
+    {% if mobile_video != blank %}
+      <div class="responsive-video responsive-video--mobile">
+        {{
+          mobile_video
+          | video_tag:
+            autoplay: section.settings.autoplay,
+            loop: section.settings.loop,
+            muted: section.settings.muted,
+            controls: section.settings.controls,
+            playsinline: true,
+            preload: 'metadata'
+        }}
+      </div>
+
+    {% elsif desktop_video != blank %}
+
+      {% comment %}
+        If no mobile video is selected,
+        use desktop video on mobile.
+      {% endcomment %}
+
+      <div class="responsive-video responsive-video--mobile">
+        {{
+          desktop_video
+          | video_tag:
+            autoplay: section.settings.autoplay,
+            loop: section.settings.loop,
+            muted: section.settings.muted,
+            controls: section.settings.controls,
+            playsinline: true,
+            preload: 'metadata'
+        }}
+      </div>
+
+    {% endif %}
 
     {% if section.settings.video_link != blank %}
       </a>
@@ -77,32 +93,32 @@
   </div>
 </section>
 
+
 <style>
-  #custom-responsive-video-{{ section.id }} {
+  #responsive-video-{{ section.id }} {
     padding-top: var(--desktop-padding-top);
     padding-bottom: var(--desktop-padding-bottom);
     width: 100%;
   }
 
-  #custom-responsive-video-{{ section.id }} .custom-responsive-video__wrapper {
+  #responsive-video-{{ section.id }} .responsive-video-wrapper {
     width: 100%;
     margin: 0;
     padding: 0;
   }
 
-  #custom-responsive-video-{{ section.id }} .custom-responsive-video__link {
+  #responsive-video-{{ section.id }} .responsive-video-link {
     display: block;
     width: 100%;
     text-decoration: none;
   }
 
-  #custom-responsive-video-{{ section.id }} .custom-responsive-video__media {
-    display: block;
+  #responsive-video-{{ section.id }} .responsive-video {
     width: 100%;
     line-height: 0;
   }
 
-  #custom-responsive-video-{{ section.id }} .custom-responsive-video__video {
+  #responsive-video-{{ section.id }} .responsive-video video {
     display: block;
     width: 100%;
     height: auto;
@@ -110,29 +126,55 @@
     object-fit: cover;
   }
 
+  /* Desktop */
+  #responsive-video-{{ section.id }} .responsive-video--desktop {
+    display: block;
+  }
+
+  #responsive-video-{{ section.id }} .responsive-video--mobile {
+    display: none;
+  }
+
+
+  /* Mobile */
   @media screen and (max-width: 749px) {
-    #custom-responsive-video-{{ section.id }} {
+
+    #responsive-video-{{ section.id }} {
       padding-top: var(--mobile-padding-top);
       padding-bottom: var(--mobile-padding-bottom);
     }
+
+    #responsive-video-{{ section.id }} .responsive-video--desktop {
+      display: none;
+    }
+
+    #responsive-video-{{ section.id }} .responsive-video--mobile {
+      display: block;
+    }
+
   }
 </style>
+
 
 {% schema %}
 {
   "name": "Responsive Video",
   "tag": "section",
   "class": "section-responsive-video",
+
   "settings": [
+
     {
       "type": "header",
-      "content": "Video"
+      "content": "Videos"
     },
+
     {
       "type": "video",
       "id": "desktop_video",
       "label": "Desktop video"
     },
+
     {
       "type": "video",
       "id": "mobile_video",
@@ -143,11 +185,13 @@
       "type": "header",
       "content": "Link"
     },
+
     {
       "type": "url",
       "id": "video_link",
       "label": "Video link"
     },
+
     {
       "type": "checkbox",
       "id": "open_new_tab",
@@ -159,28 +203,32 @@
       "type": "header",
       "content": "Video settings"
     },
+
     {
       "type": "checkbox",
       "id": "autoplay",
       "label": "Autoplay",
       "default": true
     },
+
     {
       "type": "checkbox",
       "id": "muted",
       "label": "Muted",
       "default": true
     },
+
     {
       "type": "checkbox",
       "id": "loop",
       "label": "Loop video",
       "default": true
     },
+
     {
       "type": "checkbox",
       "id": "controls",
-      "label": "Show video controls",
+      "label": "Show controls",
       "default": false
     },
 
@@ -188,6 +236,7 @@
       "type": "header",
       "content": "Desktop spacing"
     },
+
     {
       "type": "range",
       "id": "desktop_padding_top",
@@ -198,6 +247,7 @@
       "unit": "px",
       "default": 0
     },
+
     {
       "type": "range",
       "id": "desktop_padding_bottom",
@@ -213,6 +263,7 @@
       "type": "header",
       "content": "Mobile spacing"
     },
+
     {
       "type": "range",
       "id": "mobile_padding_top",
@@ -223,6 +274,7 @@
       "unit": "px",
       "default": 0
     },
+
     {
       "type": "range",
       "id": "mobile_padding_bottom",
@@ -233,7 +285,9 @@
       "unit": "px",
       "default": 0
     }
+
   ],
+
   "presets": [
     {
       "name": "Responsive Video"
