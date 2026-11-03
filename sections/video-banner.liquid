@@ -1,0 +1,243 @@
+{% liquid
+  assign desktop_video = section.settings.desktop_video
+  assign mobile_video = section.settings.mobile_video
+
+  if mobile_video == blank
+    assign mobile_video = desktop_video
+  endif
+%}
+
+<section
+  id="custom-responsive-video-{{ section.id }}"
+  class="custom-responsive-video"
+  style="
+    --desktop-padding-top: {{ section.settings.desktop_padding_top }}px;
+    --desktop-padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    --mobile-padding-top: {{ section.settings.mobile_padding_top }}px;
+    --mobile-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+  "
+>
+  <div class="custom-responsive-video__wrapper">
+
+    {% if section.settings.video_link != blank %}
+      <a
+        href="{{ section.settings.video_link }}"
+        class="custom-responsive-video__link"
+        {% if section.settings.open_new_tab %}
+          target="_blank"
+          rel="noopener noreferrer"
+        {% endif %}
+      >
+    {% endif %}
+
+    <picture class="custom-responsive-video__media">
+
+      {% if mobile_video != blank %}
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ mobile_video.sources[1].url }}"
+        >
+      {% endif %}
+
+      {% if desktop_video != blank %}
+        <video
+          class="custom-responsive-video__video"
+          {% if section.settings.autoplay %}
+            autoplay
+          {% endif %}
+          {% if section.settings.loop %}
+            loop
+          {% endif %}
+          {% if section.settings.muted %}
+            muted
+          {% endif %}
+          {% if section.settings.controls %}
+            controls
+          {% endif %}
+          playsinline
+          preload="metadata"
+          {% if desktop_video.preview_image %}
+            poster="{{ desktop_video.preview_image | image_url: width: 2400 }}"
+          {% endif %}
+        >
+          {% for source in desktop_video.sources %}
+            {% if source.format == 'mp4' %}
+              <source src="{{ source.url }}" type="video/mp4">
+            {% endif %}
+          {% endfor %}
+        </video>
+      {% endif %}
+
+    </picture>
+
+    {% if section.settings.video_link != blank %}
+      </a>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  #custom-responsive-video-{{ section.id }} {
+    padding-top: var(--desktop-padding-top);
+    padding-bottom: var(--desktop-padding-bottom);
+    width: 100%;
+  }
+
+  #custom-responsive-video-{{ section.id }} .custom-responsive-video__wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #custom-responsive-video-{{ section.id }} .custom-responsive-video__link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+  }
+
+  #custom-responsive-video-{{ section.id }} .custom-responsive-video__media {
+    display: block;
+    width: 100%;
+    line-height: 0;
+  }
+
+  #custom-responsive-video-{{ section.id }} .custom-responsive-video__video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 749px) {
+    #custom-responsive-video-{{ section.id }} {
+      padding-top: var(--mobile-padding-top);
+      padding-bottom: var(--mobile-padding-bottom);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Responsive Video",
+  "tag": "section",
+  "class": "section-responsive-video",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "desktop_video",
+      "label": "Desktop video"
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video"
+    },
+
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "video_link",
+      "label": "Video link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+
+    {
+      "type": "header",
+      "content": "Video settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "muted",
+      "label": "Muted",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "controls",
+      "label": "Show video controls",
+      "default": false
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Desktop top spacing",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Desktop bottom spacing",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top spacing",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom spacing",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Responsive Video"
+    }
+  ]
+}
+{% endschema %}
