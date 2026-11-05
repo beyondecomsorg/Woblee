@@ -12,17 +12,17 @@
     "custom_hero_section_jrfcFp": {
       "type": "custom-hero-section",
       "blocks": {
-        "slide_9Mqacm": {
+        "slide_jdV8Tw": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/DIWALI_ABC-01_jpg.jpg",
             "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/DIWALI_ABC-02_jpg.jpg",
             "mobile_image_focal_point": "center center",
-            "slide_link": "shopify://collections/nab",
+            "slide_link": "shopify://collections/bestsellers",
             "slide_link_new_tab": false,
-            "video": "shopify://files/videos/Banners Desktop (1).mp4",
             "video_url_mp4": "",
             "video_url_webm": "",
-            "mobile_video": "shopify://files/videos/Banners Mobile.mp4",
             "mobile_video_url_mp4": "",
             "mobile_video_url_webm": "",
             "hide_content": false,
@@ -52,18 +52,57 @@
             "btn3_custom_text": ""
           }
         },
-        "slide_jdV8Tw": {
+        "slide_GNFgNq": {
           "type": "slide",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/DIWALI_BANNER-01.jpg-12mb_1.jpg",
+            "image": "shopify://shop_images/DIWALI_ABC-03_jpg.jpg",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/DIWALI_BANNER-02_jpg.jpg",
+            "mobile_image": "shopify://shop_images/DIWALI_ABC-04_jpg.jpg",
             "mobile_image_focal_point": "center center",
             "slide_link": "shopify://collections/bestsellers",
             "slide_link_new_tab": false,
             "video_url_mp4": "",
             "video_url_webm": "",
+            "mobile_video_url_mp4": "",
+            "mobile_video_url_webm": "",
+            "hide_content": false,
+            "hide_text_overlay": true,
+            "eyebrow": "",
+            "heading": "",
+            "subtext": "",
+            "caption_position": "bottom_right",
+            "button_position": "bottom_right",
+            "mobile_caption_bottom": 0,
+            "mobile_button_position_h": "default",
+            "mobile_caption_left": 50,
+            "btn1_label": "",
+            "btn1_link": "",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "",
+            "btn2_link": "",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "",
+            "btn3_link": "",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
+        "slide_9Mqacm": {
+          "type": "slide",
+          "settings": {
+            "image_focal_point": "center center",
+            "mobile_image_focal_point": "center center",
+            "slide_link": "shopify://collections/nab",
+            "slide_link_new_tab": false,
+            "video": "shopify://files/videos/Banners Desktop (1).mp4",
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "mobile_video": "shopify://files/videos/Banners Mobile.mp4",
             "mobile_video_url_mp4": "",
             "mobile_video_url_webm": "",
             "hide_content": false,
@@ -295,8 +334,9 @@
         }
       },
       "block_order": [
-        "slide_9Mqacm",
         "slide_jdV8Tw",
+        "slide_GNFgNq",
+        "slide_9Mqacm",
         "slide_jWfnFU",
         "slide_nYR4U9",
         "slide_B6rmj8",
