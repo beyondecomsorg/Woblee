@@ -94,6 +94,7 @@
         },
         "slide_9Mqacm": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image_focal_point": "center center",
             "mobile_image_focal_point": "center center",
