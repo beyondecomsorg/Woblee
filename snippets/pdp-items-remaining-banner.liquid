@@ -1,0 +1,166 @@
+{% comment %}
+  PDP Items Remaining Urgency Banner Block
+  Displays remaining stock urgency in theme brand colors with zero border-radius:
+  "🛍 Hurry up! Only few left >"
+  Hides automatically for sold-out products/variants.
+{% endcomment %}
+
+{% liquid
+  assign target_product = product | default: closest.product
+  assign current_variant = target_product.selected_or_first_available_variant
+  assign is_available = target_product.available
+  if current_variant != blank and current_variant.available == false
+    assign is_available = false
+  endif
+
+  if target_product.available == false
+    break
+  endif
+
+  assign product_id = target_product.id | default: section.id | default: 'main'
+  assign prefix_text = block.settings.prefix_text | default: 'Hurry up!'
+  assign highlight_text = block.settings.highlight_text | default: 'Only few left'
+%}
+
+<div
+  class="pdp-items-banner pdp-urgency-block"
+  {{ block.shopify_attributes }}
+  data-product-id="{{ product_id }}"
+  {% unless is_available %}style="display: none;"{% endunless %}
+>
+  <div class="pdp-items-banner__card">
+    <div class="pdp-items-banner__content">
+      <span class="pdp-items-banner__icon" aria-hidden="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+      </span>
+      <span class="pdp-items-banner__text">
+        {{ prefix_text }} <strong class="pdp-items-banner__highlight">{{ highlight_text }}</strong>
+      </span>
+    </div>
+    <span class="pdp-items-banner__arrow" aria-hidden="true">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </span>
+  </div>
+</div>
+
+{% style %}
+  .pdp-items-banner {
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .pdp-items-banner__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background-color: var(--color-background-secondary, #F4F6F8);
+    border: 1px solid var(--color-border, #CBD5E1);
+    border-radius: 0 !important;
+    gap: 10px;
+    box-sizing: border-box;
+    color: var(--color-foreground, #0C4168);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pdp-items-banner__card:hover {
+    border-color: var(--color-foreground, #0C4168);
+  }
+
+  .pdp-items-banner__content {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pdp-items-banner__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-foreground, #0C4168);
+  }
+
+  .pdp-items-banner__text {
+    font-family: var(--font-body--family, sans-serif);
+    font-size: 13.5px;
+    color: var(--color-foreground, #0C4168);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pdp-items-banner__highlight {
+    font-weight: 700;
+    color: var(--color-foreground, #0C4168);
+  }
+
+  .pdp-items-banner__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-foreground, #0C4168);
+    opacity: 0.65;
+    transition: transform 0.2s ease;
+  }
+
+  .pdp-items-banner__card:hover .pdp-items-banner__arrow {
+    transform: translateX(2px);
+  }
+
+  @media screen and (max-width: 600px) {
+    .pdp-items-banner__card {
+      padding: 9px 12px;
+      gap: 8px;
+    }
+    .pdp-items-banner__text {
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function() {
+    // Hide if sold out / unavailable on variant change
+    function updateSoldOutState() {
+      var banner = document.querySelector('.pdp-items-banner[data-product-id="{{ product_id }}"]');
+      if (!banner) return;
+      var form = document.querySelector('form[action*="/cart/add"]');
+      var atcBtn = form ? form.querySelector('[type="submit"], [name="add"], .add-to-cart__button, .button--primary') : null;
+      var isSoldOut = false;
+      if (atcBtn) {
+        if (atcBtn.disabled) isSoldOut = true;
+        var btnText = (atcBtn.textContent || '').trim().toLowerCase();
+        if (btnText.indexOf('sold') !== -1 || btnText.indexOf('soon') !== -1 || btnText.indexOf('out') !== -1 || btnText.indexOf('unavailable') !== -1) {
+          isSoldOut = true;
+        }
+      }
+      banner.style.display = isSoldOut ? 'none' : '';
+    }
+
+    document.addEventListener('change', updateSoldOutState);
+    document.addEventListener('variant:change', updateSoldOutState);
+    document.addEventListener('VariantUpdateEvent', updateSoldOutState);
+    setTimeout(updateSoldOutState, 150);
+  })();
+</script>
+
+ {%
+              render 'available-offers',
+              block: block,
+              section: section,
+              product: product
+            %}

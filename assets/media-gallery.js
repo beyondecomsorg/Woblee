@@ -36,6 +36,7 @@ export class MediaGallery extends Component {
     // Run initial variant image filtering on load
     queueMicrotask(() => {
       this.filterGalleryForCurrentVariant();
+      this.#setupAutoplayVideos();
     });
   }
 
@@ -466,6 +467,41 @@ export class MediaGallery extends Component {
     const visibleThumbnails = Array.from(this.querySelectorAll('.slideshow-controls__thumbnail:not([hidden])'));
     visibleThumbnails.forEach((btn, index) => {
       btn.setAttribute('aria-selected', String(index === targetIndex));
+    });
+
+    // Ensure all visible videos resume autoplay
+    this.#playVisibleVideos();
+  }
+
+  #setupAutoplayVideos() {
+    this.#playVisibleVideos();
+
+    const userInteract = () => {
+      this.#playVisibleVideos();
+      window.removeEventListener('touchstart', userInteract);
+      window.removeEventListener('click', userInteract);
+      window.removeEventListener('scroll', userInteract);
+    };
+    window.addEventListener('touchstart', userInteract, { passive: true, once: true });
+    window.addEventListener('click', userInteract, { passive: true, once: true });
+    window.addEventListener('scroll', userInteract, { passive: true, once: true });
+  }
+
+  #playVisibleVideos() {
+    const videos = document.querySelectorAll('.product-media video, .product-extended-gallery__video');
+    videos.forEach((video) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('loop', '');
+      video.setAttribute('autoplay', '');
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     });
   }
 

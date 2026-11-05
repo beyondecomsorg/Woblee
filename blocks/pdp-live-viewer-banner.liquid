@@ -1,0 +1,21 @@
+{% render 'pdp-live-viewer-banner', block: block %}
+
+{% schema %}
+{
+  "name": "Live Viewers Banner",
+  "settings": [
+    {
+      "type": "number",
+      "id": "viewer_count",
+      "label": "Viewer Count",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Live Viewers Banner",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

@@ -325,6 +325,44 @@
               },
               "block_order": []
             },
+            "pdp_live_viewer_banner": {
+              "type": "pdp-live-viewer-banner",
+              "name": "Live Viewers Banner",
+              "settings": {
+                "viewer_count": 40
+              },
+              "blocks": {}
+            },
+            "pdp_sales_demand_banner": {
+              "type": "pdp-sales-demand-banner",
+              "name": "Sales Velocity Banner",
+              "settings": {
+                "sales_count": 196,
+                "hours_count": 3,
+                "subtext": ""
+              },
+              "blocks": {}
+            },
+            "pdp_items_remaining_banner": {
+              "type": "pdp-items-remaining-banner",
+              "name": "Items Remaining Urgency",
+              "settings": {
+                "prefix_text": "Hurry up!",
+                "highlight_text": "Only few left",
+                "heading": "AVAILABLE BENEFITS",
+                "coupon_code_1": "DIWALI10",
+                "description_1": "Get 10% OFF on your first purchase.",
+                "coupon_code_2": "EXTRA15",
+                "description_2": "Buy 2 items & get 15% OFF.",
+                "coupon_code_3": "EXTRA20",
+                "description_3": "Buy 3 items & get 20% OFF.",
+                "description_4": "Buy 3 items & get 20% OFF.",
+                "title_5": "FREE SHIPPING",
+                "coupon_code_5": "",
+                "description_5": "Free shipping on all orders."
+              },
+              "blocks": {}
+            },
             "accordion_iWQwkW": {
               "type": "accordion",
               "name": "t:names.accordion",
@@ -477,6 +515,9 @@
             "group_8fkkWP",
             "variant_picker_3Nha6V",
             "buy_buttons_NmYpFG",
+            "pdp_live_viewer_banner",
+            "pdp_sales_demand_banner",
+            "pdp_items_remaining_banner",
             "accordion_iWQwkW"
           ]
         }

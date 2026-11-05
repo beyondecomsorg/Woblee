@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDP Brand Theme Blocks (Zero Radius & Sold Out Logic)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0b1828;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px;
+      min-height: 100vh;
+    }
+
+    .controls-panel {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+
+    .ctrl-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      background: #FFFFFF;
+      color: #0B1F33;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ctrl-btn.active {
+      background: #0B1F33;
+      color: #FFFFFF;
+      border-color: #0B1F33;
+    }
+
+    .preview-card {
+      width: 100%;
+      max-width: 520px;
+      background: #FFFFFF;
+      border-radius: 4px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .preview-header {
+      margin-bottom: 20px;
+    }
+
+    .product-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0B1F33;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0B1F33;
+      margin-bottom: 16px;
+    }
+
+    /* Size buttons matching user screenshot */
+    .size-selector-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0B1F33;
+      margin-bottom: 8px;
+    }
+
+    .size-buttons-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .size-box {
+      flex: 1;
+      height: 42px;
+      border: 1px solid #CBD5E1;
+      border-radius: 0 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0B1F33;
+      cursor: pointer;
+      position: relative;
+      background: #FFFFFF;
+    }
+
+    .size-box.selected {
+      border-color: #0B1F33;
+      border-width: 2px;
+    }
+
+    .size-box.sold-out {
+      color: #94A3B8;
+      background: #FAFAFA;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .size-box.sold-out::after {
+      content: '';
+      position: absolute;
+      width: 140%;
+      height: 1px;
+      background: #CBD5E1;
+      transform: rotate(-25deg);
+    }
+
+    .mock-add-to-cart {
+      width: 100%;
+      padding: 15px 20px;
+      background: #0B1F33;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      border: none;
+      border-radius: 0 !important;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .mock-add-to-cart.is-sold-out {
+      background: #7390a5 !important;
+      color: #FFFFFF !important;
+      cursor: not-allowed;
+    }
+
+    /* Blocks Container */
+    .pdp-blocks-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    /* Block 1: Live Viewer Banner */
+    .pdp-viewer-banner {
+      width: 100%;
+    }
+
+    .pdp-viewer-banner__card {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      background-color: #F4F6F8;
+      border: 1px solid #CBD5E1;
+      border-radius: 0 !important;
+      gap: 10px;
+      box-sizing: border-box;
+      color: #0B1F33;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .pdp-viewer-banner__card:hover {
+      border-color: #0B1F33;
+    }
+
+    .pdp-viewer-banner__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #0B1F33;
+    }
+
+    .pdp-viewer-banner__text {
+      font-size: 13.5px;
+      color: #0B1F33;
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: 0.1px;
+    }
+
+    .pdp-viewer-banner__text strong {
+      font-weight: 700;
+      color: #0B1F33;
+    }
+
+    /* Block 2: Sales Velocity Banner */
+    .pdp-sales-banner {
+      width: 100%;
+    }
+
+    .pdp-sales-banner__card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background-color: #F4F6F8;
+      border: 1px solid #CBD5E1;
+      border-radius: 0 !important;
+      gap: 10px;
+      box-sizing: border-box;
+      color: #0B1F33;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .pdp-sales-banner__card:hover {
+      border-color: #0B1F33;
+    }
+
+    .pdp-sales-banner__content {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pdp-sales-banner__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #0B1F33;
+    }
+
+    .pdp-sales-banner__text {
+      font-size: 13.5px;
+      color: #0B1F33;
+      line-height: 1.35;
+      letter-spacing: 0.1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pdp-sales-banner__highlight {
+      font-weight: 700;
+      color: #0B1F33;
+    }
+
+    .pdp-sales-banner__subtext {
+      color: rgba(11, 31, 51, 0.7);
+      font-weight: 400;
+    }
+
+    .pdp-sales-banner__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #0B1F33;
+      opacity: 0.65;
+      transition: transform 0.2s ease;
+    }
+
+    .pdp-sales-banner__card:hover .pdp-sales-banner__arrow {
+      transform: translateX(2px);
+    }
+
+    /* Block 3: Items Remaining Urgency */
+    .pdp-items-banner {
+      width: 100%;
+    }
+
+    .pdp-items-banner__card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background-color: #F4F6F8;
+      border: 1px solid #CBD5E1;
+      border-radius: 0 !important;
+      gap: 10px;
+      box-sizing: border-box;
+      color: #0B1F33;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .pdp-items-banner__card:hover {
+      border-color: #0B1F33;
+    }
+
+    .pdp-items-banner__content {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pdp-items-banner__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #0B1F33;
+    }
+
+    .pdp-items-banner__text {
+      font-size: 13.5px;
+      color: #0B1F33;
+      font-weight: 500;
+      line-height: 1.35;
+      letter-spacing: 0.1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pdp-items-banner__highlight {
+      font-weight: 700;
+      color: #0B1F33;
+    }
+
+    .pdp-items-banner__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #0B1F33;
+      opacity: 0.65;
+      transition: transform 0.2s ease;
+    }
+
+    .pdp-items-banner__card:hover .pdp-items-banner__arrow {
+      transform: translateX(2px);
+    }
+
+    .sold-out-notice {
+      display: none;
+      padding: 12px;
+      background: #FAFAFA;
+      border: 1px dashed #CBD5E1;
+      border-radius: 0;
+      color: #64748B;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 6px;
+    }
+
+    @media screen and (max-width: 480px) {
+      .preview-card {
+        padding: 20px 16px;
+      }
+      .pdp-viewer-banner__card,
+      .pdp-sales-banner__card,
+      .pdp-items-banner__card {
+        padding: 9px 12px;
+        gap: 8px;
+      }
+      .pdp-viewer-banner__text,
+      .pdp-sales-banner__text,
+      .pdp-items-banner__text {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls-panel">
+    <button class="ctrl-btn active" id="btn-in-stock" onclick="toggleStock(true)">In Stock (Show Blocks)</button>
+    <button class="ctrl-btn" id="btn-sold-out" onclick="toggleStock(false)">Sold Out / Coming Soon (Hide Blocks)</button>
+  </div>
+
+  <div class="preview-card">
+    <div class="preview-header">
+      <h1 class="product-title">Shape Theory Women's Tee</h1>
+      <div class="product-price">Rs. 1,299</div>
+    </div>
+
+    <!-- Size Selector -->
+    <div class="size-selector-label">Size</div>
+    <div class="size-buttons-group">
+      <div class="size-box selected" onclick="toggleStock(true)">XS</div>
+      <div class="size-box" onclick="toggleStock(true)">S</div>
+      <div class="size-box" onclick="toggleStock(true)">M</div>
+      <div class="size-box" onclick="toggleStock(true)">L</div>
+      <div class="size-box sold-out" onclick="toggleStock(false)">XL</div>
+      <div class="size-box sold-out" onclick="toggleStock(false)">2XL</div>
+    </div>
+
+    <!-- Add To Cart Button -->
+    <button class="mock-add-to-cart" id="atc-btn">Add to cart</button>
+
+    <!-- The 3 Blocks Below Add To Cart Button -->
+    <div class="pdp-blocks-wrapper" id="pdp-blocks">
+      
+      <!-- Block 1: Live Viewer Banner -->
+      <div class="pdp-viewer-banner">
+        <div class="pdp-viewer-banner__card">
+          <span class="pdp-viewer-banner__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+            </svg>
+          </span>
+          <span class="pdp-viewer-banner__text">
+            <strong>40</strong> people are viewing this right now
+          </span>
+        </div>
+      </div>
+
+      <!-- Block 2: Sales Velocity Banner -->
+      <div class="pdp-sales-banner">
+        <div class="pdp-sales-banner__card">
+          <div class="pdp-sales-banner__content">
+            <span class="pdp-sales-banner__icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C10.5 4.5 9 7.5 10 10.5C8.5 9 7.5 7 7.5 5C5 7.5 4 11 4 14C4 18.4183 7.58172 22 12 22C16.4183 22 20 18.4183 20 14C20 9 16 5 12 2Z"/>
+              </svg>
+            </span>
+            <span class="pdp-sales-banner__text">
+              <strong class="pdp-sales-banner__highlight">196 sales in the last 3 hours</strong><span class="pdp-sales-banner__subtext"> – High demand – Selling fast</span>
+            </span>
+          </div>
+          <span class="pdp-sales-banner__arrow" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Block 3: Items Remaining Urgency -->
+      <div class="pdp-items-banner">
+        <div class="pdp-items-banner__card">
+          <div class="pdp-items-banner__content">
+            <span class="pdp-items-banner__icon" aria-hidden="true">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </span>
+            <span class="pdp-items-banner__text">
+              Hurry up! <strong class="pdp-items-banner__highlight">Only few left</strong>
+            </span>
+          </div>
+          <span class="pdp-items-banner__arrow" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sold-out-notice" id="sold-out-msg">
+      Blocks hidden because this product/variant is sold out / coming soon.
+    </div>
+  </div>
+
+  <script>
+    function toggleStock(inStock) {
+      const atc = document.getElementById('atc-btn');
+      const blocks = document.getElementById('pdp-blocks');
+      const notice = document.getElementById('sold-out-msg');
+      const btnInStock = document.getElementById('btn-in-stock');
+      const btnSoldOut = document.getElementById('btn-sold-out');
+
+      if (inStock) {
+        atc.textContent = 'Add to cart';
+        atc.classList.remove('is-sold-out');
+        blocks.style.display = 'flex';
+        notice.style.display = 'none';
+        btnInStock.classList.add('active');
+        btnSoldOut.classList.remove('active');
+      } else {
+        atc.textContent = 'Coming soon';
+        atc.classList.add('is-sold-out');
+        blocks.style.display = 'none';
+        notice.style.display = 'block';
+        btnInStock.classList.remove('active');
+        btnSoldOut.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -22,6 +22,11 @@ class DeferredMedia extends Component {
     // If we're to use deferred media for images, we will need to run this only when it's not an image type media
     document.addEventListener(ThemeEvents.mediaStartedPlaying, this.pauseMedia.bind(this), { signal });
     window.addEventListener(DialogCloseEvent.eventName, this.pauseMedia.bind(this), { signal });
+
+    if (this.hasAttribute('autoplay')) {
+      this.loadContent(false);
+      this.playMedia();
+    }
   }
 
   disconnectedCallback() {

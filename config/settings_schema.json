@@ -2444,5 +2444,134 @@
         "default": 44
       }
     ]
+  },
+  {
+    "name": "Cart Tiered Rewards",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_progress_bar_enable",
+        "label": "Enable rewards progress bar",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_progress_bar_show_empty",
+        "label": "Show when cart is empty",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "cart_progress_bar_fill_color",
+        "label": "Brand / Fill color",
+        "default": "#0C4168"
+      },
+      {
+        "type": "color",
+        "id": "cart_progress_bar_text_color",
+        "label": "Headline text color",
+        "default": "#0C4168"
+      },
+      {
+        "type": "color",
+        "id": "cart_progress_bar_track_color",
+        "label": "Progress track background",
+        "default": "#E2E8F0"
+      },
+      {
+        "type": "header",
+        "content": "Tier 1: Buy 1 (₹200 OFF)"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier1_label",
+        "label": "Tier 1 Label",
+        "default": "BUY 1"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier1_sublabel",
+        "label": "Tier 1 Sublabel / Discount",
+        "default": "₹200 OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier1_code",
+        "label": "Tier 1 Coupon Code",
+        "default": "FIRST200"
+      },
+      {
+        "type": "header",
+        "content": "Tier 2: Buy 2 (+5% OFF)"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier2_label",
+        "label": "Tier 2 Label",
+        "default": "BUY 2"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier2_sublabel",
+        "label": "Tier 2 Sublabel / Discount",
+        "default": "+5% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier2_code",
+        "label": "Tier 2 Coupon Code",
+        "default": "BUY2G5"
+      },
+      {
+        "type": "header",
+        "content": "Tier 3: Buy 3 (+10% OFF)"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier3_label",
+        "label": "Tier 3 Label",
+        "default": "BUY 3"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier3_sublabel",
+        "label": "Tier 3 Sublabel / Discount",
+        "default": "+10% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_tier3_code",
+        "label": "Tier 3 Coupon Code",
+        "default": "BUY3G10"
+      },
+      {
+        "type": "header",
+        "content": "Dynamic Motivational Messages"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_msg_empty",
+        "label": "Message when cart is empty",
+        "default": "ADD 1 PRODUCT TO UNLOCK ₹200 OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_msg_tier1",
+        "label": "Message when 1 product in cart",
+        "default": "BUY 1 MORE PRODUCT TO UNLOCK 5% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_msg_tier2",
+        "label": "Message when 2 products in cart",
+        "default": "BUY 1 MORE PRODUCT TO UNLOCK 10% OFF"
+      },
+      {
+        "type": "text",
+        "id": "cart_progress_bar_completed_msg",
+        "label": "Celebration message (3+ items)",
+        "default": "🎉 MAXIMUM DISCOUNT UNLOCKED: 10% OFF!"
+      }
+    ]
   }
 ]

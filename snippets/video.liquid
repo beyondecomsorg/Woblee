@@ -128,7 +128,7 @@
     {% endif %}
     {{ additional_attributes }}
   >
-    {% if video_preview_image != blank %}
+    {% if video_preview_image != blank and video_autoplay != true %}
       <button
         class="button deferred-media__poster-button button-unstyled"
         ref="deferredMediaPlayButton"

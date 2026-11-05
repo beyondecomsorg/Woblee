@@ -1,3800 +1,1900 @@
-{% comment %}
-
-  Hero Slideshow Section
-
-  Premium full-width banner with Splide slider, 3 CTA buttons, full customizer control
-
-  ✅ Desktop + Mobile separate images
-
-  ✅ Video background support (MP4/WebM) with optional poster
-
-{% endcomment %}
-
-
-
-{% assign s = section.settings %}
-
-{% assign first_block = section.blocks.first %}
-
-{% assign desktop_aspect = 2.4 %}
-
-{% assign mobile_aspect = 1.0 %}
-
-
-
-{% if first_block and first_block.settings.image != blank %}
-
-  {% assign desktop_aspect = first_block.settings.image.aspect_ratio %}
-
-{% elsif first_block and first_block.settings.video != blank %}
-
-  {% assign desktop_aspect = first_block.settings.video.aspect_ratio %}
-
-{% endif %}
-
-
-
-{% if first_block and first_block.settings.mobile_image != blank %}
-
-  {% assign mobile_aspect = first_block.settings.mobile_image.aspect_ratio %}
-
-{% elsif first_block and first_block.settings.mobile_video != blank %}
-
-  {% assign mobile_aspect = first_block.settings.mobile_video.aspect_ratio %}
-
-{% elsif first_block and first_block.settings.image != blank %}
-
-  {% assign mobile_aspect = first_block.settings.image.aspect_ratio %}
-
-{% elsif first_block and first_block.settings.video != blank %}
-
-  {% assign mobile_aspect = first_block.settings.video.aspect_ratio %}
-
-{% endif %}
-
-
-
-<link rel="stylesheet" href="{{ 'splide.min.css' | asset_url }}">
-
-
-
-<style>
-
-#shopify-section-{{ section.id }} {
-
-  --font-heading: Helvetica, Arial, sans-serif;
-
-  --font-body: Aptos, Arial, Helvetica, sans-serif;
-
-
-
-  --brand-blue: #0C4168;
-
-  --brand-lime: #ffffffff;
-
-  --brand-white: #FFFFFF;
-
-  --brand-grey: #626261;
-
-  --brand-burgundy: #851828;
-
-
-
-  --btn-bg: var(--brand-lime);
-
-  --btn-text: var(--brand-blue);
-
-  --btn-border: var(--brand-lime);
-
-  --btn-hover-bg: var(--brand-blue);
-
-  --btn-hover-text: var(--brand-lime);
-
-
-
-  --heading-color: var(--brand-white);
-
-  --subtext-color: var(--brand-white);
-
-
-
-  {% case s.desktop_height_mode %}
-
-    {% when 'adapt' %}
-
-      --section-height-desktop: auto;
-
-      --section-aspect-desktop: {{ desktop_aspect }};
-
-    {% when 'full' %}
-
-      --section-height-desktop: 100vh;
-
-    {% else %}
-
-      --section-height-desktop: {{ s.desktop_height | default: 650 }}px;
-
-  {% endcase %}
-
-
-
-  {% case s.mobile_height_mode %}
-
-    {% when 'adapt' %}
-
-      --section-height-mobile: auto;
-
-      --section-aspect-mobile: {{ mobile_aspect }};
-
-    {% else %}
-
-      --section-height-mobile: {{ s.mobile_height | default: 480 }}px;
-
-  {% endcase %}
-
-}
-
-
-
-/* Pre-mount state: show slide 1 immediately at 100% width before Splide JS mounts */
-
-.hs-section .splide:not(.is-active) .splide__track {
-
-  overflow: hidden;
-
-}
-
-.hs-section .splide:not(.is-active) .splide__list {
-
-  display: flex;
-
-}
-
-.hs-section .splide:not(.is-active) .splide__slide:first-child {
-
-  width: 100% !important;
-
-  flex: 0 0 100% !important;
-
-  display: block !important;
-
-}
-
-.hs-section .splide:not(.is-active) .splide__slide:not(:first-child) {
-
-  display: none !important;
-
-}
-
-.hs-section .splide__arrow {
-
-  width: 56px;
-
-  height: 56px;
-
-  border-radius: 50%;
-
-  color: #000;
-
-  opacity: 1;
-
-  background: transparent;
-
-  transition: all 0.3s ease;
-
-}
-
-
-
-.hs-section .splide__arrow svg {
-
-  width: 18px;
-
-  height: 18px;
-
-  fill: #000;
-
-  transition: all 0.3s ease;
-
-}
-
-
-
-.hs-section .splide__arrow:hover {
-
-  {% comment %} background: #0C4168;
-
-  border-color: #0C4168;
-
-  box-shadow: 0 8px 25px rgba(12, 65, 104, 0.35); {% endcomment %}
-
-}
-
-
-
-.hs-section .splide__arrow:hover svg {
-
-  fill: #fff;
-
-}
-
-
-
-.hs-section .splide__arrow:focus-visible {
-
-  outline: none;
-
-  box-shadow:
-
-    0 0 0 4px rgba(12, 65, 104, 0.15),
-
-    0 8px 25px rgba(12, 65, 104, 0.35);
-
-}
-
-{% comment %} .hs-section .splide__arrow {
-
-  animation: arrowPulse 3s infinite;
-
-} {% endcomment %}
-
-
-
-@keyframes arrowPulse {
-
-  0% {
-
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-
-  }
-
-  50% {
-
-    box-shadow: 0 4px 28px rgba(12,65,104,0.20);
-
-  }
-
-  100% {
-
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-
-  }
-
-}
-
-
-
-.hs-section {
-
-  position: relative;
-
-  width: 100%;
-
-  font-family: var(--font-body);
-
-  overflow: hidden;
-
-  background: var(--brand-blue);
-
-}
-
-
-
-.hs-section .splide__track {
-
-  overflow: hidden;
-
-}
-
-
-
-.hs-slide {
-
-  position: relative;
-
-  width: 100%;
-
-  height: var(--section-height-desktop);
-
-  {% if s.desktop_height_mode == 'adapt' %}
-
-    aspect-ratio: var(--section-aspect-desktop);
-
-    height: auto;
-
-  {% endif %}
-
-  overflow: hidden;
-
-  background: var(--brand-blue);
-
-}
-
-
-
-.hs-slide__bg,
-
-.hs-slide__video {
-
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: {{ s.image_fit | default: 'cover' }};
-
-  display: block;
-
-}
-
-
-
-.hs-slide__bg {
-
-  object-position: center center;
-
-}
-
-
-
-.hs-slide__bg--desktop {
-
-  display: block;
-
-}
-
-
-
-.hs-slide__bg--mobile {
-
-  display: none;
-
-}
-
-
-
-.hs-slide__video-wrap {
-
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  overflow: hidden;
-
-}
-
-
-
-.hs-slide__video-wrap--desktop {
-
-  display: block;
-
-}
-
-
-
-.hs-slide__video-wrap--mobile {
-
-  display: none;
-
-}
-
-
-
-.hs-slide__video {
-
-  object-position: center center;
-
-}
-
-
-
-.hs-slide__overlay {
-
-  position: absolute;
-
-  inset: 0;
-
-  {% comment %} background: linear-gradient(
-
-    90deg,
-
-    rgba(12, 65, 104, 0.92) 0%,
-
-    rgba(12, 65, 104, 0.72) 40%,
-
-    rgba(12, 65, 104, 0.35) 70%,
-
-    rgba(12, 65, 104, 0.12) 100%
-
-  ); {% endcomment %}
-
-  pointer-events: none;
-
-  z-index: 1;
-
-}
-
-
-
-.hs-slide--has-link {
-
-  cursor: pointer;
-
-}
-
-
-
-.hs-slide__link-mask {
-
-  position: absolute;
-
-  inset: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  z-index: 2;
-
-  display: block;
-
-  cursor: pointer;
-
-  text-decoration: none;
-
-  -webkit-tap-highlight-color: transparent;
-
-}
-
-
-
-.hs-slide__caption {
-
-  position: absolute;
-
-  z-index: 2;
-
-  max-width: 68%;
-
-  padding: 24px 32px;
-
-  color: var(--brand-white);
-
-}
-
-
-
-.hs-slide--has-link .hs-slide__caption {
-
-  pointer-events: none;
-
-  z-index: 3;
-
-}
-
-
-
-.hs-slide--has-link .hs-slide__buttons,
-
-.hs-slide--has-link .hs-btn {
-
-  pointer-events: auto;
-
-  position: relative;
-
-  z-index: 4;
-
-}
-
-
-
-.hs-slide__caption--top_left {
-
-  top: {{ s.content_offset_v | default: 8 }}%;
-
-  left: {{ s.content_offset_h | default: 4 }}%;
-
-  bottom: auto;
-
-  right: auto;
-
-  transform: none;
-
-}
-
-
-
-.hs-slide__caption--top_center {
-
-  top: {{ s.content_offset_v | default: 8 }}%;
-
-  left: 50%;
-
-  bottom: auto;
-
-  right: auto;
-
-  transform: translateX(-50%);
-
-  text-align: center;
-
-}
-
-
-
-.hs-slide__caption--top_right {
-
-  top: {{ s.content_offset_v | default: 8 }}%;
-
-  right: {{ s.content_offset_h | default: 4 }}%;
-
-  bottom: auto;
-
-  left: auto;
-
-  transform: none;
-
-  text-align: right;
-
-}
-
-
-
-.hs-slide__caption--middle_left {
-
-  top: 50%;
-
-  left: {{ s.content_offset_h | default: 4 }}%;
-
-  bottom: auto;
-
-  right: auto;
-
-  transform: translateY(-50%);
-
-}
-
-
-
-.hs-slide__caption--middle_center {
-
-  top: 50%;
-
-  left: 50%;
-
-  bottom: auto;
-
-  right: auto;
-
-  transform: translate(-50%, -50%);
-
-  text-align: center;
-
-}
-
-
-
-.hs-slide__caption--middle_right {
-
-  top: 50%;
-
-  right: {{ s.content_offset_h | default: 4 }}%;
-
-  bottom: auto;
-
-  left: auto;
-
-  transform: translateY(-50%);
-
-  text-align: right;
-
-}
-
-
-
-.hs-slide__caption--bottom_left {
-
-  bottom: {{ s.content_offset_v | default: 8 }}%;
-
-  left: {{ s.content_offset_h | default: 4 }}%;
-
-  top: auto;
-
-  right: auto;
-
-  transform: none;
-
-}
-
-
-
-.hs-slide__caption--bottom_center {
-
-  bottom: {{ s.content_offset_v | default: 8 }}%;
-
-  left: 50%;
-
-  top: auto;
-
-  right: auto;
-
-  transform: translateX(-50%);
-
-  text-align: center;
-
-}
-
-
-
-.hs-slide__caption--bottom_right {
-
-  bottom: {{ s.content_offset_v | default: 8 }}%;
-
-  right: {{ s.content_offset_h | default: 4 }}%;
-
-  top: auto;
-
-  left: auto;
-
-  transform: none;
-
-  text-align: right;
-
-}
-
-
-
-.hs-slide__eyebrow {
-
-  font-family: var(--font-body);
-
-  font-size: 12px;
-
-  line-height: 1.2;
-
-  letter-spacing: 1px;
-
-  text-transform: uppercase;
-
-  color: var(--brand-lime);
-
-  margin: 0 0 16px;
-
-  font-weight: 700;
-
-}
-
-
-
-.hs-slide__heading {
-
-  font-family: Helvetica, Arial, sans-serif;
-
-  font-weight: 700;
-
-  line-height: 22px;
-
-  letter-spacing: 1px;
-
-  text-align: left;
-
-  text-transform: uppercase;
-
-  color: var(--brand-white);
-
-  margin: 0 0 16px;
-
-}
-
-
-
-.hs-slide__subtext {
-
-  font-family: Helvetica, Arial, sans-serif;
-
-  line-height: 22px;
-
-  color: var(--brand-white);
-
-  margin: 0 0 16px;
-
-  font-weight: 500;
-
-  max-width: 560px;
-
-  opacity: 0.94;
-
-}
-
-
-
-.hs-slide__buttons {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: {{ s.button_gap | default: 16 }}px;
-
-  z-index: 3;
-
-  box-sizing: border-box;
-
-  margin-top: 24px;
-
-}
-
-
-
-.hs-slide__buttons--left {
-
-  justify-content: flex-start;
-
-}
-
-
-
-.hs-slide__buttons--center {
-
-  justify-content: center;
-
-}
-
-
-
-.hs-slide__buttons--right {
-
-  justify-content: flex-end;
-
-}
-
-
-
-.hs-btn {
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  width: {{ section.settings.button_width_desktop }}px;
-
-  height: {{ section.settings.button_height_desktop }}px;
-
-  min-height: unset;
-
-  padding: 0;
-
-  font-size: {{ section.settings.button_font_size_desktop }}px;
-
-  background: var(--btn-bg);
-
-  color: var(--btn-text);
-
-  font-family: var(--font-heading);
-
-  font-weight: 700;
-
-  letter-spacing: 1px;
-
-  text-transform: uppercase;
-
-  text-decoration: none;
-
-  white-space: nowrap;
-
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
-
-  cursor: pointer;
-
-  text-align: center;
-
-  border-radius: 0;
-
-}
-
-
-
-.hs-btn:hover {
-
-  background: var(--btn-hover-bg);
-
-  color: var(--btn-hover-text);
-
-  transform: translateY(-2px);
-
-}
-
-
-
-
-
-.hs-btn:hover {
-
-  background: var(--btn-hover-bg);
-
-  color: var(--btn-hover-text);
-
-  transform: translateY(-2px);
-
-}
-
-
-
-.hs-section .splide__arrow {
-
-  opacity: 1;
-
-  width: 48px;
-
-  height: 48px;
-
-  z-index: 10;
-
-}
-
-
-
-.hs-section .splide__arrow svg {
-
-  fill: var(--brand-lime);
-
-}
-
-
-
-{% comment %} .hs-section .splide__arrow:hover {
-
-  background: var(--brand-lime);
-
-} {% endcomment %}
-
-
-
-.hs-section .splide__arrow:hover svg {
-
-  fill: var(--brand-blue);
-
-}
-
-
-
-.hs-section .splide__pagination {
-
-  z-index: 10;
-
-}
-
-
-
-.hs-section .splide__pagination__page {
-
-  background: var(--brand-white);
-
-  opacity: 0.45;
-
-  width: 8px;
-
-  height: 8px;
-
-}
-
-
-
-.hs-section .splide__pagination__page.is-active {
-
-  {% comment %} background: var(--brand-lime); {% endcomment %}
-
-  opacity: 1;
-
-  transform: scale(1.3);
-
-}
-
-
-
-@media (max-width: 768px) {
-
-  .hs-slide__caption{
-
-    padding: 0px 0px 10px;
-
-  }
-
-  .hs-slide {
-
-    height: var(--section-height-mobile);
-
-    {% if s.mobile_height_mode == 'adapt' %}
-
-      aspect-ratio: var(--section-aspect-mobile);
-
-      height: auto;
-
-    {% else %}
-
-      aspect-ratio: unset;
-
-    {% endif %}
-
-  }
-
-  .hs-slide__buttons{
-
-  flex-wrap: nowrap; 
-
-  margin-bottom: 1rem;
-
-  justify-content: flex-start !important;
-
-  }
-
-  .hs-btn {
-
-  width: {{ section.settings.button_width_mobile }}px !important;
-
-  height: {{ section.settings.button_height_mobile }}px !important;
-
-  min-height: unset;
-
-  padding: 0;
-
-  font-size: {{ section.settings.button_font_size_mobile }}px;
-
-}
-
-
-
-  .hs-slide__bg--desktop {
-
-    display: none !important;
-
-  }
-
-{% comment %} .hs-btn.mobile-hide{
-
- display: none;
-
-} {% endcomment %}
-
-  .hs-slide__bg--mobile {
-
-    display: block !important;
-
-  }
-
-
-
-  .hs-slide__video-wrap--desktop {
-
-    display: none !important;
-
-  }
-
-  .hs-slide__video-wrap--desktop.hs-slide__video-wrap--fallback-mobile {
-
-    display: block !important;
-
-  }
-
-  .hs-slide__video-wrap--mobile {
-
-    display: block !important;
-
-  }
-
-
-
-  .hs-slide__heading{
-
-  text-align: left;
-
-}
-
-  
-
-  .hs-slide__caption {
-
-    width: 100%;
-
-    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
-
-    padding: 20px 16px;
-
-    bottom: var(--slide-mobile-bottom, 15%) !important;
-
-    left: 50% !important;
-
-    transform: translateX(-50%) !important;
-
-    box-sizing: border-box;
-
-
-
-    {% if s.mobile_caption_below %}
-
-      position: static;
-
-      transform: none !important;
-
-      background: var(--brand-blue);
-
-    {% endif %}
-
-  }
-
-
-
-  .hs-slide--first-slide .hs-slide__caption {
-
-    bottom: var(--slide-mobile-bottom, 16%) !important;
-
-  }
-
-
-
-  /* Second slide: bit bottom (-2%) and left: 46% */
-
-  .hs-slide--second-slide .hs-slide__caption,
-
-  .hs-slide-block--slide_nYR4U9 .hs-slide__caption {
-
-    bottom: var(--slide-mobile-bottom, -2%) !important;
-
-    left: var(--slide-mobile-left, 46%) !important;
-
-    transform: translateX(-50%) !important;
-
-  }
-
-
-
-  /* Third slide: right side */
-
-  .hs-slide--third-slide .hs-slide__caption,
-
-  .hs-slide-block--slide_B6rmj8 .hs-slide__caption,
-
-  .hs-slide--mobile-right .hs-slide__caption {
-
-    left: auto !important;
-
-    right: 4% !important;
-
-    transform: none !important;
-
-    width: auto !important;
-
-    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
-
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    align-items: flex-end !important;
-
-  }
-
-
-
-  .hs-slide__eyebrow {
-
-    font-size: 11px;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 16px;
-
-  }
-
-
-
-  .hs-slide__heading {
-
-    line-height: 30px;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 16px;
-
-  }
-
-
-
-  .hs-slide__subtext {
-
-    line-height: 22px;
-
-    margin-bottom: 16px;
-
-    max-width: 100%;
-
-  }
-
-
-
-  .hs-slide__buttons {
-
-    gap: 12px;
-
-    justify-content: flex-start !important;
-
-  }
-
-
-
-  .hs-slide--third-slide .hs-slide__buttons,
-
-  .hs-slide-block--slide_B6rmj8 .hs-slide__buttons,
-
-  .hs-slide--mobile-right .hs-slide__buttons {
-
-    justify-content: flex-end !important;
-
-  }
-
-
-
-  .hs-slide--third-slide .hs-slide__heading,
-
-  .hs-slide-block--slide_B6rmj8 .hs-slide__heading,
-
-  .hs-slide--mobile-right .hs-slide__heading,
-
-  .hs-slide--third-slide .hs-slide__subtext,
-
-  .hs-slide-block--slide_B6rmj8 .hs-slide__subtext,
-
-  .hs-slide--mobile-right .hs-slide__subtext {
-
-    text-align: right;
-
-  }
-
-
-
-  .hs-slide--mobile-left .hs-slide__caption {
-
-    left: 4% !important;
-
-    right: auto !important;
-
-    transform: none !important;
-
-    width: auto !important;
-
-    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
-
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    align-items: flex-start !important;
-
-  }
-
-
-
-  .hs-slide--mobile-left .hs-slide__buttons {
-
-    justify-content: flex-start !important;
-
-  }
-
-
-
-  .hs-slide--mobile-center .hs-slide__caption {
-
-    left: 50% !important;
-
-    right: auto !important;
-
-    transform: translateX(-50%) !important;
-
-  }
-
-
-
-  .hs-btn {
-
-    width: 100%;
-
-    min-width: 0;
-
-    font-size: 9px;
-
-    min-height: 35px;
-
-    padding: 0px;
-
-  }
-
-
-
-  .hs-section .splide__arrow {
-
-    width: 40px;
-
-    height: 40px;
-
-  }
-
-
-
-  .hs-section .splide__pagination {
-
-    display: flex !important;
-
-    justify-content: center !important;
-
-    left: 0 !important;
-
-    right: 0 !important;
-
-    width: 100% !important;
-
-    opacity: 0 !important;
-
-    margin: 0 auto !important;
-
-  }
-
-}
-
-.hs-slide__heading {
-
-  font-size: {{ section.settings.heading_font_size_desktop }}px;
-
-  font-weight: 700;
-
-}
-
-
-
-.hs-slide__subtext {
-
-  font-size: {{ section.settings.description_font_size }}px;
-
-}
-
-
-
-.hs-btn {
-
-  font-size: {{ section.settings.button_font_size_desktop }}px;
-
-}
-
-
-
-@media (max-width: 768px) {
-
-
-
-  .hs-slide__heading {
-
-    font-size: {{ section.settings.heading_font_size_mobile }}px !important;
-
-  }
-
-
-
-  .hs-slide__subtext {
-
-    font-size: {{ section.settings.description_font_size }}px;
-
-  }
-
-
-
-  .hs-btn {
-
-    font-size: {{ section.settings.button_font_size_mobile }}px;
-
-  }
-
-}
-
-</style>
-
-
-
-<section
-
-  class="hs-section"
-
-  id="hs-{{ section.id }}"
-
-  data-section-id="{{ section.id }}"
-
-  data-section-type="hero-slideshow"
-
->
-
-  <div
-
-    class="splide"
-
-    data-hs-splide
-
-    data-autoplay="{{ s.autoplay }}"
-
-    data-autoplay-speed="{{ s.autoplay_speed }}"
-
-    data-transition="{{ s.transition_type }}"
-
-    data-show-arrows="{{ s.show_arrows }}"
-
-    data-show-dots="{{ s.show_dots }}"
-
-  >
-
-    <div class="splide__track">
-
-      <ul class="splide__list">
-
-        {% assign btn_slide_index = 0 %}
-
-        {% for block in section.blocks %}
-
-          {% assign b = block.settings %}
-
-
-
-          {%- comment -%}
-
-            Determine media type priority:
-
-            1. Video (if video_url_mp4 or video_url_webm is set)
-
-            2. Image (desktop + optional mobile)
-
-          {%- endcomment -%}
-
-
-
-          {% assign has_desktop_video = false %}
-
-          {% if b.video != blank or b.video_url_mp4 != blank or b.video_url_webm != blank %}
-
-            {% assign has_desktop_video = true %}
-
-          {% endif %}
-
-
-
-          {% assign has_mobile_video = false %}
-
-          {% if b.mobile_video != blank or b.mobile_video_url_mp4 != blank or b.mobile_video_url_webm != blank %}
-
-            {% assign has_mobile_video = true %}
-
-          {% endif %}
-
-
-
-          {% assign fallback_desktop_video_on_mobile = false %}
-
-          {% if has_desktop_video and has_mobile_video == false and b.mobile_image == blank %}
-
-            {% assign fallback_desktop_video_on_mobile = true %}
-
-          {% endif %}
-
-
-
-          {% assign slide_link = b.slide_link %}
-
-          {% if slide_link == blank and b.btn1_label == blank and b.btn1_link != blank %}
-
-            {% assign slide_link = b.btn1_link %}
-
-          {% elsif slide_link == blank and b.btn1_label == blank and b.btn2_label == blank and b.btn2_link != blank %}
-
-            {% assign slide_link = b.btn2_link %}
-
-          {% endif %}
-
-
-
-          {% assign has_btn = false %}
-
-          {% if b.btn1_label != blank or b.btn2_label != blank or b.btn3_label != blank %}
-
-            {% assign has_btn = true %}
-
-            {% assign btn_slide_index = btn_slide_index | plus: 1 %}
-
-          {% endif %}
-
-
-
-          {% assign is_first_slide = false %}
-
-          {% assign is_second_slide = false %}
-
-          {% assign is_third_slide = false %}
-
-
-
-          {% if forloop.first or btn_slide_index == 1 and forloop.index <= 2 %}
-
-            {% assign is_first_slide = true %}
-
-          {% endif %}
-
-
-
-          {% if btn_slide_index == 2 or b.mobile_image contains 'nab_women' or b.image contains '2_' %}
-
-            {% assign is_second_slide = true %}
-
-          {% endif %}
-
-
-
-          {% if btn_slide_index == 3 or b.mobile_image contains 'whites' or b.image contains '3_' or b.mobile_button_position_h == 'right' %}
-
-            {% assign is_third_slide = true %}
-
-          {% endif %}
-
-
-
-          <li
-
-            class="splide__slide hs-slide--slide-{{ forloop.index }} hs-slide-block--{{ block.id }}{% if is_first_slide %} hs-slide--first-slide{% endif %}{% if is_second_slide %} hs-slide--second-slide{% endif %}{% if is_third_slide %} hs-slide--third-slide{% endif %}{% if b.mobile_button_position_h != blank and b.mobile_button_position_h != 'default' %} hs-slide--mobile-{{ b.mobile_button_position_h }}{% endif %}"
-
-            {{ block.shopify_attributes }}
-
-          >
-
-            <div class="hs-slide{% if slide_link != blank %} hs-slide--has-link{% endif %}">
-
-              {% if slide_link != blank %}
-
-                <a
-
-                  href="{{ slide_link }}"
-
-                  class="hs-slide__link-mask"
-
-                  aria-label="{{ b.heading | default: b.eyebrow | default: b.image.alt | default: 'Slide link' | escape }}"
-
-                  {% if b.slide_link_new_tab %}target="_blank" rel="noopener"{% endif %}
-
-                ></a>
-
-              {% endif %}
-
-
-
-              {%- comment -%} ── 1. DESKTOP MEDIA (Video or Image) ── {%- endcomment -%}
-
-              {% if has_desktop_video %}
-
-                {% assign d_poster = '' %}
-
-                {% if b.video_poster != blank %}
-
-                  {% assign d_poster = b.video_poster | image_url: width: 2400 %}
-
-                {% elsif b.image != blank %}
-
-                  {% assign d_poster = b.image | image_url: width: 2400 %}
-
-                {% endif %}
-
-
-
-                <div class="hs-slide__video-wrap hs-slide__video-wrap--desktop{% if fallback_desktop_video_on_mobile %} hs-slide__video-wrap--fallback-mobile{% endif %}">
-
-                  {% if b.video != blank %}
-
-                    {% if d_poster != blank %}
-
-                      {{ b.video | video_tag: image_size: '2048x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--desktop', poster: d_poster }}
-
-                    {% else %}
-
-                      {{ b.video | video_tag: image_size: '2048x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--desktop' }}
-
-                    {% endif %}
-
-                  {% else %}
-
-                    <video
-
-                      class="hs-slide__video hs-slide__video--desktop"
-
-                      autoplay
-
-                      muted
-
-                      loop
-
-                      playsinline
-
-                      {% if d_poster != blank %}poster="{{ d_poster }}"{% endif %}
-
-                    >
-
-                      {% if b.video_url_mp4 != blank %}
-
-                        <source src="{{ b.video_url_mp4 }}" type="video/mp4">
-
-                      {% endif %}
-
-                      {% if b.video_url_webm != blank %}
-
-                        <source src="{{ b.video_url_webm }}" type="video/webm">
-
-                      {% endif %}
-
-                    </video>
-
-                  {% endif %}
-
-                </div>
-
-              {% else %}
-
-                {% assign focal_d = b.image_focal_point | default: 'center center' %}
-
-                {% assign img_fit = s.image_fit | default: 'cover' %}
-
-                {% if forloop.first %}
-
-                  {% assign load_mode = 'eager' %}
-
-                  {% assign fetch_priority = 'high' %}
-
-                {% else %}
-
-                  {% assign load_mode = 'lazy' %}
-
-                  {% assign fetch_priority = 'low' %}
-
-                {% endif %}
-
-
-
-                {% if b.image != blank %}
-
-                  {{ b.image | image_url: width: 2000 | image_tag:
-
-                    class: 'hs-slide__bg hs-slide__bg--desktop',
-
-                    loading: load_mode,
-
-                    fetchpriority: fetch_priority,
-
-                    preload: forloop.first,
-
-                    widths: '800,1200,1600,2000',
-
-                    sizes: '100vw',
-
-                    alt: b.image.alt,
-
-                    style: 'object-position: ' | append: focal_d | append: '; object-fit: ' | append: img_fit
-
-                  }}
-
-                {% elsif has_mobile_video == false %}
-
-                  {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide__bg hs-slide__bg--desktop placeholder-svg' }}
-
-                {% endif %}
-
-              {% endif %}
-
-
-
-              {%- comment -%} ── 2. MOBILE MEDIA (Video or Image) ── {%- endcomment -%}
-
-              {% if has_mobile_video %}
-
-                {% assign m_poster = '' %}
-
-                {% if b.mobile_video_poster != blank %}
-
-                  {% assign m_poster = b.mobile_video_poster | image_url: width: 1200 %}
-
-                {% elsif b.mobile_image != blank %}
-
-                  {% assign m_poster = b.mobile_image | image_url: width: 1200 %}
-
-                {% elsif b.video_poster != blank %}
-
-                  {% assign m_poster = b.video_poster | image_url: width: 1200 %}
-
-                {% elsif b.image != blank %}
-
-                  {% assign m_poster = b.image | image_url: width: 1200 %}
-
-                {% endif %}
-
-
-
-                <div class="hs-slide__video-wrap hs-slide__video-wrap--mobile">
-
-                  {% if b.mobile_video != blank %}
-
-                    {% if m_poster != blank %}
-
-                      {{ b.mobile_video | video_tag: image_size: '1200x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--mobile', poster: m_poster }}
-
-                    {% else %}
-
-                      {{ b.mobile_video | video_tag: image_size: '1200x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--mobile' }}
-
-                    {% endif %}
-
-                  {% else %}
-
-                    <video
-
-                      class="hs-slide__video hs-slide__video--mobile"
-
-                      autoplay
-
-                      muted
-
-                      loop
-
-                      playsinline
-
-                      {% if m_poster != blank %}poster="{{ m_poster }}"{% endif %}
-
-                    >
-
-                      {% if b.mobile_video_url_mp4 != blank %}
-
-                        <source src="{{ b.mobile_video_url_mp4 }}" type="video/mp4">
-
-                      {% endif %}
-
-                      {% if b.mobile_video_url_webm != blank %}
-
-                        <source src="{{ b.mobile_video_url_webm }}" type="video/webm">
-
-                      {% endif %}
-
-                    </video>
-
-                  {% endif %}
-
-                </div>
-
-              {% elsif fallback_desktop_video_on_mobile == false %}
-
-                {% assign focal_m = b.mobile_image_focal_point | default: focal_d | default: 'center center' %}
-
-                {% assign img_fit = s.image_fit | default: 'cover' %}
-
-                {% if forloop.first %}
-
-                  {% assign load_mode = 'eager' %}
-
-                  {% assign fetch_priority = 'high' %}
-
-                {% else %}
-
-                  {% assign load_mode = 'lazy' %}
-
-                  {% assign fetch_priority = 'low' %}
-
-                {% endif %}
-
-
-
-                {% if b.mobile_image != blank %}
-
-                  {{ b.mobile_image | image_url: width: 1000 | image_tag:
-
-                    class: 'hs-slide__bg hs-slide__bg--mobile',
-
-                    loading: load_mode,
-
-                    fetchpriority: fetch_priority,
-
-                    preload: forloop.first,
-
-                    widths: '400,600,800,1000',
-
-                    sizes: '100vw',
-
-                    alt: b.mobile_image.alt,
-
-                    style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
-
-                  }}
-
-                {% elsif b.image != blank and has_desktop_video == false %}
-
-                  {{ b.image | image_url: width: 1000 | image_tag:
-
-                    class: 'hs-slide__bg hs-slide__bg--mobile',
-
-                    loading: load_mode,
-
-                    fetchpriority: fetch_priority,
-
-                    preload: forloop.first,
-
-                    widths: '400,600,800,1000',
-
-                    sizes: '100vw',
-
-                    alt: b.image.alt,
-
-                    style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
-
-                  }}
-
-                {% elsif has_desktop_video == false %}
-
-                  {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide__bg hs-slide__bg--mobile placeholder-svg' }}
-
-                {% endif %}
-
-              {% endif %}
-
-
-
-              {% comment %} Overlay {% endcomment %}
-
-              <div class="hs-slide__overlay"></div>
-
-
-
-              {% comment %} Caption {% endcomment %}
-
-              {% unless b.hide_content %}
-
-                {% assign block_caption_pos = b.caption_position | default: b.button_position | default: s.caption_position | default: 'bottom_left' %}
-
-                {% assign block_btn_align = b.button_align | default: s.button_align | default: 'left' %}
-
-                <div
-
-                  class="hs-slide__caption hs-slide__caption--{{ block_caption_pos }}"
-
-                  {% if b.mobile_caption_bottom != blank and b.mobile_caption_bottom != 0 %}
-
-                    style="--slide-mobile-bottom: {{ b.mobile_caption_bottom }}%;{% if b.mobile_caption_left != blank and b.mobile_caption_left != 50 %}--slide-mobile-left: {{ b.mobile_caption_left }}%;{% elsif is_second_slide %}--slide-mobile-left: 46%;{% endif %}"
-
-                  {% elsif is_second_slide %}
-
-                    style="--slide-mobile-bottom: -2%; --slide-mobile-left: 46%;"
-
-                  {% elsif is_first_slide %}
-
-                    style="--slide-mobile-bottom: 16%;"
-
-                  {% endif %}
-
-                >
-
-
-
-                  {% unless b.hide_text_overlay %}
-
-                    {% if b.eyebrow != blank %}
-
-                      <p class="hs-slide__eyebrow">{{ b.eyebrow }}</p>
-
-                    {% endif %}
-
-
-
-                    {% if b.heading != blank %}
-
-                      <h2 class="hs-slide__heading">{{ b.heading }}</h2>
-
-                    {% endif %}
-
-
-
-                    {% if b.subtext != blank %}
-
-                      <p class="hs-slide__subtext">{{ b.subtext }}</p>
-
-                    {% endif %}
-
-                  {% endunless %}
-
-
-
-                  {% comment %} 3 CTA buttons {% endcomment %}
-
-                  {% assign has_btn = false %}
-
-                  {% if b.btn1_label != blank %}{% assign has_btn = true %}{% endif %}
-
-                  {% if b.btn2_label != blank %}{% assign has_btn = true %}{% endif %}
-
-                  {% if b.btn3_label != blank %}{% assign has_btn = true %}{% endif %}
-
-
-
-                  {% if has_btn %}
-
-                    <div class="hs-slide__buttons hs-slide__buttons--{{ block_btn_align }}">
-
-
-
-                      {% if b.btn1_label != blank %}
-
-                        <a
-
-                          href="{{ b.btn1_link | default: '#' }}"
-
-                          class="hs-btn"
-
-                          {% if b.btn1_new_tab %}target="_blank" rel="noopener"{% endif %}
-
-                          style="
-
-                            {% if b.btn1_custom_bg != blank %}background:{{ b.btn1_custom_bg }};border-color:{{ b.btn1_custom_bg }};{% endif %}
-
-                            {% if b.btn1_custom_text != blank %}color:{{ b.btn1_custom_text }};{% endif %}
-
-                          "
-
-                        >{{ b.btn1_label }}</a>
-
-                      {% endif %}
-
-
-
-                      {% if b.btn2_label != blank %}
-
-                        <a
-
-                          href="{{ b.btn2_link | default: '#' }}"
-
-                          class="hs-btn"
-
-                          {% if b.btn2_new_tab %}target="_blank" rel="noopener"{% endif %}
-
-                          style="
-
-                            {% if b.btn2_custom_bg != blank %}background:{{ b.btn2_custom_bg }};border-color:{{ b.btn2_custom_bg }};{% endif %}
-
-                            {% if b.btn2_custom_text != blank %}color:{{ b.btn2_custom_text }};{% endif %}
-
-                          "
-
-                        >{{ b.btn2_label }}</a>
-
-                      {% endif %}
-
-
-
-                      {% if b.btn3_label != blank %}
-
-                        <a
-
-                          href="{{ b.btn3_link | default: '#' }}"
-
-                          class="hs-btn mobile-hide"
-
-                          {% if b.btn3_new_tab %}target="_blank" rel="noopener"{% endif %}
-
-                          style="
-
-                            {% if b.btn3_custom_bg != blank %}background:{{ b.btn3_custom_bg }};border-color:{{ b.btn3_custom_bg }};{% endif %}
-
-                            {% if b.btn3_custom_text != blank %}color:{{ b.btn3_custom_text }};{% endif %}
-
-                          "
-
-                        >{{ b.btn3_label }}</a>
-
-                      {% endif %}
-
-
-
-                    </div>
-
-                  {% endif %}
-
-                </div>
-
-              {% endunless %}
-
-
-
-            </div>
-
-          </li>
-
-        {% endfor %}
-
-      </ul>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-
-<script src="{{ 'splide.min.js' | asset_url }}" defer></script>
-
-
-
-<script>
-
-(function() {
-
-  function tryInit() {
-
-    var el = document.querySelector('#hs-{{ section.id }} [data-hs-splide]');
-
-    if (!el) return false;
-
-    if (el.classList.contains('is-active') || el.classList.contains('is-initialized')) return true;
-
-    if (typeof Splide === 'undefined') return false;
-
-
-
-    var autoplay   = el.dataset.autoplay === 'true';
-
-    var speed      = parseInt(el.dataset.autoplaySpeed) || 5000;
-
-    var transition = el.dataset.transition || 'slide';
-
-    var arrows     = el.dataset.showArrows === 'true';
-
-    var dots       = el.dataset.showDots === 'true';
-
-
-
-    var splide = new Splide(el, {
-
-      type        : transition === 'fade' ? 'fade' : 'loop',
-
-      rewind      : true,
-
-      perPage     : 1,
-
-      autoplay    : autoplay,
-
-      interval    : speed,
-
-      pauseOnHover: true,
-
-      speed       : {{ s.transition_speed | default: 700 }},
-
-      arrows      : arrows,
-
-      pagination  : dots,
-
-      drag        : true,
-
-    });
-
-
-
-    function playSlideVideo(slideEl) {
-
-      if (!slideEl) return false;
-
-      var videos = slideEl.querySelectorAll('video');
-
-      var hasPlayingVideo = false;
-
-      videos.forEach(function(video) {
-
-        var style = window.getComputedStyle(video);
-
-        if (style.display !== 'none' && (video.offsetParent !== null || style.visibility !== 'hidden')) {
-
-          video.muted = true;
-
-          video.playsInline = true;
-
-          video.play().catch(function(){});
-
-          hasPlayingVideo = true;
-
-        } else {
-
-          video.pause();
-
-        }
-
-      });
-
-      return hasPlayingVideo;
-
-    }
-
-
-
-    function pauseSlideVideo(slideEl) {
-
-      if (!slideEl) return;
-
-      var videos = slideEl.querySelectorAll('video');
-
-      videos.forEach(function(video) {
-
-        video.pause();
-
-        video.currentTime = 0;
-
-      });
-
-    }
-
-
-
-    splide.mount();
-
-
-
-    var currentSlide = el.querySelector('.splide__slide.is-active') || el.querySelector('.splide__slide:first-child');
-
-    playSlideVideo(currentSlide);
-
-
-
-    // Pause/resume autoplay when a video slide is active
-
-    splide.on('active', function(slide) {
-
-      var isPlaying = playSlideVideo(slide.slide);
-
-      if (isPlaying && autoplay && {{ s.video_pause_autoplay | default: false }}) {
-
-        if (splide.Components && splide.Components.Autoplay) {
-
-          splide.Components.Autoplay.pause();
-
-        }
-
-      }
-
-    });
-
-
-
-    splide.on('inactive', function(slide) {
-
-      pauseSlideVideo(slide.slide);
-
-    });
-
-
-
-    window.addEventListener('resize', function() {
-
-      var activeSlide = el.querySelector('.splide__slide.is-active');
-
-      if (activeSlide) {
-
-        playSlideVideo(activeSlide);
-
-      }
-
-    });
-
-
-
-    return true;
-
-  }
-
-
-
-  // Attempt mount immediately, then poll every 30ms until Splide script has loaded
-
-  if (!tryInit()) {
-
-    var attempts = 0;
-
-    var timer = setInterval(function() {
-
-      attempts++;
-
-      if (tryInit() || attempts > 200) {
-
-        clearInterval(timer);
-
-      }
-
-    }, 30);
-
-  }
-
-})();
-
-</script>
-
-
-
-{% schema %}
-
-{
-
-  "name": "Hero Slideshow Custom",
-
-  "tag": "section",
-
-  "class": "hs-section-wrapper",
-
-  "settings": [
-
-
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Banner Height & Fitting  ━━"
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "desktop_height_mode",
-
-      "label": "Desktop Height Mode",
-
-      "options": [
-
-        { "value": "adapt",  "label": "Adapt to First Image (Aspect Ratio)" },
-
-        { "value": "custom", "label": "Custom Fixed Height" },
-
-        { "value": "full",   "label": "Full Screen (100vh)" }
-
-      ],
-
-      "default": "custom"
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "desktop_height",
-
-      "label": "Desktop Height (px)",
-
-      "min": 350,
-
-      "max": 950,
-
-      "step": 10,
-
-      "default": 650
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "mobile_height_mode",
-
-      "label": "Mobile Height Mode",
-
-      "options": [
-
-        { "value": "adapt",  "label": "Adapt to First Mobile Image" },
-
-        { "value": "custom", "label": "Custom Fixed Height" }
-
-      ],
-
-      "default": "custom"
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "mobile_height",
-
-      "label": "Mobile Height (px)",
-
-      "min": 250,
-
-      "max": 800,
-
-      "step": 10,
-
-      "default": 480
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "image_fit",
-
-      "label": "Image Object Fit",
-
-      "options": [
-
-        { "value": "cover",   "label": "Cover (fill container, crop excess)" },
-
-        { "value": "contain", "label": "Contain (fit full image, no crop)" },
-
-        { "value": "fill",    "label": "Fill (stretch to exact dimensions)" }
-
-      ],
-
-      "default": "cover"
-
-    },
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Slideshow Behaviour  ━━"
-
-    },
-
-    {
-
-      "type": "checkbox",
-
-      "id": "autoplay",
-
-      "label": "Auto-play slides",
-
-      "default": true
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "autoplay_speed",
-
-      "label": "Auto-play speed (ms)",
-
-      "min": 2000,
-
-      "max": 9000,
-
-      "step": 500,
-
-      "default": 5000
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "transition_type",
-
-      "label": "Transition style",
-
-      "options": [
-
-        { "value": "slide", "label": "Slide" },
-
-        { "value": "fade",  "label": "Fade"  }
-
-      ],
-
-      "default": "slide"
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "transition_speed",
-
-      "label": "Transition duration (ms)",
-
-      "min": 300,
-
-      "max": 1500,
-
-      "step": 100,
-
-      "default": 700
-
-    },
-
-    {
-
-      "type": "checkbox",
-
-      "id": "show_arrows",
-
-      "label": "Show navigation arrows",
-
-      "default": true
-
-    },
-
-    {
-
-      "type": "checkbox",
-
-      "id": "show_dots",
-
-      "label": "Show pagination dots",
-
-      "default": true
-
-    },
-
-    {
-
-      "type": "checkbox",
-
-      "id": "video_pause_autoplay",
-
-      "label": "Pause slideshow auto-play on video slides",
-
-      "default": false,
-
-      "info": "When enabled, the slideshow will pause auto-advancing while a video slide is active."
-
-    },
-
-
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Overlay  ━━"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "overlay_color",
-
-      "label": "Overlay colour",
-
-      "default": "#000000"
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "overlay_opacity",
-
-      "label": "Overlay opacity (%)",
-
-      "min": 0,
-
-      "max": 90,
-
-      "step": 5,
-
-      "default": 25
-
-    },
-
-   {
-
-  "type": "header",
-
-  "content": "━━ Typography Settings ━━"
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "heading_font_size_desktop",
-
-  "label": "Heading Font Size Desktop",
-
-  "min": 20,
-
-  "max": 80,
-
-  "step": 2,
-
-  "default": 40
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "heading_font_size_mobile",
-
-  "label": "Heading Font Size Mobile",
-
-  "min": 16,
-
-  "max": 50,
-
-  "step": 2,
-
-  "default": 24
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "description_font_size",
-
-  "label": "Description Font Size",
-
-  "min": 10,
-
-  "max": 24,
-
-  "step": 1,
-
-  "default": 14
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "button_font_size_desktop",
-
-  "label": "Button Font Size Desktop",
-
-  "min": 10,
-
-  "max": 24,
-
-  "step": 1,
-
-  "default": 14
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "button_font_size_mobile",
-
-  "label": "Button Font Size Mobile",
-
-  "min": 8,
-
-  "max": 20,
-
-  "step": 1,
-
-  "default": 10
-
-},
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Content Position  ━━"
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "caption_position",
-
-      "label": "Caption position",
-
-      "options": [
-
-        { "value": "top_left",      "label": "Top left"      },
-
-        { "value": "top_center",    "label": "Top center"    },
-
-        { "value": "top_right",     "label": "Top right"     },
-
-        { "value": "middle_left",   "label": "Middle left"   },
-
-        { "value": "middle_center", "label": "Middle center" },
-
-        { "value": "middle_right",  "label": "Middle right"  },
-
-        { "value": "bottom_left",   "label": "Bottom left"   },
-
-        { "value": "bottom_center", "label": "Bottom center" },
-
-        { "value": "bottom_right",  "label": "Bottom right"  }
-
-      ],
-
-      "default": "bottom_left"
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "content_offset_h",
-
-      "label": "Horizontal offset (% from edge)",
-
-      "min": 0,
-
-      "max": 20,
-
-      "step": 1,
-
-      "default": 4
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "content_offset_v",
-
-      "label": "Vertical offset (% from edge)",
-
-      "min": 0,
-
-      "max": 20,
-
-      "step": 1,
-
-      "default": 8
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "content_max_width",
-
-      "label": "Content max-width (px)",
-
-      "min": 300,
-
-      "max": 900,
-
-      "step": 20,
-
-      "default": 600
-
-    },
-
-    {
-
-      "type": "checkbox",
-
-      "id": "caption_bg_show",
-
-      "label": "Show content background",
-
-      "default": false
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "caption_bg_color",
-
-      "label": "Content background colour",
-
-      "default": "rgba(0,0,0,0.4)"
-
-    },
-
-
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Buttons — Global Style  ━━"
-
-    },
-
-    {
-
-  "type": "range",
-
-  "id": "button_width_desktop",
-
-  "label": "Button width Desktop (px)",
-
-  "min": 80,
-
-  "max": 300,
-
-  "step": 10,
-
-  "default": 150
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "button_height_desktop",
-
-  "label": "Button height Desktop (px)",
-
-  "min": 30,
-
-  "max": 80,
-
-  "step": 2,
-
-  "default": 40
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "button_width_mobile",
-
-  "label": "Button width Mobile (px)",
-
-  "min": 60,
-
-  "max": 200,
-
-  "step": 10,
-
-  "default": 100
-
-},
-
-{
-
-  "type": "range",
-
-  "id": "button_height_mobile",
-
-  "label": "Button height Mobile (px)",
-
-  "min": 30,
-
-  "max": 80,
-
-  "step": 2,
-
-  "default": 40
-
-},
-
-    {
-
-      "type": "select",
-
-      "id": "button_style",
-
-      "label": "Button shape",
-
-      "options": [
-
-        { "value": "sharp",   "label": "Sharp / square" },
-
-        { "value": "rounded", "label": "Rounded"        },
-
-        { "value": "pill",    "label": "Pill"            }
-
-      ],
-
-      "default": "sharp"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "button_bg_color",
-
-      "label": "Button background",
-
-      "default": "#ffffff"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "button_text_color",
-
-      "label": "Button text colour",
-
-      "default": "#1a1a1a"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "button_border_color",
-
-      "label": "Button border colour",
-
-      "default": "#ffffff"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "button_hover_bg",
-
-      "label": "Button hover background",
-
-      "default": "transparent"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "button_hover_text",
-
-      "label": "Button hover text colour",
-
-      "default": "#ffffff"
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "button_font_size",
-
-      "label": "Button font size (px)",
-
-      "min": 10,
-
-      "max": 20,
-
-      "step": 1,
-
-      "default": 12
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "button_padding_v",
-
-      "label": "Button vertical padding (px)",
-
-      "min": 8,
-
-      "max": 32,
-
-      "step": 2,
-
-      "default": 18
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "button_padding_h",
-
-      "label": "Button horizontal padding (px)",
-
-      "min": 16,
-
-      "max": 80,
-
-      "step": 4,
-
-      "default": 40
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "button_border_width",
-
-      "label": "Button border width (px)",
-
-      "min": 0,
-
-      "max": 4,
-
-      "step": 1,
-
-      "default": 1
-
-    },
-
-    {
-
-      "type": "range",
-
-      "id": "button_gap",
-
-      "label": "Gap between buttons (px)",
-
-      "min": 8,
-
-      "max": 40,
-
-      "step": 4,
-
-      "default": 16
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "button_position",
-
-      "label": "Button Position",
-
-      "options": [
-
-        { "value": "top_left",      "label": "Top Left"      },
-
-        { "value": "top_center",    "label": "Top Center"    },
-
-        { "value": "top_right",     "label": "Top Right"     },
-
-        { "value": "middle_left",   "label": "Middle Left"   },
-
-        { "value": "middle_center", "label": "Middle Center" },
-
-        { "value": "middle_right",  "label": "Middle Right"  },
-
-        { "value": "bottom_left",   "label": "Bottom Left"   },
-
-        { "value": "bottom_center", "label": "Bottom Center" },
-
-        { "value": "bottom_right",  "label": "Bottom Right"  }
-
-      ],
-
-      "default": "middle_left"
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "button_align",
-
-      "label": "Button alignment",
-
-      "options": [
-
-        { "value": "left",   "label": "Left"   },
-
-        { "value": "center", "label": "Center" },
-
-        { "value": "right",  "label": "Right"  }
-
-      ],
-
-      "default": "left"
-
-    },
-
-    {
-
-      "type": "select",
-
-      "id": "mobile_button_stack",
-
-      "label": "Mobile buttons layout",
-
-      "options": [
-
-        { "value": "column", "label": "Stack (column)" },
-
-        { "value": "row",    "label": "Side by side (row)" }
-
-      ],
-
-      "default": "column"
-
-    },
-
-
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Navigation Arrows  ━━"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "arrow_bg",
-
-      "label": "Arrow background",
-
-      "default": "rgba(255,255,255,0.15)"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "arrow_hover_bg",
-
-      "label": "Arrow hover background",
-
-      "default": "rgba(255,255,255,0.35)"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "arrow_color",
-
-      "label": "Arrow icon colour",
-
-      "default": "#ffffff"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "dot_color",
-
-      "label": "Pagination dot colour",
-
-      "default": "#ffffff"
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "dot_active_color",
-
-      "label": "Active dot colour",
-
-      "default": "#ffffff"
-
-    },
-
-
-
-    {
-
-      "type": "header",
-
-      "content": "━━  Mobile  ━━"
-
-    },
-
-    {
-
-      "type": "checkbox",
-
-      "id": "mobile_caption_below",
-
-      "label": "Show caption below image on mobile",
-
-      "default": false
-
-    },
-
-    {
-
-      "type": "color",
-
-      "id": "mobile_caption_bg",
-
-      "label": "Mobile caption background",
-
-      "default": "#ffffff"
-
-    }
-
-
-
-  ],
-
-
-
-  "blocks": [
-
-    {
-
-      "type": "slide",
-
-      "name": "Slide",
-
-      "limit": 8,
-
-      "settings": [
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "🖼  Desktop Image"
-
-        },
-
-        {
-
-          "type": "image_picker",
-
-          "id": "image",
-
-          "label": "Desktop image",
-
-          "info": "Recommended: 2400 × 900 px. Also used as video poster fallback."
-
-        },
-
-        {
-
-          "type": "select",
-
-          "id": "image_focal_point",
-
-          "label": "Desktop image focal point",
-
-          "options": [
-
-            { "value": "top left",      "label": "Top left"      },
-
-            { "value": "top center",    "label": "Top center"    },
-
-            { "value": "top right",     "label": "Top right"     },
-
-            { "value": "center left",   "label": "Centre left"   },
-
-            { "value": "center center", "label": "Centre"        },
-
-            { "value": "center right",  "label": "Centre right"  },
-
-            { "value": "bottom left",   "label": "Bottom left"   },
-
-            { "value": "bottom center", "label": "Bottom center" },
-
-            { "value": "bottom right",  "label": "Bottom right"  }
-
-          ],
-
-          "default": "center center"
-
-        },
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "📱  Mobile Image"
-
-        },
-
-        {
-
-          "type": "image_picker",
-
-          "id": "mobile_image",
-
-          "label": "Mobile image",
-
-          "info": "Recommended: 800 × 1000 px (portrait). If left blank, the desktop image is used on mobile too."
-
-        },
-
-        {
-
-          "type": "select",
-
-          "id": "mobile_image_focal_point",
-
-          "label": "Mobile image focal point",
-
-          "options": [
-
-            { "value": "top left",      "label": "Top left"      },
-
-            { "value": "top center",    "label": "Top center"    },
-
-            { "value": "top right",     "label": "Top right"     },
-
-            { "value": "center left",   "label": "Centre left"   },
-
-            { "value": "center center", "label": "Centre"        },
-
-            { "value": "center right",  "label": "Centre right"  },
-
-            { "value": "bottom left",   "label": "Bottom left"   },
-
-            { "value": "bottom center", "label": "Bottom center" },
-
-            { "value": "bottom right",  "label": "Bottom right"  }
-
-          ],
-
-          "default": "center center"
-
-        },
-
-        {
-
-          "type": "header",
-
-          "content": "🔗  Image / Slide Link"
-
-        },
-
-        {
-
-          "type": "url",
-
-          "id": "slide_link",
-
-          "label": "Image / Slide link",
-
-          "info": "Makes the entire banner image clickable. If Button 1 label is left blank and Button 1 link is provided, it will automatically use that link."
-
-        },
-
-        {
-
-          "type": "checkbox",
-
-          "id": "slide_link_new_tab",
-
-          "label": "Open image link in new tab",
-
-          "default": false
-
-        },
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "🎬  Desktop Video"
-
-        },
-
-        {
-
-          "type": "video",
-
-          "id": "video",
-
-          "label": "Desktop video (Shopify hosted)",
-
-          "info": "Select or upload a video directly. Takes priority over desktop image when set."
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "video_url_mp4",
-
-          "label": "Desktop video URL — MP4 (optional file link)",
-
-          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero.mp4"
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "video_url_webm",
-
-          "label": "Desktop video URL — WebM (optional, better compression)",
-
-          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero.webm"
-
-        },
-
-        {
-
-          "type": "image_picker",
-
-          "id": "video_poster",
-
-          "label": "Desktop video poster image",
-
-          "info": "Displayed before video loads. Falls back to Desktop Image if not set."
-
-        },
-
-        {
-
-          "type": "header",
-
-          "content": "📱  Mobile Video"
-
-        },
-
-        {
-
-          "type": "video",
-
-          "id": "mobile_video",
-
-          "label": "Mobile video (Shopify hosted)",
-
-          "info": "Select or upload a mobile/portrait video. Takes priority over mobile image when set."
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "mobile_video_url_mp4",
-
-          "label": "Mobile video URL — MP4 (optional file link)",
-
-          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero-mobile.mp4"
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "mobile_video_url_webm",
-
-          "label": "Mobile video URL — WebM (optional, better compression)",
-
-          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero-mobile.webm"
-
-        },
-
-        {
-
-          "type": "image_picker",
-
-          "id": "mobile_video_poster",
-
-          "label": "Mobile video poster image",
-
-          "info": "Displayed before mobile video loads. Falls back to Mobile Image or Desktop poster if not set."
-
-        },
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "✏️  Content"
-
-        },
-
-        {
-
-          "type": "checkbox",
-
-          "id": "hide_content",
-
-          "label": "Hide all text & buttons",
-
-          "default": false
-
-        },
-
-        {
-
-          "type": "checkbox",
-
-          "id": "hide_text_overlay",
-
-          "label": "Hide heading & description text (keep buttons only)",
-
-          "default": false,
-
-          "info": "Useful when banner images already have text baked into the graphic."
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "eyebrow",
-
-          "label": "Eyebrow / label (small text above heading)",
-
-          "placeholder": "New Collection"
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "heading",
-
-          "label": "Heading",
-
-          "default": "New for Summer",
-
-          "placeholder": "New for Summer"
-
-        },
-
-        {
-
-          "type": "textarea",
-
-          "id": "subtext",
-
-          "label": "Subtext / description",
-
-          "default": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
-
-          "placeholder": "Subtitle text"
-
-        },
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "🔗  Button Settings & Position"
-
-        },
-
-        {
-
-          "type": "select",
-
-          "id": "caption_position",
-
-          "label": "Caption Position",
-
-          "options": [
-
-            { "value": "top_left",      "label": "Top Left"      },
-
-            { "value": "top_center",    "label": "Top Center"    },
-
-            { "value": "top_right",     "label": "Top Right"     },
-
-            { "value": "middle_left",   "label": "Middle Left"   },
-
-            { "value": "middle_center", "label": "Middle Center" },
-
-            { "value": "middle_right",  "label": "Middle Right"  },
-
-            { "value": "bottom_left",   "label": "Bottom Left"   },
-
-            { "value": "bottom_center", "label": "Bottom Center" },
-
-            { "value": "bottom_right",  "label": "Bottom Right"  }
-
-          ],
-
-          "default": "bottom_left"
-
-        },
-
-        {
-
-          "type": "select",
-
-          "id": "button_position",
-
-          "label": "Button Position",
-
-          "options": [
-
-            { "value": "top_left",      "label": "Top Left"      },
-
-            { "value": "top_center",    "label": "Top Center"    },
-
-            { "value": "top_right",     "label": "Top Right"     },
-
-            { "value": "middle_left",   "label": "Middle Left"   },
-
-            { "value": "middle_center", "label": "Middle Center" },
-
-            { "value": "middle_right",  "label": "Middle Right"  },
-
-            { "value": "bottom_left",   "label": "Bottom Left"   },
-
-            { "value": "bottom_center", "label": "Bottom Center" },
-
-            { "value": "bottom_right",  "label": "Bottom Right"  }
-
-          ],
-
-          "default": "middle_left"
-
-        },
-
-        {
-
-          "type": "range",
-
-          "id": "mobile_caption_bottom",
-
-          "label": "Mobile Bottom Position (%)",
-
-          "min": -20,
-
-          "max": 70,
-
-          "step": 1,
-
-          "unit": "%",
-
-          "default": 0,
-
-          "info": "Elevates or lowers the buttons/caption from the bottom on mobile (e.g. -2% for slide 2, 16% for slide 1)."
-
-        },
-
-        {
-
-          "type": "select",
-
-          "id": "mobile_button_position_h",
-
-          "label": "Mobile Horizontal Alignment",
-
-          "options": [
-
-            { "value": "default", "label": "Default" },
-
-            { "value": "center",  "label": "Center" },
-
-            { "value": "left",    "label": "Left" },
-
-            { "value": "right",   "label": "Right" }
-
-          ],
-
-          "default": "default",
-
-          "info": "Align buttons horizontally on mobile (e.g. Right for slide 3)."
-
-        },
-
-        {
-
-          "type": "range",
-
-          "id": "mobile_caption_left",
-
-          "label": "Mobile Left Offset (%)",
-
-          "min": 0,
-
-          "max": 100,
-
-          "step": 1,
-
-          "unit": "%",
-
-          "default": 50,
-
-          "info": "Horizontal offset percentage when centered (default 46% for slide 2)."
-
-        },
-
-        {
-
-          "type": "header",
-
-          "content": "🔗  Button 1"
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "btn1_label",
-
-          "label": "Button 1 label",
-
-          "default": "WOMEN'S NEW ARRIVALS",
-
-          "placeholder": "Button label"
-
-        },
-
-        {
-
-          "type": "url",
-
-          "id": "btn1_link",
-
-          "label": "Button 1 link"
-
-        },
-
-        {
-
-          "type": "checkbox",
-
-          "id": "btn1_new_tab",
-
-          "label": "Open in new tab",
-
-          "default": false
-
-        },
-
-        {
-
-          "type": "color",
-
-          "id": "btn1_custom_bg",
-
-          "label": "Button 1 custom background (overrides global)"
-
-        },
-
-        {
-
-          "type": "color",
-
-          "id": "btn1_custom_text",
-
-          "label": "Button 1 custom text colour (overrides global)"
-
-        },
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "🔗  Button 2"
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "btn2_label",
-
-          "label": "Button 2 label",
-
-          "default": "MEN'S NEW ARRIVALS",
-
-          "placeholder": "Button label"
-
-        },
-
-        {
-
-          "type": "url",
-
-          "id": "btn2_link",
-
-          "label": "Button 2 link"
-
-        },
-
-        {
-
-          "type": "checkbox",
-
-          "id": "btn2_new_tab",
-
-          "label": "Open in new tab",
-
-          "default": false
-
-        },
-
-        {
-
-          "type": "color",
-
-          "id": "btn2_custom_bg",
-
-          "label": "Button 2 custom background"
-
-        },
-
-        {
-
-          "type": "color",
-
-          "id": "btn2_custom_text",
-
-          "label": "Button 2 custom text colour"
-
-        },
-
-
-
-        {
-
-          "type": "header",
-
-          "content": "🔗  Button 3"
-
-        },
-
-        {
-
-          "type": "text",
-
-          "id": "btn3_label",
-
-          "label": "Button 3 label",
-
-          "default": "EXPLORE THE CAMPAIGN",
-
-          "placeholder": "Button label"
-
-        },
-
-        {
-
-          "type": "url",
-
-          "id": "btn3_link",
-
-          "label": "Button 3 link"
-
-        },
-
-        {
-
-          "type": "checkbox",
-
-          "id": "btn3_new_tab",
-
-          "label": "Open in new tab",
-
-          "default": false
-
-        },
-
-        {
-
-          "type": "color",
-
-          "id": "btn3_custom_bg",
-
-          "label": "Button 3 custom background"
-
-        },
-
-        {
-
-          "type": "color",
-
-          "id": "btn3_custom_text",
-
-          "label": "Button 3 custom text colour"
-
-        }
-
-      ]
-
-    }
-
-  ],
-
-
-
-  "presets": [
-
-    {
-
-      "name": "Hero Slideshow Custom",
-
-      "blocks": [
-
-        {
-
-          "type": "slide",
-
-          "settings": {
-
-            "heading": "New for Summer",
-
-            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
-
-            "btn1_label": "WOMEN'S NEW ARRIVALS",
-
-            "btn2_label": "MEN'S NEW ARRIVALS",
-
-            "btn3_label": "EXPLORE THE CAMPAIGN"
-
-          }
-
-        }
-
-      ]
-
-    }
-
-  ]
-
-}
-
-{% endschema %}
-
+{% comment %}
+  Hero Slideshow Section
+  Premium full-width banner with Splide slider, 3 CTA buttons, full customizer control
+  ✅ Desktop + Mobile separate images
+  ✅ Video background support (MP4/WebM) with optional poster
+{% endcomment %}
+
+{% assign s = section.settings %}
+{% assign first_block = section.blocks.first %}
+{% assign desktop_aspect = 2.4 %}
+{% assign mobile_aspect = 1.0 %}
+
+{% if first_block and first_block.settings.image != blank %}
+  {% assign desktop_aspect = first_block.settings.image.aspect_ratio %}
+{% elsif first_block and first_block.settings.video != blank %}
+  {% assign desktop_aspect = first_block.settings.video.aspect_ratio %}
+{% endif %}
+
+{% if first_block and first_block.settings.mobile_image != blank %}
+  {% assign mobile_aspect = first_block.settings.mobile_image.aspect_ratio %}
+{% elsif first_block and first_block.settings.mobile_video != blank %}
+  {% assign mobile_aspect = first_block.settings.mobile_video.aspect_ratio %}
+{% elsif first_block and first_block.settings.image != blank %}
+  {% assign mobile_aspect = first_block.settings.image.aspect_ratio %}
+{% elsif first_block and first_block.settings.video != blank %}
+  {% assign mobile_aspect = first_block.settings.video.aspect_ratio %}
+{% endif %}
+
+<link rel="stylesheet" href="{{ 'splide.min.css' | asset_url }}">
+
+<style>
+#shopify-section-{{ section.id }} {
+  --font-heading: Helvetica, Arial, sans-serif;
+  --font-body: Aptos, Arial, Helvetica, sans-serif;
+
+  --brand-blue: #0C4168;
+  --brand-lime: #ffffffff;
+  --brand-white: #FFFFFF;
+  --brand-grey: #626261;
+  --brand-burgundy: #851828;
+
+  --btn-bg: var(--brand-lime);
+  --btn-text: var(--brand-blue);
+  --btn-border: var(--brand-lime);
+  --btn-hover-bg: var(--brand-blue);
+  --btn-hover-text: var(--brand-lime);
+
+  --heading-color: var(--brand-white);
+  --subtext-color: var(--brand-white);
+
+  {% case s.desktop_height_mode %}
+    {% when 'adapt' %}
+      --section-height-desktop: auto;
+      --section-aspect-desktop: {{ desktop_aspect }};
+    {% when 'full' %}
+      --section-height-desktop: 100vh;
+    {% else %}
+      --section-height-desktop: {{ s.desktop_height | default: 650 }}px;
+  {% endcase %}
+
+  {% case s.mobile_height_mode %}
+    {% when 'adapt' %}
+      --section-height-mobile: auto;
+      --section-aspect-mobile: {{ mobile_aspect }};
+    {% else %}
+      --section-height-mobile: {{ s.mobile_height | default: 480 }}px;
+  {% endcase %}
+}
+
+/* Pre-mount state: show slide 1 immediately at 100% width before Splide JS mounts */
+.hs-section .splide:not(.is-active) .splide__track {
+  overflow: hidden;
+}
+.hs-section .splide:not(.is-active) .splide__list {
+  display: flex;
+}
+.hs-section .splide:not(.is-active) .splide__slide:first-child {
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  display: block !important;
+}
+.hs-section .splide:not(.is-active) .splide__slide:not(:first-child) {
+  display: none !important;
+}
+.hs-section .splide__arrow {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  color: #000;
+  opacity: 1;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.hs-section .splide__arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: #000;
+  transition: all 0.3s ease;
+}
+
+.hs-section .splide__arrow:hover {
+  {% comment %} background: #0C4168;
+  border-color: #0C4168;
+  box-shadow: 0 8px 25px rgba(12, 65, 104, 0.35); {% endcomment %}
+}
+
+.hs-section .splide__arrow:hover svg {
+  fill: #fff;
+}
+
+.hs-section .splide__arrow:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(12, 65, 104, 0.15),
+    0 8px 25px rgba(12, 65, 104, 0.35);
+}
+{% comment %} .hs-section .splide__arrow {
+  animation: arrowPulse 3s infinite;
+} {% endcomment %}
+
+@keyframes arrowPulse {
+  0% {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  50% {
+    box-shadow: 0 4px 28px rgba(12,65,104,0.20);
+  }
+  100% {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+}
+
+.hs-section {
+  position: relative;
+  width: 100%;
+  font-family: var(--font-body);
+  overflow: hidden;
+  background: var(--brand-blue);
+}
+
+.hs-section .splide__track {
+  overflow: hidden;
+}
+
+.hs-slide {
+  position: relative;
+  width: 100%;
+  height: var(--section-height-desktop);
+  {% if s.desktop_height_mode == 'adapt' %}
+    aspect-ratio: var(--section-aspect-desktop);
+    height: auto;
+  {% endif %}
+  overflow: hidden;
+  background: var(--brand-blue);
+}
+
+.hs-slide__bg,
+.hs-slide__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: {{ s.image_fit | default: 'cover' }};
+  display: block;
+}
+
+.hs-slide__bg {
+  object-position: center center;
+}
+
+.hs-slide__bg--desktop {
+  display: block;
+}
+
+.hs-slide__bg--mobile {
+  display: none;
+}
+
+.hs-slide__video-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hs-slide__video-wrap--desktop {
+  display: block;
+}
+
+.hs-slide__video-wrap--mobile {
+  display: none;
+}
+
+.hs-slide__video {
+  object-position: center center;
+}
+
+.hs-slide__overlay {
+  position: absolute;
+  inset: 0;
+  {% comment %} background: linear-gradient(
+    90deg,
+    rgba(12, 65, 104, 0.92) 0%,
+    rgba(12, 65, 104, 0.72) 40%,
+    rgba(12, 65, 104, 0.35) 70%,
+    rgba(12, 65, 104, 0.12) 100%
+  ); {% endcomment %}
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hs-slide--has-link {
+  cursor: pointer;
+}
+
+.hs-slide__link-mask {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hs-slide__caption {
+  position: absolute;
+  z-index: 2;
+  max-width: 68%;
+  padding: 24px 32px;
+  color: var(--brand-white);
+}
+
+.hs-slide--has-link .hs-slide__caption {
+  pointer-events: none;
+  z-index: 3;
+}
+
+.hs-slide--has-link .hs-slide__buttons,
+.hs-slide--has-link .hs-btn {
+  pointer-events: auto;
+  position: relative;
+  z-index: 4;
+}
+
+.hs-slide__caption--top_left {
+  top: {{ s.content_offset_v | default: 8 }}%;
+  left: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  right: auto;
+  transform: none;
+}
+
+.hs-slide__caption--top_center {
+  top: {{ s.content_offset_v | default: 8 }}%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hs-slide__caption--top_right {
+  top: {{ s.content_offset_v | default: 8 }}%;
+  right: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  left: auto;
+  transform: none;
+  text-align: right;
+}
+
+.hs-slide__caption--middle_left {
+  top: 50%;
+  left: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  right: auto;
+  transform: translateY(-50%);
+}
+
+.hs-slide__caption--middle_center {
+  top: 50%;
+  left: 50%;
+  bottom: auto;
+  right: auto;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hs-slide__caption--middle_right {
+  top: 50%;
+  right: {{ s.content_offset_h | default: 4 }}%;
+  bottom: auto;
+  left: auto;
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.hs-slide__caption--bottom_left {
+  bottom: {{ s.content_offset_v | default: 8 }}%;
+  left: {{ s.content_offset_h | default: 4 }}%;
+  top: auto;
+  right: auto;
+  transform: none;
+}
+
+.hs-slide__caption--bottom_center {
+  bottom: {{ s.content_offset_v | default: 8 }}%;
+  left: 50%;
+  top: auto;
+  right: auto;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hs-slide__caption--bottom_right {
+  bottom: {{ s.content_offset_v | default: 8 }}%;
+  right: {{ s.content_offset_h | default: 4 }}%;
+  top: auto;
+  left: auto;
+  transform: none;
+  text-align: right;
+}
+
+.hs-slide__eyebrow {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--brand-lime);
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.hs-slide__heading {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 1px;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--brand-white);
+  margin: 0 0 16px;
+}
+
+.hs-slide__subtext {
+  font-family: Helvetica, Arial, sans-serif;
+  line-height: 22px;
+  color: var(--brand-white);
+  margin: 0 0 16px;
+  font-weight: 500;
+  max-width: 560px;
+  opacity: 0.94;
+}
+
+.hs-slide__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: {{ s.button_gap | default: 16 }}px;
+  z-index: 3;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+.hs-slide__buttons--left {
+  justify-content: flex-start;
+}
+
+.hs-slide__buttons--center {
+  justify-content: center;
+}
+
+.hs-slide__buttons--right {
+  justify-content: flex-end;
+}
+
+.hs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: {{ section.settings.button_width_desktop }}px;
+  height: {{ section.settings.button_height_desktop }}px;
+  min-height: unset;
+  padding: 0;
+  font-size: {{ section.settings.button_font_size_desktop }}px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 0;
+}
+
+.hs-btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  transform: translateY(-2px);
+}
+
+
+.hs-btn:hover {
+  background: var(--btn-hover-bg);
+  color: var(--btn-hover-text);
+  transform: translateY(-2px);
+}
+
+.hs-section .splide__arrow {
+  opacity: 1;
+  width: 48px;
+  height: 48px;
+  z-index: 10;
+}
+
+.hs-section .splide__arrow svg {
+  fill: var(--brand-lime);
+}
+
+{% comment %} .hs-section .splide__arrow:hover {
+  background: var(--brand-lime);
+} {% endcomment %}
+
+.hs-section .splide__arrow:hover svg {
+  fill: var(--brand-blue);
+}
+
+.hs-section .splide__pagination {
+  z-index: 10;
+}
+
+.hs-section .splide__pagination__page {
+  background: var(--brand-white);
+  opacity: 0.45;
+  width: 8px;
+  height: 8px;
+}
+
+.hs-section .splide__pagination__page.is-active {
+  {% comment %} background: var(--brand-lime); {% endcomment %}
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+  .hs-slide__caption{
+    padding: 0px 0px 10px;
+  }
+  .hs-slide {
+    height: var(--section-height-mobile);
+    {% if s.mobile_height_mode == 'adapt' %}
+      aspect-ratio: var(--section-aspect-mobile);
+      height: auto;
+    {% else %}
+      aspect-ratio: unset;
+    {% endif %}
+  }
+  .hs-slide__buttons{
+  flex-wrap: nowrap; 
+  margin-bottom: 1rem;
+  justify-content: flex-start !important;
+  }
+  .hs-btn {
+  width: {{ section.settings.button_width_mobile }}px !important;
+  height: {{ section.settings.button_height_mobile }}px !important;
+  min-height: unset;
+  padding: 0;
+  font-size: {{ section.settings.button_font_size_mobile }}px;
+}
+
+  .hs-slide__bg--desktop {
+    display: none !important;
+  }
+{% comment %} .hs-btn.mobile-hide{
+ display: none;
+} {% endcomment %}
+  .hs-slide__bg--mobile {
+    display: block !important;
+  }
+
+  .hs-slide__video-wrap--desktop {
+    display: none !important;
+  }
+  .hs-slide__video-wrap--desktop.hs-slide__video-wrap--fallback-mobile {
+    display: block !important;
+  }
+  .hs-slide__video-wrap--mobile {
+    display: block !important;
+  }
+
+  .hs-slide__heading{
+  text-align: left;
+}
+  
+  .hs-slide__caption {
+    width: 100%;
+    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
+    padding: 20px 16px;
+    bottom: var(--slide-mobile-bottom, 15%) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    box-sizing: border-box;
+
+    {% if s.mobile_caption_below %}
+      position: static;
+      transform: none !important;
+      background: var(--brand-blue);
+    {% endif %}
+  }
+
+  .hs-slide--first-slide .hs-slide__caption {
+    bottom: var(--slide-mobile-bottom, 16%) !important;
+  }
+
+  /* Second slide: bit bottom (-2%) and left: 46% */
+  .hs-slide--second-slide .hs-slide__caption,
+  .hs-slide-block--slide_nYR4U9 .hs-slide__caption {
+    bottom: var(--slide-mobile-bottom, -2%) !important;
+    left: var(--slide-mobile-left, 46%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* Third slide: right side */
+  .hs-slide--third-slide .hs-slide__caption,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__caption,
+  .hs-slide--mobile-right .hs-slide__caption {
+    left: auto !important;
+    right: 4% !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+  }
+
+  .hs-slide__eyebrow {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .hs-slide__heading {
+    line-height: 30px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .hs-slide__subtext {
+    line-height: 22px;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+
+  .hs-slide__buttons {
+    gap: 12px;
+    justify-content: flex-start !important;
+  }
+
+  .hs-slide--third-slide .hs-slide__buttons,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__buttons,
+  .hs-slide--mobile-right .hs-slide__buttons {
+    justify-content: flex-end !important;
+  }
+
+  .hs-slide--third-slide .hs-slide__heading,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__heading,
+  .hs-slide--mobile-right .hs-slide__heading,
+  .hs-slide--third-slide .hs-slide__subtext,
+  .hs-slide-block--slide_B6rmj8 .hs-slide__subtext,
+  .hs-slide--mobile-right .hs-slide__subtext {
+    text-align: right;
+  }
+
+  .hs-slide--mobile-left .hs-slide__caption {
+    left: 4% !important;
+    right: auto !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: calc(3 * {{ section.settings.button_width_mobile }}px + 56px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .hs-slide--mobile-left .hs-slide__buttons {
+    justify-content: flex-start !important;
+  }
+
+  .hs-slide--mobile-center .hs-slide__caption {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .hs-btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 9px;
+    min-height: 35px;
+    padding: 0px;
+  }
+
+  .hs-section .splide__arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hs-section .splide__pagination {
+    display: flex !important;
+    justify-content: center !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    opacity: 0 !important;
+    margin: 0 auto !important;
+  }
+}
+.hs-slide__heading {
+  font-size: {{ section.settings.heading_font_size_desktop }}px;
+  font-weight: 700;
+}
+
+.hs-slide__subtext {
+  font-size: {{ section.settings.description_font_size }}px;
+}
+
+.hs-btn {
+  font-size: {{ section.settings.button_font_size_desktop }}px;
+}
+
+@media (max-width: 768px) {
+
+  .hs-slide__heading {
+    font-size: {{ section.settings.heading_font_size_mobile }}px !important;
+  }
+
+  .hs-slide__subtext {
+    font-size: {{ section.settings.description_font_size }}px;
+  }
+
+  .hs-btn {
+    font-size: {{ section.settings.button_font_size_mobile }}px;
+  }
+}
+</style>
+
+<section
+  class="hs-section"
+  id="hs-{{ section.id }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="hero-slideshow"
+>
+  <div
+    class="splide"
+    data-hs-splide
+    data-autoplay="{{ s.autoplay }}"
+    data-autoplay-speed="{{ s.autoplay_speed }}"
+    data-transition="{{ s.transition_type }}"
+    data-show-arrows="{{ s.show_arrows }}"
+    data-show-dots="{{ s.show_dots }}"
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        {% assign btn_slide_index = 0 %}
+        {% for block in section.blocks %}
+          {% assign b = block.settings %}
+
+          {%- comment -%}
+            Determine media type priority:
+            1. Video (if video_url_mp4 or video_url_webm is set)
+            2. Image (desktop + optional mobile)
+          {%- endcomment -%}
+
+          {% assign has_desktop_video = false %}
+          {% if b.video != blank or b.video_url_mp4 != blank or b.video_url_webm != blank %}
+            {% assign has_desktop_video = true %}
+          {% endif %}
+
+          {% assign has_mobile_video = false %}
+          {% if b.mobile_video != blank or b.mobile_video_url_mp4 != blank or b.mobile_video_url_webm != blank %}
+            {% assign has_mobile_video = true %}
+          {% endif %}
+
+          {% assign fallback_desktop_video_on_mobile = false %}
+          {% if has_desktop_video and has_mobile_video == false and b.mobile_image == blank %}
+            {% assign fallback_desktop_video_on_mobile = true %}
+          {% endif %}
+
+          {% assign slide_link = b.slide_link %}
+          {% if slide_link == blank and b.btn1_label == blank and b.btn1_link != blank %}
+            {% assign slide_link = b.btn1_link %}
+          {% elsif slide_link == blank and b.btn1_label == blank and b.btn2_label == blank and b.btn2_link != blank %}
+            {% assign slide_link = b.btn2_link %}
+          {% endif %}
+
+          {% assign has_btn = false %}
+          {% if b.btn1_label != blank or b.btn2_label != blank or b.btn3_label != blank %}
+            {% assign has_btn = true %}
+            {% assign btn_slide_index = btn_slide_index | plus: 1 %}
+          {% endif %}
+
+          {% assign is_first_slide = false %}
+          {% assign is_second_slide = false %}
+          {% assign is_third_slide = false %}
+
+          {% if forloop.first or btn_slide_index == 1 and forloop.index <= 2 %}
+            {% assign is_first_slide = true %}
+          {% endif %}
+
+          {% if btn_slide_index == 2 or b.mobile_image contains 'nab_women' or b.image contains '2_' %}
+            {% assign is_second_slide = true %}
+          {% endif %}
+
+          {% if btn_slide_index == 3 or b.mobile_image contains 'whites' or b.image contains '3_' or b.mobile_button_position_h == 'right' %}
+            {% assign is_third_slide = true %}
+          {% endif %}
+
+          <li
+            class="splide__slide hs-slide--slide-{{ forloop.index }} hs-slide-block--{{ block.id }}{% if is_first_slide %} hs-slide--first-slide{% endif %}{% if is_second_slide %} hs-slide--second-slide{% endif %}{% if is_third_slide %} hs-slide--third-slide{% endif %}{% if b.mobile_button_position_h != blank and b.mobile_button_position_h != 'default' %} hs-slide--mobile-{{ b.mobile_button_position_h }}{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="hs-slide{% if slide_link != blank %} hs-slide--has-link{% endif %}">
+              {% if slide_link != blank %}
+                <a
+                  href="{{ slide_link }}"
+                  class="hs-slide__link-mask"
+                  aria-label="{{ b.heading | default: b.eyebrow | default: b.image.alt | default: 'Slide link' | escape }}"
+                  {% if b.slide_link_new_tab %}target="_blank" rel="noopener"{% endif %}
+                ></a>
+              {% endif %}
+
+              {%- comment -%} ── 1. DESKTOP MEDIA (Video or Image) ── {%- endcomment -%}
+              {% if has_desktop_video %}
+                {% assign d_poster = '' %}
+                {% if b.video_poster != blank %}
+                  {% assign d_poster = b.video_poster | image_url: width: 2400 %}
+                {% elsif b.image != blank %}
+                  {% assign d_poster = b.image | image_url: width: 2400 %}
+                {% endif %}
+
+                <div class="hs-slide__video-wrap hs-slide__video-wrap--desktop{% if fallback_desktop_video_on_mobile %} hs-slide__video-wrap--fallback-mobile{% endif %}">
+                  {% if b.video != blank %}
+                    {% if d_poster != blank %}
+                      {{ b.video | video_tag: image_size: '2048x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--desktop', poster: d_poster }}
+                    {% else %}
+                      {{ b.video | video_tag: image_size: '2048x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--desktop' }}
+                    {% endif %}
+                  {% else %}
+                    <video
+                      class="hs-slide__video hs-slide__video--desktop"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      {% if d_poster != blank %}poster="{{ d_poster }}"{% endif %}
+                    >
+                      {% if b.video_url_mp4 != blank %}
+                        <source src="{{ b.video_url_mp4 }}" type="video/mp4">
+                      {% endif %}
+                      {% if b.video_url_webm != blank %}
+                        <source src="{{ b.video_url_webm }}" type="video/webm">
+                      {% endif %}
+                    </video>
+                  {% endif %}
+                </div>
+              {% else %}
+                {% assign focal_d = b.image_focal_point | default: 'center center' %}
+                {% assign img_fit = s.image_fit | default: 'cover' %}
+                {% if forloop.first %}
+                  {% assign load_mode = 'eager' %}
+                  {% assign fetch_priority = 'high' %}
+                {% else %}
+                  {% assign load_mode = 'lazy' %}
+                  {% assign fetch_priority = 'low' %}
+                {% endif %}
+
+                {% if b.image != blank %}
+                  {{ b.image | image_url: width: 2000 | image_tag:
+                    class: 'hs-slide__bg hs-slide__bg--desktop',
+                    loading: load_mode,
+                    fetchpriority: fetch_priority,
+                    preload: forloop.first,
+                    widths: '800,1200,1600,2000',
+                    sizes: '100vw',
+                    alt: b.image.alt,
+                    style: 'object-position: ' | append: focal_d | append: '; object-fit: ' | append: img_fit
+                  }}
+                {% elsif has_mobile_video == false %}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide__bg hs-slide__bg--desktop placeholder-svg' }}
+                {% endif %}
+              {% endif %}
+
+              {%- comment -%} ── 2. MOBILE MEDIA (Video or Image) ── {%- endcomment -%}
+              {% if has_mobile_video %}
+                {% assign m_poster = '' %}
+                {% if b.mobile_video_poster != blank %}
+                  {% assign m_poster = b.mobile_video_poster | image_url: width: 1200 %}
+                {% elsif b.mobile_image != blank %}
+                  {% assign m_poster = b.mobile_image | image_url: width: 1200 %}
+                {% elsif b.video_poster != blank %}
+                  {% assign m_poster = b.video_poster | image_url: width: 1200 %}
+                {% elsif b.image != blank %}
+                  {% assign m_poster = b.image | image_url: width: 1200 %}
+                {% endif %}
+
+                <div class="hs-slide__video-wrap hs-slide__video-wrap--mobile">
+                  {% if b.mobile_video != blank %}
+                    {% if m_poster != blank %}
+                      {{ b.mobile_video | video_tag: image_size: '1200x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--mobile', poster: m_poster }}
+                    {% else %}
+                      {{ b.mobile_video | video_tag: image_size: '1200x', autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'hs-slide__video hs-slide__video--mobile' }}
+                    {% endif %}
+                  {% else %}
+                    <video
+                      class="hs-slide__video hs-slide__video--mobile"
+                      autoplay
+                      muted
+                      loop
+                      playsinline
+                      {% if m_poster != blank %}poster="{{ m_poster }}"{% endif %}
+                    >
+                      {% if b.mobile_video_url_mp4 != blank %}
+                        <source src="{{ b.mobile_video_url_mp4 }}" type="video/mp4">
+                      {% endif %}
+                      {% if b.mobile_video_url_webm != blank %}
+                        <source src="{{ b.mobile_video_url_webm }}" type="video/webm">
+                      {% endif %}
+                    </video>
+                  {% endif %}
+                </div>
+              {% elsif fallback_desktop_video_on_mobile == false %}
+                {% assign focal_m = b.mobile_image_focal_point | default: focal_d | default: 'center center' %}
+                {% assign img_fit = s.image_fit | default: 'cover' %}
+                {% if forloop.first %}
+                  {% assign load_mode = 'eager' %}
+                  {% assign fetch_priority = 'high' %}
+                {% else %}
+                  {% assign load_mode = 'lazy' %}
+                  {% assign fetch_priority = 'low' %}
+                {% endif %}
+
+                {% if b.mobile_image != blank %}
+                  {{ b.mobile_image | image_url: width: 1000 | image_tag:
+                    class: 'hs-slide__bg hs-slide__bg--mobile',
+                    loading: load_mode,
+                    fetchpriority: fetch_priority,
+                    preload: forloop.first,
+                    widths: '400,600,800,1000',
+                    sizes: '100vw',
+                    alt: b.mobile_image.alt,
+                    style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
+                  }}
+                {% elsif b.image != blank and has_desktop_video == false %}
+                  {{ b.image | image_url: width: 1000 | image_tag:
+                    class: 'hs-slide__bg hs-slide__bg--mobile',
+                    loading: load_mode,
+                    fetchpriority: fetch_priority,
+                    preload: forloop.first,
+                    widths: '400,600,800,1000',
+                    sizes: '100vw',
+                    alt: b.image.alt,
+                    style: 'object-position: ' | append: focal_m | append: '; object-fit: ' | append: img_fit
+                  }}
+                {% elsif has_desktop_video == false %}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'hs-slide__bg hs-slide__bg--mobile placeholder-svg' }}
+                {% endif %}
+              {% endif %}
+
+              {% comment %} Overlay {% endcomment %}
+              <div class="hs-slide__overlay"></div>
+
+              {% comment %} Caption {% endcomment %}
+              {% unless b.hide_content %}
+                {% assign block_caption_pos = b.caption_position | default: b.button_position | default: s.caption_position | default: 'bottom_left' %}
+                {% assign block_btn_align = b.button_align | default: s.button_align | default: 'left' %}
+                <div
+                  class="hs-slide__caption hs-slide__caption--{{ block_caption_pos }}"
+                  {% if b.mobile_caption_bottom != blank and b.mobile_caption_bottom != 0 %}
+                    style="--slide-mobile-bottom: {{ b.mobile_caption_bottom }}%;{% if b.mobile_caption_left != blank and b.mobile_caption_left != 50 %}--slide-mobile-left: {{ b.mobile_caption_left }}%;{% elsif is_second_slide %}--slide-mobile-left: 46%;{% endif %}"
+                  {% elsif is_second_slide %}
+                    style="--slide-mobile-bottom: -2%; --slide-mobile-left: 46%;"
+                  {% elsif is_first_slide %}
+                    style="--slide-mobile-bottom: 16%;"
+                  {% endif %}
+                >
+
+                  {% unless b.hide_text_overlay %}
+                    {% if b.eyebrow != blank %}
+                      <p class="hs-slide__eyebrow">{{ b.eyebrow }}</p>
+                    {% endif %}
+
+                    {% if b.heading != blank %}
+                      <h2 class="hs-slide__heading">{{ b.heading }}</h2>
+                    {% endif %}
+
+                    {% if b.subtext != blank %}
+                      <p class="hs-slide__subtext">{{ b.subtext }}</p>
+                    {% endif %}
+                  {% endunless %}
+
+                  {% comment %} 3 CTA buttons {% endcomment %}
+                  {% assign has_btn = false %}
+                  {% if b.btn1_label != blank %}{% assign has_btn = true %}{% endif %}
+                  {% if b.btn2_label != blank %}{% assign has_btn = true %}{% endif %}
+                  {% if b.btn3_label != blank %}{% assign has_btn = true %}{% endif %}
+
+                  {% if has_btn %}
+                    <div class="hs-slide__buttons hs-slide__buttons--{{ block_btn_align }}">
+
+                      {% if b.btn1_label != blank %}
+                        <a
+                          href="{{ b.btn1_link | default: '#' }}"
+                          class="hs-btn"
+                          {% if b.btn1_new_tab %}target="_blank" rel="noopener"{% endif %}
+                          style="
+                            {% if b.btn1_custom_bg != blank %}background:{{ b.btn1_custom_bg }};border-color:{{ b.btn1_custom_bg }};{% endif %}
+                            {% if b.btn1_custom_text != blank %}color:{{ b.btn1_custom_text }};{% endif %}
+                          "
+                        >{{ b.btn1_label }}</a>
+                      {% endif %}
+
+                      {% if b.btn2_label != blank %}
+                        <a
+                          href="{{ b.btn2_link | default: '#' }}"
+                          class="hs-btn"
+                          {% if b.btn2_new_tab %}target="_blank" rel="noopener"{% endif %}
+                          style="
+                            {% if b.btn2_custom_bg != blank %}background:{{ b.btn2_custom_bg }};border-color:{{ b.btn2_custom_bg }};{% endif %}
+                            {% if b.btn2_custom_text != blank %}color:{{ b.btn2_custom_text }};{% endif %}
+                          "
+                        >{{ b.btn2_label }}</a>
+                      {% endif %}
+
+                      {% if b.btn3_label != blank %}
+                        <a
+                          href="{{ b.btn3_link | default: '#' }}"
+                          class="hs-btn mobile-hide"
+                          {% if b.btn3_new_tab %}target="_blank" rel="noopener"{% endif %}
+                          style="
+                            {% if b.btn3_custom_bg != blank %}background:{{ b.btn3_custom_bg }};border-color:{{ b.btn3_custom_bg }};{% endif %}
+                            {% if b.btn3_custom_text != blank %}color:{{ b.btn3_custom_text }};{% endif %}
+                          "
+                        >{{ b.btn3_label }}</a>
+                      {% endif %}
+
+                    </div>
+                  {% endif %}
+                </div>
+              {% endunless %}
+
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'splide.min.js' | asset_url }}" defer></script>
+
+<script>
+(function() {
+  function tryInit() {
+    var el = document.querySelector('#hs-{{ section.id }} [data-hs-splide]');
+    if (!el) return false;
+    if (el.classList.contains('is-active') || el.classList.contains('is-initialized')) return true;
+    if (typeof Splide === 'undefined') return false;
+
+    var autoplay   = el.dataset.autoplay === 'true';
+    var speed      = parseInt(el.dataset.autoplaySpeed) || 5000;
+    var transition = el.dataset.transition || 'slide';
+    var arrows     = el.dataset.showArrows === 'true';
+    var dots       = el.dataset.showDots === 'true';
+
+    var splide = new Splide(el, {
+      type        : transition === 'fade' ? 'fade' : 'loop',
+      rewind      : true,
+      perPage     : 1,
+      autoplay    : autoplay,
+      interval    : speed,
+      pauseOnHover: true,
+      speed       : {{ s.transition_speed | default: 700 }},
+      arrows      : arrows,
+      pagination  : dots,
+      drag        : true,
+    });
+
+    function playSlideVideo(slideEl) {
+      if (!slideEl) return false;
+      var videos = slideEl.querySelectorAll('video');
+      var hasPlayingVideo = false;
+      videos.forEach(function(video) {
+        var style = window.getComputedStyle(video);
+        if (style.display !== 'none' && (video.offsetParent !== null || style.visibility !== 'hidden')) {
+          video.muted = true;
+          video.playsInline = true;
+          video.play().catch(function(){});
+          hasPlayingVideo = true;
+        } else {
+          video.pause();
+        }
+      });
+      return hasPlayingVideo;
+    }
+
+    function pauseSlideVideo(slideEl) {
+      if (!slideEl) return;
+      var videos = slideEl.querySelectorAll('video');
+      videos.forEach(function(video) {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+
+    splide.mount();
+
+    var currentSlide = el.querySelector('.splide__slide.is-active') || el.querySelector('.splide__slide:first-child');
+    playSlideVideo(currentSlide);
+
+    // Pause/resume autoplay when a video slide is active
+    splide.on('active', function(slide) {
+      var isPlaying = playSlideVideo(slide.slide);
+      if (isPlaying && autoplay && {{ s.video_pause_autoplay | default: false }}) {
+        if (splide.Components && splide.Components.Autoplay) {
+          splide.Components.Autoplay.pause();
+        }
+      }
+    });
+
+    splide.on('inactive', function(slide) {
+      pauseSlideVideo(slide.slide);
+    });
+
+    window.addEventListener('resize', function() {
+      var activeSlide = el.querySelector('.splide__slide.is-active');
+      if (activeSlide) {
+        playSlideVideo(activeSlide);
+      }
+    });
+
+    return true;
+  }
+
+  // Attempt mount immediately, then poll every 30ms until Splide script has loaded
+  if (!tryInit()) {
+    var attempts = 0;
+    var timer = setInterval(function() {
+      attempts++;
+      if (tryInit() || attempts > 200) {
+        clearInterval(timer);
+      }
+    }, 30);
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Slideshow Custom",
+  "tag": "section",
+  "class": "hs-section-wrapper",
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "━━  Banner Height & Fitting  ━━"
+    },
+    {
+      "type": "select",
+      "id": "desktop_height_mode",
+      "label": "Desktop Height Mode",
+      "options": [
+        { "value": "adapt",  "label": "Adapt to First Image (Aspect Ratio)" },
+        { "value": "custom", "label": "Custom Fixed Height" },
+        { "value": "full",   "label": "Full Screen (100vh)" }
+      ],
+      "default": "custom"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop Height (px)",
+      "min": 350,
+      "max": 950,
+      "step": 10,
+      "default": 650
+    },
+    {
+      "type": "select",
+      "id": "mobile_height_mode",
+      "label": "Mobile Height Mode",
+      "options": [
+        { "value": "adapt",  "label": "Adapt to First Mobile Image" },
+        { "value": "custom", "label": "Custom Fixed Height" }
+      ],
+      "default": "custom"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "label": "Mobile Height (px)",
+      "min": 250,
+      "max": 800,
+      "step": 10,
+      "default": 480
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Object Fit",
+      "options": [
+        { "value": "cover",   "label": "Cover (fill container, crop excess)" },
+        { "value": "contain", "label": "Contain (fit full image, no crop)" },
+        { "value": "fill",    "label": "Fill (stretch to exact dimensions)" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "header",
+      "content": "━━  Slideshow Behaviour  ━━"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-play slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Auto-play speed (ms)",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "default": 5000
+    },
+    {
+      "type": "select",
+      "id": "transition_type",
+      "label": "Transition style",
+      "options": [
+        { "value": "slide", "label": "Slide" },
+        { "value": "fade",  "label": "Fade"  }
+      ],
+      "default": "slide"
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition duration (ms)",
+      "min": 300,
+      "max": 1500,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show pagination dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "video_pause_autoplay",
+      "label": "Pause slideshow auto-play on video slides",
+      "default": false,
+      "info": "When enabled, the slideshow will pause auto-advancing while a video slide is active."
+    },
+
+    {
+      "type": "header",
+      "content": "━━  Overlay  ━━"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay colour",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity (%)",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 25
+    },
+   {
+  "type": "header",
+  "content": "━━ Typography Settings ━━"
+},
+{
+  "type": "range",
+  "id": "heading_font_size_desktop",
+  "label": "Heading Font Size Desktop",
+  "min": 20,
+  "max": 80,
+  "step": 2,
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "heading_font_size_mobile",
+  "label": "Heading Font Size Mobile",
+  "min": 16,
+  "max": 50,
+  "step": 2,
+  "default": 24
+},
+{
+  "type": "range",
+  "id": "description_font_size",
+  "label": "Description Font Size",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14
+},
+{
+  "type": "range",
+  "id": "button_font_size_desktop",
+  "label": "Button Font Size Desktop",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14
+},
+{
+  "type": "range",
+  "id": "button_font_size_mobile",
+  "label": "Button Font Size Mobile",
+  "min": 8,
+  "max": 20,
+  "step": 1,
+  "default": 10
+},
+    {
+      "type": "header",
+      "content": "━━  Content Position  ━━"
+    },
+    {
+      "type": "select",
+      "id": "caption_position",
+      "label": "Caption position",
+      "options": [
+        { "value": "top_left",      "label": "Top left"      },
+        { "value": "top_center",    "label": "Top center"    },
+        { "value": "top_right",     "label": "Top right"     },
+        { "value": "middle_left",   "label": "Middle left"   },
+        { "value": "middle_center", "label": "Middle center" },
+        { "value": "middle_right",  "label": "Middle right"  },
+        { "value": "bottom_left",   "label": "Bottom left"   },
+        { "value": "bottom_center", "label": "Bottom center" },
+        { "value": "bottom_right",  "label": "Bottom right"  }
+      ],
+      "default": "bottom_left"
+    },
+    {
+      "type": "range",
+      "id": "content_offset_h",
+      "label": "Horizontal offset (% from edge)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "content_offset_v",
+      "label": "Vertical offset (% from edge)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "label": "Content max-width (px)",
+      "min": 300,
+      "max": 900,
+      "step": 20,
+      "default": 600
+    },
+    {
+      "type": "checkbox",
+      "id": "caption_bg_show",
+      "label": "Show content background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "caption_bg_color",
+      "label": "Content background colour",
+      "default": "rgba(0,0,0,0.4)"
+    },
+
+    {
+      "type": "header",
+      "content": "━━  Buttons — Global Style  ━━"
+    },
+    {
+  "type": "range",
+  "id": "button_width_desktop",
+  "label": "Button width Desktop (px)",
+  "min": 80,
+  "max": 300,
+  "step": 10,
+  "default": 150
+},
+{
+  "type": "range",
+  "id": "button_height_desktop",
+  "label": "Button height Desktop (px)",
+  "min": 30,
+  "max": 80,
+  "step": 2,
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "button_width_mobile",
+  "label": "Button width Mobile (px)",
+  "min": 60,
+  "max": 200,
+  "step": 10,
+  "default": 100
+},
+{
+  "type": "range",
+  "id": "button_height_mobile",
+  "label": "Button height Mobile (px)",
+  "min": 30,
+  "max": 80,
+  "step": 2,
+  "default": 40
+},
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button shape",
+      "options": [
+        { "value": "sharp",   "label": "Sharp / square" },
+        { "value": "rounded", "label": "Rounded"        },
+        { "value": "pill",    "label": "Pill"            }
+      ],
+      "default": "sharp"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text colour",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button hover background",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text",
+      "label": "Button hover text colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button font size (px)",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_v",
+      "label": "Button vertical padding (px)",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "button_padding_h",
+      "label": "Button horizontal padding (px)",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "label": "Button border width (px)",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "button_gap",
+      "label": "Gap between buttons (px)",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_position",
+      "label": "Button Position",
+      "options": [
+        { "value": "top_left",      "label": "Top Left"      },
+        { "value": "top_center",    "label": "Top Center"    },
+        { "value": "top_right",     "label": "Top Right"     },
+        { "value": "middle_left",   "label": "Middle Left"   },
+        { "value": "middle_center", "label": "Middle Center" },
+        { "value": "middle_right",  "label": "Middle Right"  },
+        { "value": "bottom_left",   "label": "Bottom Left"   },
+        { "value": "bottom_center", "label": "Bottom Center" },
+        { "value": "bottom_right",  "label": "Bottom Right"  }
+      ],
+      "default": "middle_left"
+    },
+    {
+      "type": "select",
+      "id": "button_align",
+      "label": "Button alignment",
+      "options": [
+        { "value": "left",   "label": "Left"   },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right"  }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "mobile_button_stack",
+      "label": "Mobile buttons layout",
+      "options": [
+        { "value": "column", "label": "Stack (column)" },
+        { "value": "row",    "label": "Side by side (row)" }
+      ],
+      "default": "column"
+    },
+
+    {
+      "type": "header",
+      "content": "━━  Navigation Arrows  ━━"
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Arrow background",
+      "default": "rgba(255,255,255,0.15)"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_bg",
+      "label": "Arrow hover background",
+      "default": "rgba(255,255,255,0.35)"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow icon colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Pagination dot colour",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "dot_active_color",
+      "label": "Active dot colour",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "header",
+      "content": "━━  Mobile  ━━"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_caption_below",
+      "label": "Show caption below image on mobile",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "mobile_caption_bg",
+      "label": "Mobile caption background",
+      "default": "#ffffff"
+    }
+
+  ],
+
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 8,
+      "settings": [
+
+        {
+          "type": "header",
+          "content": "🖼  Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop image",
+          "info": "Recommended: 2400 × 900 px. Also used as video poster fallback."
+        },
+        {
+          "type": "select",
+          "id": "image_focal_point",
+          "label": "Desktop image focal point",
+          "options": [
+            { "value": "top left",      "label": "Top left"      },
+            { "value": "top center",    "label": "Top center"    },
+            { "value": "top right",     "label": "Top right"     },
+            { "value": "center left",   "label": "Centre left"   },
+            { "value": "center center", "label": "Centre"        },
+            { "value": "center right",  "label": "Centre right"  },
+            { "value": "bottom left",   "label": "Bottom left"   },
+            { "value": "bottom center", "label": "Bottom center" },
+            { "value": "bottom right",  "label": "Bottom right"  }
+          ],
+          "default": "center center"
+        },
+
+        {
+          "type": "header",
+          "content": "📱  Mobile Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Recommended: 800 × 1000 px (portrait). If left blank, the desktop image is used on mobile too."
+        },
+        {
+          "type": "select",
+          "id": "mobile_image_focal_point",
+          "label": "Mobile image focal point",
+          "options": [
+            { "value": "top left",      "label": "Top left"      },
+            { "value": "top center",    "label": "Top center"    },
+            { "value": "top right",     "label": "Top right"     },
+            { "value": "center left",   "label": "Centre left"   },
+            { "value": "center center", "label": "Centre"        },
+            { "value": "center right",  "label": "Centre right"  },
+            { "value": "bottom left",   "label": "Bottom left"   },
+            { "value": "bottom center", "label": "Bottom center" },
+            { "value": "bottom right",  "label": "Bottom right"  }
+          ],
+          "default": "center center"
+        },
+        {
+          "type": "header",
+          "content": "🔗  Image / Slide Link"
+        },
+        {
+          "type": "url",
+          "id": "slide_link",
+          "label": "Image / Slide link",
+          "info": "Makes the entire banner image clickable. If Button 1 label is left blank and Button 1 link is provided, it will automatically use that link."
+        },
+        {
+          "type": "checkbox",
+          "id": "slide_link_new_tab",
+          "label": "Open image link in new tab",
+          "default": false
+        },
+
+        {
+          "type": "header",
+          "content": "🎬  Desktop Video"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Desktop video (Shopify hosted)",
+          "info": "Select or upload a video directly. Takes priority over desktop image when set."
+        },
+        {
+          "type": "text",
+          "id": "video_url_mp4",
+          "label": "Desktop video URL — MP4 (optional file link)",
+          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero.mp4"
+        },
+        {
+          "type": "text",
+          "id": "video_url_webm",
+          "label": "Desktop video URL — WebM (optional, better compression)",
+          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero.webm"
+        },
+        {
+          "type": "image_picker",
+          "id": "video_poster",
+          "label": "Desktop video poster image",
+          "info": "Displayed before video loads. Falls back to Desktop Image if not set."
+        },
+        {
+          "type": "header",
+          "content": "📱  Mobile Video"
+        },
+        {
+          "type": "video",
+          "id": "mobile_video",
+          "label": "Mobile video (Shopify hosted)",
+          "info": "Select or upload a mobile/portrait video. Takes priority over mobile image when set."
+        },
+        {
+          "type": "text",
+          "id": "mobile_video_url_mp4",
+          "label": "Mobile video URL — MP4 (optional file link)",
+          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero-mobile.mp4"
+        },
+        {
+          "type": "text",
+          "id": "mobile_video_url_webm",
+          "label": "Mobile video URL — WebM (optional, better compression)",
+          "placeholder": "https://cdn.shopify.com/s/files/1/0000/0000/files/hero-mobile.webm"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_video_poster",
+          "label": "Mobile video poster image",
+          "info": "Displayed before mobile video loads. Falls back to Mobile Image or Desktop poster if not set."
+        },
+
+        {
+          "type": "header",
+          "content": "✏️  Content"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_content",
+          "label": "Hide all text & buttons",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_text_overlay",
+          "label": "Hide heading & description text (keep buttons only)",
+          "default": false,
+          "info": "Useful when banner images already have text baked into the graphic."
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow / label (small text above heading)",
+          "placeholder": "New Collection"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "New for Summer",
+          "placeholder": "New for Summer"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Subtext / description",
+          "default": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
+          "placeholder": "Subtitle text"
+        },
+
+        {
+          "type": "header",
+          "content": "🔗  Button Settings & Position"
+        },
+        {
+          "type": "select",
+          "id": "caption_position",
+          "label": "Caption Position",
+          "options": [
+            { "value": "top_left",      "label": "Top Left"      },
+            { "value": "top_center",    "label": "Top Center"    },
+            { "value": "top_right",     "label": "Top Right"     },
+            { "value": "middle_left",   "label": "Middle Left"   },
+            { "value": "middle_center", "label": "Middle Center" },
+            { "value": "middle_right",  "label": "Middle Right"  },
+            { "value": "bottom_left",   "label": "Bottom Left"   },
+            { "value": "bottom_center", "label": "Bottom Center" },
+            { "value": "bottom_right",  "label": "Bottom Right"  }
+          ],
+          "default": "bottom_left"
+        },
+        {
+          "type": "select",
+          "id": "button_position",
+          "label": "Button Position",
+          "options": [
+            { "value": "top_left",      "label": "Top Left"      },
+            { "value": "top_center",    "label": "Top Center"    },
+            { "value": "top_right",     "label": "Top Right"     },
+            { "value": "middle_left",   "label": "Middle Left"   },
+            { "value": "middle_center", "label": "Middle Center" },
+            { "value": "middle_right",  "label": "Middle Right"  },
+            { "value": "bottom_left",   "label": "Bottom Left"   },
+            { "value": "bottom_center", "label": "Bottom Center" },
+            { "value": "bottom_right",  "label": "Bottom Right"  }
+          ],
+          "default": "middle_left"
+        },
+        {
+          "type": "range",
+          "id": "mobile_caption_bottom",
+          "label": "Mobile Bottom Position (%)",
+          "min": -20,
+          "max": 70,
+          "step": 1,
+          "unit": "%",
+          "default": 0,
+          "info": "Elevates or lowers the buttons/caption from the bottom on mobile (e.g. -2% for slide 2, 16% for slide 1)."
+        },
+        {
+          "type": "select",
+          "id": "mobile_button_position_h",
+          "label": "Mobile Horizontal Alignment",
+          "options": [
+            { "value": "default", "label": "Default" },
+            { "value": "center",  "label": "Center" },
+            { "value": "left",    "label": "Left" },
+            { "value": "right",   "label": "Right" }
+          ],
+          "default": "default",
+          "info": "Align buttons horizontally on mobile (e.g. Right for slide 3)."
+        },
+        {
+          "type": "range",
+          "id": "mobile_caption_left",
+          "label": "Mobile Left Offset (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50,
+          "info": "Horizontal offset percentage when centered (default 46% for slide 2)."
+        },
+        {
+          "type": "header",
+          "content": "🔗  Button 1"
+        },
+        {
+          "type": "text",
+          "id": "btn1_label",
+          "label": "Button 1 label",
+          "default": "WOMEN'S NEW ARRIVALS",
+          "placeholder": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "btn1_link",
+          "label": "Button 1 link"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn1_new_tab",
+          "label": "Open in new tab",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "btn1_custom_bg",
+          "label": "Button 1 custom background (overrides global)"
+        },
+        {
+          "type": "color",
+          "id": "btn1_custom_text",
+          "label": "Button 1 custom text colour (overrides global)"
+        },
+
+        {
+          "type": "header",
+          "content": "🔗  Button 2"
+        },
+        {
+          "type": "text",
+          "id": "btn2_label",
+          "label": "Button 2 label",
+          "default": "MEN'S NEW ARRIVALS",
+          "placeholder": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "btn2_link",
+          "label": "Button 2 link"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn2_new_tab",
+          "label": "Open in new tab",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "btn2_custom_bg",
+          "label": "Button 2 custom background"
+        },
+        {
+          "type": "color",
+          "id": "btn2_custom_text",
+          "label": "Button 2 custom text colour"
+        },
+
+        {
+          "type": "header",
+          "content": "🔗  Button 3"
+        },
+        {
+          "type": "text",
+          "id": "btn3_label",
+          "label": "Button 3 label",
+          "default": "EXPLORE THE CAMPAIGN",
+          "placeholder": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "btn3_link",
+          "label": "Button 3 link"
+        },
+        {
+          "type": "checkbox",
+          "id": "btn3_new_tab",
+          "label": "Open in new tab",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "btn3_custom_bg",
+          "label": "Button 3 custom background"
+        },
+        {
+          "type": "color",
+          "id": "btn3_custom_text",
+          "label": "Button 3 custom text colour"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Hero Slideshow Custom",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "New for Summer",
+            "subtext": "Cobblestone streets, sunbaked rooftops, and Lisbon as our guide.\nLet adventure lead the way in relaxed linen and packable new arrivals.",
+            "btn1_label": "WOMEN'S NEW ARRIVALS",
+            "btn2_label": "MEN'S NEW ARRIVALS",
+            "btn3_label": "EXPLORE THE CAMPAIGN"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

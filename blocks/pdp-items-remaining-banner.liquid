@@ -1,0 +1,116 @@
+{% render 'pdp-items-remaining-banner', block: block %}
+{% schema %}
+{
+  "name": "Items Remaining Urgency",
+  "settings": [
+    {
+      "type": "text",
+      "id": "prefix_text",
+      "label": "Prefix Text",
+      "default": "Hurry up!"
+    },
+    {
+      "type": "text",
+      "id": "highlight_text",
+      "label": "Highlight Text",
+      "default": "Only few left"
+    },
+    {
+      "type": "header",
+      "content": "🎁 Available Benefits / Offers"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "AVAILABLE BENEFITS"
+    },
+    {
+      "type": "header",
+      "content": "Offer 1: First Purchase - 10%"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code_1",
+      "label": "Coupon Code 1",
+      "default": "WELCOME10"
+    },
+    {
+      "type": "text",
+      "id": "description_1",
+      "label": "Description 1",
+      "default": "Get 10% OFF on your first purchase."
+    },
+    {
+      "type": "header",
+      "content": "Offer 2: Buy 10% (On All)"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code_2",
+      "label": "Coupon Code 2",
+      "default": "BUY10"
+    },
+    {
+      "type": "text",
+      "id": "description_2",
+      "label": "Description 2",
+      "default": "Get 10% OFF on all items."
+    },
+    {
+      "type": "header",
+      "content": "Offer 3: Buy 2 15%"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code_3",
+      "label": "Coupon Code 3",
+      "default": "BUY2"
+    },
+    {
+      "type": "text",
+      "id": "description_3",
+      "label": "Description 3",
+      "default": "Buy 2 items & get 15% OFF."
+    },
+    {
+      "type": "header",
+      "content": "Offer 4: Buy 3 20%"
+    },
+
+    {
+      "type": "text",
+      "id": "description_4",
+      "label": "Description 4",
+      "default": "Buy 3 items & get 20% OFF."
+    },
+    {
+      "type": "header",
+      "content": "Offer 5: Free Shipping"
+    },
+    {
+      "type": "text",
+      "id": "title_5",
+      "label": "Offer Title 5",
+      "default": "FREE SHIPPING"
+    },
+    {
+      "type": "text",
+      "id": "coupon_code_5",
+      "label": "Coupon Code 5 (Leave blank if no code needed)"
+    },
+    {
+      "type": "text",
+      "id": "description_5",
+      "label": "Description 5",
+      "default": "Free shipping on all orders."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Items Remaining Urgency",
+      "category": "t:categories.product"
+    }
+  ]
+}
+{% endschema %}

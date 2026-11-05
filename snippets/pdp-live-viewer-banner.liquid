@@ -1,0 +1,163 @@
+{% comment %}
+  PDP Live Viewer Banner Block
+  Displays real-time viewer count in theme brand colors with zero border-radius:
+  "👁 40 people are viewing this right now"
+  Hides automatically for sold-out products/variants.
+{% endcomment %}
+
+{% liquid
+  assign target_product = product | default: closest.product
+  assign current_variant = target_product.selected_or_first_available_variant
+  assign is_available = target_product.available
+  if current_variant != blank and current_variant.available == false
+    assign is_available = false
+  endif
+
+  if target_product.available == false
+    break
+  endif
+
+  assign product_id = target_product.id | default: section.id | default: 'main'
+  assign viewer_count = block.settings.viewer_count | default: 40
+%}
+
+<div
+  class="pdp-viewer-banner pdp-urgency-block"
+  {{ block.shopify_attributes }}
+  data-product-id="{{ product_id }}"
+  {% unless is_available %}style="display: none;"{% endunless %}
+>
+  <div class="pdp-viewer-banner__card">
+    <span class="pdp-viewer-banner__icon" aria-hidden="true">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+      </svg>
+    </span>
+    <span class="pdp-viewer-banner__text">
+      <strong class="pdp-viewer-banner__count" id="PdpViewerBannerCount-{{ product_id }}">{{ viewer_count }}</strong> people are viewing this right now
+    </span>
+  </div>
+</div>
+
+{% style %}
+  .pdp-viewer-banner {
+    width: 100%;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .pdp-viewer-banner__card {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    background-color: var(--color-background-secondary, #F4F6F8);
+    border: 1px solid var(--color-border, #CBD5E1);
+    border-radius: 0 !important;
+    gap: 10px;
+    box-sizing: border-box;
+    color: var(--color-foreground, #0C4168);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pdp-viewer-banner__card:hover {
+    border-color: var(--color-foreground, #0C4168);
+  }
+
+  .pdp-viewer-banner__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-foreground, #0C4168);
+  }
+
+  .pdp-viewer-banner__text {
+    font-family: var(--font-body--family, sans-serif);
+    font-size: 13.5px;
+    color: var(--color-foreground, #0C4168);
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.1px;
+  }
+
+  .pdp-viewer-banner__text strong {
+    font-weight: 700;
+    color: var(--color-foreground, #0C4168);
+  }
+
+  .pdp-viewer-banner__count {
+    display: inline-block;
+    transition: opacity 0.4s ease;
+  }
+
+  .pdp-viewer-banner__count.pdp-count-bump {
+    opacity: 0.4;
+  }
+
+  @media screen and (max-width: 600px) {
+    .pdp-viewer-banner__card {
+      padding: 9px 12px;
+      gap: 8px;
+    }
+    .pdp-viewer-banner__text {
+      font-size: 12px;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function() {
+    var countEl = document.getElementById('PdpViewerBannerCount-{{ product_id }}');
+    if (countEl) {
+      var randomViewer = Math.floor(Math.random() * (48 - 35 + 1)) + 35;
+      countEl.textContent = randomViewer;
+      
+      var currentCount = randomViewer;
+      
+      function fluctuateCount() {
+        var delta = Math.random() < 0.5 ? 1 : -1;
+        var nextCount = currentCount + delta;
+        if (nextCount < 28) nextCount = 35;
+        if (nextCount > 54) nextCount = 48;
+        
+        if (nextCount !== currentCount) {
+          countEl.classList.add('pdp-count-bump');
+          setTimeout(function() {
+            currentCount = nextCount;
+            countEl.textContent = currentCount;
+            countEl.classList.remove('pdp-count-bump');
+          }, 400);
+        }
+        
+        var nextInterval = Math.floor(Math.random() * 45000) + 45000;
+        setTimeout(fluctuateCount, nextInterval);
+      }
+      
+      var firstDelay = Math.floor(Math.random() * 30000) + 45000;
+      setTimeout(fluctuateCount, firstDelay);
+    }
+
+    // Hide if sold out / unavailable on variant change
+    function updateSoldOutState() {
+      var banner = document.querySelector('.pdp-viewer-banner[data-product-id="{{ product_id }}"]');
+      if (!banner) return;
+      var form = document.querySelector('form[action*="/cart/add"]');
+      var atcBtn = form ? form.querySelector('[type="submit"], [name="add"], .add-to-cart__button, .button--primary') : null;
+      var isSoldOut = false;
+      if (atcBtn) {
+        if (atcBtn.disabled) isSoldOut = true;
+        var btnText = (atcBtn.textContent || '').trim().toLowerCase();
+        if (btnText.indexOf('sold') !== -1 || btnText.indexOf('soon') !== -1 || btnText.indexOf('out') !== -1 || btnText.indexOf('unavailable') !== -1) {
+          isSoldOut = true;
+        }
+      }
+      banner.style.display = isSoldOut ? 'none' : '';
+    }
+
+    document.addEventListener('change', updateSoldOutState);
+    document.addEventListener('variant:change', updateSoldOutState);
+    document.addEventListener('VariantUpdateEvent', updateSoldOutState);
+    setTimeout(updateSoldOutState, 150);
+  })();
+</script>

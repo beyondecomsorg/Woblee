@@ -1,0 +1,735 @@
+{%- doc -%}
+  Cart Rewards Milestone Progress Bar
+  Renders the tiered rewards offer section for the Woblee cart drawer:
+  - Buy 1 -> FREE SHIPPING (Code: FREESHIP)
+  - Buy 2 -> 5% OFF (Code: SAVE5)
+  - Buy 3 -> 10% OFF (Code: SAVE10)
+  - Interactive copy button with instant feedback
+  - Brand styling tailored to brand colors (#0C4168 / #0B1F33) with zero border radius
+{%- enddoc -%}
+
+{%- liquid
+  assign enabled = settings.cart_progress_bar_enable
+  if enabled == nil
+    assign enabled = true
+  endif
+
+  assign show_empty = settings.cart_progress_bar_show_empty
+  if show_empty == nil
+    assign show_empty = true
+  endif
+
+  if enabled == false
+    break
+  endif
+
+  if cart.empty? and show_empty == false
+    break
+  endif
+
+  assign item_count = cart.item_count | default: 0
+
+  # Brand Colors
+  assign brand_primary = settings.cart_progress_bar_fill_color | default: '#0C4168'
+  assign brand_text = settings.cart_progress_bar_text_color | default: '#0C4168'
+  assign brand_track = settings.cart_progress_bar_track_color | default: '#E2E8F0'
+
+  # Tier 1: Free Shipping (No coupon code needed)
+  assign tier1_label = settings.cart_progress_bar_tier1_label | default: 'BUY 1'
+  assign tier1_sublabel = settings.cart_progress_bar_tier1_sublabel | default: 'FREE SHIPPING'
+
+  # Tier 2: 15% OFF (Code: BUY2)
+  assign tier2_label = settings.cart_progress_bar_tier2_label | default: 'BUY 2'
+  assign tier2_sublabel = settings.cart_progress_bar_tier2_sublabel | default: '+15% OFF'
+  assign tier2_code = settings.cart_progress_bar_tier2_code | default: 'BUY2'
+
+  # Tier 3: 20% OFF (Code: BUY3)
+  assign tier3_label = settings.cart_progress_bar_tier3_label | default: 'BUY 3'
+  assign tier3_sublabel = settings.cart_progress_bar_tier3_sublabel | default: '+20% OFF'
+  assign tier3_code = settings.cart_progress_bar_tier3_code | default: 'BUY3'
+
+  # Dynamic Motivational Messages with Highlight Span
+  # 0 items: ADD 1 PRODUCT TO UNLOCK FREE SHIPPING
+  # 1 item: BUY 1 MORE PRODUCT TO UNLOCK 5% OFF
+  # 2 items: BUY 1 MORE PRODUCT TO UNLOCK 10% OFF
+  # 3+ items: MAXIMUM DISCOUNT UNLOCKED: 10% OFF + FREE SHIPPING
+
+  assign tier1_unlocked = false
+  assign tier2_unlocked = false
+  assign tier3_unlocked = false
+
+  if item_count >= 1
+    assign tier1_unlocked = true
+  endif
+  if item_count >= 2
+    assign tier2_unlocked = true
+  endif
+  if item_count >= 3
+    assign tier3_unlocked = true
+  endif
+
+  # Progress Fill Percentage
+  assign progress_pct = 0
+  if item_count == 1
+    assign progress_pct = 28
+  elsif item_count == 2
+    assign progress_pct = 50
+  elsif item_count >= 3
+    assign progress_pct = 100
+  endif
+
+  # Active Coupon (Only for Tier 2 and Tier 3, Free Shipping has no coupon)
+  assign show_coupon_card = false
+  assign active_code = ''
+  assign active_discount_text = ''
+  if item_count >= 3
+    assign show_coupon_card = true
+    assign active_code = tier3_code
+    assign active_discount_text = '20% OFF UNLOCKED'
+  elsif item_count >= 2
+    assign show_coupon_card = true
+    assign active_code = tier2_code
+    assign active_discount_text = '15% OFF UNLOCKED'
+  endif
+-%}
+
+<cart-progress-bar
+  class="cart-progress-bar"
+  data-cart-item-count="{{ item_count }}"
+  data-code-tier2="{{ tier2_code }}"
+  data-code-tier3="{{ tier3_code }}"
+  style="--cpb-progress-width: {{ progress_pct }}%;"
+>
+  <div class="cart-progress-bar__inner">
+    <!-- Top Motivational Headline with Blue Highlight -->
+    <div class="cart-progress-bar__message" role="status" aria-live="polite">
+      {% if item_count == 0 %}
+        ADD 1 PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">FREE SHIPPING</span>
+      {% elsif item_count == 1 %}
+        BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">15% OFF</span>
+      {% elsif item_count == 2 %}
+        BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">20% OFF</span>
+      {% else %}
+        🎉 MAXIMUM DISCOUNT UNLOCKED: <span class="cart-progress-bar__highlight">20% OFF + FREE SHIPPING</span>
+      {% endif %}
+    </div>
+
+    <!-- Progress Track & Milestone Stepper -->
+    <div class="cart-progress-bar__stepper-wrap">
+      <!-- Background Line Track -->
+      <div class="cart-progress-bar__track-line">
+        <!-- Filled Line Track -->
+        <div class="cart-progress-bar__fill-line">
+          <span class="cart-progress-bar__needle-dot"></span>
+        </div>
+      </div>
+
+      <!-- Milestone 1: Buy 1 -> FREE SHIPPING (Shopping Cart Icon) -->
+      <div class="cart-progress-bar__milestone milestone-1{% if tier1_unlocked %} is-unlocked{% endif %}{% if item_count == 1 %} is-active{% endif %}">
+        <div class="cart-progress-bar__circle" title="{{ tier1_label }}">
+          <!-- Shopping Cart Icon -->
+          <svg class="cart-progress-bar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+        </div>
+        <span class="cart-progress-bar__label">{{ tier1_label }}</span>
+        <span class="cart-progress-bar__target-badge">{{ tier1_sublabel }}</span>
+      </div>
+
+      <!-- Milestone 2: Buy 2 -> +5% OFF (%) -->
+      <div class="cart-progress-bar__milestone milestone-2{% if tier2_unlocked %} is-unlocked{% endif %}{% if item_count == 2 %} is-active{% endif %}">
+        <div class="cart-progress-bar__circle" title="{{ tier2_label }}">
+          <!-- Percentage Icon -->
+          <svg class="cart-progress-bar__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="5" x2="5" y2="19"></line>
+            <circle cx="6.5" cy="6.5" r="2.5"></circle>
+            <circle cx="17.5" cy="17.5" r="2.5"></circle>
+          </svg>
+        </div>
+        <span class="cart-progress-bar__label">{{ tier2_label }}</span>
+        <span class="cart-progress-bar__target">{{ tier2_sublabel }}</span>
+      </div>
+
+      <!-- Milestone 3: Buy 3 -> +10% OFF (%) -->
+      <div class="cart-progress-bar__milestone milestone-3{% if tier3_unlocked %} is-unlocked{% endif %}{% if item_count >= 3 %} is-active{% endif %}">
+        <div class="cart-progress-bar__circle" title="{{ tier3_label }}">
+          <!-- Percentage Icon -->
+          <svg class="cart-progress-bar__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="5" x2="5" y2="19"></line>
+            <circle cx="6.5" cy="6.5" r="2.5"></circle>
+            <circle cx="17.5" cy="17.5" r="2.5"></circle>
+          </svg>
+        </div>
+        <span class="cart-progress-bar__label">{{ tier3_label }}</span>
+        <span class="cart-progress-bar__target">{{ tier3_sublabel }}</span>
+      </div>
+    </div>
+
+    <!-- Reward / Unlocked Coupon Card (Only displayed for Tier 2 and Tier 3 - Free Shipping has NO coupon code) -->
+    {% comment %} <div
+      class="cart-progress-bar__coupon-card{% if show_coupon_card %} is-visible{% endif %}"
+      {% unless show_coupon_card %}style="display: none;"{% endunless %}
+    > {% endcomment %}
+      {% comment %} <div class="cart-progress-bar__coupon-left">
+        <div class="cart-progress-bar__coupon-tag-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+          </svg>
+        </div>
+        <div class="cart-progress-bar__coupon-text-wrap">
+          <div class="cart-progress-bar__coupon-unlocked-title">
+            Coupon unlocked: <strong class="cart-progress-bar__coupon-code-text">{{ active_code }}</strong>
+          </div>
+          <div class="cart-progress-bar__coupon-unlocked-sub cart-progress-bar__coupon-discount-text">
+            {{ active_discount_text }}
+          </div>
+        </div>
+      </div> {% endcomment %}
+
+      {% comment %} <div class="cart-progress-bar__coupon-right">
+        <div class="cart-progress-bar__coupon-pill">
+          <span class="cart-progress-bar__coupon-pill-code">{{ active_code }}</span>
+        </div>
+        <button
+          type="button"
+          class="cart-progress-bar__copy-btn button-unstyled"
+          data-code="{{ active_code }}"
+          aria-label="Copy coupon code"
+        >
+          <span class="cart-progress-bar__copy-text">COPY</span>
+        </button>
+      </div> {% endcomment %}
+    {% comment %} </div>
+  </div> {% endcomment %}
+</cart-progress-bar>
+
+<style>
+  .cart-progress-bar {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    --cpb-brand-navy: {{ brand_primary }};
+    --cpb-text: {{ brand_text }};
+    --cpb-track: {{ brand_track }};
+    --cpb-blue: {{ brand_primary }};
+    --cpb-badge-bg: rgba(12, 65, 104, 0.08);
+    --cpb-card-bg: #FFFFFF;
+    --cpb-card-border: #EEF2F6;
+    padding: 6px 14px 4px 14px;
+  }
+
+  .cart-progress-bar__inner {
+    background-color: var(--cpb-card-bg);
+    border: 1px solid var(--cpb-card-border);
+    border-radius: 12px;
+    padding: 14px 14px 12px 14px;
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Top Motivational Headline with Blue Highlight */
+  .cart-progress-bar__message {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--cpb-brand-navy);
+    margin-bottom: 14px;
+    transition: color 0.3s ease;
+  }
+
+  .cart-progress-bar__highlight {
+    color: var(--cpb-blue);
+    font-weight: 800;
+  }
+
+  /* Stepper Wrapper */
+  .cart-progress-bar__stepper-wrap {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    margin-bottom: 2rem !important;
+    padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  /* Connecting Track Line */
+  .cart-progress-bar__track-line {
+    position: absolute;
+    top: 17px;
+    left: 28px;
+    right: 28px;
+    height: 3px;
+    background-color: var(--cpb-track);
+    border-radius: 2px;
+    z-index: 1;
+  }
+
+  /* Filled Line Track */
+  .cart-progress-bar__fill-line {
+    position: relative;
+    height: 100%;
+    width: var(--cpb-progress-width, 0%);
+    background-color: var(--cpb-blue);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Needle Bead Dot */
+  .cart-progress-bar__needle-dot {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--cpb-blue);
+    border: 2px solid #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(12, 65, 104, 0.3);
+    transition: opacity 0.3s ease;
+  }
+
+  /* Milestone Nodes */
+  .cart-progress-bar__milestone {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 82px;
+  }
+
+  /* Milestone Circle Badge */
+  .cart-progress-bar__circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    border: 2px solid #CBD5E1;
+    color: #8898AA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cart-progress-bar__circle svg {
+    stroke: currentColor;
+    transition: stroke 0.3s ease;
+  }
+
+  /* Unlocked Milestone State */
+  .cart-progress-bar__milestone.is-unlocked .cart-progress-bar__circle {
+    background-color: var(--cpb-blue) !important;
+    border-color: var(--cpb-blue) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 6px rgba(12, 65, 104, 0.25);
+  }
+
+  .cart-progress-bar__milestone.is-unlocked .cart-progress-bar__circle svg {
+    stroke: #FFFFFF !important;
+  }
+
+  /* Milestone Text */
+  .cart-progress-bar__label {
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--cpb-brand-navy);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .cart-progress-bar__target {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #64748B;
+    margin-top: 3px;
+    letter-spacing: 0.2px;
+  }
+
+  .cart-progress-bar__milestone.is-unlocked .cart-progress-bar__target {
+    color: var(--cpb-brand-navy);
+    font-weight: 800;
+  }
+
+  /* Target Badge for Milestone 1: FREE SHIPPING */
+  .cart-progress-bar__target-badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--cpb-blue);
+    background-color: var(--cpb-badge-bg);
+    border-radius: 4px;
+    padding: 3px 7px;
+    margin-top: 4px;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+  }
+
+  /* Unlocked Coupon Card (Only for 5% OFF and 10% OFF) */
+  .cart-progress-bar__coupon-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    border-left: 3px solid var(--cpb-brand-navy);
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.35s ease;
+    gap: 8px;
+  }
+
+  .cart-progress-bar__coupon-card.is-visible {
+    display: flex !important;
+  }
+
+  .cart-progress-bar__coupon-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .cart-progress-bar__coupon-tag-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    background-color: #E2E8F0;
+    color: var(--cpb-brand-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .cart-progress-bar__coupon-text-wrap {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .cart-progress-bar__coupon-unlocked-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0F172A;
+    line-height: 1.25;
+    white-space: normal;
+  }
+
+  .cart-progress-bar__coupon-unlocked-title strong {
+    color: var(--cpb-brand-navy);
+    font-weight: 800;
+  }
+
+  .cart-progress-bar__coupon-unlocked-sub {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cpb-brand-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-top: 1px;
+  }
+
+  .cart-progress-bar__coupon-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .cart-progress-bar__coupon-pill {
+    background-color: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 4px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart-progress-bar__coupon-pill-code {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    color: var(--cpb-brand-navy);
+    font-family: monospace, inherit;
+    text-transform: uppercase;
+  }
+
+  .cart-progress-bar__copy-btn {
+    background-color: var(--cpb-brand-navy);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 11px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+
+  .cart-progress-bar__copy-btn:hover {
+    background-color: #082D48;
+    transform: translateY(-1px);
+  }
+
+  .cart-progress-bar__copy-btn.is-copied {
+    background-color: #07263D !important;
+    color: #FFFFFF !important;
+  }
+
+  @media screen and (max-width: 380px) {
+    .cart-progress-bar__inner {
+      padding: 12px 14px 10px 14px;
+    }
+    .cart-progress-bar__message {
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+    .cart-progress-bar__circle {
+      width: 32px;
+      height: 32px;
+    }
+    .cart-progress-bar__track-line {
+      top: 16px;
+    }
+    .cart-progress-bar__label {
+      font-size: 11.5px;
+    }
+    .cart-progress-bar__target-badge {
+      font-size: 10px;
+      padding: 2px 5px;
+    }
+    .cart-progress-bar__coupon-unlocked-title {
+      font-size: 11.5px;
+    }
+    .cart-progress-bar__coupon-pill-code {
+      font-size: 11px;
+    }
+    .cart-progress-bar__copy-btn {
+      padding: 6px 10px;
+      font-size: 11px;
+  }
+</style>
+
+<script>
+  if (!customElements.get('cart-progress-bar')) {
+    class CartProgressBar extends HTMLElement {
+      connectedCallback() {
+        this.#bindEvents();
+        const initialCount = parseInt(this.dataset.cartItemCount, 10);
+        if (!isNaN(initialCount)) {
+          this.updateState(initialCount);
+        }
+      }
+
+      #bindEvents() {
+        const events = [
+          'cart:update',
+          'cart:updated',
+          'cart-update',
+          'cart:add',
+          'cart-add',
+          'cart:change',
+          'dialog:open',
+          'cart-drawer:open'
+        ];
+        events.forEach((evt) => document.addEventListener(evt, this.#handleCartEvent));
+
+        // Listen for custom CartUpdateEvent from component-cart-items
+        document.addEventListener('CartUpdateEvent', this.#handleCartEvent);
+
+        // Copy button handling
+        this.addEventListener('click', (e) => {
+          const btn = e.target.closest('.cart-progress-bar__copy-btn');
+          if (!btn) return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          const code = btn.dataset.code || this.querySelector('.cart-progress-bar__coupon-pill-code')?.textContent?.trim();
+          if (!code) return;
+
+          const onSuccess = () => {
+            btn.classList.add('is-copied');
+            const textEl = btn.querySelector('.cart-progress-bar__copy-text');
+            const orig = textEl ? textEl.textContent : 'COPY';
+            if (textEl) textEl.textContent = 'COPIED!';
+            setTimeout(() => {
+              btn.classList.remove('is-copied');
+              if (textEl) textEl.textContent = orig;
+            }, 2000);
+          };
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(code).then(onSuccess).catch(() => {
+              this.#fallbackCopy(code, onSuccess);
+            });
+          } else {
+            this.#fallbackCopy(code, onSuccess);
+          }
+        });
+      }
+
+      #fallbackCopy(text, callback) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+          document.execCommand('copy');
+        } catch (e) {
+          console.warn('Coupon copy fallback', e);
+        }
+        document.body.removeChild(textarea);
+        if (callback) callback();
+      }
+
+      #handleCartEvent = (event) => {
+        const detail = event?.detail;
+        let count = undefined;
+
+        if (detail) {
+          if (typeof detail.itemCount === 'number') {
+            count = detail.itemCount;
+          } else if (typeof detail.item_count === 'number') {
+            count = detail.item_count;
+          } else if (typeof detail.data?.itemCount === 'number') {
+            count = detail.data.itemCount;
+          } else if (typeof detail.data?.item_count === 'number') {
+            count = detail.data.item_count;
+          } else if (typeof detail.cart?.item_count === 'number') {
+            count = detail.cart.item_count;
+          } else if (typeof detail.resource?.item_count === 'number') {
+            count = detail.resource.item_count;
+          }
+        }
+
+        if (typeof count === 'number') {
+          this.updateState(count);
+        } else {
+          // Fetch cart state asynchronously
+          fetch('/cart.js')
+            .then((res) => res.json())
+            .then((cart) => {
+              if (cart && typeof cart.item_count === 'number') {
+                this.updateState(cart.item_count);
+              }
+            })
+            .catch(() => {});
+        }
+      };
+
+      updateState(itemCount) {
+        const count = typeof itemCount === 'number' ? itemCount : (parseInt(this.dataset.cartItemCount, 10) || 0);
+        this.dataset.cartItemCount = count;
+
+        const tier1Unlocked = count >= 1;
+        const tier2Unlocked = count >= 2;
+        const tier3Unlocked = count >= 3;
+
+        // Progress percentage
+        let progressPct = 0;
+        if (count === 1) {
+          progressPct = 28;
+        } else if (count === 2) {
+          progressPct = 50;
+        } else if (count >= 3) {
+          progressPct = 100;
+        }
+        this.style.setProperty('--cpb-progress-width', `${progressPct}%`);
+
+        // Milestone classes & direct SVG styles
+        const updateMilestone = (selector, isUnlocked, isActive) => {
+          const m = this.querySelector(selector);
+          if (!m) return;
+          m.classList.toggle('is-unlocked', isUnlocked);
+          m.classList.toggle('is-active', isActive);
+        };
+
+        updateMilestone('.milestone-1', tier1Unlocked, count === 1);
+        updateMilestone('.milestone-2', tier2Unlocked, count === 2);
+        updateMilestone('.milestone-3', tier3Unlocked, count >= 3);
+
+        // Motivational Message with Highlight Span
+        let msgHtml = '';
+        if (count === 0) {
+          msgHtml = 'ADD 1 PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">FREE SHIPPING</span>';
+        } else if (count === 1) {
+          msgHtml = 'BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">15% OFF</span>';
+        } else if (count === 2) {
+          msgHtml = 'BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">20% OFF</span>';
+        } else {
+          msgHtml = '🎉 MAXIMUM DISCOUNT UNLOCKED: <span class="cart-progress-bar__highlight">20% OFF + FREE SHIPPING</span>';
+        }
+
+        const msgEl = this.querySelector('.cart-progress-bar__message');
+        if (msgEl) {
+          msgEl.innerHTML = msgHtml;
+        }
+
+        // Coupon Card - Free Shipping has NO coupon code (only show for Tier 2 and Tier 3)
+        const couponCard = this.querySelector('.cart-progress-bar__coupon-card');
+        if (couponCard) {
+          if (count >= 2) {
+            couponCard.style.display = 'flex';
+            couponCard.classList.add('is-visible');
+
+            let code = this.dataset.codeTier3 || 'BUY3';
+            let discount = '20% OFF UNLOCKED';
+            if (count === 2) {
+              code = this.dataset.codeTier2 || 'BUY2';
+              discount = '15% OFF UNLOCKED';
+            }
+
+            const codeText = couponCard.querySelector('.cart-progress-bar__coupon-code-text');
+            if (codeText) codeText.textContent = code;
+
+            const discountText = couponCard.querySelector('.cart-progress-bar__coupon-discount-text');
+            if (discountText) discountText.textContent = discount;
+
+            const pillCode = couponCard.querySelector('.cart-progress-bar__coupon-pill-code');
+            if (pillCode) pillCode.textContent = code;
+
+            const copyBtn = couponCard.querySelector('.cart-progress-bar__copy-btn');
+            if (copyBtn) copyBtn.dataset.code = code;
+          } else {
+            couponCard.style.display = 'none';
+            couponCard.classList.remove('is-visible');
+          }
+        }
+      }
+    }
+    customElements.define('cart-progress-bar', CartProgressBar);
+  }
+</script>

@@ -38,21 +38,45 @@
     endif
     assign focal_point_style = '--focal-point: ' | append: media.presentation.focal_point | append: ';'
   %}
-  {{
-    media.preview_image
-    | image_url: width: 3840
-    | image_tag:
+  {%- if media.media_type == 'video' and preview_image_only != true -%}
+    {{
+      media
+      | video_tag:
+        image_size: '2048x',
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false,
+        playsinline: true,
+        class: 'product-media__video'
+    }}
+  {%- elsif media.media_type == 'external_video' and preview_image_only != true -%}
+    {%- render 'video',
+      video: media,
+      video_autoplay: true,
+      video_loop: true,
       widths: widths,
-      alt: media.alt,
       sizes: sizes,
       loading: loading,
-      class: 'product-media__image',
-      ref: ref_image_to_transition,
-      data_max_resolution: high_res_url,
-      fetchpriority: fetch_priority,
-      style: focal_point_style,
-      ref: image_ref
-  }}
+      disable_controls: true
+    -%}
+  {%- else -%}
+    {{
+      media.preview_image
+      | image_url: width: 3840
+      | image_tag:
+        widths: widths,
+        alt: media.alt,
+        sizes: sizes,
+        loading: loading,
+        class: 'product-media__image',
+        ref: ref_image_to_transition,
+        data_max_resolution: high_res_url,
+        fetchpriority: fetch_priority,
+        style: focal_point_style,
+        ref: image_ref
+    }}
+  {%- endif -%}
 
   {% unless preview_image_only %}
     {%- case media.media_type -%}
@@ -124,15 +148,6 @@
             {{ selected_product.media | where: 'media_type', 'model' | json }}
           </script>
         {%- endif -%}
-      {% when 'video', 'external_video' %}
-        {%- render 'video',
-          video: media,
-          video_loop: block.settings.video_loop,
-          widths: widths,
-          sizes: sizes,
-          loading: loading,
-          disable_controls: true
-        -%}
     {% endcase %}
   {% endunless %}
 </div>
@@ -142,10 +157,27 @@
     aspect-ratio: var(--gallery-aspect-ratio, var(--ratio));
     min-height: 0;
     min-width: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 
   .product-media__image {
     object-position: var(--focal-point, center center);
+  }
+
+  .product-media__video,
+  .product-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--product-media-fit, cover);
+    display: block;
+    aspect-ratio: inherit;
+  }
+
+  .product-media-container.media-fit-contain .product-media video,
+  .product-media-container.media-fit-contain .product-media__video {
+    object-fit: contain;
   }
 
   /*** Media border-radius feature ****/
