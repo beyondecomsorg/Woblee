@@ -17,7 +17,6 @@
         "announcement_a4JB6J": {
           "type": "_announcement",
           "name": "t:names.announcement",
-          "disabled": true,
           "settings": {
             "text": "&nbsp;Buy 2 items & get <strong>15% OFF</strong>.&nbsp;",
             "link": "",
@@ -33,7 +32,7 @@
           "type": "_announcement",
           "disabled": true,
           "settings": {
-            "text": "Festive Vibes & Exclusive Deals - Use Code: <strong>FESTIVE10&nbsp;</strong>",
+            "text": "&nbsp;Buy 3 items & get <strong>20% OFF.&nbsp;</strong>",
             "link": "",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
