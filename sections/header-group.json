@@ -19,7 +19,7 @@
           "name": "t:names.announcement",
           "disabled": true,
           "settings": {
-            "text": "We Are Now Live&nbsp;!",
+            "text": "&nbsp;Buy 2 items & get <strong>15% OFF</strong>.&nbsp;",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.875rem",
