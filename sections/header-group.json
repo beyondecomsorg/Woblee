@@ -30,7 +30,6 @@
         },
         "announcement_4Hm9Yf": {
           "type": "_announcement",
-          "disabled": true,
           "settings": {
             "text": "&nbsp;Buy 3 items & get <strong>20% OFF.&nbsp;</strong>",
             "link": "",
@@ -46,7 +45,7 @@
           "type": "_announcement",
           "name": "t:names.announcement",
           "settings": {
-            "text": "&nbsp;🪔 Diwali Sale: Use code <strong>DIWALI10</strong> for 10% OFF&nbsp;",
+            "text": "&nbsp;🪔 Diwali Sale: &nbsp;Get <strong>10% OFF</strong> on your first purchase.&nbsp;",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.875rem",
