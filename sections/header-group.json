@@ -44,6 +44,7 @@
         "announcement_igBCkn": {
           "type": "_announcement",
           "name": "t:names.announcement",
+          "disabled": true,
           "settings": {
             "text": "&nbsp;🪔 Diwali Sale: &nbsp;Get <strong>10% OFF</strong> on your first purchase.&nbsp;",
             "link": "",
