@@ -14,13 +14,12 @@
       "blocks": {
         "slide_jdV8Tw": {
           "type": "slide",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/DIWALI_ABC-01_jpg.jpg",
+            "image": "shopify://shop_images/CHILDRENS_DAY-01_jpg.jpg",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/DIWALI_ABC-02_jpg.jpg",
+            "mobile_image": "shopify://shop_images/CHILDRENS_DAY-02_jpg.jpg",
             "mobile_image_focal_point": "center center",
-            "slide_link": "shopify://collections/bestsellers",
+            "slide_link": "shopify://collections/kids",
             "slide_link_new_tab": false,
             "video_url_mp4": "",
             "video_url_webm": "",
