@@ -693,6 +693,291 @@
             {%- endfor -%}
           {% endif %}
         </ul>
+
+        {% comment %} Mobile Category Images below LOOKBOOK {% endcomment %}
+        {% liquid
+          assign men_link = blank
+          assign women_link = blank
+          assign kids_link = blank
+
+          for l in linklist.links
+            assign l_title = l.title | strip | downcase
+            if l_title == 'men'
+              assign men_link = l
+            elsif l_title == 'women'
+              assign women_link = l
+            elsif l_title == 'kids'
+              assign kids_link = l
+            endif
+          endfor
+
+          assign has_men_imgs = false
+          if block_settings.menu_image_1 != blank or block_settings.menu_image_2 != blank or block_settings.menu_image_3 != blank or block_settings.menu_image_4 != blank
+            assign has_men_imgs = true
+          endif
+
+          assign has_women_imgs = false
+          if block_settings.menu_image_5 != blank or block_settings.menu_image_6 != blank or block_settings.menu_image_7 != blank or block_settings.menu_image_8 != blank
+            assign has_women_imgs = true
+          endif
+
+          assign has_kids_imgs = false
+          if block_settings.menu_image_9 != blank or block_settings.menu_image_10 != blank or block_settings.menu_image_11 != blank or block_settings.menu_image_12 != blank
+            assign has_kids_imgs = true
+          endif
+        %}
+
+        {% if has_men_imgs or has_women_imgs or has_kids_imgs %}
+          <div class="mobile-drawer-categories">
+            {% if has_men_imgs and has_women_imgs %}
+              <div class="mobile-drawer-categories__tabs">
+                <button type="button" class="mobile-drawer-categories__tab is-active" data-drawer-tab="all">All</button>
+                <button type="button" class="mobile-drawer-categories__tab" data-drawer-tab="men">Men</button>
+                <button type="button" class="mobile-drawer-categories__tab" data-drawer-tab="women">Women</button>
+                {% if has_kids_imgs %}
+                  <button type="button" class="mobile-drawer-categories__tab" data-drawer-tab="kids">Kids</button>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% if has_men_imgs %}
+              <div class="mobile-drawer-categories__group" data-drawer-group="men">
+                <div class="mobile-drawer-categories__group-title">Men</div>
+                <div class="mobile-drawer-categories__grid">
+                  {% if block_settings.menu_image_1 != blank %}
+                    {% assign m1_url = block_settings.menu_image_1_link | default: men_link.links[0].url %}
+                    <a href="{{ m1_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_1 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_1 | default: men_link.links[0].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_1 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_1 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_2 != blank %}
+                    {% assign m2_url = block_settings.menu_image_2_link | default: men_link.links[1].url %}
+                    <a href="{{ m2_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_2 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_2 | default: men_link.links[1].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_2 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_2 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_3 != blank %}
+                    {% assign m3_url = block_settings.menu_image_3_link | default: men_link.links[2].url %}
+                    <a href="{{ m3_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_3 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_3 | default: men_link.links[2].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_3 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_3 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_4 != blank %}
+                    {% assign m4_url = block_settings.menu_image_4_link | default: men_link.links[3].url %}
+                    <a href="{{ m4_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_4 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_4 | default: men_link.links[3].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_4 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_4 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if has_women_imgs %}
+              <div class="mobile-drawer-categories__group" data-drawer-group="women">
+                <div class="mobile-drawer-categories__group-title">Women</div>
+                <div class="mobile-drawer-categories__grid">
+                  {% if block_settings.menu_image_5 != blank %}
+                    {% assign w1_url = block_settings.menu_image_5_link | default: women_link.links[0].url %}
+                    <a href="{{ w1_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_5 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_5 | default: women_link.links[0].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_5 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_5 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_6 != blank %}
+                    {% assign w2_url = block_settings.menu_image_6_link | default: women_link.links[1].url %}
+                    <a href="{{ w2_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_6 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_6 | default: women_link.links[1].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_6 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_6 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_7 != blank %}
+                    {% assign w3_url = block_settings.menu_image_7_link | default: women_link.links[2].url %}
+                    <a href="{{ w3_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_7 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_7 | default: women_link.links[2].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_7 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_7 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_8 != blank %}
+                    {% assign w4_url = block_settings.menu_image_8_link | default: women_link.links[3].url %}
+                    <a href="{{ w4_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_8 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_8 | default: women_link.links[3].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_8 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_8 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if has_kids_imgs %}
+              <div class="mobile-drawer-categories__group" data-drawer-group="kids">
+                <div class="mobile-drawer-categories__group-title">Kids</div>
+                <div class="mobile-drawer-categories__grid">
+                  {% if block_settings.menu_image_9 != blank %}
+                    {% assign k1_url = block_settings.menu_image_9_link | default: kids_link.links[0].url %}
+                    <a href="{{ k1_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_9 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_9 | default: kids_link.links[0].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_9 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_9 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_10 != blank %}
+                    {% assign k2_url = block_settings.menu_image_10_link | default: kids_link.links[1].url %}
+                    <a href="{{ k2_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_10 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_10 | default: kids_link.links[1].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_10 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_10 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_11 != blank %}
+                    {% assign k3_url = block_settings.menu_image_11_link | default: kids_link.links[2].url %}
+                    <a href="{{ k3_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_11 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_11 | default: kids_link.links[2].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_11 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_11 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                  {% if block_settings.menu_image_12 != blank %}
+                    {% assign k4_url = block_settings.menu_image_12_link | default: kids_link.links[3].url %}
+                    <a href="{{ k4_url | default: '#' }}" class="mobile-drawer-categories__card">
+                      <img src="{{ block_settings.menu_image_12 | image_url: width: 500 }}" alt="{{ block_settings.menu_title_12 | default: kids_link.links[3].title | escape }}" class="mobile-drawer-categories__img" loading="lazy" width="500">
+                      {% if block_settings.menu_title_12 != blank %}
+                        <span class="mobile-drawer-categories__label">{{ block_settings.menu_title_12 | downcase | capitalize }}</span>
+                      {% endif %}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <style>
+            .mobile-drawer-categories {
+              padding: 20px 16px 28px;
+              border-top: 1px solid rgba(0, 0, 0, 0.08);
+              margin-top: 16px;
+            }
+            .mobile-drawer-categories__tabs {
+              display: flex;
+              gap: 8px;
+              margin-bottom: 16px;
+            }
+            .mobile-drawer-categories__tab {
+              padding: 7px 16px;
+              font-size: 0.75rem;
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              background: transparent;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              color: var(--color-foreground, #1a1a1a);
+              cursor: pointer;
+              border-radius: 0;
+              transition: all 0.2s ease;
+            }
+            .mobile-drawer-categories__tab.is-active {
+              background: #0c4168;
+              border-color: #0c4168;
+              color: #ffffff;
+            }
+            .mobile-drawer-categories__group {
+              margin-bottom: 20px;
+            }
+            .mobile-drawer-categories__group:last-child {
+              margin-bottom: 0;
+            }
+            .mobile-drawer-categories__group-title {
+              font-size: 0.8125rem;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.06em;
+              margin-bottom: 12px;
+              color: var(--color-foreground, #1a1a1a);
+            }
+            .mobile-drawer-categories__grid {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 12px;
+            }
+            .mobile-drawer-categories__card {
+              display: block;
+              text-decoration: none;
+              color: var(--color-foreground, #1a1a1a);
+              border-radius: 0;
+            }
+            .mobile-drawer-categories__img {
+              width: 100%;
+              height: auto;
+              display: block;
+              border-radius: 0;
+            }
+            .mobile-drawer-categories__label {
+              display: block;
+              margin-top: 6px;
+              font-size: 0.75rem;
+              font-weight: 600;
+              text-align: center;
+              text-transform: capitalize;
+              color: var(--color-foreground, #1a1a1a);
+            }
+          </style>
+
+          <script>
+          (function() {
+            function initDrawerTabs() {
+              var tabs = document.querySelectorAll('.mobile-drawer-categories__tab');
+              var groups = document.querySelectorAll('.mobile-drawer-categories__group');
+              if (!tabs.length || !groups.length) return;
+
+              tabs.forEach(function(tab) {
+                tab.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  var target = this.getAttribute('data-drawer-tab');
+                  tabs.forEach(function(t) { t.classList.remove('is-active'); });
+                  this.classList.add('is-active');
+
+                  groups.forEach(function(group) {
+                    var groupName = group.getAttribute('data-drawer-group');
+                    if (target === 'all' || target === groupName) {
+                      group.style.display = 'block';
+                    } else {
+                      group.style.display = 'none';
+                    }
+                  });
+                });
+              });
+            }
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initDrawerTabs);
+            } else {
+              initDrawerTabs();
+            }
+          })();
+          </script>
+        {% endif %}
       </nav>
       <div
         class="menu-drawer__utility-links menu-drawer__animated-element"
