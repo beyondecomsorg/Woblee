@@ -1,10 +1,21 @@
 {% liquid
   assign is_two_col = false
-  assign mega_trigger_norm = block.settings.menu_mega_title | strip | downcase
+  assign matched_trigger_index = 0
+  assign mega_triggers_raw = block.settings.menu_mega_title | strip | downcase
   assign parent_norm = parent_link.title | strip | downcase
-  if mega_trigger_norm != blank and parent_norm == mega_trigger_norm
-    assign is_two_col = true
+  if mega_triggers_raw != blank
+    assign mega_triggers = mega_triggers_raw | split: ','
+    for trigger in mega_triggers
+      assign trigger_clean = trigger | strip
+      if parent_norm == trigger_clean
+        assign is_two_col = true
+        assign matched_trigger_index = forloop.index0
+        break
+      endif
+    endfor
   endif
+  assign slots_per_trigger = 4
+  assign slot_offset = matched_trigger_index | times: slots_per_trigger
 %}
 
 {% if is_two_col %}
@@ -24,59 +35,71 @@
   <div class="mega-menu-two-col__panels">
     {% for child_link in parent_link.links %}
       {% liquid
-        assign child_lower = child_link.title | strip | downcase
         assign panel_img1 = blank
         assign panel_img2 = blank
         assign panel_img1_link = blank
         assign panel_img2_link = blank
-        assign t1 = block.settings.menu_title_1 | strip | downcase
-        assign t2 = block.settings.menu_title_2 | strip | downcase
-        assign t3 = block.settings.menu_title_3 | strip | downcase
-        assign t4 = block.settings.menu_title_4 | strip | downcase
-        assign t5 = block.settings.menu_title_5 | strip | downcase
-        assign t6 = block.settings.menu_title_6 | strip | downcase
-        assign t7 = block.settings.menu_title_7 | strip | downcase
-        assign t8 = block.settings.menu_title_8 | strip | downcase
-        if child_lower == t1
+        assign slot_num = forloop.index | plus: slot_offset
+        if slot_num == 1
           assign panel_img1 = block.settings.menu_image_1
           assign panel_img2 = block.settings.menu_image_1_2
           assign panel_img1_link = block.settings.menu_image_1_link
           assign panel_img2_link = block.settings.menu_image_1_2_link
-        elsif child_lower == t2
+        elsif slot_num == 2
           assign panel_img1 = block.settings.menu_image_2
           assign panel_img2 = block.settings.menu_image_2_2
           assign panel_img1_link = block.settings.menu_image_2_link
           assign panel_img2_link = block.settings.menu_image_2_2_link
-        elsif child_lower == t3
+        elsif slot_num == 3
           assign panel_img1 = block.settings.menu_image_3
           assign panel_img2 = block.settings.menu_image_3_2
           assign panel_img1_link = block.settings.menu_image_3_link
           assign panel_img2_link = block.settings.menu_image_3_2_link
-        elsif child_lower == t4
+        elsif slot_num == 4
           assign panel_img1 = block.settings.menu_image_4
           assign panel_img2 = block.settings.menu_image_4_2
           assign panel_img1_link = block.settings.menu_image_4_link
           assign panel_img2_link = block.settings.menu_image_4_2_link
-        elsif child_lower == t5
+        elsif slot_num == 5
           assign panel_img1 = block.settings.menu_image_5
           assign panel_img2 = block.settings.menu_image_5_2
           assign panel_img1_link = block.settings.menu_image_5_link
           assign panel_img2_link = block.settings.menu_image_5_2_link
-        elsif child_lower == t6
+        elsif slot_num == 6
           assign panel_img1 = block.settings.menu_image_6
           assign panel_img2 = block.settings.menu_image_6_2
           assign panel_img1_link = block.settings.menu_image_6_link
           assign panel_img2_link = block.settings.menu_image_6_2_link
-        elsif child_lower == t7
+        elsif slot_num == 7
           assign panel_img1 = block.settings.menu_image_7
           assign panel_img2 = block.settings.menu_image_7_2
           assign panel_img1_link = block.settings.menu_image_7_link
           assign panel_img2_link = block.settings.menu_image_7_2_link
-        elsif child_lower == t8
+        elsif slot_num == 8
           assign panel_img1 = block.settings.menu_image_8
           assign panel_img2 = block.settings.menu_image_8_2
           assign panel_img1_link = block.settings.menu_image_8_link
           assign panel_img2_link = block.settings.menu_image_8_2_link
+        elsif slot_num == 9
+          assign panel_img1 = block.settings.menu_image_9
+          assign panel_img2 = block.settings.menu_image_9_2
+          assign panel_img1_link = block.settings.menu_image_9_link
+          assign panel_img2_link = block.settings.menu_image_9_2_link
+        elsif slot_num == 10
+          assign panel_img1 = block.settings.menu_image_10
+          assign panel_img2 = block.settings.menu_image_10_2
+          assign panel_img1_link = block.settings.menu_image_10_link
+          assign panel_img2_link = block.settings.menu_image_10_2_link
+        elsif slot_num == 11
+          assign panel_img1 = block.settings.menu_image_11
+          assign panel_img2 = block.settings.menu_image_11_2
+          assign panel_img1_link = block.settings.menu_image_11_link
+          assign panel_img2_link = block.settings.menu_image_11_2_link
+        elsif slot_num == 12
+          assign panel_img1 = block.settings.menu_image_12
+          assign panel_img2 = block.settings.menu_image_12_2
+          assign panel_img1_link = block.settings.menu_image_12_link
+          assign panel_img2_link = block.settings.menu_image_12_2_link
         endif
       %}
       <div
