@@ -2,374 +2,444 @@
   ==============================================================================
   SNIPPET: available-offers.liquid
   ==============================================================================
-  Renders an "Available Benefits" carousel with coupon offer cards and free shipping benefit.
+  Renders coupon offer cards in a clean horizontal carousel with:
+  - Solid outlines
+  - Light grey uniform background (#F8FAFC)
+  - Green angled SALE tag icon + bold coupon codes
+  - Circular navigation arrows and progress bar indicator
+  - No "AVAILABLE BENEFITS" heading (as requested by client)
 {% endcomment %}
 
 {% liquid
   assign block_id = block.id | default: section.id
-  assign heading = block.settings.heading | default: "AVAILABLE BENEFITS"
-  assign accent_color = block.settings.accent_color | default: "#b8860b"
-  assign tnc_url_global = block.settings.tnc_url | default: "#"
-  assign tnc_text_global = block.settings.tnc_text | default: "T & C"
 
   # Card 1: First Purchase - 10%
-  assign card1_code = block.settings.coupon_code_1 | default: block.settings.coupon_code | default: "WELCOME10"
-  assign card1_desc = block.settings.description_1 | default: block.settings.description | default: "Get 10% OFF on your first purchase."
-  assign card1_tnc_url = block.settings.tnc_url_1 | default: tnc_url_global
-  assign card1_tnc_text = block.settings.tnc_text_1
+  assign card1_code = block.settings.coupon_code_1 | default: "DIWALI10"
+  assign card1_desc = block.settings.description_1 | default: "Get 10% OFF, valid on all products"
 
-  # Card 2: Buy 10% (On all)
-  assign card2_code = block.settings.coupon_code_2 | default: "BUY10"
-  assign card2_desc = block.settings.description_2 | default: "Get 10% OFF on all items."
-  assign card2_tnc_url = block.settings.tnc_url_2 | default: tnc_url_global
-  assign card2_tnc_text = block.settings.tnc_text_2 | default: tnc_text_global
+  # Card 2: Buy 2 - 15%
+  assign card2_code = block.settings.coupon_code_2 | default: "EXTRA15"
+  assign card2_desc = block.settings.description_2 | default: "Buy 2, get 15% OFF"
 
-  # Card 3: Buy 2 15%
-  assign card3_code = block.settings.coupon_code_3 | default: "BUY2"
-  assign card3_desc = block.settings.description_3 | default: "Buy 2 items & get 15% OFF."
-  assign card3_tnc_url = block.settings.tnc_url_3 | default: tnc_url_global
-  assign card3_tnc_text = block.settings.tnc_text_3
+  # Card 3: Buy 3 - 20%
+  assign card3_code = block.settings.coupon_code_3 | default: "EXTRA20"
+  assign card3_desc = block.settings.description_3 | default: "Buy 3, get 20% OFF"
 
-  # Card 4: Buy 3 20%
+  # Card 4
+  assign card4_code = block.settings.coupon_code_4
+  assign card4_desc = block.settings.description_4
 
-
-  # Card 5: Free shipping (No code required)
-  assign card5_title = block.settings.title_5 | default: "FREE SHIPPING"
+  # Card 5
   assign card5_code = block.settings.coupon_code_5
-  assign card5_desc = block.settings.description_5 | default: "Free shipping on all orders."
-  assign card5_tnc_url = block.settings.tnc_url_5 | default: tnc_url_global
-  assign card5_tnc_text = block.settings.tnc_text_5
+  assign card5_desc = block.settings.description_5
 %}
 
-{% capture cards_html %}
-  <!-- Card 1: First Purchase - 10% -->
-  <div class="ab-card">
-    <div class="ab-row-top">
-      <div class="ab-code-wrapper">
-        <span>Use code</span>
-        <button
-          type="button"
-          class="ab-code-btn js-ab-code-btn"
-          title="Click to copy coupon code {{ card1_code }}"
-          aria-label="Click to copy coupon code {{ card1_code }}"
-        >
-          <span class="js-ab-code-text" data-code="{{ card1_code }}">{{ card1_code }}</span>
-          <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
-        </button>
-      </div>
-      {% if card1_tnc_text != blank %}
-        <a href="{{ card1_tnc_url }}" class="ab-tnc-link">{{ card1_tnc_text }}</a>
-      {% endif %}
-    </div>
-    {% if card1_desc != blank %}
-      <p class="ab-description">{{ card1_desc }}</p>
-    {% endif %}
-  </div>
+<div id="ab-block-{{ block_id }}" class="ab-container" {{ block.shopify_attributes }}>
+  <div class="ab-carousel-container">
+    <!-- Prev Arrow Button -->
+    <button
+      type="button"
+      class="ab-nav-btn ab-nav-btn--prev js-ab-prev"
+      aria-label="Previous offer"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
 
-  <!-- Card 2: Buy 10% -->
-  <div class="ab-card">
-    <div class="ab-row-top">
-      <div class="ab-code-wrapper">
-        <span>Use code</span>
-        <button
-          type="button"
-          class="ab-code-btn js-ab-code-btn"
-          title="Click to copy coupon code {{ card2_code }}"
-          aria-label="Click to copy coupon code {{ card2_code }}"
-        >
-          <span class="js-ab-code-text" data-code="{{ card2_code }}">{{ card2_code }}</span>
-          <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
-        </button>
-      </div>
-      {% if card2_tnc_text != blank %}
-        <a href="{{ card2_tnc_url }}" class="ab-tnc-link">{{ card2_tnc_text }}</a>
-      {% endif %}
-    </div>
-    {% if card2_desc != blank %}
-      <p class="ab-description">{{ card2_desc }}</p>
-    {% endif %}
-  </div>
-
-  <!-- Card 3: Buy 2 15% -->
-  <div class="ab-card">
-    <div class="ab-row-top">
-      <div class="ab-code-wrapper">
-        <span>Use code</span>
-        <button
-          type="button"
-          class="ab-code-btn js-ab-code-btn"
-          title="Click to copy coupon code {{ card3_code }}"
-          aria-label="Click to copy coupon code {{ card3_code }}"
-        >
-          <span class="js-ab-code-text" data-code="{{ card3_code }}">{{ card3_code }}</span>
-          <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
-        </button>
-      </div>
-      {% if card3_tnc_text != blank %}
-        <a href="{{ card3_tnc_url }}" class="ab-tnc-link">{{ card3_tnc_text }}</a>
-      {% endif %}
-    </div>
-    {% if card3_desc != blank %}
-      <p class="ab-description">{{ card3_desc }}</p>
-    {% endif %}
-  </div>
-
-  <!-- Card 4: Buy 3 20% -->
-
-
-  <!-- Card 5: Free shipping (No code required) -->
-  <div class="ab-card ab-card--shipping">
-    {% if card5_code != blank %}
-      <div class="ab-row-top">
-        <div class="ab-code-wrapper">
-          <span>Use code</span>
-          <button
-            type="button"
-            class="ab-code-btn js-ab-code-btn"
-            title="Click to copy coupon code {{ card5_code }}"
-            aria-label="Click to copy coupon code {{ card5_code }}"
-          >
-            <span class="js-ab-code-text" data-code="{{ card5_code }}">{{ card5_code }}</span>
-            <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
-          </button>
-        </div>
-        {% if card5_tnc_text != blank %}
-          <a href="{{ card5_tnc_url }}" class="ab-tnc-link">{{ card5_tnc_text }}</a>
-        {% endif %}
-      </div>
-      {% if card5_desc != blank %}
-        <p class="ab-description">{{ card5_desc }}</p>
-      {% endif %}
-    {% else %}
-      <div class="ab-row-top">
-        {% if card5_title != blank %}
-          <div class="ab-benefit-title" style="font-weight: 700; color: #0C4168; font-size: 13px; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 6px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;" aria-hidden="true">
-              <rect x="1" y="3" width="15" height="13"></rect>
-              <polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon>
-              <circle cx="5.5" cy="18.5" r="2.5"></circle>
-              <circle cx="18.5" cy="18.5" r="2.5"></circle>
-            </svg>
-            <span>{{ card5_title }}</span>
+    <!-- Scrollable Carousel Track -->
+    <div class="ab-marquee-wrapper js-ab-wrapper" role="region" aria-label="Available offers">
+      <div class="ab-marquee-content">
+        {% if card1_code != blank %}
+          {% assign desc1 = card1_desc | replace: '10% OFF', '<strong>10% OFF</strong>' | replace: '15% OFF', '<strong>15% OFF</strong>' | replace: '20% OFF', '<strong>20% OFF</strong>' %}
+          <div class="ab-card">
+            <div class="ab-card-header">
+              <button
+                type="button"
+                class="ab-code-btn js-ab-code-btn"
+                title="Click to copy coupon code {{ card1_code }}"
+                aria-label="Click to copy coupon code {{ card1_code }}"
+              >
+                <span class="ab-sale-tag-badge" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 6C20 4 17 5 18 8" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+                    <g transform="translate(16 16) rotate(-45) translate(-16 -16)">
+                      <path d="M6 10C6 8.89543 6.89543 8 8 8H20L27 15L20 22H8C6.89543 22 6 21.1046 6 20V10Z" fill="#22C55E"/>
+                      <circle cx="9.5" cy="15" r="1.5" fill="#FFFFFF"/>
+                      <text x="17" y="16.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SALE</text>
+                    </g>
+                  </svg>
+                </span>
+                <span class="ab-code-name js-ab-code-text" data-code="{{ card1_code }}">{{ card1_code }}</span>
+                <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
+              </button>
+            </div>
+            {% if card1_desc != blank %}
+              <p class="ab-description">{{ desc1 }}</p>
+            {% endif %}
           </div>
         {% endif %}
-        {% if card5_tnc_text != blank %}
-          <a href="{{ card5_tnc_url }}" class="ab-tnc-link">{{ card5_tnc_text }}</a>
+
+        {% if card2_code != blank %}
+          {% assign desc2 = card2_desc | replace: '10% OFF', '<strong>10% OFF</strong>' | replace: '15% OFF', '<strong>15% OFF</strong>' | replace: '20% OFF', '<strong>20% OFF</strong>' %}
+          <div class="ab-card">
+            <div class="ab-card-header">
+              <button
+                type="button"
+                class="ab-code-btn js-ab-code-btn"
+                title="Click to copy coupon code {{ card2_code }}"
+                aria-label="Click to copy coupon code {{ card2_code }}"
+              >
+                <span class="ab-sale-tag-badge" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 6C20 4 17 5 18 8" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+                    <g transform="translate(16 16) rotate(-45) translate(-16 -16)">
+                      <path d="M6 10C6 8.89543 6.89543 8 8 8H20L27 15L20 22H8C6.89543 22 6 21.1046 6 20V10Z" fill="#22C55E"/>
+                      <circle cx="9.5" cy="15" r="1.5" fill="#FFFFFF"/>
+                      <text x="17" y="16.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SALE</text>
+                    </g>
+                  </svg>
+                </span>
+                <span class="ab-code-name js-ab-code-text" data-code="{{ card2_code }}">{{ card2_code }}</span>
+                <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
+              </button>
+            </div>
+            {% if card2_desc != blank %}
+              <p class="ab-description">{{ desc2 }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if card3_code != blank %}
+          {% assign desc3 = card3_desc | replace: '10% OFF', '<strong>10% OFF</strong>' | replace: '15% OFF', '<strong>15% OFF</strong>' | replace: '20% OFF', '<strong>20% OFF</strong>' %}
+          <div class="ab-card">
+            <div class="ab-card-header">
+              <button
+                type="button"
+                class="ab-code-btn js-ab-code-btn"
+                title="Click to copy coupon code {{ card3_code }}"
+                aria-label="Click to copy coupon code {{ card3_code }}"
+              >
+                <span class="ab-sale-tag-badge" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 6C20 4 17 5 18 8" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+                    <g transform="translate(16 16) rotate(-45) translate(-16 -16)">
+                      <path d="M6 10C6 8.89543 6.89543 8 8 8H20L27 15L20 22H8C6.89543 22 6 21.1046 6 20V10Z" fill="#22C55E"/>
+                      <circle cx="9.5" cy="15" r="1.5" fill="#FFFFFF"/>
+                      <text x="17" y="16.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SALE</text>
+                    </g>
+                  </svg>
+                </span>
+                <span class="ab-code-name js-ab-code-text" data-code="{{ card3_code }}">{{ card3_code }}</span>
+                <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
+              </button>
+            </div>
+            {% if card3_desc != blank %}
+              <p class="ab-description">{{ desc3 }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if card4_code != blank %}
+          {% assign desc4 = card4_desc | replace: '10% OFF', '<strong>10% OFF</strong>' | replace: '15% OFF', '<strong>15% OFF</strong>' | replace: '20% OFF', '<strong>20% OFF</strong>' %}
+          <div class="ab-card">
+            <div class="ab-card-header">
+              <button
+                type="button"
+                class="ab-code-btn js-ab-code-btn"
+                title="Click to copy coupon code {{ card4_code }}"
+                aria-label="Click to copy coupon code {{ card4_code }}"
+              >
+                <span class="ab-sale-tag-badge" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 6C20 4 17 5 18 8" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+                    <g transform="translate(16 16) rotate(-45) translate(-16 -16)">
+                      <path d="M6 10C6 8.89543 6.89543 8 8 8H20L27 15L20 22H8C6.89543 22 6 21.1046 6 20V10Z" fill="#22C55E"/>
+                      <circle cx="9.5" cy="15" r="1.5" fill="#FFFFFF"/>
+                      <text x="17" y="16.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SALE</text>
+                    </g>
+                  </svg>
+                </span>
+                <span class="ab-code-name js-ab-code-text" data-code="{{ card4_code }}">{{ card4_code }}</span>
+                <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
+              </button>
+            </div>
+            {% if card4_desc != blank %}
+              <p class="ab-description">{{ desc4 }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if card5_code != blank %}
+          {% assign desc5 = card5_desc | replace: '10% OFF', '<strong>10% OFF</strong>' | replace: '15% OFF', '<strong>15% OFF</strong>' | replace: '20% OFF', '<strong>20% OFF</strong>' %}
+          <div class="ab-card">
+            <div class="ab-card-header">
+              <button
+                type="button"
+                class="ab-code-btn js-ab-code-btn"
+                title="Click to copy coupon code {{ card5_code }}"
+                aria-label="Click to copy coupon code {{ card5_code }}"
+              >
+                <span class="ab-sale-tag-badge" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 6C20 4 17 5 18 8" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+                    <g transform="translate(16 16) rotate(-45) translate(-16 -16)">
+                      <path d="M6 10C6 8.89543 6.89543 8 8 8H20L27 15L20 22H8C6.89543 22 6 21.1046 6 20V10Z" fill="#22C55E"/>
+                      <circle cx="9.5" cy="15" r="1.5" fill="#FFFFFF"/>
+                      <text x="17" y="16.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="6.5" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">SALE</text>
+                    </g>
+                  </svg>
+                </span>
+                <span class="ab-code-name js-ab-code-text" data-code="{{ card5_code }}">{{ card5_code }}</span>
+                <span class="ab-copy-badge js-ab-copy-feedback" aria-live="polite"></span>
+              </button>
+            </div>
+            {% if card5_desc != blank %}
+              <p class="ab-description">{{ desc5 }}</p>
+            {% endif %}
+          </div>
         {% endif %}
       </div>
-      {% if card5_desc != blank %}
-        <p class="ab-description">{{ card5_desc }}</p>
-      {% endif %}
-    {% endif %}
+    </div>
+
+    <!-- Next Arrow Button -->
+    <button
+      type="button"
+      class="ab-nav-btn ab-nav-btn--next js-ab-next"
+      aria-label="Next offer"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
   </div>
-{% endcapture %}
+
+  <!-- Progress bar track below carousel -->
+  <div class="ab-progress-track js-ab-progress-track">
+    <div class="ab-progress-thumb js-ab-progress-thumb"></div>
+  </div>
+</div>
+
 <style>
   #ab-block-{{ block_id }} {
     width: 100%;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin-top: 6px;
+    margin-bottom: 14px;
     box-sizing: border-box;
-    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
   }
-  #ab-block-{{ block_id }} .ab-heading {
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin: 0 0 10px 0;
-    color: #0C4168;
+
+  #ab-block-{{ block_id }} * {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
   }
+
+  #ab-block-{{ block_id }} .ab-carousel-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   #ab-block-{{ block_id }} .ab-marquee-wrapper {
     width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 8px;
-    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 2px 0;
   }
-  /* Thin scrollbar for desktop */
-  @media screen and (min-width: 741px) {
-    #ab-block-{{ block_id }} .ab-marquee-wrapper::-webkit-scrollbar {
-      height: 4px;
-    }
-    #ab-block-{{ block_id }} .ab-marquee-wrapper::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    #ab-block-{{ block_id }} .ab-marquee-wrapper::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
-      border-radius: 2px;
-    }
+
+  #ab-block-{{ block_id }} .ab-marquee-wrapper::-webkit-scrollbar {
+    display: none;
   }
-  #ab-block-{{ block_id }} .ab-marquee-track {
-    display: flex;
-    width: max-content;
-    align-items: stretch;
-    user-select: none;
-  }
+
   #ab-block-{{ block_id }} .ab-marquee-content {
     display: flex;
-    flex-shrink: 0;
-    align-items: stretch;
-    gap: 16px;
-    padding-right: 16px;
-  }
-  /* Desktop css animation */
-  @media screen and (min-width: 741px) {
-    #ab-block-{{ block_id }} .ab-marquee-content {
-      /* animation: ab-scroll-marquee-{{ block_id }} 30s linear infinite; */
-    }
-    #ab-block-{{ block_id }} .ab-marquee-track:hover .ab-marquee-content {
-      animation-play-state: paused;
-    }
-  }
-  #ab-block-{{ block_id }} .ab-card {
-    border: 1px dashed #d1d1d1;
-    padding: 14px 16px;
-    background-color: #fafafa;
-    border-radius: 2px;
-    box-sizing: border-box;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-shrink: 0;
-  }
-  #ab-block-{{ block_id }} .ab-row-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     gap: 12px;
-    margin-bottom: 8px;
-    flex-wrap: nowrap;
+    align-items: stretch;
+    width: max-content;
   }
-  #ab-block-{{ block_id }} .ab-code-wrapper {
-    font-size: 13px;
-    color: #333333;
+
+  /* Coupon Card: Solid Outline & Uniform Light Grey Background */
+  #ab-block-{{ block_id }} .ab-card {
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 0px !important;
+    background-color: #F8FAFC !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+    width: 290px !important;
+    min-width: 290px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    flex-shrink: 0 !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+  }
+
+  #ab-block-{{ block_id }} .ab-card:hover {
+    border-color: #CBD5E1 !important;
+  }
+
+  #ab-block-{{ block_id }} .ab-card-header {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
   }
+
   #ab-block-{{ block_id }} .ab-code-btn {
     background: transparent;
     border: none;
     padding: 0;
     margin: 0;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #0C4168;
-    text-decoration: underline;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    cursor: pointer;
     position: relative;
+  }
+
+  #ab-block-{{ block_id }} .ab-sale-tag-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  #ab-block-{{ block_id }} .ab-code-name {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    color: #0C4168 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    line-height: 1.2 !important;
     transition: opacity 0.15s ease;
   }
-  #ab-block-{{ block_id }} .ab-code-btn:hover {
+
+  #ab-block-{{ block_id }} .ab-code-btn:hover .ab-code-name {
     opacity: 0.8;
   }
+
   #ab-block-{{ block_id }} .ab-copy-badge {
     display: inline-block;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    background-color: #11172b;
+    background-color: #0C4168;
     color: #ffffff;
     padding: 2px 6px;
-    border-radius: 3px;
+    border-radius: 2px;
     opacity: 0;
     transform: translateY(-2px);
     transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
   }
+
   #ab-block-{{ block_id }} .ab-code-btn.copied .ab-copy-badge {
     opacity: 1;
     transform: translateY(0);
   }
-  #ab-block-{{ block_id }} .ab-tnc-link {
-    font-size: 12px;
-    color: #555555;
-    display: none !important;
-    text-decoration: underline;
-    font-weight: 500;
-    transition: color 0.15s ease;
-    white-space: nowrap;
-  }
-  #ab-block-{{ block_id }} .ab-tnc-link:hover {
-    color: #11172b;
-  }
+
   #ab-block-{{ block_id }} .ab-description {
-    font-size: 13px;
-    line-height: 1.45;
-    color: #555555;
-    margin: 0;
+    font-size: 12.5px !important;
+    line-height: 1.35 !important;
+    color: #0C4168 !important;
+    margin: 0 !important;
+    font-weight: 400 !important;
   }
-  @keyframes ab-scroll-marquee-{{ block_id }} {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(-100%, 0, 0);
-    }
+
+  #ab-block-{{ block_id }} .ab-description strong {
+    font-weight: 700 !important;
+    color: #0C4168 !important;
   }
-  /* Mobile style overrides */
-  @media screen and (max-width: 740px) {
-    #ab-block-{{ block_id }} .ab-marquee-wrapper {
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch !important;
-      scrollbar-width: none !important;
-    }
-    #ab-block-{{ block_id }} .ab-marquee-wrapper::-webkit-scrollbar {
-      display: none !important;
-    }
-    #ab-block-{{ block_id }} .ab-marquee-wrapper.is-snapping {
-      scroll-snap-type: x mandatory !important;
-    }
-    #ab-block-{{ block_id }} .ab-marquee-wrapper.is-snapping .ab-card {
-      scroll-snap-align: start !important;
-    }
+
+  /* Circular Navigation Buttons */
+  #ab-block-{{ block_id }} .ab-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: rgba(30, 41, 59, 0.7);
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    padding: 0;
+  }
+
+  #ab-block-{{ block_id }} .ab-nav-btn:hover {
+    background-color: #0C4168;
+  }
+
+  #ab-block-{{ block_id }} .ab-nav-btn--prev {
+    left: -10px;
+  }
+
+  #ab-block-{{ block_id }} .ab-nav-btn--next {
+    right: -10px;
+  }
+
+  /* Progress Bar Track below cards */
+  #ab-block-{{ block_id }} .ab-progress-track {
+    width: 100%;
+    height: 3px;
+    background-color: #E2E8F0;
+    border-radius: 2px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #ab-block-{{ block_id }} .ab-progress-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 33%;
+    background-color: #94A3B8;
+    border-radius: 2px;
+    transition: transform 0.12s ease-out;
+  }
+
+  @media screen and (max-width: 640px) {
     #ab-block-{{ block_id }} .ab-card {
-      width: 77vw !important;
+      width: 78vw !important;
+      min-width: 78vw !important;
+      padding: 10px 14px !important;
     }
-    #ab-block-{{ block_id }} .ab-marquee-content {
-      gap: 16px !important;
-      padding-right: 16px !important;
+    #ab-block-{{ block_id }} .ab-code-name {
+      font-size: 14px !important;
     }
-  }
-  /* Reduce motion */
-  @media (prefers-reduced-motion: reduce) {
-    #ab-block-{{ block_id }} .ab-marquee-content {
-      animation: none !important;
+    #ab-block-{{ block_id }} .ab-description {
+      font-size: 12px !important;
+    }
+    #ab-block-{{ block_id }} .ab-nav-btn {
+      display: none !important; /* Mobile uses smooth touch swipe */
     }
   }
 </style>
-<div id="ab-block-{{ block_id }}" class="ab-container" {{ block.shopify_attributes }}>
-  {% if heading != blank %}
-    <h4 class="ab-heading">{{ heading }}</h4>
-  {% endif %}
-  <div class="ab-marquee-wrapper">
-    <div class="ab-marquee-track">
-      <div class="ab-marquee-content">
-        {{ cards_html }}
-      </div>
-      <div class="ab-marquee-content" aria-hidden="true">
-        {{ cards_html }}
-      </div>
-      <div class="ab-marquee-content" aria-hidden="true">
-        {{ cards_html }}
-      </div>
-    </div>
-  </div>
-</div>
+
 <script>
   (function() {
     const container = document.getElementById('ab-block-{{ block_id }}');
     if (!container) return;
-    const wrapper = container.querySelector('.ab-marquee-wrapper');
-    const track = container.querySelector('.ab-marquee-track');
-    if (!wrapper || !track) return;
+
+    const wrapper = container.querySelector('.js-ab-wrapper');
+    const thumb = container.querySelector('.js-ab-progress-thumb');
+    const prevBtn = container.querySelector('.js-ab-prev');
+    const nextBtn = container.querySelector('.js-ab-next');
+
     // Click-to-copy handler
     const buttons = container.querySelectorAll('.js-ab-code-btn');
     buttons.forEach(btn => {
@@ -379,6 +449,7 @@
         const feedback = btn.querySelector('.js-ab-copy-feedback');
         if (!codeSpan) return;
         const codeToCopy = codeSpan.getAttribute('data-code') || codeSpan.textContent.trim();
+
         const handleSuccess = () => {
           btn.classList.add('copied');
           if (feedback) feedback.textContent = 'Copied!';
@@ -387,11 +458,13 @@
             if (feedback) feedback.textContent = '';
           }, 1800);
         };
+
         if (navigator.clipboard && window.isSecureContext) {
           navigator.clipboard.writeText(codeToCopy).then(handleSuccess).catch(fallbackCopy);
         } else {
           fallbackCopy();
         }
+
         function fallbackCopy() {
           const textarea = document.createElement('textarea');
           textarea.value = codeToCopy;
@@ -410,47 +483,49 @@
         }
       });
     });
-    // Mobile Auto-scroll loop
-    let isMobile = window.innerWidth <= 740;
-    let autoScroll = true;
-    const scrollSpeed = 0.5; // pixels per frame
-    let scrollTimeout = null;
-    function checkMode() {
-      isMobile = window.innerWidth <= 740;
-      if (!isMobile) {
-        wrapper.classList.remove('is-snapping');
+
+    // Update Progress Bar
+    function updateProgress() {
+      if (!wrapper || !thumb) return;
+      const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+      if (maxScroll <= 0) {
+        thumb.style.width = '100%';
+        thumb.style.transform = 'translateX(0)';
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        return;
+      } else {
+        if (prevBtn && window.innerWidth > 640) prevBtn.style.display = 'flex';
+        if (nextBtn && window.innerWidth > 640) nextBtn.style.display = 'flex';
       }
+
+      const ratio = wrapper.clientWidth / wrapper.scrollWidth;
+      const thumbWidthPct = Math.max(20, Math.min(60, ratio * 100));
+      thumb.style.width = thumbWidthPct + '%';
+
+      const progress = wrapper.scrollLeft / maxScroll;
+      const maxTranslate = (100 / thumbWidthPct - 1) * 100;
+      const currentTranslate = progress * maxTranslate;
+      thumb.style.transform = `translateX(${currentTranslate}%)`;
     }
-    window.addEventListener('resize', checkMode);
-    checkMode();
-    let lastTime = performance.now();
-    function updateScroll(timestamp) {
-      const delta = timestamp - lastTime;
-      lastTime = timestamp;
-      if (autoScroll && isMobile) {
-        const firstGroup = track.querySelector('.ab-marquee-content');
-        if (firstGroup) {
-          const groupWidth = firstGroup.offsetWidth;
-          wrapper.scrollLeft += scrollSpeed * (delta / 16.67);
-          if (wrapper.scrollLeft >= groupWidth) {
-            wrapper.scrollLeft -= groupWidth;
-          }
-        }
-      }
-      requestAnimationFrame(updateScroll);
+
+    if (wrapper) {
+      wrapper.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      setTimeout(updateProgress, 100);
     }
-    requestAnimationFrame(updateScroll);
-    wrapper.addEventListener('touchstart', function() {
-      autoScroll = false;
-      wrapper.classList.add('is-snapping');
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-    }, { passive: true });
-    wrapper.addEventListener('touchend', function() {
-      if (scrollTimeout) clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(function() {
-        wrapper.classList.remove('is-snapping');
-        autoScroll = true;
-      }, 2000);
-    }, { passive: true });
+
+    // Arrow Navigation
+    if (prevBtn && wrapper) {
+      prevBtn.addEventListener('click', function() {
+        wrapper.scrollBy({ left: -260, behavior: 'smooth' });
+      });
+    }
+
+    if (nextBtn && wrapper) {
+      nextBtn.addEventListener('click', function() {
+        wrapper.scrollBy({ left: 260, behavior: 'smooth' });
+      });
+    }
   })();
 </script>

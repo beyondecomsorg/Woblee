@@ -385,6 +385,10 @@
             }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         ],
+        "selected_variant": {
+          "id": {{ selected_variant.id | json }},
+          "options": {{ selected_variant.options | json }}
+        },
         "media": [
           {% for media in selected_product.media %}
             {

@@ -1,3 +1,206 @@
+{% liquid
+  assign is_two_col = false
+  assign mega_trigger_norm = block.settings.menu_mega_title | strip | downcase
+  assign parent_norm = parent_link.title | strip | downcase
+  if mega_trigger_norm != blank and parent_norm == mega_trigger_norm
+    assign is_two_col = true
+  endif
+%}
+
+{% if is_two_col %}
+<div class="mega-menu-two-col">
+  <div class="mega-menu-two-col__nav">
+    {% for child_link in parent_link.links %}
+    <div class="mega-menu-two-col__nav-item">
+      <a
+        href="{{ child_link.url }}"
+        class="mega-menu-two-col__nav-link{% if forloop.first %} is-active{% endif %}"
+        data-mm-target="{{ child_link.title | handleize }}"
+      >{{ child_link.title }}</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="mega-menu-two-col__panels">
+    {% for child_link in parent_link.links %}
+      {% liquid
+        assign child_lower = child_link.title | strip | downcase
+        assign panel_img1 = blank
+        assign panel_img2 = blank
+        assign panel_img1_link = blank
+        assign panel_img2_link = blank
+        assign t1 = block.settings.menu_title_1 | strip | downcase
+        assign t2 = block.settings.menu_title_2 | strip | downcase
+        assign t3 = block.settings.menu_title_3 | strip | downcase
+        assign t4 = block.settings.menu_title_4 | strip | downcase
+        assign t5 = block.settings.menu_title_5 | strip | downcase
+        assign t6 = block.settings.menu_title_6 | strip | downcase
+        assign t7 = block.settings.menu_title_7 | strip | downcase
+        assign t8 = block.settings.menu_title_8 | strip | downcase
+        if child_lower == t1
+          assign panel_img1 = block.settings.menu_image_1
+          assign panel_img2 = block.settings.menu_image_1_2
+          assign panel_img1_link = block.settings.menu_image_1_link
+          assign panel_img2_link = block.settings.menu_image_1_2_link
+        elsif child_lower == t2
+          assign panel_img1 = block.settings.menu_image_2
+          assign panel_img2 = block.settings.menu_image_2_2
+          assign panel_img1_link = block.settings.menu_image_2_link
+          assign panel_img2_link = block.settings.menu_image_2_2_link
+        elsif child_lower == t3
+          assign panel_img1 = block.settings.menu_image_3
+          assign panel_img2 = block.settings.menu_image_3_2
+          assign panel_img1_link = block.settings.menu_image_3_link
+          assign panel_img2_link = block.settings.menu_image_3_2_link
+        elsif child_lower == t4
+          assign panel_img1 = block.settings.menu_image_4
+          assign panel_img2 = block.settings.menu_image_4_2
+          assign panel_img1_link = block.settings.menu_image_4_link
+          assign panel_img2_link = block.settings.menu_image_4_2_link
+        elsif child_lower == t5
+          assign panel_img1 = block.settings.menu_image_5
+          assign panel_img2 = block.settings.menu_image_5_2
+          assign panel_img1_link = block.settings.menu_image_5_link
+          assign panel_img2_link = block.settings.menu_image_5_2_link
+        elsif child_lower == t6
+          assign panel_img1 = block.settings.menu_image_6
+          assign panel_img2 = block.settings.menu_image_6_2
+          assign panel_img1_link = block.settings.menu_image_6_link
+          assign panel_img2_link = block.settings.menu_image_6_2_link
+        elsif child_lower == t7
+          assign panel_img1 = block.settings.menu_image_7
+          assign panel_img2 = block.settings.menu_image_7_2
+          assign panel_img1_link = block.settings.menu_image_7_link
+          assign panel_img2_link = block.settings.menu_image_7_2_link
+        elsif child_lower == t8
+          assign panel_img1 = block.settings.menu_image_8
+          assign panel_img2 = block.settings.menu_image_8_2
+          assign panel_img1_link = block.settings.menu_image_8_link
+          assign panel_img2_link = block.settings.menu_image_8_2_link
+        endif
+      %}
+      <div
+        class="mega-menu-two-col__panel{% if forloop.first %} is-active{% endif %}"
+        data-mm-panel="{{ child_link.title | handleize }}"
+      >
+        {% if panel_img1 != blank %}
+          {% if panel_img1_link != blank %}<a href="{{ panel_img1_link }}" class="mega-menu-two-col__img-link">{% else %}<span class="mega-menu-two-col__img-link">{% endif %}
+            <img src="{{ panel_img1 | image_url: width: 450 }}" alt="{{ child_link.title | escape }}" class="mega-menu-two-col__img" loading="lazy" width="450">
+          {% if panel_img1_link != blank %}</a>{% else %}</span>{% endif %}
+        {% endif %}
+        {% if panel_img2 != blank %}
+          {% if panel_img2_link != blank %}<a href="{{ panel_img2_link }}" class="mega-menu-two-col__img-link">{% else %}<span class="mega-menu-two-col__img-link">{% endif %}
+            <img src="{{ panel_img2 | image_url: width: 450 }}" alt="{{ child_link.title | escape }}" class="mega-menu-two-col__img" loading="lazy" width="450">
+          {% if panel_img2_link != blank %}</a>{% else %}</span>{% endif %}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .mega-menu-two-col {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px 0;
+    gap: 0;
+  }
+  .mega-menu-two-col__nav {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    max-width: 190px;
+    padding-right: 20px;
+    border-right: 1px solid rgba(0,0,0,0.12);
+    padding-block: 4px;
+  }
+  .mega-menu-two-col__nav-item { display: block; }
+  .mega-menu-two-col__nav-link {
+    display: block;
+    padding: 10px 14px;
+    color: var(--color-foreground, #1a1a1a);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    border-radius: 4px;
+    transition: color 0.15s;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .mega-menu-two-col__nav-link:hover,
+  .mega-menu-two-col__nav-link.is-active {
+    color: #41be64;
+    font-weight: 600;
+  }
+  .mega-menu-two-col__panels {
+    flex: 1;
+    padding-left: 28px;
+    min-height: 220px;
+  }
+  .mega-menu-two-col__panel {
+    display: none;
+    gap: 12px;
+  }
+  .mega-menu-two-col__panel.is-active {
+    display: flex;
+  }
+  .mega-menu-two-col__img-link {
+    display: block;
+    flex: 1;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+  .mega-menu-two-col__img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+    transition: transform 0.3s ease;
+  }
+  .mega-menu-two-col__img-link:hover .mega-menu-two-col__img {
+    transform: scale(1.03);
+  }
+</style>
+
+<script>
+(function () {
+  function initTwoColMenu(container) {
+    var navLinks = container.querySelectorAll('.mega-menu-two-col__nav-link');
+    var panels   = container.querySelectorAll('.mega-menu-two-col__panel');
+    navLinks.forEach(function (link) {
+      link.addEventListener('mouseenter', function () {
+        var target = this.getAttribute('data-mm-target');
+        navLinks.forEach(function (l) { l.classList.remove('is-active'); });
+        panels.forEach(function (p)   { p.classList.remove('is-active'); });
+        this.classList.add('is-active');
+        var panel = container.querySelector('[data-mm-panel="' + target + '"]');
+        if (panel) panel.classList.add('is-active');
+      });
+    });
+  }
+  function resetTwoColMenu(container) {
+    var links  = container.querySelectorAll('.mega-menu-two-col__nav-link');
+    var panels = container.querySelectorAll('.mega-menu-two-col__panel');
+    links.forEach(function (l)  { l.classList.remove('is-active'); });
+    panels.forEach(function (p) { p.classList.remove('is-active'); });
+    if (links[0])  links[0].classList.add('is-active');
+    if (panels[0]) panels[0].classList.add('is-active');
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.mega-menu-two-col').forEach(initTwoColMenu);
+    document.querySelectorAll('.menu-list__list-item').forEach(function (item) {
+      item.addEventListener('pointerenter', function () {
+        var c = this.querySelector('.mega-menu-two-col');
+        if (c) resetTwoColMenu(c);
+      });
+    });
+  });
+})();
+</script>
+{% endif %}
+
 {%- doc -%}
   Renders mega menu list markup and optional featured content.
 
@@ -56,6 +259,7 @@
   endif
 %}
 
+{% unless is_two_col %}
 <ul
   data-menu-list-id="{{ id }}"
   class="mega-menu__list list-unstyled"
@@ -221,9 +425,11 @@
   {% endfor %}
 
 </ul>
+{% endunless %}
 
 
 
+{% unless is_two_col %}
 {% liquid
   assign min_products = 2
   assign max_products = 3
@@ -472,3 +678,4 @@ gap: 10px;
       </ul>
     </span> {% endcomment %}
 {% endcase %}
+{% endunless %}

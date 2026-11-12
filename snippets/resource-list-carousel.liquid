@@ -75,6 +75,9 @@
     .resource-list__carousel .resource-list__slide {
       --slide-width: clamp(150px, var(--mobile-card-size, 60cqw), var(--slide-width-max));
     }
+    body.template-index .resource-list__carousel .resource-list__slide {
+      width: 200px !important;
+    }
   }
 
   @container resource-list-carousel (min-width: 750px) {
@@ -88,7 +91,7 @@
     }
   }
 
-  .card-gallery slideshow-arrows .slideshow-control{
+  .card-gallery slideshow-arrows .slideshow-control {
     display: none;
   }
 
@@ -127,11 +130,11 @@
     scroll-snap-align: start;
     min-width: 0;
   }
-@media only screen and (max-width: 749px){
-  .resource-list__carousel slideshow-slides{
-    justify-content: flex-start;
+  @media only screen and (max-width: 749px) {
+    .resource-list__carousel slideshow-slides {
+      justify-content: flex-start;
+    }
   }
-}
   /*
    * Resource list carousels have peeking slides on both sides.
    * We try to kick load them beforehand (they are lazy loaded otherwise).
@@ -146,5 +149,92 @@
     slideshow-component[actioned] & {
       content-visibility: visible;
     }
+  }
+
+  /* Consistent 5px product card spacing in resource list carousel */
+  .resource-list__carousel .product-card,
+  .resource-list__carousel .product-card__content,
+  .resource-list__carousel .product-grid__card {
+    padding: 0 !important;
+    padding-block: 0 !important;
+    padding-inline: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-block-start: 0 !important;
+    padding-block-end: 0 !important;
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+    --padding-block-start: 0px !important;
+    --padding-block-end: 0px !important;
+    --padding-inline-start: 0px !important;
+    --padding-inline-end: 0px !important;
+    row-gap: 5px !important;
+    --product-card-gap: 5px !important;
+    margin: 0 !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  .resource-list__carousel .product-card card-gallery,
+  .resource-list__carousel .product-card .card-gallery,
+  .resource-list__carousel .product-card .product-media-container,
+  .resource-list__carousel .product-card .product-media {
+    width: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .resource-list__carousel .product-card card-gallery img,
+  .resource-list__carousel .product-card .card-gallery img,
+  .resource-list__carousel .product-card .product-media-container img,
+  .resource-list__carousel .product-card .product-media img,
+  .resource-list__carousel .product-card picture img {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .resource-list__carousel .product-card a[ref="productTitleLink"],
+  .resource-list__carousel .product-card a.contents.user-select-text,
+  .resource-list__carousel .product-card .text-block {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  .resource-list__carousel .product-card a[ref="productTitleLink"] p,
+  .resource-list__carousel .product-card a.contents.user-select-text p,
+  .resource-list__carousel .product-card .text-block :is(h1, h2, h3, h4, h5, h6, p) {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    line-height: 1.35 !important;
+  }
+
+  .resource-list__carousel .product-card product-price,
+  .resource-list__carousel .product-card .product-price {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  .resource-list__carousel .product-card product-price .price,
+  .resource-list__carousel .product-card .price {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 {% endstylesheet %}

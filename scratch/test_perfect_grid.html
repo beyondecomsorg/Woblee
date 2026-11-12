@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* REFERENCE HOMEPAGE SECTION BELOW (custom-editorial-seaction) */
+  .ess-section {
+    width: 100%;
+    padding: 30px 0;
+  }
+  .ess-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 6px;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .ess-left {
+    background: #4ade80;
+    min-height: 250px;
+  }
+  .ess-right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .ess-right-item {
+    background: #60a5fa;
+    min-height: 120px;
+  }
+
+  /* 2x2 GRID SECTION */
+  .lifestyle-grid-section {
+    width: 100%;
+    padding: 24px 0;
+  }
+  .lifestyle-grid-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .lifestyle-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+  }
+  .lifestyle-grid__card {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .lifestyle-grid__media-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: #84cc16;
+  }
+  .lifestyle-grid__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .ess-inner, .lifestyle-grid-container {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+    .lifestyle-grid__grid {
+      gap: 8px;
+    }
+  }
+</style>
+</head>
+<body>
+  <!-- 2x2 GRID -->
+  <section class='lifestyle-grid-section'>
+    <div class='lifestyle-grid-container'>
+      <div class='lifestyle-grid__grid'>
+        <div class='lifestyle-grid__card'>
+          <div class='lifestyle-grid__media-wrap' style='background:#70c800; display:flex; align-items:center; justify-content:center; color:#000; font-size:36px; font-weight:bold; border-top: 8px solid #2e7d32; border-bottom: 8px solid #2e7d32;'>
+            3:2
+          </div>
+        </div>
+        <div class='lifestyle-grid__card'>
+          <div class='lifestyle-grid__media-wrap' style='background:#70c800; display:flex; align-items:center; justify-content:center; color:#000; font-size:36px; font-weight:bold; border-top: 8px solid #2e7d32; border-bottom: 8px solid #2e7d32;'>
+            3:2
+          </div>
+        </div>
+        <div class='lifestyle-grid__card'>
+          <div class='lifestyle-grid__media-wrap' style='background:#70c800; display:flex; align-items:center; justify-content:center; color:#000; font-size:36px; font-weight:bold; border-top: 8px solid #2e7d32; border-bottom: 8px solid #2e7d32;'>
+            3:2
+          </div>
+        </div>
+        <div class='lifestyle-grid__card'>
+          <div class='lifestyle-grid__media-wrap' style='background:#70c800; display:flex; align-items:center; justify-content:center; color:#000; font-size:36px; font-weight:bold; border-top: 8px solid #2e7d32; border-bottom: 8px solid #2e7d32;'>
+            3:2
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERENCE SECTION BELOW -->
+  <section class='ess-section'>
+    <div class='ess-inner'>
+      <div class='ess-left'></div>
+      <div class='ess-right'>
+        <div class='ess-right-item'></div>
+        <div class='ess-right-item'></div>
+        <div class='ess-right-item'></div>
+        <div class='ess-right-item'></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

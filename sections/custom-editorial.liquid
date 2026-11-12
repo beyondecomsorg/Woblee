@@ -19,7 +19,12 @@
         {{ block.shopify_attributes }}
         {% if block_bg != blank %}style="--ecg-card-bg: {{ block_bg }};"{% endif %}
       >
-        <a class="ecg-image-wrap" href="{{ block.settings.button_1_url | default: block.settings.button_2_url | default: '#' }}">
+        {% assign image_target_link = block.settings.image_link | default: block.settings.button_1_url | default: block.settings.button_2_url %}
+        {% if image_target_link != blank %}
+          <a class="ecg-image-wrap" href="{{ image_target_link }}">
+        {% else %}
+          <div class="ecg-image-wrap">
+        {% endif %}
           {% if block.settings.image != blank %}
             {% assign image = block.settings.image %}
             {% assign widths = '400,600,800,1000' | split: ',' %}
@@ -43,7 +48,11 @@
               {{ 'image' | placeholder_svg_tag: 'ecg-placeholder-svg' }}
             </div>
           {% endif %}
-        </a>
+        {% if image_target_link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
 
         <div
           class="ecg-content"
@@ -55,7 +64,13 @@
           {% endif %}
         >
           {% if block.settings.heading != blank %}
-            <p class="ecg-heading">{{ block.settings.heading }}</p>
+            {% if image_target_link != blank %}
+              <a href="{{ image_target_link }}" class="ecg-heading-link" style="text-decoration: none; color: inherit; display: block;">
+                <p class="ecg-heading">{{ block.settings.heading }}</p>
+              </a>
+            {% else %}
+              <p class="ecg-heading">{{ block.settings.heading }}</p>
+            {% endif %}
           {% endif %}
 
           <div class="ecg-buttons">
@@ -963,6 +978,12 @@
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_link",
+          "label": "Image & Heading link (Combined Collection)",
+          "info": "Optional link for the image and heading (e.g. your combined collection). If left blank, falls back to Button 1 link."
         },
         {
           "type": "text",

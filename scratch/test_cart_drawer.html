@@ -2,282 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cart Drawer Tiered Rewards - Image Design & Brand Colors</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=375, initial-scale=1.0">
+  <title>Cart Drawer Visual Test</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: #0c1824;
+      background-color: #f1f5f9;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 24px 16px;
-      min-height: 100vh;
-      color: #0C4168;
-    }
-
-    .controls-panel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .controls-title {
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
       justify-content: center;
+      min-height: 100vh;
     }
-
-    .ctrl-btn {
+    .cart-drawer-container {
+      width: 375px;
+      height: 844px;
       background: #ffffff;
-      color: #0C4168;
-      border: 1px solid #CBD5E1;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .ctrl-btn:hover {
-      background: #CBDEE8;
-    }
-
-    .ctrl-btn.active {
-      background: #0C4168;
-      color: #ffffff;
-      border-color: #0C4168;
-    }
-
-    /* Cart Drawer Mockup Container */
-    .drawer-preview {
-      width: 100%;
-      max-width: 440px;
-      background: #ffffff;
-      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
     }
-
-    .drawer-header {
+    
+    /* Cart Header */
+    .cart-drawer__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 22px 10px 22px;
+      padding: 14px 18px 8px 18px;
+      background-color: #ffffff;
+      width: 100%;
+      flex-shrink: 0;
     }
-
-    .drawer-title {
-      font-size: 22px;
+    .cart-drawer__heading {
+      font-size: 15px;
       font-weight: 800;
-      color: var(--cpb-brand-navy, #0B1F33);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: #0C4168;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      line-height: 1.2;
     }
-
-    .drawer-count-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #E8F1FC;
-      color: var(--cpb-blue, #1D5BD8);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .drawer-close {
-      background: none;
-      border: none;
-      font-size: 20px;
+    .cart-drawer__close-button {
       color: #64748B;
       cursor: pointer;
-      padding: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
     }
 
-    .mock-cart-items {
-      padding: 14px 18px;
-      background: #FAFBFD;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .mock-cart-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: #ffffff;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #EEF2F6;
-    }
-
-    .item-img {
-      width: 42px;
-      height: 42px;
-      background: #E2E8F0;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94A3B8;
-      font-weight: 700;
-      font-size: 11px;
-    }
-
-    .item-details {
-      flex: 1;
-    }
-
-    .item-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--cpb-brand-navy, #0B1F33);
-    }
-
-    .item-price {
-      font-size: 12px;
-      color: #64748B;
-      margin-top: 1px;
-    }
-
-    .empty-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 10px;
-      color: #64748B;
-      font-size: 13.5px;
-    }
-
-    /* ===================================================
-       Component Styles (Exact Match with Uploaded Reference Image)
-       =================================================== */
+    /* Cart Progress Bar */
     .cart-progress-bar {
       display: block;
       width: 100%;
-      box-sizing: border-box;
-      font-family: inherit;
-      --cpb-brand-navy: #0B1F33;
-      --cpb-text: #0B1F33;
-      --cpb-track: #E2E8F0;
-      --cpb-blue: #1D5BD8;
-      --cpb-badge-bg: #E8F1FC;
-      --cpb-card-bg: #FAFCFF;
-      --cpb-card-border: #E8EEF5;
-      padding: 4px 18px 8px 18px;
+      padding: 6px 16px 8px 16px;
+      background: #FFFFFF;
+      flex-shrink: 0;
     }
-
-    .cart-progress-bar__inner {
-      background-color: var(--cpb-card-bg);
-      border: 1px solid var(--cpb-card-border);
-      border-radius: 12px;
-      padding: 16px 14px 14px 14px;
-      box-sizing: border-box;
+    .cart-progress-bar__outer-box {
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      padding: 5px;
       width: 100%;
     }
-
-    /* Headline with Blue Highlight */
+    .cart-progress-bar__inner {
+      background-color: #EDF1F5;
+      padding: 10px 10px 8px 10px;
+      width: 100%;
+    }
     .cart-progress-bar__message {
       text-align: center;
-      font-size: 12.5px;
-      font-weight: 800;
-      line-height: 1.3;
-      letter-spacing: 0.3px;
+      line-height: 1.25;
       text-transform: uppercase;
-      color: var(--cpb-brand-navy);
-      margin-bottom: 14px;
-      transition: color 0.3s ease;
+      margin-bottom: 8px;
     }
-
-    .cart-progress-bar__highlight {
-      color: var(--cpb-blue);
+    .cart-progress-bar__msg-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #475569;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .cart-progress-bar__msg-sub {
+      font-size: 12px;
       font-weight: 800;
+      color: #0C4168;
+      letter-spacing: 0.5px;
+      display: block;
     }
-
-    /* Stepper Wrapper */
     .cart-progress-bar__stepper-wrap {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       width: 100%;
-      max-width: 440px;
+      max-width: 290px;
       margin: 0 auto;
-      padding: 0 8px;
-      box-sizing: border-box;
     }
-
-    /* Connecting Track Line */
     .cart-progress-bar__track-line {
       position: absolute;
-      top: 17px;
-      left: 28px;
-      right: 28px;
-      height: 3px;
-      background-color: var(--cpb-track);
-      border-radius: 2px;
+      top: 14px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background-color: #0C4168;
       z-index: 1;
     }
-
-    /* Filled Line Track */
-    .cart-progress-bar__fill-line {
-      position: relative;
-      height: 100%;
-      width: var(--cpb-progress-width, 0%);
-      background-color: var(--cpb-blue);
-      border-radius: 2px;
-      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Needle Bead Dot */
-    .cart-progress-bar__needle-dot {
-      position: absolute;
-      right: -4px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 8px;
-      background-color: var(--cpb-blue);
-      border: 2px solid #FFFFFF;
-      border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(29, 91, 216, 0.3);
-      transition: opacity 0.3s ease;
-    }
-
-    /* Milestone Nodes */
     .cart-progress-bar__milestone {
       position: relative;
       z-index: 2;
@@ -285,537 +123,444 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      width: 82px;
+      width: 62px;
     }
-
-    /* Milestone Circle Badge */
     .cart-progress-bar__circle {
-      width: 34px;
-      height: 34px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background-color: #FFFFFF;
-      border: 2px solid #CBD5E1;
-      color: #8898AA;
+      background-color: #0C4168;
+      border: 2px solid #0C4168;
+      color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-sizing: border-box;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .cart-progress-bar__circle svg {
-      stroke: currentColor;
-      transition: stroke 0.3s ease;
-    }
-
-    /* Unlocked Milestone State */
-    .cart-progress-bar__milestone.is-unlocked .cart-progress-bar__circle {
-      background-color: var(--cpb-blue) !important;
-      border-color: var(--cpb-blue) !important;
-      color: #FFFFFF !important;
-      box-shadow: 0 2px 6px rgba(29, 91, 216, 0.25);
-    }
-
-    .cart-progress-bar__milestone.is-unlocked .cart-progress-bar__circle svg {
-      stroke: #FFFFFF !important;
-    }
-
-    /* Milestone Text */
-    .cart-progress-bar__label {
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1.2;
-      color: var(--cpb-brand-navy);
-      margin-top: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-
-    .cart-progress-bar__target {
-      font-size: 11px;
-      font-weight: 700;
-      line-height: 1.2;
-      color: #64748B;
-      margin-top: 3px;
-      letter-spacing: 0.2px;
-    }
-
-    .cart-progress-bar__milestone.is-unlocked .cart-progress-bar__target {
-      color: var(--cpb-brand-navy);
-      font-weight: 800;
-    }
-
-    /* Target Badge for Milestone 1: FREE SHIPPING */
-    .cart-progress-bar__target-badge {
-      display: inline-block;
-      font-size: 10.5px;
-      font-weight: 700;
-      line-height: 1;
-      color: var(--cpb-blue);
-      background-color: var(--cpb-badge-bg);
-      border-radius: 4px;
-      padding: 3px 7px;
-      margin-top: 4px;
-      white-space: nowrap;
-      letter-spacing: 0.2px;
-    }
-
-    /* Unlocked Coupon Card (Only for Tier 2 and Tier 3) */
-    .cart-progress-bar__coupon-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      border-left: 3px solid var(--cpb-blue);
-      border-radius: 6px;
-      padding: 6px 12px;
-      margin-top: 12px;
-      width: 100%;
-      box-sizing: border-box;
-      transition: all 0.35s ease;
-      gap: 8px;
-    }
-
-    .cart-progress-bar__coupon-card.is-visible {
-      display: flex !important;
-    }
-
-    .cart-progress-bar__coupon-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
-      flex: 1 1 auto;
-    }
-
-    .cart-progress-bar__coupon-tag-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 4px;
-      background-color: #E2E8F0;
-      color: var(--cpb-brand-navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .cart-progress-bar__coupon-text-wrap {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .cart-progress-bar__coupon-unlocked-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #0F172A;
-      line-height: 1.25;
-      white-space: normal;
-    }
-
-    .cart-progress-bar__coupon-unlocked-title strong {
-      color: var(--cpb-brand-navy);
-      font-weight: 800;
-    }
-
-    .cart-progress-bar__coupon-unlocked-sub {
       font-size: 10px;
       font-weight: 700;
-      color: var(--cpb-blue);
+    }
+    .cart-progress-bar__label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #0C4168;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+    }
+    .cart-progress-bar__target {
+      font-size: 9px;
+      font-weight: 600;
+      color: #475569;
       margin-top: 1px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
     }
 
-    .cart-progress-bar__coupon-right {
+    /* Scrollable Content */
+    .cart-drawer__content {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
-      align-items: center;
-      gap: 6px;
+      flex-direction: column;
+    }
+
+    /* Cart Items */
+    .cart-drawer__items {
+      display: flex;
+      flex-direction: column;
+      padding-inline: 16px;
       flex-shrink: 0;
     }
-
-    .cart-progress-bar__coupon-pill {
-      background-color: #FFFFFF;
-      border: 1px solid #CBD5E1;
-      border-radius: 4px;
-      padding: 4px 8px;
+    .cart-items__table-row {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 8px;
+      align-items: flex-start;
+    }
+    .cart-items__media {
+      width: 50px;
+      flex-shrink: 0;
+    }
+    .cart-items__media img {
+      width: 50px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+      background: #f8fafc;
+    }
+    .cart-items__details {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-items__title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0C4168;
+      line-height: 1.25;
+      text-decoration: none;
+      margin-bottom: 2px;
+    }
+    .cart-items__variant {
+      font-size: 11.5px;
+      color: #64748B;
+      line-height: 1.25;
+      margin-bottom: 2px;
+    }
+    .cart-items__price {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0C4168;
+      margin-bottom: 4px;
+    }
+    .cart-items__quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2px;
+    }
+    .quantity-selector {
+      border: 1px solid #E2E8F0;
+      height: 28px;
+      width: 84px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .quantity-selector button {
+      width: 26px;
+      height: 26px;
+      border: none;
+      background: none;
+      color: #64748B;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quantity-selector input {
+      width: 28px;
+      height: 26px;
+      border: none;
+      background: none;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0C4168;
+    }
+    .cart-items__remove {
+      width: 26px;
+      height: 26px;
+      background: none;
+      border: none;
+      color: #64748B;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .cart-progress-bar__coupon-pill-code {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.6px;
-      color: var(--cpb-brand-navy);
-      font-family: monospace, inherit;
-      text-transform: uppercase;
+    /* Recommendations */
+    .cart-recommendations {
+      width: 100%;
+      margin-top: 36px;
+      margin-bottom: 4px;
+      padding: 4px 0 6px 0;
     }
-
-    .cart-progress-bar__copy-btn {
-      background-color: var(--cpb-blue);
+    .cart-recommendations__header {
+      padding: 0 16px 6px 16px;
+    }
+    .cart-recommendations__heading {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #0C4168;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .cart-recommendations__slider {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 16px 6px 16px;
+      scrollbar-width: none;
+    }
+    .cart-recommendations__slider::-webkit-scrollbar {
+      display: none;
+    }
+    .cart-recommendations__card {
+      flex: 0 0 118px;
+      width: 118px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 2px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cart-recommendations__image-link {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      height: 120px;
+      border-radius: 2px;
+      overflow: hidden;
+      background: #F8FAFC;
+    }
+    .cart-recommendations__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cart-recommendations__info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+    .cart-recommendations__title {
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: #0C4168;
+      height: 26px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      margin-bottom: 2px;
+      text-decoration: none;
+    }
+    .cart-recommendations__price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .cart-recommendations__price {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0C4168;
+    }
+    .cart-recommendations__add-btn {
+      width: 100%;
+      height: 26px;
+      line-height: 26px;
+      background-color: #0C4168;
       color: #FFFFFF;
       border: none;
-      border-radius: 4px;
-      padding: 5px 11px;
+      border-radius: 2px;
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
+      font-weight: 700;
+      text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
+    }
+
+    /* Cart Summary / Totals */
+    .cart-drawer__summary {
+      position: sticky;
+      bottom: 0;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 16px 14px 16px;
+      margin-top: auto;
+      background-color: #ffffff;
+      border-top: 1px solid #E2E8F0;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .cart-totals__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #475569;
+      margin-bottom: 2px;
+    }
+    .cart-totals__row-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0C4168;
+      margin-top: 4px;
+    }
+    .cart-totals__tax-note {
+      font-size: 10.5px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      color: #64748B;
+    }
+    .cart__checkout-button {
+      display: flex;
+      width: 100%;
+      height: 44px;
+      background-color: #0C4168;
+      color: #ffffff;
+      border: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
       align-items: center;
       justify-content: center;
-      user-select: none;
-    }
-
-    .cart-progress-bar__copy-btn:hover {
-      background-color: #124099;
-      transform: translateY(-1px);
-    }
-
-    .cart-progress-bar__copy-btn.is-copied {
-      background-color: #07263D !important;
-      color: #FFFFFF !important;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-  <!-- Controls Panel -->
-  <div class="controls-panel">
-    <div class="controls-title">Interactive Cart Drawer Tester (Image Design + Brand Colors)</div>
-    <div class="btn-group">
-      <button class="ctrl-btn" onclick="setCartCount(0)">0 Items (Empty)</button>
-      <button class="ctrl-btn active" onclick="setCartCount(1)">1 Item (Free Shipping - No Coupon Code)</button>
-      <button class="ctrl-btn" onclick="setCartCount(2)">2 Items (15% OFF with Code)</button>
-      <button class="ctrl-btn" onclick="setCartCount(3)">3 Items (20% OFF with Code)</button>
-    </div>
-    <div class="btn-group" style="margin-top: 4px;">
-      <button class="ctrl-btn active" onclick="setBrandTheme('#0B1F33', '#1D5BD8', '#E8F1FC')">Blue-Minded Theme</button>
-      <button class="ctrl-btn" onclick="setBrandTheme('#0C4168', '#0C4168', '#EBF3FA')">Woblee Theme</button>
-    </div>
-  </div>
-
-  <!-- Cart Drawer Mockup Container -->
-  <div class="drawer-preview">
+  <div class="cart-drawer-container">
     <!-- Header -->
-    <div class="drawer-header">
-      <div class="drawer-title">
-        Cart <span class="drawer-count-badge" id="cartBadgeCount">1</span>
-      </div>
-      <button class="drawer-close" aria-label="Close">✕</button>
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__heading">CART</h2>
+      <button class="cart-drawer__close-button" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
 
-    <!-- The Component -->
-    <cart-progress-bar
-      id="testProgressBar"
-      class="cart-progress-bar"
-      data-cart-item-count="1"
-      data-code-tier2="BUY2"
-      data-code-tier3="BUY3"
-      style="--cpb-progress-width: 28%;"
-    >
-      <div class="cart-progress-bar__inner">
-        <!-- Top Motivational Headline with Blue Highlight -->
-        <div class="cart-progress-bar__message" role="status" aria-live="polite">
-          BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">15% OFF</span>
-        </div>
-
-        <!-- Progress Track & Milestone Stepper -->
-        <div class="cart-progress-bar__stepper-wrap">
-          <!-- Background Line Track -->
-          <div class="cart-progress-bar__track-line">
-            <!-- Filled Line Track -->
-            <div class="cart-progress-bar__fill-line">
-              <span class="cart-progress-bar__needle-dot"></span>
-            </div>
+    <!-- Progress Bar -->
+    <div class="cart-progress-bar">
+      <div class="cart-progress-bar__outer-box">
+        <div class="cart-progress-bar__inner">
+          <div class="cart-progress-bar__message">
+            <span class="cart-progress-bar__msg-title">MAXIMUM DISCOUNT UNLOCKED:</span>
+            <span class="cart-progress-bar__msg-sub">20% OFF + FREE SHIPPING</span>
           </div>
-
-          <!-- Milestone 1: Buy 1 -> FREE SHIPPING (Shopping Cart Icon) -->
-          <div class="cart-progress-bar__milestone milestone-1 is-unlocked is-active">
-            <div class="cart-progress-bar__circle" title="BUY 1">
-              <!-- Shopping Cart Icon -->
-              <svg class="cart-progress-bar__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="9" cy="21" r="1"></circle>
-                <circle cx="20" cy="21" r="1"></circle>
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-              </svg>
+          <div class="cart-progress-bar__stepper-wrap">
+            <div class="cart-progress-bar__track-line"></div>
+            <div class="cart-progress-bar__milestone">
+              <div class="cart-progress-bar__circle">10%</div>
+              <span class="cart-progress-bar__label">BUY 1</span>
+              <span class="cart-progress-bar__target">+10% OFF</span>
             </div>
-            <span class="cart-progress-bar__label">BUY 1</span>
-            <span class="cart-progress-bar__target-badge">FREE SHIPPING</span>
-          </div>
-
-          <!-- Milestone 2: Buy 2 -> +15% OFF (%) -->
-          <div class="cart-progress-bar__milestone milestone-2">
-            <div class="cart-progress-bar__circle" title="BUY 2">
-              <!-- Percentage Icon -->
-              <svg class="cart-progress-bar__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="19" y1="5" x2="5" y2="19"></line>
-                <circle cx="6.5" cy="6.5" r="2.5"></circle>
-                <circle cx="17.5" cy="17.5" r="2.5"></circle>
-              </svg>
+            <div class="cart-progress-bar__milestone">
+              <div class="cart-progress-bar__circle">15%</div>
+              <span class="cart-progress-bar__label">BUY 2</span>
+              <span class="cart-progress-bar__target">+15% OFF</span>
             </div>
-            <span class="cart-progress-bar__label">BUY 2</span>
-            <span class="cart-progress-bar__target">+15% OFF</span>
-          </div>
-
-          <!-- Milestone 3: Buy 3 -> +20% OFF (%) -->
-          <div class="cart-progress-bar__milestone milestone-3">
-            <div class="cart-progress-bar__circle" title="BUY 3">
-              <!-- Percentage Icon -->
-              <svg class="cart-progress-bar__icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="19" y1="5" x2="5" y2="19"></line>
-                <circle cx="6.5" cy="6.5" r="2.5"></circle>
-                <circle cx="17.5" cy="17.5" r="2.5"></circle>
-              </svg>
+            <div class="cart-progress-bar__milestone">
+              <div class="cart-progress-bar__circle">20%</div>
+              <span class="cart-progress-bar__label">BUY 3</span>
+              <span class="cart-progress-bar__target">+20% OFF</span>
             </div>
-            <span class="cart-progress-bar__label">BUY 3</span>
-            <span class="cart-progress-bar__target">+20% OFF</span>
-          </div>
-        </div>
-
-        <!-- Reward / Unlocked Coupon Card (Only for Tier 2 and Tier 3 - Free Shipping has NO coupon code) -->
-        <div class="cart-progress-bar__coupon-card" style="display: none;">
-          <div class="cart-progress-bar__coupon-left">
-            <div class="cart-progress-bar__coupon-tag-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                <line x1="7" y1="7" x2="7.01" y2="7"></line>
-              </svg>
-            </div>
-            <div class="cart-progress-bar__coupon-text-wrap">
-              <div class="cart-progress-bar__coupon-unlocked-title">
-                Coupon unlocked: <strong class="cart-progress-bar__coupon-code-text">BUY2</strong>
-              </div>
-              <div class="cart-progress-bar__coupon-unlocked-sub cart-progress-bar__coupon-discount-text">
-                15% OFF UNLOCKED
-              </div>
-            </div>
-          </div>
-
-          <div class="cart-progress-bar__coupon-right">
-            <div class="cart-progress-bar__coupon-pill">
-              <span class="cart-progress-bar__coupon-pill-code">BUY2</span>
-            </div>
-            <button
-              type="button"
-              class="cart-progress-bar__copy-btn button-unstyled"
-              data-code="BUY2"
-              aria-label="Copy coupon code"
-            >
-              <span class="cart-progress-bar__copy-text">COPY</span>
-            </button>
           </div>
         </div>
       </div>
-    </cart-progress-bar>
+    </div>
 
-    <!-- Mock Items Body -->
-    <div class="mock-cart-items" id="mockItemsContainer">
-      <div class="mock-cart-item">
-        <div class="item-img">#1</div>
-        <div class="item-details">
-          <div class="item-name">Blue Minded Signature Tee</div>
-          <div class="item-price">Qty: 1 • ₹1,499</div>
+    <!-- Content (Scrollable) -->
+    <div class="cart-drawer__content">
+      <div class="cart-drawer__items">
+        <div class="cart-items__table-row">
+          <div class="cart-items__media">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=200&h=240&fit=crop" alt="Learn Grow Repeat Girl's Tee">
+          </div>
+          <div class="cart-items__details">
+            <a href="#" class="cart-items__title">Learn Grow Repeat Girl's Tee</a>
+            <div class="cart-items__variant">Lime Green, 4-6</div>
+            <div class="cart-items__price">Rs. 899</div>
+            <div class="cart-items__quantity-controls">
+              <div class="quantity-selector">
+                <button type="button">−</button>
+                <input type="text" value="3" readonly>
+                <button type="button">+</button>
+              </div>
+              <button class="cart-items__remove" aria-label="Remove item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Recommendations -->
+      <div class="cart-recommendations">
+        <div class="cart-recommendations__header">
+          <h3 class="cart-recommendations__heading">YOU MAY ALSO LIKE</h3>
+        </div>
+        <div class="cart-recommendations__slider">
+          <!-- Card 1 -->
+          <div class="cart-recommendations__card">
+            <a href="#" class="cart-recommendations__image-link">
+              <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=200&h=250&fit=crop" class="cart-recommendations__image" alt="Base Camp Boy's Tee">
+            </a>
+            <div class="cart-recommendations__info">
+              <a href="#" class="cart-recommendations__title">Base Camp Boy's Tee</a>
+              <div class="cart-recommendations__price-row">
+                <span class="cart-recommendations__price">Rs. 799</span>
+              </div>
+              <button type="button" class="cart-recommendations__add-btn">Add</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="cart-recommendations__card">
+            <a href="#" class="cart-recommendations__image-link">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=250&fit=crop" class="cart-recommendations__image" alt="Believer Women's Tee">
+            </a>
+            <div class="cart-recommendations__info">
+              <a href="#" class="cart-recommendations__title">Believer Women's Tee</a>
+              <div class="cart-recommendations__price-row">
+                <span class="cart-recommendations__price">Rs. 2,299</span>
+              </div>
+              <button type="button" class="cart-recommendations__add-btn">Add</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="cart-recommendations__card">
+            <a href="#" class="cart-recommendations__image-link">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=250&fit=crop" class="cart-recommendations__image" alt="Born to be U Men's Tee">
+            </a>
+            <div class="cart-recommendations__info">
+              <a href="#" class="cart-recommendations__title">Born to be U Men's Tee</a>
+              <div class="cart-recommendations__price-row">
+                <span class="cart-recommendations__price">Rs. 899</span>
+              </div>
+              <button type="button" class="cart-recommendations__add-btn">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary / Totals -->
+    <div class="cart-drawer__summary">
+      <div class="cart-totals__row">
+        <span>Subtotal</span>
+        <span>Rs. 2,697</span>
+      </div>
+      <div class="cart-totals__row">
+        <span>EXTRA20</span>
+        <span>-Rs. 539.40</span>
+      </div>
+      <div class="cart-totals__row-total">
+        <span>Estimated total</span>
+        <span>Rs. 2,157.60</span>
+      </div>
+      <div class="cart-totals__tax-note">
+        Taxes included. Discounts and shipping calculated at checkout.
+      </div>
+      <button type="button" class="cart__checkout-button">
+        CHECK OUT
+      </button>
     </div>
   </div>
-
-  <script>
-    if (!customElements.get('cart-progress-bar')) {
-      class CartProgressBar extends HTMLElement {
-        connectedCallback() {
-          this.#bindEvents();
-          const initialCount = parseInt(this.dataset.cartItemCount, 10);
-          if (!isNaN(initialCount)) {
-            this.updateState(initialCount);
-          }
-        }
-
-        #bindEvents() {
-          this.addEventListener('click', (e) => {
-            const btn = e.target.closest('.cart-progress-bar__copy-btn');
-            if (!btn) return;
-            e.preventDefault();
-            e.stopPropagation();
-
-            const code = btn.dataset.code || this.querySelector('.cart-progress-bar__coupon-pill-code')?.textContent?.trim();
-            if (!code) return;
-
-            const onSuccess = () => {
-              btn.classList.add('is-copied');
-              const textEl = btn.querySelector('.cart-progress-bar__copy-text');
-              const orig = textEl ? textEl.textContent : 'COPY';
-              if (textEl) textEl.textContent = 'COPIED!';
-              setTimeout(() => {
-                btn.classList.remove('is-copied');
-                if (textEl) textEl.textContent = orig;
-              }, 2000);
-            };
-
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-              navigator.clipboard.writeText(code).then(onSuccess).catch(() => {
-                this.#fallbackCopy(code, onSuccess);
-              });
-            } else {
-              this.#fallbackCopy(code, onSuccess);
-            }
-          });
-        }
-
-        #fallbackCopy(text, callback) {
-          const textarea = document.createElement('textarea');
-          textarea.value = text;
-          textarea.style.position = 'fixed';
-          textarea.style.opacity = '0';
-          document.body.appendChild(textarea);
-          textarea.focus();
-          textarea.select();
-          try {
-            document.execCommand('copy');
-          } catch (e) {
-            console.warn('Coupon copy fallback', e);
-          }
-          document.body.removeChild(textarea);
-          if (callback) callback();
-        }
-
-        updateState(itemCount) {
-          const count = typeof itemCount === 'number' ? itemCount : (parseInt(this.dataset.cartItemCount, 10) || 0);
-          this.dataset.cartItemCount = count;
-
-          const tier1Unlocked = count >= 1;
-          const tier2Unlocked = count >= 2;
-          const tier3Unlocked = count >= 3;
-
-          let progressPct = 0;
-          if (count === 1) {
-            progressPct = 28;
-          } else if (count === 2) {
-            progressPct = 50;
-          } else if (count >= 3) {
-            progressPct = 100;
-          }
-          this.style.setProperty('--cpb-progress-width', `${progressPct}%`);
-
-          const updateMilestone = (selector, isUnlocked, isActive) => {
-            const m = this.querySelector(selector);
-            if (!m) return;
-            m.classList.toggle('is-unlocked', isUnlocked);
-            m.classList.toggle('is-active', isActive);
-          };
-
-          updateMilestone('.milestone-1', tier1Unlocked, count === 1);
-          updateMilestone('.milestone-2', tier2Unlocked, count === 2);
-          updateMilestone('.milestone-3', tier3Unlocked, count >= 3);
-
-          let msgHtml = '';
-          if (count === 0) {
-            msgHtml = 'ADD 1 PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">FREE SHIPPING</span>';
-          } else if (count === 1) {
-            msgHtml = 'BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">15% OFF</span>';
-          } else if (count === 2) {
-            msgHtml = 'BUY 1 MORE PRODUCT TO UNLOCK <span class="cart-progress-bar__highlight">20% OFF</span>';
-          } else {
-            msgHtml = '🎉 MAXIMUM DISCOUNT UNLOCKED: <span class="cart-progress-bar__highlight">20% OFF + FREE SHIPPING</span>';
-          }
-
-          const msgEl = this.querySelector('.cart-progress-bar__message');
-          if (msgEl) {
-            msgEl.innerHTML = msgHtml;
-          }
-
-          // Coupon Card: Only for 15% OFF and 20% OFF (Tier 2 and Tier 3) - Free Shipping has NO coupon code
-          const couponCard = this.querySelector('.cart-progress-bar__coupon-card');
-          if (couponCard) {
-            if (count >= 2) {
-              couponCard.style.display = 'flex';
-              couponCard.classList.add('is-visible');
-
-              let code = this.dataset.codeTier3 || 'BUY3';
-              let discount = '20% OFF UNLOCKED';
-              if (count === 2) {
-                code = this.dataset.codeTier2 || 'BUY2';
-                discount = '15% OFF UNLOCKED';
-              }
-
-              const codeText = couponCard.querySelector('.cart-progress-bar__coupon-code-text');
-              if (codeText) codeText.textContent = code;
-
-              const discountText = couponCard.querySelector('.cart-progress-bar__coupon-discount-text');
-              if (discountText) discountText.textContent = discount;
-
-              const pillCode = couponCard.querySelector('.cart-progress-bar__coupon-pill-code');
-              if (pillCode) pillCode.textContent = code;
-
-              const copyBtn = couponCard.querySelector('.cart-progress-bar__copy-btn');
-              if (copyBtn) copyBtn.dataset.code = code;
-            } else {
-              couponCard.style.display = 'none';
-              couponCard.classList.remove('is-visible');
-            }
-          }
-        }
-      }
-      customElements.define('cart-progress-bar', CartProgressBar);
-    }
-
-    function setCartCount(count) {
-      document.querySelectorAll('.btn-group:first-child .ctrl-btn').forEach(btn => {
-        if (btn.textContent.includes(`${count} `) || (count === 0 && btn.textContent.includes('0 Items'))) {
-          btn.classList.add('active');
-        } else if (btn.textContent.includes('Item')) {
-          btn.classList.remove('active');
-        }
-      });
-
-      document.getElementById('cartBadgeCount').textContent = count;
-      const cpb = document.getElementById('testProgressBar');
-      if (cpb && cpb.updateState) {
-        cpb.updateState(count);
-      }
-
-      const itemsWrap = document.getElementById('mockItemsContainer');
-      if (count === 0) {
-        itemsWrap.innerHTML = '<div class="empty-placeholder">Your cart is currently empty.</div>';
-      } else {
-        let html = '';
-        for (let i = 1; i <= count; i++) {
-          html += `
-            <div class="mock-cart-item">
-              <div class="item-img">#${i}</div>
-              <div class="item-details">
-                <div class="item-name">Blue Minded Product Item #${i}</div>
-                <div class="item-price">Qty: 1 • ₹1,499</div>
-              </div>
-            </div>
-          `;
-        }
-        itemsWrap.innerHTML = html;
-      }
-    }
-
-    function setBrandTheme(navy, blue, badgeBg) {
-      const cpb = document.getElementById('testProgressBar');
-      if (cpb) {
-        cpb.style.setProperty('--cpb-brand-navy', navy);
-        cpb.style.setProperty('--cpb-text', navy);
-        cpb.style.setProperty('--cpb-blue', blue);
-        cpb.style.setProperty('--cpb-badge-bg', badgeBg);
-      }
-      document.querySelectorAll('.drawer-title, .item-name').forEach(el => {
-        el.style.color = navy;
-      });
-      document.querySelectorAll('.drawer-count-badge').forEach(el => {
-        el.style.color = blue;
-        el.style.backgroundColor = badgeBg;
-      });
-    }
-  </script>
 </body>
 </html>

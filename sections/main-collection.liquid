@@ -41,8 +41,141 @@
     box-sizing: border-box !important;
   }
 
-  results-list[section-id='{{ section.id }}'] .group-block {
-    padding-inline: 4px !important;
+  results-list[section-id='{{ section.id }}'] .group-block,
+  results-list[section-id='{{ section.id }}'] .group-block-content,
+  results-list[section-id='{{ section.id }}'] .group-block.group-block--height-fit.group-block--width-fill.border-style.spacing-style.size-style,
+  body.template-collection .group-block.group-block--height-fit.group-block--width-fill.border-style.spacing-style.size-style,
+  body.template-collection .product-card .group-block,
+  body.template-collection .product-card .group-block-content {
+    padding-inline: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-block-start: 0 !important;
+    padding-block-start: 0 !important;
+  }
+
+  /* Remove all padding from collection product cards & set 5px gap between image and title */
+  results-list[section-id='{{ section.id }}'] .product-card,
+  results-list[section-id='{{ section.id }}'] .product-card__content,
+  results-list[section-id='{{ section.id }}'] .product-grid__card,
+  body.template-collection .product-card,
+  body.template-collection .product-card__content,
+  body.template-collection .product-grid__card,
+  :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile) [product-grid-view='default'] .product-grid__card,
+  :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile) [product-grid-view='mobile-single'] .product-grid__card {
+    padding: 0 !important;
+    padding-block: 0 !important;
+    padding-inline: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-block-start: 0 !important;
+    padding-block-end: 0 !important;
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
+    --padding-block-start: 0px !important;
+    --padding-block-end: 0px !important;
+    --padding-inline-start: 0px !important;
+    --padding-inline-end: 0px !important;
+    row-gap: 5px !important;
+    --product-card-gap: 5px !important;
+  }
+
+  results-list[section-id='{{ section.id }}'] [product-grid-view='default'],
+  body.template-collection [product-grid-view='default'] {
+    --padding-block-start: 0px !important;
+    --padding-block-end: 0px !important;
+    --padding-inline-start: 0px !important;
+    --padding-inline-end: 0px !important;
+  }
+
+  :is(.collection-wrapper--full-width) .card-gallery,
+  :is(.collection-wrapper--full-width-on-mobile) .card-gallery,
+  results-list[section-id='{{ section.id }}'] .card-gallery,
+  results-list[section-id='{{ section.id }}'] .product-media-container,
+  results-list[section-id='{{ section.id }}'] .product-media,
+  results-list[section-id='{{ section.id }}'] slideshow-component,
+  results-list[section-id='{{ section.id }}'] slideshow-slides,
+  results-list[section-id='{{ section.id }}'] slideshow-slide,
+  body.template-collection .product-card .card-gallery,
+  body.template-collection .product-card .product-media-container {
+    width: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    margin-inline-start: 0 !important;
+    margin-inline-end: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  results-list[section-id='{{ section.id }}'] .card-gallery img,
+  results-list[section-id='{{ section.id }}'] .product-media-container img,
+  results-list[section-id='{{ section.id }}'] .product-media img,
+  results-list[section-id='{{ section.id }}'] picture img,
+  body.template-collection .product-card .card-gallery img,
+  body.template-collection .product-card .product-media-container img {
+    object-fit: cover !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    aspect-ratio: 4 / 5 !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  results-list[section-id='{{ section.id }}'] a[ref="productTitleLink"],
+  results-list[section-id='{{ section.id }}'] a.contents.user-select-text,
+  results-list[section-id='{{ section.id }}'] .text-block,
+  results-list[section-id='{{ section.id }}'] a[ref="productTitleLink"] p,
+  results-list[section-id='{{ section.id }}'] a.contents.user-select-text p,
+  body.template-collection .product-card a[ref="productTitleLink"] p {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-block-start: 0 !important;
+    padding-block-start: 0 !important;
+  }
+
+  results-list[section-id='{{ section.id }}'] product-price,
+  body.template-collection .product-card product-price {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+  }
+
+  results-list[section-id='{{ section.id }}'] .product-grid,
+  results-list[section-id='{{ section.id }}'] ul.product-grid,
+  body.template-collection results-list[section-id='{{ section.id }}'] .product-grid,
+  body.template-collection .product-grid {
+    column-gap: 5px !important;
+    --product-grid-gap: {{ section.settings.columns_gap_vertical }}px 5px !important;
+    --product-grid-gap-mobile: {{ section.settings.columns_gap_vertical | at_most: 12 }}px 5px !important;
+    --product-grid-gap-desktop: {{ section.settings.columns_gap_vertical }}px 5px !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    results-list[section-id='{{ section.id }}'] .product-grid,
+    results-list[section-id='{{ section.id }}'] ul.product-grid,
+    body.template-collection results-list[section-id='{{ section.id }}'] .product-grid,
+    body.template-collection .product-grid {
+      column-gap: 5px !important;
+      --product-grid-gap: {{ section.settings.columns_gap_vertical | at_most: 12 }}px 5px !important;
+      --product-grid-gap-mobile: {{ section.settings.columns_gap_vertical | at_most: 12 }}px 5px !important;
+    }
   }
 
   results-list[section-id='{{ section.id }}'] a[ref="productTitleLink"],
@@ -124,6 +257,61 @@
   }
 
   @media screen and (max-width: 749px) {
+    results-list[section-id='{{ section.id }}'] .product-card,
+    results-list[section-id='{{ section.id }}'] .product-card__content,
+    results-list[section-id='{{ section.id }}'] .product-grid__card,
+    body.template-collection .product-card,
+    body.template-collection .product-card__content,
+    body.template-collection .product-grid__card,
+    :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile) [product-grid-view='default'] .product-grid__card,
+    :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile) [product-grid-view='mobile-single'] .product-grid__card {
+      padding: 0 !important;
+      padding-block: 0 !important;
+      padding-inline: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      padding-block-start: 0 !important;
+      padding-block-end: 0 !important;
+      padding-inline-start: 0 !important;
+      padding-inline-end: 0 !important;
+      --padding-block-start: 0px !important;
+      --padding-block-end: 0px !important;
+      --padding-inline-start: 0px !important;
+      --padding-inline-end: 0px !important;
+      row-gap: 5px !important;
+      --product-card-gap: 5px !important;
+    }
+
+    :is(.collection-wrapper--full-width) .card-gallery,
+    :is(.collection-wrapper--full-width-on-mobile) .card-gallery,
+    results-list[section-id='{{ section.id }}'] .card-gallery,
+    body.template-collection .product-card .card-gallery {
+      margin-inline-start: 0 !important;
+      margin-inline-end: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    results-list[section-id='{{ section.id }}'] .group-block,
+    results-list[section-id='{{ section.id }}'] .group-block-content,
+    body.template-collection .product-card .group-block,
+    body.template-collection .product-card .group-block-content {
+      padding: 0 !important;
+      padding-block: 0 !important;
+      padding-inline: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin: 0 !important;
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      margin-block-start: 0 !important;
+      padding-block-start: 0 !important;
+    }
+
     results-list[section-id='{{ section.id }}'] a.contents.user-select-text p,
     results-list[section-id='{{ section.id }}'] a[ref="productTitleLink"] p,
     results-list[section-id='{{ section.id }}'] .text-block :is(h1, h2, h3, h4, h5, h6, p) {
@@ -132,6 +320,22 @@
       min-height: 2.7em;
       max-height: 2.7em;
       align-self: stretch !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-block-start: 0 !important;
+      padding-block-start: 0 !important;
+    }
+
+    results-list[section-id='{{ section.id }}'] product-price,
+    body.template-collection .product-card product-price {
+      margin: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
     }
 
     body.template-collection results-list[section-id='{{ section.id }}'] product-price .price {

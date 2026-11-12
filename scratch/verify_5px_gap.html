@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 5px;
+  row-gap: 16px;
+  width: 95%;
+  margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;
+    row-gap: 16px;
+  }
+}
+
+.product-card {
+  display: block;
+  width: 100%;
+}
+
+.product-card__content {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5px !important;
+  --product-card-gap: 5px !important;
+}
+
+.card-gallery {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #e2e3e5;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.card-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.group-block, .group-block-content {
+  padding-inline: 0 !important;
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.group-block-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+a.contents {
+  text-decoration: none;
+  display: block;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+a.contents p {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0c4168;
+  line-height: 1.35;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.price {
+  font-size: 14px;
+  color: #444;
+}
+</style>
+</head>
+<body>
+<div class='product-grid'>
+  <div class='product-card'>
+    <div class='product-card__content'>
+      <div class='card-gallery' id='img1'>
+        <div style='width:100%;height:100%;background:#dcdfe2;'></div>
+      </div>
+      <div class='group-block'>
+        <div class='group-block-content'>
+          <a class='contents' id='title1'><p>Nocturnal Life Men's Regular Fit Graphic Tee</p></a>
+          <div class='price'>Rs. 899</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='product-card'>
+    <div class='product-card__content'>
+      <div class='card-gallery'>
+        <div style='width:100%;height:100%;background:#dcdfe2;'></div>
+      </div>
+      <div class='group-block'>
+        <div class='group-block-content'>
+          <a class='contents'><p>Need a Break Men's Regular Fit Graphic Tee</p></a>
+          <div class='price'>Rs. 899</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+window.addEventListener('load', () => {
+  const img = document.getElementById('img1').getBoundingClientRect();
+  const title = document.getElementById('title1').getBoundingClientRect();
+  const gap = title.top - img.bottom;
+  console.log('MEASURED_GAP:' + gap);
+  const info = document.createElement('div');
+  info.id = 'gap-result';
+  info.innerText = 'GAP:' + gap;
+  document.body.appendChild(info);
+});
+</script>
+</body>
+</html>

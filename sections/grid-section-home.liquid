@@ -1,0 +1,851 @@
+{% comment %}
+  ==============================================================================
+  SECTION: Lifestyle Grid / Continuous Photo Grid (2 × 2)
+  ==============================================================================
+  - 4 landscape cards in a clean 2 × 2 grid layout on both Desktop and Mobile.
+  - Sized in 3:2 Landscape ratio (600 × 400 px recommended) to fit all 4 elements
+    comfortably on a single screen without scrolling.
+  - Optional "Fit to Single Screen Viewport" mode.
+  - Reusable Online Store 2.0 section with 4 reorderable blocks.
+{% endcomment %}
+
+{% liquid
+  assign sec_id = section.id
+  assign s = section.settings
+
+  # Section padding & spacing
+  assign padding_top_desktop = s.padding_top_desktop | default: 24
+  assign padding_bottom_desktop = s.padding_bottom_desktop | default: 24
+  assign padding_top_mobile = s.padding_top_mobile | default: 16
+  assign padding_bottom_mobile = s.padding_bottom_mobile | default: 16
+
+  assign gap_desktop = s.grid_gap_desktop | default: 12
+  assign gap_mobile = s.grid_gap_mobile | default: 8
+
+  assign radius_desktop = s.border_radius_desktop | default: 0
+  assign radius_mobile = s.border_radius_mobile | default: 0
+
+  assign desktop_aspect = s.desktop_aspect_ratio | default: '3/2'
+  assign mobile_aspect = s.mobile_aspect_ratio | default: '3/2'
+  assign image_fit = s.image_fit | default: 'contain'
+
+  assign section_width_setting = s.section_width | default: 'page-width'
+
+  if section_width_setting == 'full-width'
+    assign container_w = '100%'
+    assign container_padding_desktop = '0'
+    assign container_padding_mobile = '0'
+  elsif section_width_setting == 'compact'
+    assign card_max_size = s.card_max_width | default: 540
+    assign container_w = card_max_size | times: 2 | plus: gap_desktop | append: 'px'
+    assign container_padding_desktop = '20px'
+    assign container_padding_mobile = '12px'
+  elsif section_width_setting == 'custom'
+    assign container_w = s.max_width | default: 1500 | append: 'px'
+    assign container_padding_desktop = '20px'
+    assign container_padding_mobile = '12px'
+  else
+    # 'page-width' (default) - exactly matches custom-editorial-seaction and other homepage sections
+    assign container_w = '1500px'
+    assign container_padding_desktop = '20px'
+    assign container_padding_mobile = '12px'
+  endif
+%}
+
+<section
+  id="lifestyle-grid-{{ sec_id }}"
+  class="lifestyle-grid-section"
+  style="
+    --lg-pt-desktop: {{ padding_top_desktop }}px;
+    --lg-pb-desktop: {{ padding_bottom_desktop }}px;
+    --lg-pt-mobile: {{ padding_top_mobile }}px;
+    --lg-pb-mobile: {{ padding_bottom_mobile }}px;
+    --lg-gap-desktop: {{ gap_desktop }}px;
+    --lg-gap-mobile: {{ gap_mobile }}px;
+    --lg-radius-desktop: {{ radius_desktop }}px;
+    --lg-radius-mobile: {{ radius_mobile }}px;
+    --lg-aspect-desktop: {{ desktop_aspect }};
+    --lg-aspect-mobile: {{ mobile_aspect }};
+    --lg-image-fit: {{ image_fit }};
+    --lg-container-width: {{ container_w }};
+    --lg-container-padding-desktop: {{ container_padding_desktop }};
+    --lg-container-padding-mobile: {{ container_padding_mobile }};
+    --lg-bg: {{ s.background_color | default: 'transparent' }};
+  "
+>
+  <div class="lifestyle-grid-container">
+    {% if s.heading != blank or s.subheading != blank %}
+      <div class="lifestyle-grid__header lifestyle-grid__header--{{ s.header_alignment | default: 'center' }}">
+        {% if s.subheading != blank %}
+          <p class="lifestyle-grid__subheading">{{ s.subheading }}</p>
+        {% endif %}
+        {% if s.heading != blank %}
+          <h2 class="lifestyle-grid__heading">{{ s.heading }}</h2>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="lifestyle-grid__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign b = block.settings
+          assign desktop_img = b.image_desktop
+          assign mobile_img = b.image_mobile | default: desktop_img
+          if desktop_img == blank and mobile_img != blank
+            assign desktop_img = mobile_img
+          endif
+
+          assign card_link = b.link
+          assign open_new_tab = b.open_in_new_tab
+          assign heading = b.heading
+          assign subtext = b.subtext
+          assign button_label = b.button_label
+          assign overlay_opacity = b.overlay_opacity | default: 0
+          assign text_color = b.text_color | default: '#ffffff'
+          assign text_pos = b.text_position | default: 'bottom_left'
+
+          assign img_alt = b.heading | default: desktop_img.alt | default: 'Lifestyle image'
+        %}
+
+        <div
+          class="lifestyle-grid__card lifestyle-grid__card--{{ block.id }}"
+          {{ block.shopify_attributes }}
+          style="
+            --card-text-color: {{ text_color }};
+            --card-overlay: rgba(0, 0, 0, {{ overlay_opacity | divided_by: 100.0 }});
+          "
+        >
+          {% if card_link != blank %}
+            <a
+              href="{{ card_link }}"
+              class="lifestyle-grid__card-link"
+              {% if open_new_tab %}
+                target="_blank" rel="noopener noreferrer"
+              {% endif %}
+              aria-label="{{ heading | default: 'View lifestyle item' | escape }}"
+            >
+          {% else %}
+            <div class="lifestyle-grid__card-inner">
+          {% endif %}
+
+          <div class="lifestyle-grid__media-wrap">
+            {% if desktop_img != blank or mobile_img != blank %}
+              <picture class="lifestyle-grid__picture">
+                {% if mobile_img != blank %}
+                  <source
+                    media="(max-width: 749px)"
+                    srcset="{{ mobile_img | image_url: width: 600 }} 600w, {{ mobile_img | image_url: width: 900 }} 900w"
+                    sizes="(max-width: 749px) 50vw, 600px"
+                    width="600"
+                    height="400"
+                  >
+                {% endif %}
+                {% if desktop_img != blank %}
+                  <source
+                    media="(min-width: 750px)"
+                    srcset="{{ desktop_img | image_url: width: 600 }} 600w, {{ desktop_img | image_url: width: 900 }} 900w, {{ desktop_img | image_url: width: 1200 }} 1200w"
+                    sizes="(min-width: 750px) 540px, 50vw"
+                    width="600"
+                    height="400"
+                  >
+                  {{
+                    desktop_img
+                    | image_url: width: 900
+                    | image_tag: loading: 'lazy', decoding: 'async', alt: img_alt, class: 'lifestyle-grid__img', width: 600, height: 400
+                  }}
+                {% else %}
+                  {{
+                    mobile_img
+                    | image_url: width: 900
+                    | image_tag: loading: 'lazy', decoding: 'async', alt: img_alt, class: 'lifestyle-grid__img', width: 600, height: 400
+                  }}
+                {% endif %}
+              </picture>
+            {% else %}
+              <div class="lifestyle-grid__placeholder">
+                {% assign placeholder_num = forloop.index | modulo: 6 | plus: 1 %}
+                {{ 'collection-' | append: placeholder_num | placeholder_svg_tag: 'lifestyle-grid__placeholder-svg' }}
+              </div>
+            {% endif %}
+
+            {% if overlay_opacity > 0 %}
+              <div class="lifestyle-grid__overlay" aria-hidden="true"></div>
+            {% endif %}
+
+            {% if heading != blank or subtext != blank or button_label != blank %}
+              <div class="lifestyle-grid__content lifestyle-grid__content--{{ text_pos }}">
+                {% if subtext != blank %}
+                  <span class="lifestyle-grid__card-subtext">{{ subtext }}</span>
+                {% endif %}
+                {% if heading != blank %}
+                  <h3 class="lifestyle-grid__card-heading">{{ heading }}</h3>
+                {% endif %}
+                {% if button_label != blank %}
+                  <span class="lifestyle-grid__card-btn">{{ button_label }}</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if card_link != blank %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #lifestyle-grid-{{ sec_id }} {
+    width: 100%;
+    background-color: var(--lg-bg);
+    padding-top: var(--lg-pt-desktop);
+    padding-bottom: var(--lg-pb-desktop);
+    box-sizing: border-box;
+    overflow-x: clip;
+  }
+
+  @media screen and (max-width: 768px) {
+    #lifestyle-grid-{{ sec_id }} {
+      padding-top: var(--lg-pt-mobile);
+      padding-bottom: var(--lg-pb-mobile);
+    }
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
+    width: 100%;
+    max-width: var(--lg-container-width);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding-left: var(--lg-container-padding-desktop);
+    padding-right: var(--lg-container-padding-desktop);
+  }
+
+  @media screen and (max-width: 768px) {
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
+      padding-left: var(--lg-container-padding-mobile);
+      padding-right: var(--lg-container-padding-mobile);
+    }
+  }
+
+  /* Header */
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__header {
+    margin-bottom: 20px;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__header--left {
+    text-align: left;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__header--center {
+    text-align: center;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__header--right {
+    text-align: right;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__subheading {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: {{ s.heading_color | default: '#0C4168' }};
+    opacity: 0.8;
+    margin: 0 0 4px 0;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__heading {
+    font-size: {{ s.heading_size_desktop | default: 40 }}px;
+    font-weight: 700;
+    color: {{ s.heading_color | default: '#0C4168' }};
+    letter-spacing: 0.5px;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  @media screen and (max-width: 768px) {
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__heading {
+      font-size: {{ s.heading_size_mobile | default: 24 }}px;
+    }
+  }
+
+  /* 2 x 2 Landscape Grid - Spans Full Container Width Matching Other Homepage Sections */
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    justify-content: center;
+    gap: var(--lg-gap-desktop);
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  @media screen and (max-width: 768px) {
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--lg-gap-mobile);
+    }
+  }
+
+  /* Cards - Full responsive width, height strictly driven by 3:2 ratio */
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    border-radius: var(--lg-radius-desktop);
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: transparent;
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner {
+    display: block;
+    width: 100%;
+    height: auto;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--lg-radius-desktop);
+    overflow: hidden;
+    position: relative;
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--lg-aspect-desktop, 3 / 2);
+    overflow: hidden;
+    border-radius: var(--lg-radius-desktop);
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card,
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner,
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
+      border-radius: var(--lg-radius-mobile);
+    }
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
+      aspect-ratio: var(--lg-aspect-mobile, 3 / 2);
+    }
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--lg-image-fit, contain);
+    object-position: center;
+    display: block;
+    border-radius: var(--lg-radius-desktop);
+    transform: translateZ(0);
+    {% if s.enable_hover_zoom %}
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    {% endif %}
+  }
+
+  @media screen and (max-width: 768px) {
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
+      border-radius: var(--lg-radius-mobile);
+    }
+  }
+
+  {% if s.enable_hover_zoom %}
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card:hover .lifestyle-grid__img {
+      transform: scale(1.035);
+    }
+  {% endif %}
+
+  /* Placeholder */
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e2e8f0;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__placeholder-svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.45;
+  }
+
+  /* Overlay */
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--card-overlay);
+    pointer-events: none;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Content / Text Overlay */
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content {
+    position: absolute;
+    inset: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    color: var(--card-text-color);
+    box-sizing: border-box;
+    z-index: 2;
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content--bottom_left {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content--bottom_center {
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content--center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content--top_left {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-subtext {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 4px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-heading {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.25;
+    color: inherit;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: #ffffff;
+    color: #0C4168;
+    border-radius: 0px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Responsive / Mobile */
+  @media screen and (max-width: 749px) {
+    #lifestyle-grid-{{ sec_id }} {
+      padding-top: var(--lg-pt-mobile);
+      padding-bottom: var(--lg-pb-mobile);
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__heading {
+      font-size: {{ s.heading_size_mobile | default: 20 }}px;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: var(--lg-gap-mobile);
+      max-width: 100%;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card {
+      border-radius: var(--lg-radius-mobile);
+      max-width: 100%;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner,
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
+      border-radius: var(--lg-radius-mobile);
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
+      aspect-ratio: var(--lg-aspect-mobile);
+      border-radius: var(--lg-radius-mobile);
+      max-width: 100%;
+      max-height: none;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content {
+      padding: 10px;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-heading {
+      font-size: 14px;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-subtext {
+      font-size: 9px;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-btn {
+      padding: 4px 8px;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Lifestyle Grid (2x2)",
+  "tag": "section",
+  "class": "section-lifestyle-grid",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "header",
+      "content": "📝 Section Header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Section Subheading"
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#0C4168"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Font Size (Desktop)",
+      "min": 18,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Font Size (Mobile)",
+      "min": 16,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "📐 Layout & Aspect Ratio"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section Width",
+      "options": [
+        { "value": "page-width", "label": "Page Width (Matches Site & Product Sections)" },
+        { "value": "full-width", "label": "Full Width" },
+        { "value": "compact", "label": "Compact (Constrained)" },
+        { "value": "custom", "label": "Custom Width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "checkbox",
+      "id": "fit_screen_height",
+      "label": "Fit Single Screen Viewport (Desktop)",
+      "default": false,
+      "info": "Optionally limits height to viewport"
+    },
+    {
+      "type": "range",
+      "id": "card_max_width",
+      "label": "Card Max Width (px)",
+      "min": 350,
+      "max": 750,
+      "step": 10,
+      "unit": "px",
+      "default": 540,
+      "info": "540px with 3:2 ratio keeps the entire 2x2 section within a single screen"
+    },
+    {
+      "type": "number",
+      "id": "max_width",
+      "label": "Custom Max Container Width (px)",
+      "default": 1080
+    },
+    {
+      "type": "select",
+      "id": "desktop_aspect_ratio",
+      "label": "Desktop Image Aspect Ratio",
+      "options": [
+        { "value": "3/2", "label": "3:2 Landscape (600 × 400 px) - Recommended" },
+        { "value": "16/10", "label": "16:10 Landscape (800 × 500 px)" },
+        { "value": "16/9", "label": "16:9 Landscape (960 × 540 px)" },
+        { "value": "4/3", "label": "4:3 Landscape (800 × 600 px)" },
+        { "value": "1/1", "label": "1:1 Square (400 × 400 px)" }
+      ],
+      "default": "3/2"
+    },
+    {
+      "type": "select",
+      "id": "mobile_aspect_ratio",
+      "label": "Mobile Image Aspect Ratio",
+      "options": [
+        { "value": "3/2", "label": "3:2 Landscape (600 × 400 px) - Recommended" },
+        { "value": "16/10", "label": "16:10 Landscape" },
+        { "value": "4/3", "label": "4:3 Landscape" },
+        { "value": "1/1", "label": "1:1 Square" },
+        { "value": "3/4", "label": "3:4 Portrait" }
+      ],
+      "default": "3/2"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit / Scaling",
+      "options": [
+        { "value": "contain", "label": "Fit Complete (No Cropping - 100% Full Image)" },
+        { "value": "cover", "label": "Cover / Fill Entire Card" }
+      ],
+      "default": "contain",
+      "info": "Use 'Fit Complete' to guarantee 3:2 images are never cropped"
+    },
+    {
+      "type": "header",
+      "content": "🔘 Border Radius & Spacing"
+    },
+    {
+      "type": "range",
+      "id": "border_radius_desktop",
+      "label": "Card Corner Radius (Desktop)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_radius_mobile",
+      "label": "Card Corner Radius (Mobile)",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_desktop",
+      "label": "Grid Gap (Desktop)",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "label": "Grid Gap (Mobile)",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_hover_zoom",
+      "label": "Enable Hover Zoom Effect",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "🎨 Background & Section Padding"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_card",
+      "name": "Image Card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "🖼️ Images"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop Image (600 × 400 px / 3:2 Landscape)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile Image (600 × 400 px / 3:2 Landscape)"
+        },
+        {
+          "type": "header",
+          "content": "🔗 Card Link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Card Link URL"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_in_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "✍️ Optional Text Overlay"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext / Category"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label (e.g. SHOP NOW)"
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text Position",
+          "options": [
+            { "value": "bottom_left", "label": "Bottom Left" },
+            { "value": "bottom_center", "label": "Bottom Center" },
+            { "value": "center", "label": "Center" },
+            { "value": "top_left", "label": "Top Left" }
+          ],
+          "default": "bottom_left"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Dark Overlay Opacity",
+          "min": 0,
+          "max": 90,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lifestyle Grid (2x2)",
+      "category": "Image",
+      "blocks": [{ "type": "image_card" }, { "type": "image_card" }, { "type": "image_card" }, { "type": "image_card" }]
+    }
+  ]
+}
+{% endschema %}

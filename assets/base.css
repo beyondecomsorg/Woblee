@@ -4728,7 +4728,7 @@ p.jm-text.jm-other-products-reviews-text {
 }
 
 body h2, body .h2.h2, body .text-block.h2 > *, body .text-block.h2 :is(h1, h2, h3, h4, h5, h6){
- line-height: 30px !important;
+ line-height: 40px !important;
 }
 
 .custom-footer__input{

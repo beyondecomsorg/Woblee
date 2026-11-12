@@ -76,7 +76,7 @@ export class MediaGallery extends Component {
     }
 
     const selectedOptions = this.#getSelectedOptions(galleryData, variant);
-    const filteredMedia = this.#computeFilteredMedia(galleryData, selectedOptions);
+    const filteredMedia = this.#computeFilteredMedia(galleryData, selectedOptions, variant);
 
     this.#applyFilteredMedia(filteredMedia, variant);
   }
@@ -92,100 +92,152 @@ export class MediaGallery extends Component {
     }
   }
 
-  #getSelectedOptions(galleryData) {
+  #getSelectedOptions(galleryData, variant = null) {
     const selectedOptions = {};
 
-    // Read selected options directly from DOM variant picker
-    const variantPicker = this.closest('.shopify-section, dialog')?.querySelector('variant-picker') || document.querySelector('variant-picker');
-    if (!variantPicker) return selectedOptions;
-
-    // 1. Radio button fieldsets (only if an input is explicitly checked and active)
-    const fieldsets = variantPicker.querySelectorAll('fieldset.variant-option');
-    fieldsets.forEach((fieldset, idx) => {
-      let optionName = fieldset.getAttribute('data-option-name');
-      if (!optionName) {
-        const legendTitle = fieldset.querySelector('.variant-option__legend-title');
-        optionName = legendTitle ? legendTitle.childNodes[0]?.textContent?.trim() : null;
-      }
-      if (!optionName && galleryData.options && galleryData.options[idx]) {
-        optionName = galleryData.options[idx];
-      }
-      const checkedRadio = fieldset.querySelector('input[type="radio"]:checked');
-      if (optionName && checkedRadio && checkedRadio.value && checkedRadio.dataset.currentChecked !== 'false') {
-        selectedOptions[optionName] = checkedRadio.value.trim();
-      }
-    });
-
-    // 2. Select dropdowns (only if a valid option is selected)
-    const dropdownContainers = variantPicker.querySelectorAll('.variant-option--dropdowns');
-    dropdownContainers.forEach((container, idx) => {
-      let optionName = container.getAttribute('data-option-name');
-      if (!optionName) {
-        const label = container.querySelector('label');
-        optionName = label ? label.textContent.trim() : null;
-      }
-      if (!optionName && galleryData.options && galleryData.options[idx]) {
-        optionName = galleryData.options[idx];
-      }
-      const select = container.querySelector('select');
-      if (optionName && select && select.value && select.value !== '') {
-        const selectedOpt = select.options[select.selectedIndex];
-        if (selectedOpt && !selectedOpt.disabled) {
-          selectedOptions[optionName] = select.value.trim();
+    // 1. If a variant object is provided, populate from variant.options
+    if (variant && Array.isArray(variant.options) && Array.isArray(galleryData?.options)) {
+      galleryData.options.forEach((optName, idx) => {
+        if (variant.options[idx]) {
+          selectedOptions[optName] = String(variant.options[idx]).trim();
         }
-      }
-    });
+      });
+    }
+
+    // 2. Read selected options directly from DOM variant picker
+    const variantPicker = this.closest('.shopify-section, dialog')?.querySelector('variant-picker') || document.querySelector('variant-picker');
+    if (variantPicker) {
+      // Radio button fieldsets (only if an input is explicitly checked and active)
+      const fieldsets = variantPicker.querySelectorAll('fieldset.variant-option');
+      fieldsets.forEach((fieldset, idx) => {
+        let optionName = fieldset.getAttribute('data-option-name');
+        if (!optionName) {
+          const legendTitle = fieldset.querySelector('.variant-option__legend-title');
+          optionName = legendTitle ? legendTitle.childNodes[0]?.textContent?.trim() : null;
+        }
+        if (!optionName && galleryData?.options && galleryData.options[idx]) {
+          optionName = galleryData.options[idx];
+        }
+        const checkedRadio = fieldset.querySelector('input[type="radio"]:checked');
+        if (optionName && checkedRadio && checkedRadio.value && checkedRadio.dataset.currentChecked !== 'false') {
+          selectedOptions[optionName] = checkedRadio.value.trim();
+        }
+      });
+
+      // Select dropdowns (only if a valid option is selected)
+      const dropdownContainers = variantPicker.querySelectorAll('.variant-option--dropdowns');
+      dropdownContainers.forEach((container, idx) => {
+        let optionName = container.getAttribute('data-option-name');
+        if (!optionName) {
+          const label = container.querySelector('label');
+          optionName = label ? label.textContent.trim() : null;
+        }
+        if (!optionName && galleryData?.options && galleryData.options[idx]) {
+          optionName = galleryData.options[idx];
+        }
+        const select = container.querySelector('select');
+        if (optionName && select && select.value && select.value !== '') {
+          const selectedOpt = select.options[select.selectedIndex];
+          if (selectedOpt && !selectedOpt.disabled) {
+            selectedOptions[optionName] = select.value.trim();
+          }
+        }
+      });
+    }
+
+    // 3. Fallback to initial selected_variant from JSON if still empty
+    if (Object.keys(selectedOptions).length === 0 && galleryData?.selected_variant?.options && Array.isArray(galleryData?.options)) {
+      galleryData.options.forEach((optName, idx) => {
+        if (galleryData.selected_variant.options[idx]) {
+          selectedOptions[optName] = String(galleryData.selected_variant.options[idx]).trim();
+        }
+      });
+    }
 
     return selectedOptions;
   }
 
-  #computeFilteredMedia(galleryData, selectedOptions) {
+  #computeFilteredMedia(galleryData, selectedOptions, variant = null) {
     const normalize = (str) => {
       if (!str) return '';
       return String(str)
         .toLowerCase()
         .trim()
-        .replace(/[-_]/g, ' ')
         .replace(/\s+/g, ' ');
     };
 
-    const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-    const containsOptionValue = (normAlt, normVal) => {
-      if (!normAlt || !normVal) return false;
-      const escaped = escapeRegExp(normVal);
-      const regex = new RegExp(`(?:^|[\\s_\\-,.;:/])${escaped}(?:$|[\\s_\\-,.;:/])`, 'i');
-      return regex.test(normAlt);
-    };
-
-    const optionsWithValues = galleryData.options_with_values || [];
     const allMedia = galleryData.media || [];
+    if (!allMedia.length) return [];
 
     // Collect all possible option values across all options for this product
     const allOptionValues = [];
+    const optionsWithValues = galleryData.options_with_values || [];
     optionsWithValues.forEach((opt) => {
-      opt.values.forEach((val) => {
-        allOptionValues.push({
-          optionName: opt.name,
-          normValue: normalize(val),
+      if (Array.isArray(opt.values)) {
+        opt.values.forEach((val) => {
+          const norm = normalize(val);
+          if (norm && !allOptionValues.includes(norm)) {
+            allOptionValues.push(norm);
+          }
         });
-      });
-    });
-
-    // Check if the product has ANY variant-specific ALT text across all media
-    let productHasVariantAltText = false;
-    allMedia.forEach((m) => {
-      const normAlt = normalize(m.alt);
-      if (!normAlt) return;
-      for (const item of allOptionValues) {
-        if (containsOptionValue(normAlt, item.normValue)) {
-          productHasVariantAltText = true;
-          break;
-        }
       }
     });
 
-    // Fallback: If product has no variant-specific ALT text, keep all images unchanged
+    /**
+     * Extracts variant name from image ALT text:
+     * 1. If alt text has '--', take only the text after the last '--', trimmed.
+     * 2. If alt text has NO '--', check if the entire trimmed alt text exactly matches
+     *    any known option value of this product (e.g. "Moss Green").
+     * 3. Otherwise, return null (treated as having no variant association / general image).
+     */
+    const extractVariantFromAlt = (altText) => {
+      if (!altText || typeof altText !== 'string') return null;
+      const lastIndex = altText.lastIndexOf('--');
+      if (lastIndex !== -1) {
+        const variantName = altText.substring(lastIndex + 2).trim();
+        return variantName.length > 0 ? variantName : null;
+      }
+      const trimmedAlt = altText.trim();
+      if (!trimmedAlt) return null;
+      const normAlt = normalize(trimmedAlt);
+      if (allOptionValues.includes(normAlt)) {
+        return trimmedAlt;
+      }
+      return null;
+    };
+
+    // Collect all normalized values of currently selected options
+    const selectedValues = [];
+    if (selectedOptions) {
+      Object.values(selectedOptions).forEach((val) => {
+        if (val) {
+          const norm = normalize(val);
+          if (norm && !selectedValues.includes(norm)) {
+            selectedValues.push(norm);
+          }
+        }
+      });
+    }
+    if (variant && Array.isArray(variant.options)) {
+      variant.options.forEach((val) => {
+        if (val) {
+          const norm = normalize(val);
+          if (norm && !selectedValues.includes(norm)) {
+            selectedValues.push(norm);
+          }
+        }
+      });
+    }
+
+    // Check if the product has ANY media with variant-specific ALT text
+    let productHasVariantAltText = false;
+    allMedia.forEach((m) => {
+      if (extractVariantFromAlt(m.alt)) {
+        productHasVariantAltText = true;
+      }
+    });
+
+    // Fallback: If product has no variant-specific ALT text across all media, keep all images unchanged
     if (!productHasVariantAltText) {
       return [...allMedia];
     }
@@ -193,50 +245,25 @@ export class MediaGallery extends Component {
     const scoredMedia = [];
 
     allMedia.forEach((media, originalIndex) => {
-      const normAlt = normalize(media.alt);
-      let isExcluded = false;
-      let matchedSelectedCount = 0;
-      let totalOptionsInAltCount = 0;
-
-      if (normAlt) {
-        optionsWithValues.forEach((opt) => {
-          const selectedVal = selectedOptions[opt.name];
-          if (!selectedVal) return; // If this option is not currently selected by user, skip checking
-
-          const normSelectedVal = normalize(selectedVal);
-
-          // Find which values of this option are present in ALT text
-          const foundValuesForOption = [];
-          opt.values.forEach((val) => {
-            const normVal = normalize(val);
-            if (containsOptionValue(normAlt, normVal)) {
-              foundValuesForOption.push(normVal);
-            }
-          });
-
-          if (foundValuesForOption.length > 0) {
-            totalOptionsInAltCount++;
-
-            // Does any found value match the selected value for this option?
-            const matchesSelected = normSelectedVal && foundValuesForOption.includes(normSelectedVal);
-
-            if (matchesSelected) {
-              matchedSelectedCount++;
-            } else {
-              // ALT text contains a value for this option that DOES NOT match currently selected value -> EXCLUSION
-              isExcluded = true;
-            }
-          }
-        });
-      }
-
+      const extracted = extractVariantFromAlt(media.alt);
       let score = -1;
-      if (!isExcluded) {
-        if (matchedSelectedCount > 0) {
-          score = matchedSelectedCount === totalOptionsInAltCount ? 2 : 1;
-        } else if (totalOptionsInAltCount === 0) {
-          score = 0; // General image (no variant info in ALT)
+
+      if (extracted) {
+        const normExtracted = normalize(extracted);
+
+        // Exact equality check against currently selected option values (case-insensitive & whitespace-tolerant)
+        const matchesSelected = selectedValues.includes(normExtracted);
+
+        if (matchesSelected) {
+          // Exact match with currently selected variant option value
+          score = 2;
+        } else {
+          // Has '-- [Variant]' but does NOT match the selected variant -> EXCLUDE
+          score = -1;
         }
+      } else {
+        // No '--' in alt text -> treat as having no variant association (general image)
+        score = 0;
       }
 
       if (score >= 0) {
@@ -244,17 +271,25 @@ export class MediaGallery extends Component {
       }
     });
 
-    // Sort matching media: Score 2 (Exact match) -> Score 1 (Option match) -> Score 0 (General image)
+    // Sort matching media: Score 2 (Matching variant) -> Score 0 (General image)
     // Preserve relative original order within each score tier
     scoredMedia.sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
       return a.originalIndex - b.originalIndex;
     });
 
-    const filtered = scoredMedia.map((item) => item.media);
+    // Check if any matching variant images were found
+    const hasMatchingVariantImages = scoredMedia.some((item) => item.score === 2);
 
-    // Fallback: If no matching images found for selected variant, use all product images
-    return filtered.length > 0 ? filtered : [...allMedia];
+    let filtered;
+    if (hasMatchingVariantImages) {
+      filtered = scoredMedia.map((item) => item.media);
+    } else {
+      // Fallback: If the selected variant has no matching images, retain existing fallback behavior
+      filtered = [...allMedia];
+    }
+
+    return filtered;
   }
 
   #applyFilteredMedia(filteredMedia, variant) {

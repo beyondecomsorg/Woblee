@@ -29,13 +29,13 @@
 >
   <div class="pdp-viewer-banner__card">
     <span class="pdp-viewer-banner__icon" aria-hidden="true">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-        <circle cx="12" cy="12" r="3" fill="currentColor"></circle>
+        <circle cx="12" cy="12" r="3" fill="#22c55e"></circle>
       </svg>
     </span>
     <span class="pdp-viewer-banner__text">
-      <strong class="pdp-viewer-banner__count" id="PdpViewerBannerCount-{{ product_id }}">{{ viewer_count }}</strong> people are viewing this right now
+      <strong class="pdp-viewer-banner__count" id="PdpViewerBannerCount-{{ product_id }}">{{ viewer_count }}</strong> people viewing this right now
     </span>
   </div>
 </div>
@@ -50,18 +50,18 @@
   .pdp-viewer-banner__card {
     display: flex;
     align-items: center;
-    padding: 10px 16px;
-    background-color: var(--color-background-secondary, #F4F6F8);
-    border: 1px solid var(--color-border, #CBD5E1);
+    padding: 9px 12px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
     border-radius: 0 !important;
-    gap: 10px;
+    gap: 8px;
     box-sizing: border-box;
-    color: var(--color-foreground, #0C4168);
+    color: #0C4168;
     transition: background-color 0.2s ease, border-color 0.2s ease;
   }
 
   .pdp-viewer-banner__card:hover {
-    border-color: var(--color-foreground, #0C4168);
+    border-color: #CBD5E1;
   }
 
   .pdp-viewer-banner__icon {
@@ -69,7 +69,6 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    color: var(--color-foreground, #0C4168);
   }
 
   .pdp-viewer-banner__text {

@@ -1,0 +1,543 @@
+{% comment %}
+  ==============================================================================
+  SNIPPET: footer-seo.liquid
+  ==============================================================================
+  Renders 3 collapsible, accessible dropdown accordions for SEO content:
+  - Accordion 1: More About Shopping at Woblee (Top Categories, Searches, Story, Loved)
+  - Accordion 2: The Woblee Shopping Experience – Where Design Meets Identity
+  - Accordion 3: Woblee for Men, Women & Kids (Category highlights)
+
+  When opened:
+  - Background turns pure white (#ffffff)
+  - Text & links turn into current footer background color (#0C4168)
+{% endcomment %}
+
+{% liquid
+  assign title_1 = section.settings.popular_styles_title | default: 'More About Shopping at Woblee'
+
+  assign top_categories_data = 'Graphic T-Shirts::/collections/artistic-copy|Artistic T-Shirts::/collections/artistic|Statement T-Shirts::/collections/statement|Essential T-Shirts::/collections/graphic-copy|Oversized T-Shirts::/collections/oversized|Boxy Fit T-Shirts::/collections/boxy1|Relaxed Fit T-Shirts::/collections/relaxed-tees|Regular Fit T-Shirts::/collections/regular-tees|Men’s T-Shirts::/collections/men|Women’s T-Shirts::/collections/women|Kids’ T-Shirts::/collections/kids|Boys’ T-Shirts::/collections/boys|Girls’ T-Shirts::/collections/girls|Unisex T-Shirts::/collections/men-women|White T-Shirts::/collections/whites-men|New Arrivals::/collections/new-arrivals|Bestsellers::/collections/bestsellers' | split: '|'
+
+  assign popular_searches_data = 'graphic t-shirts for men::/collections/men-graphic|graphic t-shirts for women::/collections/women-graphic|oversized t-shirts for men::/collections/oversized|oversized t-shirts for women::/collections/oversized|printed t-shirts for men::/collections/men|printed t-shirts for women::/collections/women|embroidered t-shirts::/collections/artistic|embroidered t-shirts for women::/collections/women-artistic|embroidered t-shirts for men::/collections/men-artistic-tee|desi t-shirts::/collections/need-a-break-1|hindi slogan t-shirts::/collections/need-a-break-1|travel t-shirts::/collections/need-a-break-1|chai t-shirt::/products/chaai-pe-chugli-womens-tee|motivational t-shirts for men::/collections/the-man-code-1|quote t-shirts for women::/collections/women-statement|positive quote t-shirts::/collections/the-firm-believer|retro t-shirts::/collections/digital-retro-1|cottagecore t-shirt::/collections/cottage-core|abstract art t-shirts::/collections/alluvial-expressions|boxy t-shirts::/collections/boxy1|white printed t-shirt men::/collections/whites-men|white printed t-shirt women::/collections/whites-women|100% cotton t-shirts::/collections/all|heavyweight t-shirts::/collections/oversized|glow in the dark t-shirt::/products/pookie-but-spooky-womens-tee|printed t-shirts for boys::/collections/boys|printed t-shirts for girls::/collections/girls|kids t-shirts online::/collections/kids|friendship t-shirt::/products/dosti-ko-nazar-na-lage-womens-tee' | split: '|'
+
+  assign shop_by_story_data = 'Need A Break::/collections/need-a-break-1|The Man Code::/collections/the-man-code-1|The Firm Believer::/collections/the-firm-believer|The Day Dreamer::/collections/the-day-dreamer|Alluvial Expressions::/collections/alluvial-expressions|Digital Retro::/collections/digital-retro-1|Little Nature Explorer::/collections/little-nature-explorer-1|Cottage Core::/collections/cottage-core' | split: '|'
+
+  assign most_loved_data = 'My Samosa Graphic T-Shirt::/products/my-samosa-mens-tee|Chaai pe Chugli T-Shirt::/products/chaai-pe-chugli-womens-tee|Desi Hoon T-Shirt::/products/desi-hoon-mens-tee|Ekdum Kadak T-Shirt::/products/ekdum-kadak-mens-tee|Dosti Ko Nazar Na Lage T-Shirt::/products/dosti-ko-nazar-na-lage-womens-tee|K Se Coffee T-Shirt::/products/k-se-coffee-womens-tee|Kaapi Charged T-Shirt::/products/kaapi-charged-womens-tee|First Coffee Pending T-Shirt::/products/first-coffee-pending-mens-tee|Globetrotter Travel T-Shirt::/products/globetrotter-womens-tee|Nomad Essentials Travel T-Shirt::/products/nomad-essentials-mens-tee|Offline Luxury T-Shirt::/products/offline-luxury-mens-tee|Bro Code T-Shirt::/products/bro-code-mens-tee|Discipline, Not Excuses T-Shirt::/products/discipline-not-excuses-mens-tee|Find your Purpose T-Shirt::/products/find-your-purpose-mens-tee|Strive to Conquer T-Shirt::/products/strive-to-conquer-mens-tee|Humanoid With Heart Embroidered T-Shirt::/products/humanoid-with-heart-mens-tee|Solve the Cube Artistic T-Shirt::/products/solve-the-cube-mens-tee|Garden Gaze Embroidered T-Shirt::/products/garden-gaze-womens-tee|Paint your Path Artistic T-Shirt::/products/paint-your-path-womens-tee|Believer Embroidered T-Shirt::/products/believer-womens-tee|Shape Theory Geometric T-Shirt::/products/shape-theory-womens-tee|Will Power T-Shirt::/products/will-power-womens-tee|Pookie but Spooky Glow T-Shirt::/products/pookie-but-spooky-womens-tee|Day Dreamer Girls’ T-Shirt::/products/day-dreamer-girls-tee|Lil Miss Sunshine Girls’ T-Shirt::/products/lil-miss-sunshine-girls-tee|Base Camp Boys’ T-Shirt::/products/base-camp-boys-tee|Retro Reboot Boys’ T-Shirt::/products/retro-reboot-boys-tee' | split: '|'
+%}
+
+<div class="footer-seo-accordions">
+  <!-- Accordion 1: More About Shopping at Woblee -->
+  <details class="footer-seo-item">
+    <summary class="footer-seo-summary">
+      <span class="footer-seo-summary__title">{{ title_1 }}</span>
+      <span class="footer-seo-summary__icon" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    </summary>
+    <div class="footer-seo-body">
+      <div class="custom-footer__seo-groups">
+        <!-- Group 1: Top Categories -->
+        <div class="custom-footer__seo-group">
+          <h5 class="custom-footer__seo-group-title">Top Categories</h5>
+          <div class="custom-footer__popular-inline-list">
+            {% if section.settings.menu_top_categories != blank and linklists[section.settings.menu_top_categories].links.size > 0 %}
+              {% for link in linklists[section.settings.menu_top_categories].links %}
+                <a href="{{ link.url }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- link.title -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% else %}
+              {% for item in top_categories_data %}
+                {% assign parts = item | split: '::' %}
+                <a href="{{ parts[1] }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- parts[0] -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Group 2: Popular Searches -->
+        <div class="custom-footer__seo-group">
+          <h5 class="custom-footer__seo-group-title">Popular Searches</h5>
+          <div class="custom-footer__popular-inline-list">
+            {% if section.settings.menu_popular_searches != blank and linklists[section.settings.menu_popular_searches].links.size > 0 %}
+              {% for link in linklists[section.settings.menu_popular_searches].links %}
+                <a href="{{ link.url }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- link.title -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% else %}
+              {% for item in popular_searches_data %}
+                {% assign parts = item | split: '::' %}
+                <a href="{{ parts[1] }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- parts[0] -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Group 3: Shop by Story -->
+        <div class="custom-footer__seo-group">
+          <h5 class="custom-footer__seo-group-title">Shop by Story</h5>
+          <div class="custom-footer__popular-inline-list">
+            {% if section.settings.menu_shop_by_story != blank and linklists[section.settings.menu_shop_by_story].links.size > 0 %}
+              {% for link in linklists[section.settings.menu_shop_by_story].links %}
+                <a href="{{ link.url }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- link.title -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% else %}
+              {% for item in shop_by_story_data %}
+                {% assign parts = item | split: '::' %}
+                <a href="{{ parts[1] }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- parts[0] -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Group 4: Most Loved Designs -->
+        <div class="custom-footer__seo-group">
+          <h5 class="custom-footer__seo-group-title">Most Loved Designs</h5>
+          <div class="custom-footer__popular-inline-list">
+            {% if section.settings.menu_most_loved != blank and linklists[section.settings.menu_most_loved].links.size > 0 %}
+              {% for link in linklists[section.settings.menu_most_loved].links %}
+                <a href="{{ link.url }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- link.title -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% else %}
+              {% for item in most_loved_data %}
+                {% assign parts = item | split: '::' %}
+                <a href="{{ parts[1] }}" class="custom-footer__popular-link custom-footer__popular-inline-link">
+                  {{- parts[0] -}}
+                </a>
+                {%- unless forloop.last -%}
+                  <span class="custom-footer__popular-inline-sep">|</span>
+                {%- endunless %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- Accordion 2: The Woblee Shopping Experience -->
+  <details class="footer-seo-item">
+    <summary class="footer-seo-summary">
+      <span class="footer-seo-summary__title">The Woblee Shopping Experience – Where Design Meets Identity</span>
+      <span class="footer-seo-summary__icon" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    </summary>
+    <div class="footer-seo-body">
+      <div class="footer-seo-prose">
+        <p>At Woblee, a t-shirt is never just a t-shirt. It starts as an idea, gets built with the discipline of a design studio, and ends up as a graphic tee that says something about the person wearing it. We are a homegrown Indian casualwear brand from Bengaluru, making premium graphic t-shirts for men, women and kids.</p>
+
+        <p>Every piece is designed in-house and drops in limited runs, so you’re never wearing what everyone else is. From story-led graphics to embroidered artistic tees and clean everyday essentials, Woblee gives you one wardrobe for every version of you.</p>
+
+        <h4 class="footer-seo-heading">Shop Your Vibe, Anytime – The Online Experience</h4>
+        <p>Built for how you actually shop: <a href="https://wobleedesigns.com" class="footer-seo-link">wobleedesigns.com</a> is organised around fit, story and mood, not just a product grid. Whether you’re after an oversized graphic tee for the weekend or a minimal essential for the office, you’ll find it in a few taps.</p>
+        <p><strong>What you’ll find online:</strong></p>
+        <ul class="footer-seo-list">
+          <li><strong>Shop by Fit</strong> – Regular, Relaxed, Oversized and Boxy, each cut with its own drape and proportion.</li>
+          <li><strong>Shop by Story</strong> – collections like <a href="/collections/need-a-break-1" class="footer-seo-link">Need A Break</a>, <a href="/collections/the-man-code-1" class="footer-seo-link">The Man Code</a> and <a href="/collections/digital-retro-1" class="footer-seo-link">Digital Retro</a>, each built around one idea.</li>
+          <li><strong>Design Features on Every Tee</strong> – fabric, GSM, wash and print technique, listed on every product page so you know exactly what you’re buying.</li>
+          <li><strong>Size Chart on Every Page</strong> – find your size before you add to cart, not after.</li>
+          <li><strong>Limited-Edition Drops</strong> – new graphics arrive in small runs and don’t return once they sell out.</li>
+        </ul>
+        <div class="footer-seo-tip">
+          <strong>Style Tip:</strong> Explore the <a href="/pages/lookbook" class="footer-seo-link">Lookbook</a> to see how each collection is styled, from college days to gallery visits.
+        </div>
+
+        <h4 class="footer-seo-heading">Craft You Can Feel – What Goes Into Every Woblee Tee</h4>
+        <p>Engineered like it matters: Woblee comes from KSK, a group that earned its reputation through engineering discipline. We bring that same precision to fabric, fit and finish, led by a NIFT-trained founder and a design team with 15+ years in visuals and design.</p>
+        <p><strong>What makes the difference:</strong></p>
+        <ul class="footer-seo-list">
+          <li><strong>100% Pure Cotton</strong> – naturally breathable for everyday wear in Indian weather.</li>
+          <li><strong>Bio-Washed &amp; Enzyme-Washed</strong> – an extra-soft finish from the very first wear.</li>
+          <li><strong>Premium Heavyweight GSM</strong> – 180 to 240 GSM fabrics that hold their shape and drape.</li>
+          <li><strong>Pre-Shrunk</strong> – made to keep its fit, wash after wash.</li>
+          <li><strong>Techniques You Won’t Find Elsewhere</strong> – puff print, 3D gel print, glow-in-the-dark ink, chenille and bead embroidery, cross stitch, raw-edged appliqué and canvas patches.</li>
+        </ul>
+        <div class="footer-seo-tip">
+          <strong>Pro Tip:</strong> Start with our <a href="/collections/artistic" class="footer-seo-link">Artistic Line</a> to see the craft up close. The embroidered and appliqué tees are designed to be worn like wearable art.
+        </div>
+
+        <h4 class="footer-seo-heading">Collections With a Story – Style That Moves With You</h4>
+        <p>Every collection starts with an idea: we don’t design to fill a season. Each Woblee collection is built around a feeling, a culture or a moment, then translated into graphics that carry it.</p>
+        <p><strong>Discover:</strong></p>
+        <ul class="footer-seo-list">
+          <li><strong><a href="/collections/need-a-break-1" class="footer-seo-link">Need A Break</a></strong> – travel t-shirts, coffee and chai tees, and desi slogan graphics for the slow days and long trips.</li>
+          <li><strong><a href="/collections/the-man-code-1" class="footer-seo-link">The Man Code</a></strong> – motivational t-shirts for men, built on discipline, purpose and brotherhood.</li>
+          <li><strong><a href="/collections/the-firm-believer" class="footer-seo-link">The Firm Believer</a></strong> – positive quote t-shirts for anyone who backs themselves.</li>
+          <li><strong><a href="/collections/alluvial-expressions" class="footer-seo-link">Alluvial Expressions</a></strong> – abstract, art-led tees that read like a canvas.</li>
+          <li><strong><a href="/collections/digital-retro-1" class="footer-seo-link">Digital Retro</a></strong> – retro and vintage-inspired graphics with a modern edge.</li>
+          <li><strong><a href="/collections/little-nature-explorer-1" class="footer-seo-link">Little Nature Explorer</a></strong> – nature and adventure tees for kids who never sit still.</li>
+        </ul>
+        <div class="footer-seo-tip">
+          <strong>Style Tip:</strong> Build around one statement graphic and keep everything else simple: straight denim, white sneakers and one accessory.
+        </div>
+
+        <h4 class="footer-seo-heading">One Brand, Every You – For Men, Women and Kids</h4>
+        <p>Made for every wardrobe: Woblee designs graphic t-shirts for men, t-shirts for women and t-shirts for boys and girls, all in the same quality and design language. You don’t feel the same every day, so your wardrobe shouldn’t either.</p>
+        <ul class="footer-seo-list">
+          <li><strong><a href="/collections/men" class="footer-seo-link">Men</a></strong> – graphic, statement, artistic and essential tees in regular to boxy fits.</li>
+          <li><strong><a href="/collections/women" class="footer-seo-link">Women</a></strong> – oversized tees, embroidered tees, desi graphics and everyday essentials.</li>
+          <li><strong><a href="/collections/kids" class="footer-seo-link">Kids</a></strong> – soft, pre-shrunk cotton tees made to survive play, school and the washing machine.</li>
+        </ul>
+
+        <h4 class="footer-seo-heading">Why Shop at Woblee?</h4>
+        <ul class="footer-seo-list">
+          <li>Story-led graphics and limited-edition designs you won’t find elsewhere</li>
+          <li>Premium 100% cotton in heavyweight GSM, at an accessible price</li>
+          <li>Craft techniques from puff print to hand-finished embroidery</li>
+          <li>Fits for every mood: Regular, Relaxed, Oversized and Boxy</li>
+          <li>One brand for men, women and kids</li>
+        </ul>
+        <p>Your wardrobe should say something. Woblee makes sure it says you.</p>
+
+        <h4 class="footer-seo-heading">Find Your Vibe – Explore Woblee Today</h4>
+        <p>Ready to wear something with a point of view? Shop the latest graphic t-shirts for men, women and kids at Woblee, from desi slogan tees and travel graphics to embroidered artistic pieces and everyday essentials. New drops land often, and they don’t stay long.</p>
+        <p class="footer-seo-tagline"><strong>Be you. Be Woblee. Wear your vibe.</strong></p>
+      </div>
+    </div>
+  </details>
+
+  <!-- Accordion 3: Woblee for Men, Women & Kids -->
+  <details class="footer-seo-item">
+    <summary class="footer-seo-summary">
+      <span class="footer-seo-summary__title">Woblee for Men, Women &amp; Kids</span>
+      <span class="footer-seo-summary__icon" aria-hidden="true">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    </summary>
+    <div class="footer-seo-body">
+      <div class="footer-seo-prose">
+        <!-- Men -->
+        <div class="footer-seo-category-block">
+          <h4 class="footer-seo-heading">More about shopping at Woblee for men</h4>
+          <p>Woblee’s graphic t-shirts for men are designed for the man who has something to say and doesn’t need to shout it. Choose from story-led graphic tees, bold statement and motivational t-shirts, embroidered artistic pieces and clean essentials, all in 100% cotton with a bio-washed finish. Pick a regular, relaxed, oversized or boxy fit, and wear it from college to work to the weekend.</p>
+          <div class="footer-seo-search-row">
+            <span class="footer-seo-search-label">Popular searches:</span>
+            <a href="/collections/men-graphic" class="footer-seo-link">graphic t-shirts for men</a> ·
+            <a href="/collections/men" class="footer-seo-link">printed t-shirts for men</a> ·
+            <a href="/collections/oversized" class="footer-seo-link">oversized t-shirts for men</a> ·
+            <a href="/collections/men-artistic-tee" class="footer-seo-link">embroidered t-shirts for men</a> ·
+            <a href="/collections/the-man-code-1" class="footer-seo-link">motivational t-shirts for men</a> ·
+            <a href="/collections/men-statement" class="footer-seo-link">statement t-shirts for men</a> ·
+            <a href="/collections/nab-men" class="footer-seo-link">desi t-shirts for men</a> ·
+            <a href="/collections/whites-men" class="footer-seo-link">white printed t-shirt men</a> ·
+            <a href="/collections/color-men" class="footer-seo-link">colour t-shirts for men</a> ·
+            <a href="/collections/men-essentials" class="footer-seo-link">minimalist t-shirts for men</a> ·
+            <a href="/collections/boxy1" class="footer-seo-link">boxy t-shirts for men</a> ·
+            <a href="/collections/men" class="footer-seo-link">cotton t-shirts for men</a>
+          </div>
+        </div>
+
+        <!-- Women -->
+        <div class="footer-seo-category-block">
+          <h4 class="footer-seo-heading">More about shopping at Woblee for women</h4>
+          <p>Woblee’s t-shirts for women move between moods as easily as you do. Reach for an oversized graphic tee on slow weekends, an embroidered artistic piece for a gallery visit, or a desi slogan tee for chai with the girls. Every design is limited-edition, cut in premium cotton and built to hold its shape and colour wash after wash.</p>
+          <div class="footer-seo-search-row">
+            <span class="footer-seo-search-label">Popular searches:</span>
+            <a href="/collections/women-graphic" class="footer-seo-link">graphic t-shirts for women</a> ·
+            <a href="/collections/women" class="footer-seo-link">printed t-shirts for women</a> ·
+            <a href="/collections/oversized" class="footer-seo-link">oversized t-shirts for women</a> ·
+            <a href="/collections/women-artistic" class="footer-seo-link">embroidered t-shirts for women</a> ·
+            <a href="/collections/women-statement" class="footer-seo-link">quote t-shirts for women</a> ·
+            <a href="/collections/nab-women" class="footer-seo-link">desi t-shirts for women</a> ·
+            <a href="/collections/cottage-core" class="footer-seo-link">cottagecore t-shirt</a> ·
+            <a href="/products/chaai-pe-chugli-womens-tee" class="footer-seo-link">chai t-shirt</a> ·
+            <a href="/products/dosti-ko-nazar-na-lage-womens-tee" class="footer-seo-link">friendship t-shirt</a> ·
+            <a href="/collections/whites-women" class="footer-seo-link">white printed t-shirt women</a> ·
+            <a href="/collections/color-women" class="footer-seo-link">colour t-shirts for women</a> ·
+            <a href="/collections/boxy1" class="footer-seo-link">boxy t-shirts for women</a>
+          </div>
+        </div>
+
+        <!-- Kids -->
+        <div class="footer-seo-category-block">
+          <h4 class="footer-seo-heading">More about shopping at Woblee for kids</h4>
+          <p>Woblee’s kids’ t-shirts are made for real childhoods: climbing, painting, running and repeating. They’re 100% pre-shrunk cotton, soft on skin, and built to survive the washing machine without fading. Boys and girls get the same design care as our adult collections, from embroidered artistic tees to retro, nature and positive-quote graphics.</p>
+          <div class="footer-seo-search-row">
+            <span class="footer-seo-search-label">Popular searches:</span>
+            <a href="/collections/kids" class="footer-seo-link">kids t-shirts online</a> ·
+            <a href="/collections/boys" class="footer-seo-link">printed t-shirts for boys</a> ·
+            <a href="/collections/girls" class="footer-seo-link">printed t-shirts for girls</a> ·
+            <a href="/collections/graphic-tee-boys" class="footer-seo-link">graphic t-shirts for boys</a> ·
+            <a href="/collections/artistic-tee-girls" class="footer-seo-link">embroidered t-shirts for girls</a> ·
+            <a href="/collections/kids" class="footer-seo-link">cotton t-shirts for kids</a> ·
+            <a href="/collections/little-nature-explorer-1" class="footer-seo-link">nature t-shirts for kids</a> ·
+            <a href="/products/retro-reboot-boys-tee" class="footer-seo-link">retro t-shirts for boys</a> ·
+            <a href="/collections/kids-colors" class="footer-seo-link">colourful t-shirts for kids</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</div>
+
+<style>
+  .footer-seo-accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .footer-seo-item {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0;
+    overflow: hidden;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .footer-seo-item:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Closed Summary State */
+  .footer-seo-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    outline: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .footer-seo-summary::-webkit-details-marker,
+  .footer-seo-summary::marker {
+    display: none;
+  }
+
+  .footer-seo-summary__title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    font-family: var(--wb-font-heading, inherit);
+    transition: color 0.25s ease;
+  }
+
+  .footer-seo-summary__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+
+  .footer-seo-body {
+    padding: 16px 20px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Default Prose & Elements (Closed/Neutral) */
+  .footer-seo-prose {
+    font-size: 12.5px;
+    line-height: 1.75;
+    font-family: var(--wb-font-body, inherit);
+  }
+
+  .footer-seo-prose p {
+    margin: 12px 0;
+  }
+
+  .footer-seo-heading {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 18px 0 8px;
+    font-family: var(--wb-font-heading, inherit);
+  }
+
+  .footer-seo-list {
+    margin: 8px 0 14px 20px;
+    padding: 0;
+    list-style: disc;
+  }
+
+  .footer-seo-list li {
+    margin-bottom: 6px;
+    line-height: 1.65;
+  }
+
+  .footer-seo-tip {
+    padding: 9px 14px;
+    margin: 14px 0;
+    font-size: 12px;
+  }
+
+  .footer-seo-tagline {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-top: 14px;
+  }
+
+  .footer-seo-category-block {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-seo-category-block:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .footer-seo-search-row {
+    font-size: 12px;
+    line-height: 1.8;
+    margin-top: 8px;
+  }
+
+  .footer-seo-search-label {
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  /* ==========================================================================
+     OPEN ACCORDION STATE: White Background & Current BG Color (#0C4168) as Text
+     ========================================================================== */
+  .footer-seo-item[open] {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .footer-seo-item[open] .footer-seo-summary {
+    background-color: #ffffff !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-summary__title {
+    color: #0C4168 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-summary__icon {
+    color: #0C4168 !important;
+    transform: rotate(180deg);
+  }
+
+  .footer-seo-item[open] .footer-seo-body {
+    background-color: #ffffff !important;
+    color: #0C4168 !important;
+    border-top: 1px solid #e2e8f0 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-prose,
+  .footer-seo-item[open] .footer-seo-prose p,
+  .footer-seo-item[open] .footer-seo-list,
+  .footer-seo-item[open] .footer-seo-list li,
+  .footer-seo-item[open] .footer-seo-list strong,
+  .footer-seo-item[open] .footer-seo-heading,
+  .footer-seo-item[open] .footer-seo-tagline,
+  .footer-seo-item[open] .footer-seo-category-block,
+  .footer-seo-item[open] .footer-seo-category-block p,
+  .footer-seo-item[open] .footer-seo-search-label,
+  .footer-seo-item[open] .custom-footer__seo-group-title {
+    color: #0C4168 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-link,
+  .footer-seo-item[open] .custom-footer__popular-link {
+    color: #0C4168 !important;
+    text-decoration: underline;
+    transition: color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .footer-seo-item[open] .footer-seo-link:hover,
+  .footer-seo-item[open] .custom-footer__popular-link:hover {
+    color: #062338 !important;
+    opacity: 0.82;
+  }
+
+  .footer-seo-item[open] .custom-footer__popular-inline-sep {
+    color: #94a3b8 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-search-row {
+    color: #334155 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-tip {
+    background: #f1f5f9 !important;
+    border-left: 3px solid #0C4168 !important;
+    color: #0C4168 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-tip strong {
+    color: #0C4168 !important;
+  }
+
+  .footer-seo-item[open] .footer-seo-category-block {
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer-seo-accordions {
+      gap: 10px;
+    }
+    .footer-seo-summary {
+      padding: 12px 16px;
+    }
+    .footer-seo-summary__title {
+      font-size: 12px;
+    }
+    .footer-seo-body {
+      padding: 14px 16px 18px;
+    }
+    .footer-seo-prose {
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .footer-seo-heading {
+      font-size: 12px;
+      margin: 14px 0 6px;
+    }
+    .footer-seo-list {
+      margin-left: 16px;
+    }
+  }
+</style>
