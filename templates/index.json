@@ -1222,7 +1222,7 @@
           "type": "image_card",
           "settings": {
             "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSEL-01_jpg.jpg",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/after-hours",
             "open_in_new_tab": false,
             "heading": "",
             "subtext": "",
@@ -1236,7 +1236,7 @@
           "type": "image_card",
           "settings": {
             "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSEL-02_jpg.jpg",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/travel-wear",
             "open_in_new_tab": false,
             "heading": "",
             "subtext": "",
@@ -1250,7 +1250,7 @@
           "type": "image_card",
           "settings": {
             "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSEL-03_jpg.jpg",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/everyday-wear",
             "open_in_new_tab": false,
             "heading": "",
             "subtext": "",
@@ -1264,7 +1264,7 @@
           "type": "image_card",
           "settings": {
             "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSEL-04_jpg.jpg",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections/coffee-run",
             "open_in_new_tab": false,
             "heading": "",
             "subtext": "",
