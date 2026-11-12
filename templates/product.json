@@ -66,7 +66,7 @@
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0,
-            "wash_care": "<p>Every Woblee garment is crafted using premium cotton and specialty techniques. Following these care instructions will help preserve its fabric, prints, and detailing over time.</p><ul><li>Turn the garment inside out before washing and ironing.</li><li>Machine wash cold (30\u00b0C) with similar colours.</li><li>Use a mild detergent. Do not bleach or soak.</li><li>Line dry in the shade. Avoid high-heat tumble drying.</li><li>Iron on low heat from the reverse side. Do not iron directly on prints or embellishments.</li><li>Handle embroidered, patched, beaded, and printed garments with care.</li><li>Do not dry clean.</li></ul>"
+            "wash_care": "<p>Every Woblee garment is crafted using premium cotton and specialty techniques. Following these care instructions will help preserve its fabric, prints, and detailing over time.</p><ul><li>Turn the garment inside out before washing and ironing.</li><li>Machine wash cold (30°C) with similar colours.</li><li>Use a mild detergent. Do not bleach or soak.</li><li>Line dry in the shade. Avoid high-heat tumble drying.</li><li>Iron on low heat from the reverse side. Do not iron directly on prints or embellishments.</li><li>Handle embroidered, patched, beaded, and printed garments with care.</li><li>Do not dry clean.</li></ul>"
           },
           "blocks": {
             "group_8fkkWP": {
@@ -328,22 +328,22 @@
             "pdp_live_viewer_banner": {
               "type": "pdp-live-viewer-banner",
               "name": "Live Viewers Banner",
+              "disabled": true,
               "settings": {
                 "viewer_count": 40
               },
-              "blocks": {},
-              "disabled": true
+              "blocks": {}
             },
             "pdp_sales_demand_banner": {
               "type": "pdp-sales-demand-banner",
               "name": "Sales Velocity Banner",
+              "disabled": true,
               "settings": {
                 "sales_count": 196,
                 "hours_count": 3,
                 "subtext": ""
               },
-              "blocks": {},
-              "disabled": true
+              "blocks": {}
             },
             "pdp_items_remaining_banner": {
               "type": "pdp-items-remaining-banner",
@@ -352,7 +352,7 @@
                 "prefix_text": "Hurry up!",
                 "highlight_text": "Only few left",
                 "heading": "AVAILABLE BENEFITS",
-                "coupon_code_1": "DIWALI10",
+                "coupon_code_1": "LILWOBLEE",
                 "description_1": "Get 10% OFF on your first purchase.",
                 "coupon_code_2": "EXTRA15",
                 "description_2": "Buy 2 items & get 15% OFF.",
@@ -661,7 +661,7 @@
             "image": "shopify://shop_images/download.gif",
             "icon_emoji": "",
             "heading": "No logos. Ever.",
-            "description": "You won't find our name on the outside. The fabric, the fit, how it wears over time \u2014 that's the branding."
+            "description": "You won't find our name on the outside. The fabric, the fit, how it wears over time — that's the branding."
           }
         },
         "feature_item_WmrCnU": {
@@ -670,7 +670,7 @@
             "image": "shopify://shop_images/Any_view_of_things_that_is_not_strange_is_false.gif",
             "icon_emoji": "",
             "heading": "Safe. Certified.",
-            "description": "Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX\u00ae standards."
+            "description": "Safe for all skin types, including children. Tested in certified labs and compliant with ASTM and OEKO-TEX® standards."
           }
         }
       },
