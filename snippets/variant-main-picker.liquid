@@ -209,7 +209,7 @@
             # There is an opportunity to build a custom select component that will allow us to style the select element further (animation for dropdown, swatches shown in the dropdown options, etc)
             # It's too bad as it mean rebuilding baked in behaviours but I think we've already done that for the locale selectors
             # in dawn. So it might mean more time spent in setting it up but worth it for future updates/styling.
-          %}
+          %}                                                      
           {% liquid
             assign property_being_updated = false
             if settings.variant_swatch_width != settings.variant_swatch_height
@@ -218,7 +218,7 @@
               assign new_width = settings.variant_swatch_width | times: 1.0 | divided_by: settings.variant_swatch_height | times: 20
             endif
           %}
-
+                      
           <div class="variant-option variant-option--dropdowns{% if option_name_downcase == 'size' %} variant-option--size-dropdowns{% endif %}" data-option-name="{{ product_option.name | escape }}">
             <div class="variant-option__legend-flex">
               <label for="Option-{{ block.id }}-{{ forloop.index0 }}">{{ product_option.name | escape }}</label>
@@ -230,7 +230,7 @@
                 elsif product.metafields.custom.size_chart != blank
                   assign sc_cm_url = product.metafields.custom.size_chart | image_url: width: 1400
                 endif
-
+                          
                 assign sc_inches_url = ''
                 if current_prod.metafields.custom.size_chart_inches != blank
                   assign sc_inches_url = current_prod.metafields.custom.size_chart_inches | image_url: width: 1400

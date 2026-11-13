@@ -151,13 +151,25 @@
                   {{
                     desktop_img
                     | image_url: width: 900
-                    | image_tag: loading: 'lazy', decoding: 'async', alt: img_alt, class: 'lifestyle-grid__img', width: 600, height: 400
+                    | image_tag:
+                      loading: 'lazy',
+                      decoding: 'async',
+                      alt: img_alt,
+                      class: 'lifestyle-grid__img',
+                      width: 600,
+                      height: 400
                   }}
                 {% else %}
                   {{
                     mobile_img
                     | image_url: width: 900
-                    | image_tag: loading: 'lazy', decoding: 'async', alt: img_alt, class: 'lifestyle-grid__img', width: 600, height: 400
+                    | image_tag:
+                      loading: 'lazy',
+                      decoding: 'async',
+                      alt: img_alt,
+                      class: 'lifestyle-grid__img',
+                      width: 600,
+                      height: 400
                   }}
                 {% endif %}
               </picture>
@@ -304,7 +316,7 @@
     grid-template-rows: repeat(2, minmax(0, auto));
     justify-content: center;
     align-items: center;
-    gap: var(--lg-gap-desktop, 12px);
+    gap: 5px;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -393,7 +405,7 @@
 
     /* 2 x 2 Grid fits completely in viewport without vertical scrolling while preserving 3:2 ratio */
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
-      gap: 2rem;
+      gap: 5px;
       width: 100%;
       max-width: min(
         100%,
@@ -517,7 +529,7 @@
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, auto);
-      gap: var(--lg-gap-mobile);
+      gap: 3px;
       max-width: 100%;
     }
 
