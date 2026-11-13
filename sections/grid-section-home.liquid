@@ -386,32 +386,88 @@
     {% endif %}
   }
 
-  /* Desktop Viewport Layout (750px and above) - Matches width of above section (custom-editorial-seaction) */
+  /* Desktop Viewport Layout (750px and above) - Fits 100% in first screen & matches width of above section */
   @media screen and (min-width: 750px) {
     #lifestyle-grid-{{ sec_id }} {
       padding-top: var(--lg-pt-desktop, 0px);
       padding-bottom: var(--lg-pb-desktop, 0px);
       box-sizing: border-box;
       width: 100%;
+      height: calc(var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header));
+      max-height: calc(var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header));
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
       width: 100%;
       max-width: var(--lg-container-width, 1500px);
+      height: 100%;
       margin-left: auto;
       margin-right: auto;
       box-sizing: border-box;
       padding-left: var(--lg-container-padding-desktop, 20px);
       padding-right: var(--lg-container-padding-desktop, 20px);
+      display: flex;
+      flex-direction: column;
     }
 
-    /* 2 x 2 Grid spans 100% of container matching left and right edges with above section */
+    /* 2 x 2 Grid spans 100% of container matching left and right edges, and 100% of available screen height */
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
       gap: 0;
       width: 100%;
+      height: 100%;
       max-width: 100%;
       margin: 0 auto;
       box-sizing: border-box;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card {
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: unset;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__picture {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: unset;
+      line-height: 0;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: unset;
+      object-fit: cover;
+      object-position: center;
+      display: block;
     }
   }
 
