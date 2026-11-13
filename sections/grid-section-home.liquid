@@ -198,7 +198,51 @@
   </div>
 </section>
 
+<script>
+  (function () {
+    function updateLifestyleHeaderHeight() {
+      var headerGroup =
+        document.querySelector('#header-group') ||
+        document.querySelector('header-component') ||
+        document.querySelector('.header-section');
+      if (headerGroup) {
+        var rect = headerGroup.getBoundingClientRect();
+        var h = rect.height || headerGroup.offsetHeight;
+        if (h > 0) {
+          document.documentElement.style.setProperty('--lifestyle-detected-header-height', Math.round(h) + 'px');
+        }
+      }
+      var sectionEl = document.getElementById('lifestyle-grid-{{ sec_id }}');
+      if (sectionEl) {
+        var sectionHeader = sectionEl.querySelector('.lifestyle-grid__header');
+        if (sectionHeader) {
+          var sH = sectionHeader.offsetHeight || 0;
+          sectionEl.style.setProperty('--lifestyle-section-header-h', sH + 'px');
+        } else {
+          sectionEl.style.setProperty('--lifestyle-section-header-h', '0px');
+        }
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateLifestyleHeaderHeight);
+    } else {
+      updateLifestyleHeaderHeight();
+    }
+    window.addEventListener('resize', updateLifestyleHeaderHeight, { passive: true });
+    window.addEventListener('load', updateLifestyleHeaderHeight, { passive: true });
+  })();
+</script>
+
 <style>
+  :root {
+    --lifestyle-vh: 100vh;
+  }
+  @supports (height: 100dvh) {
+    :root {
+      --lifestyle-vh: 100dvh;
+    }
+  }
+
   #lifestyle-grid-{{ sec_id }} {
     width: 100%;
     background-color: var(--lg-bg);
@@ -206,13 +250,10 @@
     padding-bottom: var(--lg-pb-desktop);
     box-sizing: border-box;
     overflow-x: clip;
-  }
-
-  @media screen and (max-width: 768px) {
-    #lifestyle-grid-{{ sec_id }} {
-      padding-top: var(--lg-pt-mobile);
-      padding-bottom: var(--lg-pb-mobile);
-    }
+    --lifestyle-total-header: calc(
+      var(--lifestyle-detected-header-height, var(--header-group-height, var(--header-height, 100px))) +
+      var(--lifestyle-section-header-h, 0px)
+    );
   }
 
   #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
@@ -223,13 +264,6 @@
     box-sizing: border-box;
     padding-left: var(--lg-container-padding-desktop);
     padding-right: var(--lg-container-padding-desktop);
-  }
-
-  @media screen and (max-width: 768px) {
-    #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
-      padding-left: var(--lg-container-padding-mobile);
-      padding-right: var(--lg-container-padding-mobile);
-    }
   }
 
   /* Header */
@@ -263,103 +297,100 @@
     line-height: 1.2;
   }
 
-  @media screen and (max-width: 768px) {
-    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__heading {
-      font-size: {{ s.heading_size_mobile | default: 24 }}px;
+  /* Desktop Viewport-Fitting Layout (750px and above) */
+  @media screen and (min-width: 750px) {
+    #lifestyle-grid-{{ sec_id }} {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-height: calc(var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header));
     }
-  }
 
-  /* 2 x 2 Landscape Grid - Spans Full Container Width Matching Other Homepage Sections */
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: auto;
-    justify-content: center;
-    gap: var(--lg-gap-desktop);
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
 
-  @media screen and (max-width: 768px) {
+    /* 2 x 2 Grid fits completely in viewport without vertical scrolling while preserving 3:2 ratio */
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
+      display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--lg-gap-mobile);
+      grid-template-rows: repeat(2, minmax(0, auto));
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      width: 100%;
+      max-width: min(
+        100%,
+        calc(1.5 * (var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header) - 6rem - 4px) + 2rem)
+      );
+      margin: 0 auto;
+      box-sizing: border-box;
     }
-  }
 
-  /* Cards - Full responsive width, height strictly driven by 3:2 ratio */
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card {
-    position: relative;
-    width: 100%;
-    min-width: 0;
-    margin: 0;
-    border-radius: var(--lg-radius-desktop);
-    overflow: hidden;
-    box-sizing: border-box;
-    background-color: transparent;
-  }
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      border-radius: var(--lg-radius-desktop);
+      overflow: hidden;
+      box-sizing: border-box;
+      background-color: transparent;
+    }
 
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner {
-    display: block;
-    width: 100%;
-    height: auto;
-    text-decoration: none;
-    color: inherit;
-    border-radius: var(--lg-radius-desktop);
-    overflow: hidden;
-    position: relative;
-  }
-
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
-    position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: var(--lg-aspect-desktop, 3 / 2);
-    overflow: hidden;
-    border-radius: var(--lg-radius-desktop);
-    background-color: #f3f4f6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  @media screen and (max-width: 768px) {
-    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card,
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
-    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner,
-    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
-      border-radius: var(--lg-radius-mobile);
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner {
+      display: block;
+      width: 100%;
+      height: auto;
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--lg-radius-desktop);
+      overflow: hidden;
+      position: relative;
     }
+
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
-      aspect-ratio: var(--lg-aspect-mobile, 3 / 2);
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      border-radius: var(--lg-radius-desktop);
+      background-color: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-  }
 
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__picture {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+    }
 
-  #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
-    width: 100%;
-    height: 100%;
-    object-fit: var(--lg-image-fit, contain);
-    object-position: center;
-    display: block;
-    border-radius: var(--lg-radius-desktop);
-    transform: translateZ(0);
-    {% if s.enable_hover_zoom %}
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    {% endif %}
-  }
-
-  @media screen and (max-width: 768px) {
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
-      border-radius: var(--lg-radius-mobile);
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: var(--lg-image-fit, contain);
+      object-position: center;
+      display: block;
+      border-radius: var(--lg-radius-desktop);
+      transform: translateZ(0);
+      {% if s.enable_hover_zoom %}
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      {% endif %}
     }
   }
 
