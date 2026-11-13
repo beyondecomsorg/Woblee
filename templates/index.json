@@ -1294,17 +1294,17 @@
         "max_width": 1080,
         "desktop_aspect_ratio": "3/2",
         "mobile_aspect_ratio": "3/2",
-        "image_fit": "contain",
+        "image_fit": "cover",
         "border_radius_desktop": 0,
         "border_radius_mobile": 0,
-        "grid_gap_desktop": 12,
-        "grid_gap_mobile": 8,
+        "grid_gap_desktop": 0,
+        "grid_gap_mobile": 0,
         "enable_hover_zoom": false,
         "background_color": "rgba(0,0,0,0)",
         "padding_top_desktop": 0,
-        "padding_bottom_desktop": 24,
+        "padding_bottom_desktop": 0,
         "padding_top_mobile": 0,
-        "padding_bottom_mobile": 16
+        "padding_bottom_mobile": 0
       }
     },
     "custom_category_grid_dyNMWU": {

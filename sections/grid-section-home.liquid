@@ -309,14 +309,14 @@
     line-height: 1.2;
   }
 
-  /* 2 x 2 Landscape Grid - Spans Full Container Width */
+  /* 2 x 2 Landscape Grid - Spans Full Container Width with Zero Gaps */
   #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, minmax(0, auto));
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 0;
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
@@ -329,7 +329,7 @@
     width: 100%;
     min-width: 0;
     margin: 0;
-    border-radius: var(--lg-radius-desktop);
+    border-radius: 0;
     overflow: hidden;
     box-sizing: border-box;
     background-color: transparent;
@@ -342,9 +342,10 @@
     height: auto;
     text-decoration: none;
     color: inherit;
-    border-radius: var(--lg-radius-desktop);
+    border-radius: 0;
     overflow: hidden;
     position: relative;
+    line-height: 0;
   }
 
   #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
@@ -353,11 +354,12 @@
     height: auto;
     aspect-ratio: 3 / 2;
     overflow: hidden;
-    border-radius: var(--lg-radius-desktop);
-    background-color: #f3f4f6;
+    border-radius: 0;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 0;
   }
 
   #lifestyle-grid-{{ sec_id }} .lifestyle-grid__picture {
@@ -365,18 +367,19 @@
     width: 100%;
     height: auto;
     aspect-ratio: 3 / 2;
+    line-height: 0;
   }
 
   #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
     width: 100%;
-    height: auto;
+    height: 100%;
     aspect-ratio: 3 / 2;
     max-width: 100%;
     max-height: 100%;
-    object-fit: var(--lg-image-fit, contain);
+    object-fit: cover;
     object-position: center;
     display: block;
-    border-radius: var(--lg-radius-desktop);
+    border-radius: 0;
     transform: translateZ(0);
     {% if s.enable_hover_zoom %}
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -386,8 +389,8 @@
   /* Desktop Viewport-Fitting Layout (750px and above) */
   @media screen and (min-width: 750px) {
     #lifestyle-grid-{{ sec_id }} {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding-top: var(--lg-pt-desktop, 0px);
+      padding-bottom: var(--lg-pb-desktop, 0px);
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -405,11 +408,11 @@
 
     /* 2 x 2 Grid fits completely in viewport without vertical scrolling while preserving 3:2 ratio */
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
-      gap: 5px;
+      gap: 0;
       width: 100%;
       max-width: min(
         100%,
-        calc(1.5 * (var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header) - 6rem - 4px) + 2rem)
+        calc(1.5 * (var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header) - var(--lg-pt-desktop, 0px) - var(--lg-pb-desktop, 0px) - 4px))
       );
     }
   }
@@ -510,16 +513,16 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   }
 
-  /* Responsive / Mobile */
+  /* Responsive / Mobile (2x2 Grid with Zero Gaps) */
   @media screen and (max-width: 749px) {
     #lifestyle-grid-{{ sec_id }} {
-      padding-top: var(--lg-pt-mobile);
-      padding-bottom: var(--lg-pb-mobile);
+      padding-top: var(--lg-pt-mobile, 0px);
+      padding-bottom: var(--lg-pb-mobile, 0px);
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__heading {
@@ -527,28 +530,35 @@
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, auto);
-      gap: 3px;
-      max-width: 100%;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      grid-template-rows: repeat(2, minmax(0, auto)) !important;
+      gap: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card {
-      border-radius: var(--lg-radius-mobile);
+      border-radius: 0;
       max-width: 100%;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-link,
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__card-inner,
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
-      border-radius: var(--lg-radius-mobile);
+      border-radius: 0;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__media-wrap {
-      aspect-ratio: var(--lg-aspect-mobile);
-      border-radius: var(--lg-radius-mobile);
+      aspect-ratio: 3 / 2;
+      border-radius: 0;
       max-width: 100%;
       max-height: none;
+      background-color: transparent;
+    }
+
+    #lifestyle-grid-{{ sec_id }} .lifestyle-grid__img {
+      object-fit: cover;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__content {
