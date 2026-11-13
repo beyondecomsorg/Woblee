@@ -386,34 +386,32 @@
     {% endif %}
   }
 
-  /* Desktop Viewport-Fitting Layout (750px and above) */
+  /* Desktop Viewport Layout (750px and above) - Matches width of above section (custom-editorial-seaction) */
   @media screen and (min-width: 750px) {
     #lifestyle-grid-{{ sec_id }} {
       padding-top: var(--lg-pt-desktop, 0px);
       padding-bottom: var(--lg-pb-desktop, 0px);
       box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      max-height: calc(var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header));
+      width: 100%;
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       width: 100%;
+      max-width: var(--lg-container-width, 1500px);
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+      padding-left: var(--lg-container-padding-desktop, 20px);
+      padding-right: var(--lg-container-padding-desktop, 20px);
     }
 
-    /* 2 x 2 Grid fits completely in viewport without vertical scrolling while preserving 3:2 ratio */
+    /* 2 x 2 Grid spans 100% of container matching left and right edges with above section */
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__grid {
       gap: 0;
       width: 100%;
-      max-width: min(
-        100%,
-        calc(1.5 * (var(--lifestyle-vh, 100vh) - var(--lifestyle-total-header) - var(--lg-pt-desktop, 0px) - var(--lg-pb-desktop, 0px) - 4px))
-      );
+      max-width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
   }
 
@@ -521,8 +519,8 @@
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid-container {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: var(--lg-container-padding-mobile, 12px);
+      padding-right: var(--lg-container-padding-mobile, 12px);
     }
 
     #lifestyle-grid-{{ sec_id }} .lifestyle-grid__heading {
