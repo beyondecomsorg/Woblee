@@ -1148,7 +1148,7 @@
         "h_padding": 20,
         "mobile_side_padding": 12,
         "padding_top": 50,
-        "padding_bottom": 50,
+        "padding_bottom": 10,
         "padding_top_mobile": 30,
         "padding_bottom_mobile": 14,
         "left_image": "shopify://shop_images/5_ffa0f2ca-0717-4482-914d-4472c8a31807.png",
