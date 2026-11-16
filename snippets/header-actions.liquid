@@ -91,7 +91,7 @@
       class="account-button header-actions__actions{% if display_style == 'text' %} account-button--text{% endif %} color-{{ settings.popover_color_scheme }}"
     >
       <shopify-account onclick="kpHandleLogin('/account');"
-        menu="{{ customer_account_menu }}"
+        {% comment %} menu="{{ customer_account_menu }}" {% endcomment %}
         {% if account_actions_style != blank %}
           style="{{ account_actions_style }}"
         {% endif %}
