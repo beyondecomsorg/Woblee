@@ -87,7 +87,7 @@
         assign account_actions_style = '--header-actions-font-family: ' | append: font_family_safe | append: '; --header-actions-font-weight: ' | append: font_obj.weight | append: ';'
       endif
     %}
-    <div
+    <div style="margin-top: 13px;"
       class="account-button header-actions__actions{% if display_style == 'text' %} account-button--text{% endif %} color-{{ settings.popover_color_scheme }}"
     >
       {% comment %} <shopify-account
@@ -117,7 +117,7 @@
       </shopify-account> {% endcomment %}
       <a href="/account" 
         {% if account_actions_style != blank %}
-          style="{{ account_actions_style }} margin-top"10px;"
+          style="{{ account_actions_style }}"
         {% endif %}
       >
         {% if customer %}
