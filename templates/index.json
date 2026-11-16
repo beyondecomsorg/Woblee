@@ -1317,7 +1317,7 @@
         "section_bg": "#ffffff",
         "padding_top": 52,
         "padding_bottom": 0,
-        "padding_top_mobile": 30,
+        "padding_top_mobile": 0,
         "padding_bottom_mobile": 8,
         "heading_color": "#0c4168",
         "heading_weight": "600",
