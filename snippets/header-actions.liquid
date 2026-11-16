@@ -87,7 +87,7 @@
         assign account_actions_style = '--header-actions-font-family: ' | append: font_family_safe | append: '; --header-actions-font-weight: ' | append: font_obj.weight | append: ';'
       endif
     %}
-    <div
+    <div style="display:flex;align-items:center;"
       class="account-button header-actions__actions{% if display_style == 'text' %} account-button--text{% endif %} color-{{ settings.popover_color_scheme }}"
     >
       <a onclick="kpHandleLogin('/account');"
