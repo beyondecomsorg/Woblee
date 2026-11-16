@@ -1966,5 +1966,22 @@
         })();
       </script>
     {%- endif -%}
+    <script>
+  document.addEventListener('click', function (e) {
+    const accountBtn = e.target.closest('shopify-account');
+
+    if (!accountBtn) return;
+
+    // Prevent Shopify's default account behaviour
+    e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
+
+    // Execute only KwikPass login
+    if (typeof kpHandleLogin === 'function') {
+      kpHandleLogin('/account');
+    }
+  }, true);
+</script>
   </body>
 </html>
