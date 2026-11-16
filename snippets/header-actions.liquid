@@ -90,7 +90,7 @@
     <div
       class="account-button header-actions__actions{% if display_style == 'text' %} account-button--text{% endif %} color-{{ settings.popover_color_scheme }}"
     >
-      <shopify-account
+      {% comment %} <shopify-account
         menu="{{ customer_account_menu }}"
         {% if account_actions_style != blank %}
           style="{{ account_actions_style }}"
@@ -114,7 +114,31 @@
             {{ account_icon }}
           </span>
         {% endif %}
-      </shopify-account>
+      </shopify-account> {% endcomment %}
+      <a href="/account"
+        {% if account_actions_style != blank %}
+          style="{{ account_actions_style }}"
+        {% endif %}
+      >
+        {% if customer %}
+          <div class="account-button__fallback"></div>
+        {% else %}
+          <span
+            slot="signed-out-avatar"
+            class="account-button__text header-actions__text-style {% if display_style == 'icon' %}hidden{% else %}mobile:hidden{% endif %}"
+          >
+            {{ 'content.account_title' | t }}
+          </span>
+
+          <span
+            slot="signed-out-avatar"
+            class="{% if display_style != 'icon' %}desktop:hidden{% endif %}"
+            aria-hidden="true"
+          >
+            {{ account_icon }}
+          </span>
+        {% endif %}
+      </a>
     </div>
   {% endif %}
 
