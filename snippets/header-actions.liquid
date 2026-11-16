@@ -90,7 +90,7 @@
     <div
       class="account-button header-actions__actions{% if display_style == 'text' %} account-button--text{% endif %} color-{{ settings.popover_color_scheme }}"
     >
-      <shopify-account onclick="kpHandleLogin('/account');"
+      <shopify-accounts onclick="kpHandleLogin('/account');"
         {% comment %} menu="{{ customer_account_menu }}" {% endcomment %}
         {% if account_actions_style != blank %}
           style="{{ account_actions_style }}"
@@ -114,7 +114,7 @@
             {{ account_icon }}
           </span>
         {% endif %}
-      </shopify-account>
+      </shopify-accounts>
     </div>
   {% endif %}
 
