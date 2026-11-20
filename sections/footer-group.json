@@ -63,7 +63,7 @@
         "font_size_desktop": 13,
         "font_size_mobile": 11,
         "letter_spacing": 1.5,
-        "padding_vertical_desktop": 13,
+        "padding_vertical_desktop": 14,
         "padding_vertical_mobile": 11,
         "item_gap": 40
       }
