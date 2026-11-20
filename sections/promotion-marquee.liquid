@@ -1,0 +1,486 @@
+{% liquid
+  assign sec_id = section.id
+  assign s = section.settings
+
+  # Default fallback promotions if no blocks are added
+  assign default_promos = 'Cash on Delivery Available|Buy 2 items & get 15% OFF.|Buy 3 items & get 20% OFF.|Get 10% OFF on your first purchase.|Free Shipping & Easy Returns' | split: '|'
+%}
+
+<section
+  id="promotion-marquee-{{ sec_id }}"
+  class="promotion-marquee-section"
+  style="
+    --pm-bg: {{ s.background_color | default: '#ffffff' }};
+    --pm-text-color: {{ s.text_color | default: '#0c4168' }};
+    --pm-star-color: {{ s.star_color | default: '#2ebd59' }};
+    --pm-border-color: {{ s.border_color | default: '#e5e5e5' }};
+    --pm-speed: {{ s.scroll_speed | default: 35 }}s;
+    --pm-py-desktop: {{ s.padding_vertical_desktop | default: 13 }}px;
+    --pm-py-mobile: {{ s.padding_vertical_mobile | default: 11 }}px;
+    --pm-font-size-desktop: {{ s.font_size_desktop | default: 13 }}px;
+    --pm-font-size-mobile: {{ s.font_size_mobile | default: 11 }}px;
+    --pm-letter-spacing: {{ s.letter_spacing | default: 1.5 }}px;
+    --pm-item-gap: {{ s.item_gap | default: 40 }}px;
+  "
+  aria-label="Promotions"
+>
+  <div class="promotion-marquee__container">
+    <div class="promotion-marquee__viewport">
+      <div class="promotion-marquee__track">
+        {%- comment -%} Group 1 (Primary for Screen Readers) {%- endcomment -%}
+        <div class="promotion-marquee__group">
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              {% liquid
+                assign b = block.settings
+                assign item_tag = 'div'
+                if b.link != blank
+                  assign item_tag = 'a'
+                endif
+              %}
+              <{{ item_tag }}
+                class="promotion-marquee__item"
+                {% if b.link != blank %}
+                  href="{{ b.link }}"
+                  {% if b.open_new_tab %}
+                    target="_blank" rel="noopener noreferrer"
+                  {% endif %}
+                {% endif %}
+                {{ block.shopify_attributes }}
+              >
+                <span class="promotion-marquee__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+                <span class="promotion-marquee__text">{{ b.text }}</span>
+              </{{ item_tag }}>
+            {% endfor %}
+          {% else %}
+            {% for item in default_promos %}
+              <div class="promotion-marquee__item">
+                <span class="promotion-marquee__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+                <span class="promotion-marquee__text">{{ item }}</span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {%- comment -%} Group 2 (Duplicate for Seamless Loop) {%- endcomment -%}
+        <div class="promotion-marquee__group" aria-hidden="true">
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              {% liquid
+                assign b = block.settings
+                assign item_tag = 'div'
+                if b.link != blank
+                  assign item_tag = 'a'
+                endif
+              %}
+              <{{ item_tag }}
+                class="promotion-marquee__item"
+                {% if b.link != blank %}
+                  href="{{ b.link }}"
+                  tabindex="-1"
+                {% endif %}
+              >
+                <span class="promotion-marquee__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+                <span class="promotion-marquee__text">{{ b.text }}</span>
+              </{{ item_tag }}>
+            {% endfor %}
+          {% else %}
+            {% for item in default_promos %}
+              <div class="promotion-marquee__item">
+                <span class="promotion-marquee__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+                <span class="promotion-marquee__text">{{ item }}</span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {%- comment -%} Group 3 (Duplicate for Ultrawide Screen Coverage) {%- endcomment -%}
+        <div class="promotion-marquee__group" aria-hidden="true">
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              {% liquid
+                assign b = block.settings
+                assign item_tag = 'div'
+                if b.link != blank
+                  assign item_tag = 'a'
+                endif
+              %}
+              <{{ item_tag }}
+                class="promotion-marquee__item"
+                {% if b.link != blank %}
+                  href="{{ b.link }}"
+                  tabindex="-1"
+                {% endif %}
+              >
+                <span class="promotion-marquee__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+                <span class="promotion-marquee__text">{{ b.text }}</span>
+              </{{ item_tag }}>
+            {% endfor %}
+          {% else %}
+            {% for item in default_promos %}
+              <div class="promotion-marquee__item">
+                <span class="promotion-marquee__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+                <span class="promotion-marquee__text">{{ item }}</span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #promotion-marquee-{{ sec_id }} {
+    width: 100%;
+    background-color: var(--pm-bg);
+    border-top: 1px solid var(--pm-border-color);
+    border-bottom: 1px solid var(--pm-border-color);
+    position: relative;
+    box-sizing: border-box;
+    line-height: 1;
+    z-index: 2;
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__container {
+    width: 100%;
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__viewport {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    overflow: clip visible;
+    padding-top: var(--pm-py-desktop);
+    padding-bottom: var(--pm-py-desktop);
+    box-sizing: border-box;
+  }
+
+  /* Marquee track animation */
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    white-space: nowrap;
+    will-change: transform;
+    animation: promotionMarqueeAnim var(--pm-speed) linear infinite;
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__group {
+      /* Two copies remain after the track advances by one group. */
+      min-width: 50vw;
+      justify-content: space-around;
+    }
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: calc(var(--pm-item-gap) / 2);
+    padding-right: calc(var(--pm-item-gap) / 2);
+    text-decoration: none;
+    color: var(--pm-text-color);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__item:hover {
+    opacity: 0.85;
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__star {
+    display: inline-block;
+    color: var(--pm-star-color);
+    font-size: 13px;
+    line-height: 1;
+    transform: translateY(-0.5px);
+  }
+
+  #promotion-marquee-{{ sec_id }} .promotion-marquee__text {
+    font-family: var(--font-heading--family, inherit);
+    font-size: var(--pm-font-size-desktop);
+    font-weight: 600;
+    color: var(--pm-text-color);
+    letter-spacing: var(--pm-letter-spacing);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  /* Seamless infinite horizontal scroll right -> left */
+  @keyframes promotionMarqueeAnim {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      /* Exactly 1/3 since we have 3 identical groups */
+      transform: translate3d(-33.333333%, 0, 0);
+    }
+  }
+
+  /* Desktop: Pause on hover */
+  {% if s.pause_on_hover %}
+    @media (hover: hover) and (pointer: fine) {
+      #promotion-marquee-{{ sec_id }}:hover .promotion-marquee__track {
+        animation-play-state: paused;
+      }
+    }
+  {% endif %}
+
+  /* Mobile styles */
+  @media screen and (max-width: 749px) {
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__viewport {
+      padding-top: var(--pm-py-mobile);
+      padding-bottom: var(--pm-py-mobile);
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__text {
+      font-size: var(--pm-font-size-mobile);
+      letter-spacing: 1.2px;
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__star {
+      font-size: 11px;
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__item {
+      gap: 10px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  /* Accessibility: Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__viewport {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__track {
+      animation: none !important;
+      transform: none !important;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 4px 16px;
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__group:nth-child(n+2) {
+      display: none !important;
+    }
+
+    #promotion-marquee-{{ sec_id }} .promotion-marquee__group {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Promotional Bar",
+  "tag": "section",
+  "class": "section-promotion-marquee",
+  "enabled_on": {
+    "groups": ["footer", "*"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 Colors & Styling"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0c4168"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Separator Accent Color",
+      "default": "#2ebd59"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "text",
+      "id": "separator_symbol",
+      "label": "Separator Symbol",
+      "default": "✦"
+    },
+    {
+      "type": "header",
+      "content": "⚡ Animation & Motion"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll Speed (Duration in Seconds)",
+      "min": 15,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "default": 35,
+      "info": "Lower is faster, higher is slower"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover (Desktop)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "📏 Spacing & Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Font Size (Desktop)",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing (px)",
+      "min": 0.5,
+      "max": 3.0,
+      "step": 0.5,
+      "unit": "px",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_desktop",
+      "label": "Vertical Padding (Desktop)",
+      "min": 6,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Vertical Padding (Mobile)",
+      "min": 6,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between items",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promo_item",
+      "name": "Promotional Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message Text",
+          "default": "Cash on Delivery Available"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotional Bar",
+      "blocks": [
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Cash on Delivery Available"
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Buy 2 items & get 15% OFF."
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Buy 3 items & get 20% OFF."
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Get 10% OFF on your first purchase."
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Free Shipping & Easy Returns"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

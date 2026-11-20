@@ -11,6 +11,63 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "promotion_marquee": {
+      "type": "promotion-marquee",
+      "blocks": {
+        "promo_cod": {
+          "type": "promo_item",
+          "settings": {
+            "text": "Cash on Delivery Available"
+          }
+        },
+        "promo_buy2": {
+          "type": "promo_item",
+          "settings": {
+            "text": "Buy 2 items & get 15% OFF."
+          }
+        },
+        "promo_buy3": {
+          "type": "promo_item",
+          "settings": {
+            "text": "Buy 3 items & get 20% OFF."
+          }
+        },
+        "promo_first": {
+          "type": "promo_item",
+          "settings": {
+            "text": "Get 10% OFF on your first purchase."
+          }
+        },
+        "promo_shipping": {
+          "type": "promo_item",
+          "settings": {
+            "text": "Free Shipping & Easy Returns"
+          }
+        }
+      },
+      "block_order": [
+        "promo_cod",
+        "promo_buy2",
+        "promo_buy3",
+        "promo_first",
+        "promo_shipping"
+      ],
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#0c4168",
+        "star_color": "#2ebd59",
+        "border_color": "#e5e5e5",
+        "separator_symbol": "✦",
+        "scroll_speed": 35,
+        "pause_on_hover": true,
+        "font_size_desktop": 13,
+        "font_size_mobile": 11,
+        "letter_spacing": 1.5,
+        "padding_vertical_desktop": 13,
+        "padding_vertical_mobile": 11,
+        "item_gap": 40
+      }
+    },
     "custom_footer_Kecyzc": {
       "type": "custom-footer",
       "blocks": {
@@ -451,6 +508,7 @@
     }
   },
   "order": [
+    "promotion_marquee",
     "custom_footer_Kecyzc",
     "section_9FjKrC",
     "footer",

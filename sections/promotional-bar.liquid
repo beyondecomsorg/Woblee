@@ -1,0 +1,445 @@
+{% liquid
+  assign sec_id = section.id
+  assign s = section.settings
+%}
+
+<section
+  id="promotional-bar-{{ sec_id }}"
+  class="promotional-bar-section"
+  style="
+    --pb-bg: {{ s.background_color | default: '#ffffff' }};
+    --pb-text-color: {{ s.text_color | default: '#0c4168' }};
+    --pb-star-color: {{ s.star_color | default: '#2ebd59' }};
+    --pb-border-color: {{ s.border_color | default: '#e5e5e5' }};
+    --pb-speed: {{ s.scroll_speed | default: 35 }}s;
+    --pb-py-desktop: {{ s.padding_vertical_desktop | default: 14 }}px;
+    --pb-py-mobile: {{ s.padding_vertical_mobile | default: 11 }}px;
+    --pb-font-size-desktop: {{ s.font_size_desktop | default: 13 }}px;
+    --pb-font-size-mobile: {{ s.font_size_mobile | default: 11 }}px;
+    --pb-letter-spacing: {{ s.letter_spacing | default: 1.5 }}px;
+    --pb-item-gap: {{ s.item_gap | default: 40 }}px;
+  "
+>
+  <div class="promotional-bar__container">
+    <div class="promotional-bar__viewport">
+      <div class="promotional-bar__track" aria-hidden="false">
+        {%- comment -%} Primary set of messages {%- endcomment -%}
+        <div class="promotional-bar__group">
+          {% for block in section.blocks %}
+            {% liquid
+              assign b = block.settings
+              assign item_tag = 'div'
+              if b.link != blank
+                assign item_tag = 'a'
+              endif
+            %}
+            <{{ item_tag }}
+              class="promotional-bar__item"
+              {% if b.link != blank %}
+                href="{{ b.link }}"
+                {% if b.open_new_tab %}
+                  target="_blank" rel="noopener noreferrer"
+                {% endif %}
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+              <span class="promotional-bar__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+              <span class="promotional-bar__text">{{ b.text }}</span>
+            </{{ item_tag }}>
+          {% endfor %}
+        </div>
+
+        {%- comment -%} Duplicate set 1 for seamless infinite loop {%- endcomment -%}
+        <div class="promotional-bar__group" aria-hidden="true">
+          {% for block in section.blocks %}
+            {% liquid
+              assign b = block.settings
+              assign item_tag = 'div'
+              if b.link != blank
+                assign item_tag = 'a'
+              endif
+            %}
+            <{{ item_tag }}
+              class="promotional-bar__item"
+              {% if b.link != blank %}
+                href="{{ b.link }}"
+                tabindex="-1"
+              {% endif %}
+            >
+              <span class="promotional-bar__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+              <span class="promotional-bar__text">{{ b.text }}</span>
+            </{{ item_tag }}>
+          {% endfor %}
+        </div>
+
+        {%- comment -%} Duplicate set 2 to guarantee smooth overflow coverage on ultra-wide screens {%- endcomment -%}
+        <div class="promotional-bar__group" aria-hidden="true">
+          {% for block in section.blocks %}
+            {% liquid
+              assign b = block.settings
+              assign item_tag = 'div'
+              if b.link != blank
+                assign item_tag = 'a'
+              endif
+            %}
+            <{{ item_tag }}
+              class="promotional-bar__item"
+              {% if b.link != blank %}
+                href="{{ b.link }}"
+                tabindex="-1"
+              {% endif %}
+            >
+              <span class="promotional-bar__star" aria-hidden="true">{{ s.separator_symbol | default: '✦' }}</span>
+              <span class="promotional-bar__text">{{ b.text }}</span>
+            </{{ item_tag }}>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #promotional-bar-{{ sec_id }} {
+    width: 100%;
+    background-color: var(--pb-bg);
+    border-top: 1px solid var(--pb-border-color);
+    border-bottom: 1px solid var(--pb-border-color);
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    line-height: 1;
+    z-index: 1;
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__viewport {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    padding-top: var(--pb-py-desktop);
+    padding-bottom: var(--pb-py-desktop);
+    box-sizing: border-box;
+  }
+
+  /* Marquee track animation */
+  #promotional-bar-{{ sec_id }} .promotional-bar__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    white-space: nowrap;
+    will-change: transform;
+    animation: promoBarMarquee var(--pb-speed) linear infinite;
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: calc(var(--pb-item-gap) / 2);
+    padding-right: calc(var(--pb-item-gap) / 2);
+    text-decoration: none;
+    color: var(--pb-text-color);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__item:hover {
+    opacity: 0.85;
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__star {
+    display: inline-block;
+    color: var(--pb-star-color);
+    font-size: 13px;
+    line-height: 1;
+    transform: translateY(-0.5px);
+  }
+
+  #promotional-bar-{{ sec_id }} .promotional-bar__text {
+    font-family: var(--font-heading--family, inherit);
+    font-size: var(--pb-font-size-desktop);
+    font-weight: 600;
+    color: var(--pb-text-color);
+    letter-spacing: var(--pb-letter-spacing);
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  /* Seamless infinite horizontal scroll right -> left */
+  @keyframes promoBarMarquee {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      /* Exactly 1/3 since we have 3 identical groups */
+      transform: translate3d(-33.333333%, 0, 0);
+    }
+  }
+
+  /* Desktop: Pause on hover */
+  {% if s.pause_on_hover %}
+    @media (hover: hover) and (pointer: fine) {
+      #promotional-bar-{{ sec_id }}:hover .promotional-bar__track {
+        animation-play-state: paused;
+      }
+    }
+  {% endif %}
+
+  /* Mobile styles */
+  @media screen and (max-width: 749px) {
+    #promotional-bar-{{ sec_id }} .promotional-bar__viewport {
+      padding-top: var(--pb-py-mobile);
+      padding-bottom: var(--pb-py-mobile);
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__text {
+      font-size: var(--pb-font-size-mobile);
+      letter-spacing: 1.2px;
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__star {
+      font-size: 11px;
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__item {
+      gap: 10px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  /* Accessibility: Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    #promotional-bar-{{ sec_id }} .promotional-bar__viewport {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__track {
+      animation: none !important;
+      transform: none !important;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 4px 16px;
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__group:nth-child(n+2) {
+      display: none !important;
+    }
+
+    #promotional-bar-{{ sec_id }} .promotional-bar__group {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Promotional Marquee Bar",
+  "tag": "section",
+  "class": "section-promotional-bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 Colors & Styling"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0c4168"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Separator Accent Color",
+      "default": "#2ebd59"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "text",
+      "id": "separator_symbol",
+      "label": "Separator Symbol",
+      "default": "✦"
+    },
+    {
+      "type": "header",
+      "content": "⚡ Animation & Motion"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll Speed (Duration in Seconds)",
+      "min": 15,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "default": 35,
+      "info": "Lower is faster, higher is slower"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover (Desktop)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "📏 Spacing & Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size_desktop",
+      "label": "Font Size (Desktop)",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "label": "Font Size (Mobile)",
+      "min": 10,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing (px)",
+      "min": 0.5,
+      "max": 3.0,
+      "step": 0.5,
+      "unit": "px",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_desktop",
+      "label": "Vertical Padding (Desktop)",
+      "min": 6,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical_mobile",
+      "label": "Vertical Padding (Mobile)",
+      "min": 6,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between items",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promo_item",
+      "name": "Promotional Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message Text",
+          "default": "Cash on Delivery Available"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotional Marquee Bar",
+      "blocks": [
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Cash on Delivery Available"
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Buy 2 items & get 15% OFF."
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Buy 3 items & get 20% OFF."
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Get 10% OFF on your first purchase."
+          }
+        },
+        {
+          "type": "promo_item",
+          "settings": {
+            "text": "Free Shipping & Easy Returns"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

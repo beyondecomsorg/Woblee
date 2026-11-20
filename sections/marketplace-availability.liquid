@@ -1,0 +1,517 @@
+{% liquid
+  assign sec_id = section.id
+  assign s = section.settings
+%}
+
+<section
+  id="marketplace-availability-{{ sec_id }}"
+  class="marketplace-availability"
+  style="
+    --ma-bg: {{ s.background_color | default: '#ffffff' }};
+    --ma-heading-color: {{ s.heading_color | default: '#0c4168' }};
+    --ma-pt-desktop: {{ s.padding_top_desktop | default: 40 }}px;
+    --ma-pb-desktop: {{ s.padding_bottom_desktop | default: 50 }}px;
+    --ma-pt-mobile: {{ s.padding_top_mobile | default: 24 }}px;
+    --ma-pb-mobile: {{ s.padding_bottom_mobile | default: 32 }}px;
+    --ma-card-bg: {{ s.card_background | default: '#ffffff' }};
+    --ma-card-border: {{ s.card_border_color | default: 'rgba(12, 65, 104, 0.12)' }};
+    --ma-card-radius: {{ s.card_border_radius | default: 8 }}px;
+    --ma-card-hover-border: {{ s.card_hover_border | default: 'rgba(12, 65, 104, 0.28)' }};
+  "
+  aria-labelledby="MarketplaceHeading-{{ sec_id }}"
+>
+  <div class="marketplace-availability__inner page-width">
+    {% if s.heading != blank %}
+      <div class="marketplace-availability__heading-wrap">
+        <h2 id="MarketplaceHeading-{{ sec_id }}" class="marketplace-availability__heading">
+          {{ s.heading }}
+        </h2>
+      </div>
+    {% endif %}
+
+    {% if s.subheading != blank %}
+      <p class="marketplace-availability__subheading">
+        {{ s.subheading }}
+      </p>
+    {% endif %}
+
+    <div class="marketplace-availability__grid">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          {% liquid
+            assign b = block.settings
+            assign card_tag = 'div'
+            if b.link != blank
+              assign card_tag = 'a'
+            endif
+          %}
+
+          <{{ card_tag }}
+            class="marketplace-availability__card"
+            {% if b.link != blank %}
+              href="{{ b.link }}"
+              {% if b.open_new_tab %}
+                target="_blank" rel="noopener noreferrer"
+              {% endif %}
+              aria-label="{{ b.title | default: 'Marketplace' | escape }}"
+            {% endif %}
+            {{ block.shopify_attributes }}
+          >
+            <div class="marketplace-availability__logo-wrap">
+              {% if b.custom_logo != blank %}
+                {{
+                  b.custom_logo
+                  | image_url: width: 400
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'marketplace-availability__logo',
+                    alt: b.title | default: 'Marketplace logo'
+                }}
+              {% elsif b.preset_logo == 'amazon' %}
+                <img
+                  src="{{ 'marketplace-amazon.png' | asset_url }}"
+                  alt="{{ b.title | default: 'Amazon' | escape }}"
+                  class="marketplace-availability__logo"
+                  loading="lazy"
+                  width="160"
+                  height="50"
+                >
+              {% elsif b.preset_logo == 'flipkart' %}
+                <img
+                  src="{{ 'marketplace-flipkart.png' | asset_url }}"
+                  alt="{{ b.title | default: 'Flipkart' | escape }}"
+                  class="marketplace-availability__logo"
+                  loading="lazy"
+                  width="160"
+                  height="50"
+                >
+              {% elsif b.preset_logo == 'meesho' %}
+                <img
+                  src="{{ 'marketplace-meesho.png' | asset_url }}"
+                  alt="{{ b.title | default: 'Meesho' | escape }}"
+                  class="marketplace-availability__logo"
+                  loading="lazy"
+                  width="160"
+                  height="50"
+                >
+              {% else %}
+                <span class="marketplace-availability__fallback-name">{{ b.title }}</span>
+              {% endif %}
+            </div>
+          </{{ card_tag }}>
+        {% endfor %}
+      {% else %}
+        {%- comment -%} Default 3 marketplaces if no blocks yet {%- endcomment -%}
+        <div class="marketplace-availability__card">
+          <div class="marketplace-availability__logo-wrap">
+            <img
+              src="{{ 'marketplace-amazon.png' | asset_url }}"
+              alt="Amazon"
+              class="marketplace-availability__logo"
+              loading="lazy"
+              width="160"
+              height="50"
+            >
+          </div>
+        </div>
+        <div class="marketplace-availability__card">
+          <div class="marketplace-availability__logo-wrap">
+            <img
+              src="{{ 'marketplace-flipkart.png' | asset_url }}"
+              alt="Flipkart"
+              class="marketplace-availability__logo"
+              loading="lazy"
+              width="160"
+              height="50"
+            >
+          </div>
+        </div>
+        <div class="marketplace-availability__card">
+          <div class="marketplace-availability__logo-wrap">
+            <img
+              src="{{ 'marketplace-meesho.png' | asset_url }}"
+              alt="Meesho"
+              class="marketplace-availability__logo"
+              loading="lazy"
+              width="160"
+              height="50"
+            >
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #marketplace-availability-{{ sec_id }} {
+    width: 100%;
+    background-color: var(--ma-bg);
+    padding-top: var(--ma-pt-desktop);
+    padding-bottom: var(--ma-pb-desktop);
+    box-sizing: border-box;
+    overflow-x: clip;
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__inner {
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Heading - Visually matches ABOUT US in tab-section */
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__heading-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__heading {
+    margin: 0;
+    color: var(--ma-heading-color);
+    font-family: var(--font-heading--family, inherit);
+    font-size: {{ s.heading_size_desktop | default: 40 }}px;
+    font-weight: {{ s.heading_weight_desktop | default: 700 }};
+    text-align: center;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__subheading {
+    margin: -16px 0 24px;
+    text-align: center;
+    font-size: 14px;
+    color: rgba(12, 65, 104, 0.7);
+    letter-spacing: 0.5px;
+  }
+
+  /* 3 Equal-Width Containers / Cards horizontally on Desktop */
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  /* Minimal, Clean, Premium Cards */
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ma-card-bg);
+    border: 1px solid var(--ma-card-border);
+    border-radius: var(--ma-card-radius);
+    padding: 22px 28px;
+    min-height: 84px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    position: relative;
+    cursor: pointer;
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__card:hover {
+    border-color: var(--ma-card-hover-border);
+    box-shadow: 0 6px 18px rgba(12, 65, 104, 0.08);
+    transform: translateY(-2px);
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 40px;
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__logo {
+    width: auto;
+    max-width: 150px;
+    height: auto;
+    max-height: 42px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.25s ease;
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__card:hover .marketplace-availability__logo {
+    transform: scale(1.03);
+  }
+
+  #marketplace-availability-{{ sec_id }} .marketplace-availability__fallback-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ma-heading-color);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Responsive / Mobile */
+  @media screen and (max-width: 749px) {
+    #marketplace-availability-{{ sec_id }} {
+      padding-top: var(--ma-pt-mobile);
+      padding-bottom: var(--ma-pb-mobile);
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__heading {
+      font-size: {{ s.heading_size_mobile | default: 24 }}px;
+      font-weight: {{ s.heading_weight_mobile | default: 700 }};
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__heading-wrap {
+      margin-bottom: 18px;
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 100%;
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__card {
+      padding: 14px 10px;
+      min-height: 64px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__logo-wrap {
+      min-height: 32px;
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__logo {
+      max-width: 95px;
+      max-height: 28px;
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__fallback-name {
+      font-size: 13px;
+    }
+  }
+
+  /* Very small mobile (< 360px) */
+  @media screen and (max-width: 359px) {
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__grid {
+      gap: 6px;
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__card {
+      padding: 10px 6px;
+      min-height: 56px;
+    }
+
+    #marketplace-availability-{{ sec_id }} .marketplace-availability__logo {
+      max-width: 78px;
+      max-height: 24px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Also Available On",
+  "tag": "section",
+  "class": "section-marketplace-availability",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "header",
+      "content": "📝 Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Also Available On"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading (Optional)"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#0c4168"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "label": "Heading Size (Desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile)",
+      "min": 16,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "🎨 Card Appearance"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card Border",
+      "default": "rgba(12, 65, 104, 0.12)"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_border",
+      "label": "Card Hover Border",
+      "default": "rgba(12, 65, 104, 0.28)"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card Corner Radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "🎨 Section Spacing & Background"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_desktop",
+      "label": "Padding Top (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_desktop",
+      "label": "Padding Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding Top (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "marketplace",
+      "name": "Marketplace",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Marketplace Name",
+          "default": "Amazon"
+        },
+        {
+          "type": "select",
+          "id": "preset_logo",
+          "label": "Logo Preset",
+          "options": [
+            { "value": "amazon", "label": "Amazon" },
+            { "value": "flipkart", "label": "Flipkart" },
+            { "value": "meesho", "label": "Meesho" },
+            { "value": "custom", "label": "Custom (Upload below)" }
+          ],
+          "default": "amazon"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_logo",
+          "label": "Custom Logo Image (Optional override)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Store Link URL"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Also Available On",
+      "blocks": [
+        {
+          "type": "marketplace",
+          "settings": {
+            "title": "Amazon",
+            "preset_logo": "amazon"
+          }
+        },
+        {
+          "type": "marketplace",
+          "settings": {
+            "title": "Flipkart",
+            "preset_logo": "flipkart"
+          }
+        },
+        {
+          "type": "marketplace",
+          "settings": {
+            "title": "Meesho",
+            "preset_logo": "meesho"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

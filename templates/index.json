@@ -1973,6 +1973,52 @@
         "layout_gap": 40
       }
     },
+    "marketplace_availability": {
+      "type": "marketplace-availability",
+      "blocks": {
+        "marketplace_amazon": {
+          "type": "marketplace",
+          "settings": {
+            "title": "Amazon",
+            "preset_logo": "amazon",
+            "open_new_tab": true
+          }
+        },
+        "marketplace_flipkart": {
+          "type": "marketplace",
+          "settings": {
+            "title": "Flipkart",
+            "preset_logo": "flipkart",
+            "open_new_tab": true
+          }
+        },
+        "marketplace_meesho": {
+          "type": "marketplace",
+          "settings": {
+            "title": "Meesho",
+            "preset_logo": "meesho",
+            "open_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "marketplace_amazon",
+        "marketplace_flipkart",
+        "marketplace_meesho"
+      ],
+      "settings": {
+        "heading": "Also Available On",
+        "heading_color": "#0c4168",
+        "card_background": "#ffffff",
+        "card_border_color": "rgba(12, 65, 104, 0.12)",
+        "card_hover_border": "rgba(12, 65, 104, 0.28)",
+        "card_border_radius": 8,
+        "padding_top_desktop": 40,
+        "padding_bottom_desktop": 52,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 32
+      }
+    },
     "17800675107a00a753": {
       "type": "_blocks",
       "blocks": {
@@ -2131,6 +2177,7 @@
     "section_2_BrdHkP",
     "rotating_text_X4Hpjk",
     "tab_section_PXmk7b",
+    "marketplace_availability",
     "17800675107a00a753",
     "1788170817aeb34265",
     "launch_celebration"
