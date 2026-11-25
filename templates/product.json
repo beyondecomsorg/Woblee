@@ -352,7 +352,7 @@
                 "prefix_text": "Hurry up!",
                 "highlight_text": "Only few left",
                 "heading": "AVAILABLE BENEFITS",
-                "coupon_code_1": "LILWOBLEE",
+                "coupon_code_1": "WOBLEE10",
                 "description_1": "Get 10% OFF on your first purchase.",
                 "coupon_code_2": "EXTRA15",
                 "description_2": "Buy 2 items & get 15% OFF.",
@@ -364,6 +364,42 @@
                 "description_5": "Free shipping on all orders."
               },
               "blocks": {}
+            },
+            "pdp_product_benefits": {
+              "type": "_pdp-product-benefits",
+              "name": "Product benefits",
+              "settings": {},
+              "blocks": {
+                "cash-on-delivery": {
+                  "type": "_pdp-benefit",
+                  "settings": {
+                    "heading": "Cash on Delivery Available",
+                    "icon": "cash-on-delivery"
+                  }
+                },
+                "returns": {
+                  "type": "_pdp-benefit",
+                  "settings": {
+                    "heading": "Easy 14 Day Return / Exchange",
+                    "icon": "returns"
+                  }
+                },
+                "made-in-india": {
+                  "type": "_pdp-benefit",
+                  "settings": {
+                    "heading": "Designed + Made in India with Love",
+                    "icon": "made-in-india"
+                  }
+                },
+                "cotton": {
+                  "type": "_pdp-benefit",
+                  "settings": {
+                    "heading": "Crafted with 100% High GSM Cotton",
+                    "icon": "cotton"
+                  }
+                }
+              },
+              "block_order": ["cash-on-delivery", "returns", "made-in-india", "cotton"]
             },
             "accordion_iWQwkW": {
               "type": "accordion",
@@ -520,6 +556,7 @@
             "pdp_live_viewer_banner",
             "pdp_sales_demand_banner",
             "pdp_items_remaining_banner",
+            "pdp_product_benefits",
             "accordion_iWQwkW"
           ]
         }

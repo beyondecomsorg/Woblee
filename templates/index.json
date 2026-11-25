@@ -12,8 +12,49 @@
     "custom_hero_section_jrfcFp": {
       "type": "custom-hero-section",
       "blocks": {
+        "slide_9Mqacm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BANNERS_FOR_BFCM_WEB_FINALL_-_04.jpg",
+            "image_focal_point": "center center",
+            "mobile_image": "shopify://shop_images/BFCM_BANNERS_MOBILE_-_04.jpg",
+            "mobile_image_focal_point": "center center",
+            "slide_link": "shopify://collections/bestsellers",
+            "slide_link_new_tab": false,
+            "video_url_mp4": "",
+            "video_url_webm": "",
+            "mobile_video_url_mp4": "",
+            "mobile_video_url_webm": "",
+            "hide_content": false,
+            "hide_text_overlay": true,
+            "eyebrow": "",
+            "heading": "",
+            "subtext": "",
+            "caption_position": "bottom_right",
+            "button_position": "bottom_right",
+            "mobile_caption_bottom": 0,
+            "mobile_button_position_h": "default",
+            "mobile_caption_left": 50,
+            "btn1_label": "",
+            "btn1_link": "",
+            "btn1_new_tab": false,
+            "btn1_custom_bg": "",
+            "btn1_custom_text": "",
+            "btn2_label": "",
+            "btn2_link": "",
+            "btn2_new_tab": false,
+            "btn2_custom_bg": "",
+            "btn2_custom_text": "",
+            "btn3_label": "",
+            "btn3_link": "",
+            "btn3_new_tab": false,
+            "btn3_custom_bg": "",
+            "btn3_custom_text": ""
+          }
+        },
         "slide_jdV8Tw": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/CHILDRENS_DAY-01_jpg.jpg",
             "image_focal_point": "center center",
@@ -60,45 +101,6 @@
             "mobile_image": "shopify://shop_images/DIWALI_ABC-04_jpg.jpg",
             "mobile_image_focal_point": "center center",
             "slide_link": "shopify://collections/bestsellers",
-            "slide_link_new_tab": false,
-            "video_url_mp4": "",
-            "video_url_webm": "",
-            "mobile_video_url_mp4": "",
-            "mobile_video_url_webm": "",
-            "hide_content": false,
-            "hide_text_overlay": true,
-            "eyebrow": "",
-            "heading": "",
-            "subtext": "",
-            "caption_position": "bottom_right",
-            "button_position": "bottom_right",
-            "mobile_caption_bottom": 0,
-            "mobile_button_position_h": "default",
-            "mobile_caption_left": 50,
-            "btn1_label": "",
-            "btn1_link": "",
-            "btn1_new_tab": false,
-            "btn1_custom_bg": "",
-            "btn1_custom_text": "",
-            "btn2_label": "",
-            "btn2_link": "",
-            "btn2_new_tab": false,
-            "btn2_custom_bg": "",
-            "btn2_custom_text": "",
-            "btn3_label": "",
-            "btn3_link": "",
-            "btn3_new_tab": false,
-            "btn3_custom_bg": "",
-            "btn3_custom_text": ""
-          }
-        },
-        "slide_9Mqacm": {
-          "type": "slide",
-          "disabled": true,
-          "settings": {
-            "image_focal_point": "center center",
-            "mobile_image_focal_point": "center center",
-            "slide_link": "shopify://collections/nab",
             "slide_link_new_tab": false,
             "video_url_mp4": "",
             "video_url_webm": "",
@@ -333,9 +335,9 @@
         }
       },
       "block_order": [
+        "slide_9Mqacm",
         "slide_jdV8Tw",
         "slide_GNFgNq",
-        "slide_9Mqacm",
         "slide_jWfnFU",
         "slide_nYR4U9",
         "slide_B6rmj8",
@@ -1220,7 +1222,7 @@
         "image_card_GLW9gf": {
           "type": "image_card",
           "settings": {
-            "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSELnew-01_jpg.jpg",
+            "image_desktop": "shopify://shop_images/carousel_sj-01_jpg.jpg",
             "link": "shopify://collections/after-hours",
             "open_in_new_tab": false,
             "heading": "",
@@ -1234,7 +1236,7 @@
         "image_card_7iLGFT": {
           "type": "image_card",
           "settings": {
-            "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSELnew-02_jpg.jpg",
+            "image_desktop": "shopify://shop_images/carousel_sj-02_jpg.jpg",
             "link": "shopify://collections/travel-wear",
             "open_in_new_tab": false,
             "heading": "",
@@ -1248,7 +1250,7 @@
         "image_card_zwbwJE": {
           "type": "image_card",
           "settings": {
-            "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSELnew-03_jpg.jpg",
+            "image_desktop": "shopify://shop_images/carousel_sj-03_jpg.jpg",
             "link": "shopify://collections/everyday-wear",
             "open_in_new_tab": false,
             "heading": "",
@@ -1262,7 +1264,7 @@
         "image_card_Xy8bEM": {
           "type": "image_card",
           "settings": {
-            "image_desktop": "shopify://shop_images/LIFESTYLE_CAROUSELnew-04_jpg.jpg",
+            "image_desktop": "shopify://shop_images/carousel_sj-04_jpg.jpg",
             "link": "shopify://collections/coffee-run",
             "open_in_new_tab": false,
             "heading": "",

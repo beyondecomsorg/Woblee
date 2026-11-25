@@ -1,0 +1,117 @@
+<ul class="pdp-product-benefits" role="list" aria-label="Product benefits" {{ block.shopify_attributes }}>
+  {%- content_for 'blocks' -%}
+</ul>
+
+{% stylesheet %}
+  .pdp-product-benefits {
+    --benefit-column-gap: 12px;
+
+    container: product-benefits / inline-size;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px var(--benefit-column-gap);
+    width: 100%;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+  }
+
+  .pdp-product-benefits:empty {
+    padding: 0;
+  }
+
+  .pdp-product-benefits__item {
+    display: flex;
+    flex: 0 0 calc((100% - 3 * var(--benefit-column-gap)) / 4);
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .pdp-product-benefits__icon {
+    display: block;
+    width: 52px;
+    max-width: 100%;
+    height: 52px;
+    object-fit: contain;
+  }
+
+  .pdp-product-benefits__label {
+    max-inline-size: 10.5rem;
+    color: #444;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  @container product-benefits (width < 440px) {
+    .pdp-product-benefits__item {
+      flex-basis: calc((100% - var(--benefit-column-gap)) / 2);
+    }
+
+    .pdp-product-benefits__icon {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .pdp-product-benefits {
+      row-gap: 10px;
+      padding-block: 4px;
+    }
+
+    .pdp-product-benefits__item {
+      flex-basis: calc((100% - var(--benefit-column-gap)) / 2);
+      gap: 4px;
+    }
+
+    .pdp-product-benefits__icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .pdp-product-benefits__label {
+      max-inline-size: 9rem;
+      font-size: 0.75rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product benefits",
+  "tag": null,
+  "blocks": [{ "type": "_pdp-benefit" }],
+  "presets": [
+    {
+      "name": "Product benefits",
+      "category": "t:categories.product",
+      "blocks": {
+        "cash-on-delivery": {
+          "type": "_pdp-benefit",
+          "settings": { "heading": "Cash on Delivery Available", "icon": "cash-on-delivery" }
+        },
+        "returns": {
+          "type": "_pdp-benefit",
+          "settings": { "heading": "Easy 14 Day Return / Exchange", "icon": "returns" }
+        },
+        "made-in-india": {
+          "type": "_pdp-benefit",
+          "settings": { "heading": "Designed + Made in India with Love", "icon": "made-in-india" }
+        },
+        "cotton": {
+          "type": "_pdp-benefit",
+          "settings": { "heading": "Crafted with 100% High GSM Cotton", "icon": "cotton" }
+        }
+      },
+      "block_order": ["cash-on-delivery", "returns", "made-in-india", "cotton"]
+    }
+  ]
+}
+{% endschema %}

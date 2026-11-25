@@ -1,0 +1,220 @@
+{% if section.settings.sale_end != blank %}
+  <script src="{{ 'black-friday-countdown.js' | asset_url }}" type="module"></script>
+
+  <black-friday-countdown
+    class="black-friday-banner color-{{ section.settings.color_scheme | default: 'scheme-7' }}"
+    data-sale-start="{{ section.settings.sale_start | escape }}"
+    data-sale-end="{{ section.settings.sale_end | escape }}"
+    style="--black-friday-accent: {{ section.settings.accent_color }};"
+    role="region"
+    aria-label="Black Friday sale"
+    hidden
+  >
+    <div class="black-friday-banner__message">
+      <div class="black-friday-banner__title">
+        {{- 'icon-discount.svg' | inline_asset_content -}}
+        <span
+          >Black Friday
+          <span class="black-friday-banner__live">sale<span data-sale-live-only> is live</span></span></span
+        >
+      </div>
+      <span class="black-friday-banner__offer">Up to 30% off</span>
+    </div>
+
+    <div class="black-friday-banner__timer" role="timer" aria-live="off">
+      <span class="black-friday-banner__label">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        >
+          <circle cx="12" cy="14" r="8"/>
+          <path d="M12 10v4l2-1.5M10 3h4m-2 0v3m6-2 2 2"/>
+        </svg>
+        <span data-sale-upcoming-only>Starts in</span>
+        <span data-sale-live-only>Ends in</span>
+      </span>
+      <span class="black-friday-banner__units">
+        {% assign units = 'days,hours,minutes,seconds' | split: ',' %}
+        {% for unit in units %}
+          <span class="black-friday-banner__unit">
+            <span data-sale-unit="{{ unit }}"></span>
+            <span class="black-friday-banner__unit-suffix" aria-hidden="true">{{ unit | slice: 0 | upcase }}</span>
+            <span class="visually-hidden"> {{ unit }}</span>
+          </span>
+        {% endfor %}
+      </span>
+    </div>
+  </black-friday-countdown>
+{% endif %}
+
+{% stylesheet %}
+  .black-friday-banner {
+    --banner-gap: clamp(0.35rem, 1.55vw, 1.4rem);
+    --banner-divider: rgb(var(--color-foreground-rgb) / 40%);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--gap-2xs) var(--banner-gap);
+    padding: var(--padding-xs) var(--padding-sm);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-subheading--family);
+    font-size: clamp(0.8125rem, 2.05vw, 1.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .black-friday-banner[hidden],
+  .black-friday-banner:not([data-sale-phase='live']) [data-sale-live-only],
+  .black-friday-banner[data-sale-phase='live'] [data-sale-upcoming-only] {
+    display: none;
+  }
+
+  .black-friday-banner__message,
+  .black-friday-banner__title,
+  .black-friday-banner__timer,
+  .black-friday-banner__units,
+  .black-friday-banner__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .black-friday-banner__message,
+  .black-friday-banner__timer {
+    gap: var(--banner-gap);
+    flex-wrap: wrap;
+  }
+
+  .black-friday-banner__title,
+  .black-friday-banner__label {
+    gap: var(--gap-2xs);
+  }
+
+  .black-friday-banner__title svg,
+  .black-friday-banner__label svg {
+    flex: none;
+    color: var(--black-friday-accent);
+  }
+
+  .black-friday-banner__title svg {
+    width: 1.75em;
+    height: 1.75em;
+  }
+
+  .black-friday-banner__label svg {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  .black-friday-banner__live {
+    color: var(--black-friday-accent);
+  }
+
+  .black-friday-banner__offer {
+    padding: var(--padding-2xs) var(--padding-xs);
+    border-radius: 0;
+    background-color: var(--black-friday-accent);
+    color: var(--color-background);
+    font-size: 0.8em;
+    white-space: nowrap;
+  }
+
+  .black-friday-banner__label {
+    font-size: 0.74em;
+    white-space: nowrap;
+  }
+
+  .black-friday-banner__units {
+    gap: var(--gap-2xs);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .black-friday-banner__unit {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.08em;
+    min-width: 2.2em;
+    padding: var(--padding-2xs);
+    border-radius: 0;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+  }
+
+  .black-friday-banner__unit-suffix {
+    font-size: 0.6em;
+  }
+
+  @media screen and (min-width: 750px) {
+    .black-friday-banner__title,
+    .black-friday-banner__message {
+      padding-inline-end: var(--banner-gap);
+      border-inline-end: 1px solid var(--banner-divider);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .black-friday-banner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .black-friday-banner__label {
+      font-size: 0.875em;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .black-friday-banner {
+      font-size: 0.75rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Black Friday banner",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "sale_start",
+      "label": "Black Friday sale start date and time",
+      "info": "Use the same date format as the sale end time. The banner shows Starts in before this time and Ends in afterwards. Leave blank to show Ends in only."
+    },
+    {
+      "type": "text",
+      "id": "sale_end",
+      "label": "Black Friday sale end date and time",
+      "info": "Enter YYYY-MM-DDTHH:MM:SS with the store's UTC offset for that date, for example 2026-11-28T23:59:59+05:30."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-7"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Sale accent",
+      "default": "#7ed957"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Black Friday banner"
+    }
+  ]
+}
+{% endschema %}

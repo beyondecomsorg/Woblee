@@ -5,7 +5,11 @@
 {% endcomment %}
 
 {%- if product.media.size > 4 -%}
-  <div class="product-extended-gallery-wrapper" id="ProductExtendedGallery-{{ section.id }}" data-section-id="{{ section.id }}">
+  <div
+    class="product-extended-gallery-wrapper"
+    id="ProductExtendedGallery-{{ section.id }}"
+    data-section-id="{{ section.id }}"
+  >
     <div class="product-extended-gallery">
       <div class="product-extended-gallery__slider-container">
         <button
@@ -14,28 +18,54 @@
           aria-label="{{ 'actions.previous' | t | default: 'Previous' }}"
           title="Previous"
         >
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            stroke="currentColor"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
 
-        <div class="product-extended-gallery__grid" role="region" aria-label="Product extended gallery slider" tabindex="0">
+        <div
+          class="product-extended-gallery__grid"
+          role="region"
+          aria-label="Product extended gallery slider"
+          tabindex="0"
+        >
           {%- for media in product.media offset: 4 -%}
             {%- assign original_media_index = forloop.index0 | plus: 4 -%}
-            <div 
-              class="product-extended-gallery__item" 
+            <div
+              class="product-extended-gallery__item"
               data-media-id="{{ media.id }}"
               data-media-index="{{ original_media_index }}"
             >
               {%- case media.media_type -%}
                 {%- when 'image' -%}
-                  {{ media | image_url: width: 1400 | image_tag: 
-                    loading: 'lazy', 
-                    class: 'product-extended-gallery__image',
-                    sizes: '(min-width: 990px) 25vw, (min-width: 750px) 25vw, 100vw' 
+                  {{
+                    media
+                    | image_url: width: 1400
+                    | image_tag:
+                      loading: 'lazy',
+                      class: 'product-extended-gallery__image',
+                      sizes: '(min-width: 990px) 25vw, (min-width: 750px) 25vw, 100vw'
                   }}
                 {%- when 'video' -%}
-                  {{ media | video_tag: autoplay: true, loop: true, muted: true, controls: false, playsinline: true, class: 'product-extended-gallery__video' }}
+                  {{
+                    media
+                    | video_tag:
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true,
+                      class: 'product-extended-gallery__video'
+                  }}
                 {%- else -%}
                   {{ media | media_tag: class: 'product-extended-gallery__media' }}
               {%- endcase -%}
@@ -49,7 +79,16 @@
           aria-label="{{ 'actions.next' | t | default: 'Next' }}"
           title="Next"
         >
-          <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            stroke="currentColor"
+            stroke-width="2.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
         </button>
@@ -60,7 +99,7 @@
   </div>
 
   <script>
-    (function() {
+    (function () {
       function initExtendedGallery() {
         const wrapper = document.querySelector('.product-extended-gallery-wrapper');
         if (!wrapper) return;
@@ -68,7 +107,8 @@
         // 1. Move wrapper below product-information section if needed
         const productInfo = document.querySelector('.product-information');
         const productDetails = document.querySelector('.product-details');
-        const mainSection = productInfo || (productDetails ? productDetails.closest('.section') || productDetails.parentNode : null);
+        const mainSection =
+          productInfo || (productDetails ? productDetails.closest('.section') || productDetails.parentNode : null);
         if (mainSection && mainSection.parentNode) {
           if (wrapper.parentNode !== mainSection.parentNode || wrapper.previousElementSibling !== mainSection) {
             mainSection.parentNode.insertBefore(wrapper, mainSection.nextElementSibling);
@@ -177,7 +217,7 @@
               if (targetItem) {
                 grid.scrollTo({
                   left: targetItem.offsetLeft,
-                  behavior: 'smooth'
+                  behavior: 'smooth',
                 });
               }
             });
@@ -192,7 +232,7 @@
           const scrollDistance = grid.clientWidth;
           grid.scrollBy({
             left: direction * scrollDistance,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         }
 
@@ -224,7 +264,9 @@
             const mediaGallery = document.querySelector('media-gallery');
             const mediaId = item.getAttribute('data-media-id');
             if (mediaGallery && mediaId) {
-              const zoomBtn = mediaGallery.querySelector(`li[data-media-id="${mediaId}"] .product-media-container__zoom-button`);
+              const zoomBtn = mediaGallery.querySelector(
+                `li[data-media-id="${mediaId}"] .product-media-container__zoom-button`
+              );
               if (zoomBtn) {
                 zoomBtn.click();
               }
@@ -379,7 +421,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    z-index: 10;
+    z-index: 1;
     color: #111111;
     transition: opacity 0.25s ease, transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     opacity: 1;

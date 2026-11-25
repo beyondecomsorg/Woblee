@@ -11,6 +11,15 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "black_friday_banner": {
+      "type": "black-friday-banner",
+      "settings": {
+        "sale_start": "2026-11-27T00:00:00+05:30",
+        "sale_end": "2026-11-28T23:59:59+05:30",
+        "color_scheme": "scheme-7",
+        "accent_color": "#7ed957"
+      }
+    },
     "header_announcements_DTq6i4": {
       "type": "header-announcements",
       "blocks": {
@@ -68,9 +77,19 @@
             "case": "none"
           },
           "blocks": {}
+        },
+        "announcement_cash_on_delivery": {
+          "type": "_announcement",
+          "settings": {
+            "text": "&nbsp;<strong>Cash on Delivery Available</strong>&nbsp;",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.875rem"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
+        "announcement_cash_on_delivery",
         "announcement_a4JB6J",
         "announcement_4Hm9Yf",
         "announcement_igBCkn",
@@ -446,6 +465,7 @@
     }
   },
   "order": [
+    "black_friday_banner",
     "header_announcements_DTq6i4",
     "header_section",
     "color_swatches_dbcenX"

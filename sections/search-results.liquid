@@ -6,10 +6,12 @@
   fetchpriority="low"
 ></script>
 
+{% render 'collection-product-grid-styles', section: section %}
+
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 
 <results-list
-  class="section product-grid-container spacing-style color-{{ section.settings.color_scheme }}"
+  class="section product-grid-container search-results-grid color-{{ section.settings.color_scheme }}"
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
   section-id="{{ section.id }}"
   infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
@@ -17,7 +19,7 @@
   {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
 
   <div
-    class="collection-wrapper grid gap-style"
+    class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
   >
     {% assign products_per_page = 24 %}
 

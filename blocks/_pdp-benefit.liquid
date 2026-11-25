@@ -1,0 +1,56 @@
+{%- liquid
+  assign benefit_image = block.settings.image
+  assign benefit_icon = block.settings.icon
+-%}
+
+<li class="pdp-product-benefits__item" {{ block.shopify_attributes }}>
+  {%- if benefit_image != blank -%}
+    {{- benefit_image | image_url: width: 156 | image_tag: class: 'pdp-product-benefits__icon', alt: '', loading: 'lazy' -}}
+  {%- elsif benefit_icon != blank and benefit_icon != 'none' -%}
+    {%- assign icon_asset = 'pdp-benefit-' | append: benefit_icon | append: '.png' -%}
+    <img
+      class="pdp-product-benefits__icon"
+      src="{{ icon_asset | asset_img_url: '156x156' }}"
+      alt=""
+      width="52"
+      height="52"
+      loading="lazy"
+    >
+  {%- endif -%}
+  <span class="pdp-product-benefits__label">{{ block.settings.heading | escape }}</span>
+</li>
+
+{% schema %}
+{
+  "name": "Benefit",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Label",
+      "default": "Product benefit"
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "cash-on-delivery", "label": "Cash on delivery" },
+        { "value": "returns", "label": "Returns and exchanges" },
+        { "value": "made-in-india", "label": "Made in India" },
+        { "value": "cotton", "label": "Cotton" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Custom icon",
+      "info": "Replaces the selected icon."
+    }
+  ],
+  "presets": [{ "name": "Benefit" }]
+}
+{% endschema %}
