@@ -5,7 +5,7 @@
   {% endif %}
   lang="{{ request.locale.iso_code }}"
 >
-  <head> 
+  <head>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -166,7 +166,7 @@
       color: #444 !important;
       }
       .group-block.group-block--height-fit.group-block--width-fill.border-style.spacing-style.size-style{
-        padding: 0 4px !important;
+        padding: 0 0px !important;
       }
 
       a.contents.user-select-text p{
@@ -808,17 +808,18 @@
       window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
       window.hulkappsWishlist.hasAppBlockSupport = '1';
     </script>
-  <script type="text/javascript">if(typeof window.hulkappsWishlist === 'undefined') {
-                            window.hulkappsWishlist = {};
-                        }
-                        window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
-                        window.hulkappsWishlist.hasAppBlockSupport = '1';
-                        </script>
-</head>
+    <script type="text/javascript">
+      if (typeof window.hulkappsWishlist === 'undefined') {
+        window.hulkappsWishlist = {};
+      }
+      window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
+      window.hulkappsWishlist.hasAppBlockSupport = '1';
+    </script>
+  </head>
 
   <body
     class="
-                                    page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }} page-{{ page_title | handle }}     template-{{ template.name | handle }}
+                                          page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }} page-{{ page_title | handle }}     template-{{ template.name | handle }}
     "
   >
     <!-- Google Tag Manager (noscript) -->
@@ -1973,22 +1974,26 @@
       </script>
     {%- endif -%}
     <script>
-  document.addEventListener('click', function (e) {
-    const accountBtn = e.target.closest('shopify-account');
+      document.addEventListener(
+        'click',
+        function (e) {
+          const accountBtn = e.target.closest('shopify-account');
 
-    if (!accountBtn) return;
+          if (!accountBtn) return;
 
-    // Prevent Shopify's default account behaviour
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
+          // Prevent Shopify's default account behaviour
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
 
-    // Execute only KwikPass login
-    if (typeof kpHandleLogin === 'function') {
-      kpHandleLogin('/account');
-    }
-  }, true);
-</script>
+          // Execute only KwikPass login
+          if (typeof kpHandleLogin === 'function') {
+            kpHandleLogin('/account');
+          }
+        },
+        true
+      );
+    </script>
     {% render 'razorpay-magic-checkout' %}
   </body>
 </html>

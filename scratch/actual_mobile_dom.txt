@@ -5076,7 +5076,7 @@ body p.jm-text.jm-other-products-reviews-text{
       color: #444 !important;
       }
       .group-block.group-block--height-fit.group-block--width-fill.border-style.spacing-style.size-style{
-        padding: 0 4px !important;
+        padding: 0 0px !important;
       }
 
       a.contents.user-select-text p{
