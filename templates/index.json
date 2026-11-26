@@ -15,9 +15,9 @@
         "slide_9Mqacm": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/BANNERS_FOR_BFCM_WEB_FINALL_-_04.jpg",
+            "image": "shopify://shop_images/Banner_1.jpg",
             "image_focal_point": "center center",
-            "mobile_image": "shopify://shop_images/BFCM_BANNERS_MOBILE_-_04.jpg",
+            "mobile_image": "shopify://shop_images/Banner_1_Mob.jpg",
             "mobile_image_focal_point": "center center",
             "slide_link": "shopify://collections/bestsellers",
             "slide_link_new_tab": false,
@@ -1983,6 +1983,7 @@
           "settings": {
             "title": "Amazon",
             "preset_logo": "amazon",
+            "link": "",
             "open_new_tab": true
           }
         },
@@ -1991,6 +1992,7 @@
           "settings": {
             "title": "Flipkart",
             "preset_logo": "flipkart",
+            "link": "",
             "open_new_tab": true
           }
         },
@@ -1999,6 +2001,7 @@
           "settings": {
             "title": "Meesho",
             "preset_logo": "meesho",
+            "link": "",
             "open_new_tab": true
           }
         }
@@ -2010,11 +2013,15 @@
       ],
       "settings": {
         "heading": "Also Available On",
+        "subheading": "",
         "heading_color": "#0c4168",
+        "heading_size_desktop": 40,
+        "heading_size_mobile": 24,
         "card_background": "#ffffff",
-        "card_border_color": "rgba(12, 65, 104, 0.12)",
-        "card_hover_border": "rgba(12, 65, 104, 0.28)",
+        "card_border_color": "#0c41681f",
+        "card_hover_border": "#0c416847",
         "card_border_radius": 8,
+        "background_color": "#ffffff",
         "padding_top_desktop": 40,
         "padding_bottom_desktop": 52,
         "padding_top_mobile": 24,
