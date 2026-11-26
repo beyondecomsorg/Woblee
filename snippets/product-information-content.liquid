@@ -782,10 +782,44 @@ function openModal(title, content) {
     line-height: 1.1;
   }
 
-  .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price, .price-item--sale, .price-item--regular, .compare-at-price) {
+  .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price, .price-item--sale) {
     font-size: var(--pi-price-size-desktop);
     font-weight: var(--pi-price-weight);
     line-height: 1.2;
+    color: #0c4168;
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details product-price .price__sale {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price-item--regular, .compare-at-price) {
+    font-size: calc(var(--pi-price-size-desktop) * 0.78);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #718096;
+    opacity: 1;
+    text-decoration: line-through;
+    text-decoration-color: #94a3b8;
+    text-decoration-thickness: 1.2px;
+    margin-right: 0;
+  }
+
+  .product-information:not(.quick-add-modal__content .product-information) .product-details product-price .price-item__discount {
+    font-size: 13px;
+    font-weight: 700;
+    color: #15803d;
+    background-color: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.4px;
+    line-height: 1.1;
+    display: inline-flex;
+    align-items: center;
   }
 
   .product-information:not(.quick-add-modal__content .product-information) .product-details .variant-option legend {
@@ -886,8 +920,22 @@ function openModal(title, content) {
       font-size: var(--pi-title-size-mobile);
     }
 
-    .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price, .price-item--sale, .price-item--regular, .compare-at-price) {
+    .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price, .price-item--sale) {
       font-size: var(--pi-price-size-mobile);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details product-price .price__sale {
+      gap: 8px;
+      align-items: center;
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details product-price :is(.price-item--regular, .compare-at-price) {
+      font-size: calc(var(--pi-price-size-mobile) * 0.78);
+    }
+
+    .product-information:not(.quick-add-modal__content .product-information) .product-details product-price .price-item__discount {
+      font-size: 12px;
+      padding: 2px 7px;
     }
 
     .product-information:not(.quick-add-modal__content .product-information) .product-details .variant-option legend {
