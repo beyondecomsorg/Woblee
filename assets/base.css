@@ -4314,7 +4314,7 @@ product-recommendations:has([data-has-recommendations='false']) {
 
 .compare-at-price,
 .price-item--regular {
-  font-size: 13.5px;
+  font-size: 11.5px;
   font-weight: 400;
   color: #718096;
   text-decoration: line-through;
@@ -4403,19 +4403,19 @@ a[ref="productTitleLink"] p {
 
   .product-card .price__sale .price-item--sale,
   .resource-card .price__sale .price-item--sale {
-    font-size: clamp(9.5px, 2.75vw, 12px);
+    font-size: clamp(10.5px, 2.95vw, 13px);
   }
 
   .product-card .price__sale .compare-at-price,
   .product-card .price__sale .price-item--regular,
   .resource-card .price__sale .compare-at-price,
   .resource-card .price__sale .price-item--regular {
-    font-size: clamp(8.5px, 2.4vw, 10.5px);
+    font-size: clamp(7.5px, 2.05vw, 9.5px);
   }
 
   .product-card .price__sale .price-item__discount,
   .resource-card .price__sale .price-item__discount {
-    font-size: clamp(8.5px, 2.4vw, 10.5px);
+    font-size: clamp(7.5px, 2.05vw, 9.5px);
     letter-spacing: 0;
   }
 }
