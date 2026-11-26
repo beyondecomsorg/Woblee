@@ -324,22 +324,58 @@
   }
 
   .sticky-add-to-cart__variant {
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text));
-    font-size: var(--font-paragraph-small--size);
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.2;
     margin-top: 0;
+    text-align: right;
   }
 
   .sticky-add-to-cart__price-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    flex-shrink: 0;
     margin-right: 12px;
-    gap: 4px;
+    gap: 2px;
   }
 
   .sticky-add-to-cart__price {
-    font-weight: var(--font-weight-semibold);
+    font-weight: 700;
+  }
+
+  .sticky-add-to-cart__price .price__sale {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+  }
+
+  .sticky-add-to-cart__price :is(.price, .price-item--sale) {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.2;
+  }
+
+  .sticky-add-to-cart__price :is(.compare-at-price, .price-item--regular) {
+    font-size: 12px;
+    font-weight: 400;
+    color: #718096;
+    line-height: 1.2;
+    margin-right: 0;
+  }
+
+  .sticky-add-to-cart__price .price-item__discount {
+    font-size: 11px;
+    font-weight: 700;
+    color: #15803d;
+    background-color: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    padding: 2px 6px;
+    line-height: 1.1;
+    white-space: nowrap;
   }
 
   .sticky-add-to-cart__button {
@@ -372,6 +408,39 @@
 
     .sticky-add-to-cart__title {
       font-size: var(--font-paragraph--size);
+    }
+
+    .sticky-add-to-cart__price-wrapper {
+      align-items: flex-end;
+      margin-right: 0;
+      gap: 2px;
+    }
+
+    .sticky-add-to-cart__price .price__sale {
+      flex-wrap: nowrap !important;
+      gap: 5px !important;
+      align-items: center !important;
+    }
+
+    .sticky-add-to-cart__price .price__sale .price-item__group:has(.price-item--sale) {
+      flex: 0 0 auto !important;
+      width: auto !important;
+      display: inline-flex !important;
+    }
+
+    .sticky-add-to-cart__price :is(.price, .price-item--sale) {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      color: #111111 !important;
+    }
+
+    .sticky-add-to-cart__price :is(.compare-at-price, .price-item--regular) {
+      font-size: 11px !important;
+    }
+
+    .sticky-add-to-cart__price .price-item__discount {
+      font-size: 10px !important;
+      padding: 1px 5px !important;
     }
 
     .sticky-add-to-cart__button {
