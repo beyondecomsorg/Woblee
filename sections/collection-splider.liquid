@@ -61,10 +61,10 @@
                       endif
                     -%}
                     <p class="fcs-card-price">
+                      <span class="fcs-price-current">{{ fcs_price | money_without_trailing_zeros }} INR</span>
                       {% if fcs_compare > fcs_price %}
                         <s class="fcs-price-compare">{{ fcs_compare | money_without_trailing_zeros }} INR</s>
                       {% endif %}
-                      <span class="fcs-price-current">{{ fcs_price | money_without_trailing_zeros }} INR</span>
                       {% if fcs_discount > 0 %}
                         <span class="fcs-price-discount">{{ fcs_discount }}% OFF</span>
                       {% endif %}
@@ -376,10 +376,10 @@
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 6px;
   font-size: var(--fcs-price-size);
   font-weight: var(--fcs-price-weight);
-  color: var(--fcs-muted);
+  color: #111111;
   margin: 0 !important;
   padding: 0 !important;
   font-weight: 700;
@@ -388,13 +388,18 @@
 
 /* Compare Price */
 .fcs-price-compare {
-  color: var(--fcs-compare-color);
-  opacity: 0.7;
+  color: #718096;
+  font-weight: 400;
+  font-size: 0.9em;
+  text-decoration: line-through;
+  text-decoration-color: #94a3b8;
   margin-right: 0;
   white-space: nowrap;
 }
 
 .fcs-price-current {
+  color: #111111;
+  font-weight: 700;
   white-space: nowrap;
 }
 
