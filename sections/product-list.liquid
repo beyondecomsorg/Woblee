@@ -425,13 +425,27 @@
       margin-top: 0 !important;
     }
 
+    #product-list-{{ section.id }} .product-card .price__sale {
+      flex-wrap: nowrap !important;
+      gap: 4px !important;
+      align-items: baseline !important;
+      white-space: nowrap !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .price__sale .price,
+    #product-list-{{ section.id }} .product-card .price__sale .price-item--sale {
+      font-size: clamp(10.5px, 3.1vw, 13px) !important;
+    }
+
     #product-list-{{ section.id }} .product-card .compare-at-price,
     #product-list-{{ section.id }} .product-card .price-item--regular {
-      font-size: 12px !important;
+      font-size: clamp(9.5px, 2.7vw, 11.5px) !important;
+      margin-right: 0 !important;
     }
 
     #product-list-{{ section.id }} .product-card .price-item__discount {
-      font-size: 11px !important;
+      font-size: clamp(9.5px, 2.7vw, 11px) !important;
+      letter-spacing: 0.1px !important;
     }
 
     #product-list-{{ section.id }} .slideshow-control {
