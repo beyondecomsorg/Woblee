@@ -323,7 +323,7 @@
     font-family: var(--font-body--family), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
     font-size: {{ section.settings.card_price_font_size_desktop | default: 14 }}px !important;
     font-weight: {{ section.settings.card_price_font_weight | default: '700' }} !important;
-    color: #111111 !important;
+    color: #0c4168 !important;
     line-height: 1.25 !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -333,6 +333,29 @@
     justify-content: flex-start !important;
     gap: 6px !important;
     text-align: left !important;
+  }
+
+  #product-list-{{ section.id }} .product-card .compare-at-price,
+  #product-list-{{ section.id }} .product-card .price-item--regular {
+    color: #718096 !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    text-decoration: line-through !important;
+    text-decoration-color: #94a3b8 !important;
+    text-decoration-thickness: 1px !important;
+  }
+
+  #product-list-{{ section.id }} .product-card .price-item--sale {
+    color: #0c4168 !important;
+    font-weight: 700 !important;
+  }
+
+  #product-list-{{ section.id }} .product-card .price-item__discount {
+    color: #15803d !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    white-space: nowrap !important;
   }
 
   /* Wishlist Icon Positioning */
@@ -400,6 +423,15 @@
     #product-list-{{ section.id }} .product-card .price__sale {
       font-size: {{ section.settings.card_price_font_size_mobile | default: 14 }}px !important;
       margin-top: 0 !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .compare-at-price,
+    #product-list-{{ section.id }} .product-card .price-item--regular {
+      font-size: 12px !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .price-item__discount {
+      font-size: 11px !important;
     }
 
     #product-list-{{ section.id }} .slideshow-control {

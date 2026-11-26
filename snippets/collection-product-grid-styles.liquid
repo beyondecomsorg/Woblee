@@ -296,7 +296,40 @@
     {{ page_scope }} results-list[section-id='{{ section.id }}'] product-price .price {
       font-size: {{ section.settings.collection_card_price_font_size_mobile | default: 14 }}px;
     }
+
+    {{ card_scope }} .product-card .compare-at-price,
+    {{ card_scope }} .product-card .price-item--regular {
+      font-size: 12px !important;
+    }
+
+    {{ card_scope }} .product-card .price-item__discount {
+      font-size: 11px !important;
+    }
   }
+
+  {{ card_scope }} .product-card .compare-at-price,
+  {{ card_scope }} .product-card .price-item--regular {
+    color: #718096 !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    text-decoration: line-through !important;
+    text-decoration-color: #94a3b8 !important;
+    text-decoration-thickness: 1px !important;
+  }
+
+  {{ card_scope }} .product-card .price-item--sale {
+    color: #0c4168 !important;
+    font-weight: 700 !important;
+  }
+
+  {{ card_scope }} .product-card .price-item__discount {
+    color: #15803d !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    white-space: nowrap !important;
+  }
+
   {% unless collection_page %}
     {{ card_scope }} .product-card__content .layout-panel-flex {
       gap: 0 !important;
