@@ -43,11 +43,31 @@
                   </div>
                   <div class="fcs-card-info">
                     <p class="fcs-card-title">{{ product.title }}</p>
+                    {%- liquid
+                      assign fcs_price = product.price
+                      assign fcs_compare = product.compare_at_price
+                      if fcs_compare == blank or fcs_compare <= fcs_price
+                        assign fcs_variant = product.selected_or_first_available_variant
+                        if fcs_variant.compare_at_price > fcs_variant.price
+                          assign fcs_price = fcs_variant.price
+                          assign fcs_compare = fcs_variant.compare_at_price
+                        endif
+                      endif
+                      assign fcs_discount = 0
+                      if fcs_compare > fcs_price and fcs_compare > 0
+                        assign fcs_diff = fcs_compare | minus: fcs_price
+                        assign fcs_half = fcs_compare | divided_by: 2
+                        assign fcs_discount = fcs_diff | times: 100 | plus: fcs_half | divided_by: fcs_compare
+                      endif
+                    -%}
                     <p class="fcs-card-price">
-                      {% if product.compare_at_price > product.price %}
-                        <s class="fcs-price-compare">{{ product.compare_at_price | money_without_trailing_zeros }} INR</s>
+                      {% if fcs_compare > fcs_price %}
+                        <s class="fcs-price-compare">{{ fcs_compare | money_without_trailing_zeros }} INR</s>
                       {% endif %}
-                      {{ product.price | money_without_trailing_zeros }} INR
+                      <span class="fcs-price-current">{{ fcs_price | money_without_trailing_zeros }} INR</span>
+                      {% if fcs_discount > 0 %}
+                        <span class="fcs-price-discount">{{ fcs_discount }}% OFF</span>
+                      {% endif %}
                     </p>
                   </div>
                 </a>
@@ -353,6 +373,10 @@
 
 /* Price */
 .fcs-card-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
   font-size: var(--fcs-price-size);
   font-weight: var(--fcs-price-weight);
   color: var(--fcs-muted);
@@ -366,7 +390,20 @@
 .fcs-price-compare {
   color: var(--fcs-compare-color);
   opacity: 0.7;
-  margin-right: 6px;
+  margin-right: 0;
+  white-space: nowrap;
+}
+
+.fcs-price-current {
+  white-space: nowrap;
+}
+
+.fcs-price-discount {
+  color: #15803d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 /* View All Button */
@@ -466,11 +503,23 @@
   padding-bottom: 30px !important;
 }
   .fcs-card-price {
-    font-size: var(--fcs-price-size-mobile);
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
+    font-size: clamp(9.5px, 2.55vw, 12px) !important;
     color: var(--fcs-muted);
     margin: 0 !important;
     padding: 0 !important;
     text-align: left !important;
+  }
+
+  .fcs-price-compare {
+    font-size: clamp(8.5px, 2.3vw, 11px) !important;
+  }
+
+  .fcs-price-discount {
+    font-size: clamp(8.5px, 2.3vw, 10.5px) !important;
+    letter-spacing: 0.1px !important;
   }
 
   .fcs-view-all-btn {
