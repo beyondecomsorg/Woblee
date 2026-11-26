@@ -25,9 +25,9 @@
           {% assign collection = collections[section.settings.collection] %}
           {% if collection != blank %}
             {% for product in collection.products limit: section.settings.products_to_show %}
-              <div class="fcs-card">
-                <a href="{{ product.url }}" class="fcs-card-link">
-                  <div class="fcs-card-image-wrap">
+              <product-card class="fcs-card product-card" data-product-id="{{ product.id }}">
+                <div class="fcs-card-image-wrap card-gallery" style="position: relative;">
+                  <a href="{{ product.url }}" class="fcs-card-link" style="display:block;width:100%;height:100%;">
                     {% if product.featured_image != blank %}
                       <img
                         src="{{ product.featured_image | image_url: width: 600 }}"
@@ -35,43 +35,60 @@
                         class="fcs-card-img"
                         loading="lazy"
                         width="600"
-                        height="700"
+                        height="750"
                       >
                     {% else %}
                       {{ 'product-1' | placeholder_svg_tag: 'fcs-placeholder-svg' }}
                     {% endif %}
+                  </a>
+                  {% if settings.quick_add or settings.mobile_quick_add %}
+                    {% render 'quick-add', product: product, section_id: section.id %}
+                  {% endif %}
+                  <div class="hulk-wishlist-card-btn-wrapper">
+                    {% render 'hulkapps-wishlist-collection-btn',
+                      productId: product.id,
+                      variantId: product.selected_or_first_available_variant.id
+                    %}
                   </div>
-                  <div class="fcs-card-info">
-                    <p class="fcs-card-title">{{ product.title }}</p>
-                    {%- liquid
-                      assign fcs_price = product.price
-                      assign fcs_compare = product.compare_at_price
-                      if fcs_compare == blank or fcs_compare <= fcs_price
-                        assign fcs_variant = product.selected_or_first_available_variant
-                        if fcs_variant.compare_at_price > fcs_variant.price
-                          assign fcs_price = fcs_variant.price
-                          assign fcs_compare = fcs_variant.compare_at_price
-                        endif
+                </div>
+                <div class="fcs-card-info">
+                  <a ref="productTitleLink" href="{{ product.url }}" class="contents user-select-text">
+                    <p>{{ product.title }}</p>
+                  </a>
+                  <product-price data-product-id="{{ product.id }}">
+                    {% render 'price', product_resource: product, show_sale_price_first: true %}
+                  </product-price>
+                  {%- liquid
+                    assign fcs_has_swatches = false
+                    for product_option in product.options_with_values
+                      assign swatch_count = product_option.values | map: 'swatch' | compact | size
+                      assign option_name_downcase = product_option.name | downcase | strip
+                      if swatch_count > 0 or option_name_downcase contains 'color' or option_name_downcase contains 'colour'
+                        assign fcs_has_swatches = true
+                        break
                       endif
-                      assign fcs_discount = 0
-                      if fcs_compare > fcs_price and fcs_compare > 0
-                        assign fcs_diff = fcs_compare | minus: fcs_price
-                        assign fcs_half = fcs_compare | divided_by: 2
-                        assign fcs_discount = fcs_diff | times: 100 | plus: fcs_half | divided_by: fcs_compare
-                      endif
-                    -%}
-                    <p class="fcs-card-price">
-                      <span class="fcs-price-current">{{ fcs_price | money_without_trailing_zeros }} INR</span>
-                      {% if fcs_compare > fcs_price %}
-                        <s class="fcs-price-compare">{{ fcs_compare | money_without_trailing_zeros }} INR</s>
-                      {% endif %}
-                      {% if fcs_discount > 0 %}
-                        <span class="fcs-price-discount">{{ fcs_discount }}% OFF</span>
-                      {% endif %}
-                    </p>
-                  </div>
-                </a>
-              </div>
+                    endfor
+                  -%}
+                  {% if fcs_has_swatches %}
+                    <product-swatches
+                      data-product-id="{{ product.id }}"
+                      data-product-url="{{ product.url }}"
+                      style="
+                        --overflow-list-alignment: flex-start;
+                        --overflow-list-alignment-mobile: flex-start;
+                        --product-swatches-alignment: start;
+                        --product-swatches-alignment-mobile: start;
+                        --product-swatches-padding-block-start: 4px;
+                        --product-swatches-padding-block-end: 0px;
+                        --product-swatches-padding-inline-start: 0px;
+                        --product-swatches-padding-inline-end: 0px;
+                      "
+                    >
+                      {% render 'variant-swatches', product_resource: product %}
+                    </product-swatches>
+                  {% endif %}
+                </div>
+              </product-card>
             {% endfor %}
           {% else %}
             {% for i in (1..5) %}
@@ -489,43 +506,10 @@
     right: 10px;
   }
 
-  .fcs-card-title {
-    font-size: 14px;
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    width: 100%;
-    margin: 0 0 5px !important;
-    margin-top: 0 !important;
-    margin-bottom: 5px !important;
-    padding: 0 !important;
-    text-align: left !important;
-  }
 .timeline-tabs{
   padding-top: 0px !important;
   padding-bottom: 30px !important;
 }
-  .fcs-card-price {
-    flex-wrap: nowrap !important;
-    gap: 4px !important;
-    white-space: nowrap !important;
-    font-size: clamp(9.5px, 2.55vw, 12px) !important;
-    color: var(--fcs-muted);
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-  }
-
-  .fcs-price-compare {
-    font-size: clamp(8.5px, 2.3vw, 11px) !important;
-  }
-
-  .fcs-price-discount {
-    font-size: clamp(8.5px, 2.3vw, 10.5px) !important;
-    letter-spacing: 0.1px !important;
-  }
 
   .fcs-view-all-btn {
     width: var(--fcs-btn-width-mobile);
