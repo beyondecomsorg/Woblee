@@ -544,21 +544,24 @@
     padding-bottom: 4px !important;
   }
   .cart-drawer .cart-items__media {
-    width: 50px !important;
-    max-width: 50px !important;
-    flex: 0 0 50px !important;
+    width: 60px !important;
+    max-width: 60px !important;
+    flex: 0 0 60px !important;
   }
   .cart-drawer .cart-items__media-container {
-    width: 50px !important;
-    height: 62.5px;
-    border-radius: 0px !important;
+    width: 60px !important;
+    aspect-ratio: 3 / 4 !important;
+    height: auto !important;
+    border-radius: 4px !important;
     overflow: hidden !important;
     display: block !important;
+    background-color: #f8fafc !important;
   }
   .cart-drawer .cart-items__media-image {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain;
+    object-fit: cover !important;
+    object-position: top center !important;
   }
   .cart-drawer .cart-items__title {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;

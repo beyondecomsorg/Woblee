@@ -25,9 +25,9 @@
           {% assign collection = collections[section.settings.collection] %}
           {% if collection != blank %}
             {% for product in collection.products limit: section.settings.products_to_show %}
-              <div class="fcs-card">
-                <a href="{{ product.url }}" class="fcs-card-link">
-                  <div class="fcs-card-image-wrap">
+              <product-card class="fcs-card product-card" data-product-id="{{ product.id }}">
+                <div class="fcs-card-image-wrap card-gallery" style="position: relative;">
+                  <a href="{{ product.url }}" class="fcs-card-link" style="display:block;width:100%;height:100%;">
                     {% if product.featured_image != blank %}
                       <img
                         src="{{ product.featured_image | image_url: width: 600 }}"
@@ -35,23 +35,60 @@
                         class="fcs-card-img"
                         loading="lazy"
                         width="600"
-                        height="700"
+                        height="750"
                       >
                     {% else %}
                       {{ 'product-1' | placeholder_svg_tag: 'fcs-placeholder-svg' }}
                     {% endif %}
+                  </a>
+                  {% if settings.quick_add or settings.mobile_quick_add %}
+                    {% render 'quick-add', product: product, section_id: section.id %}
+                  {% endif %}
+                  <div class="hulk-wishlist-card-btn-wrapper">
+                    {% render 'hulkapps-wishlist-collection-btn',
+                      productId: product.id,
+                      variantId: product.selected_or_first_available_variant.id
+                    %}
                   </div>
-                  <div class="fcs-card-info">
-                    <p class="fcs-card-title">{{ product.title }}</p>
-                    <p class="fcs-card-price">
-                      {% if product.compare_at_price > product.price %}
-                        <s class="fcs-price-compare">{{ product.compare_at_price | money_without_trailing_zeros }} INR</s>
-                      {% endif %}
-                      {{ product.price | money_without_trailing_zeros }} INR
-                    </p>
-                  </div>
-                </a>
-              </div>
+                </div>
+                <div class="fcs-card-info">
+                  <a ref="productTitleLink" href="{{ product.url }}" class="contents user-select-text">
+                    <p>{{ product.title }}</p>
+                  </a>
+                  <product-price data-product-id="{{ product.id }}">
+                    {% render 'price', product_resource: product, show_sale_price_first: true %}
+                  </product-price>
+                  {%- liquid
+                    assign fcs_has_swatches = false
+                    for product_option in product.options_with_values
+                      assign swatch_count = product_option.values | map: 'swatch' | compact | size
+                      assign option_name_downcase = product_option.name | downcase | strip
+                      if swatch_count > 0 or option_name_downcase contains 'color' or option_name_downcase contains 'colour'
+                        assign fcs_has_swatches = true
+                        break
+                      endif
+                    endfor
+                  -%}
+                  {% if fcs_has_swatches %}
+                    <product-swatches
+                      data-product-id="{{ product.id }}"
+                      data-product-url="{{ product.url }}"
+                      style="
+                        --overflow-list-alignment: flex-start;
+                        --overflow-list-alignment-mobile: flex-start;
+                        --product-swatches-alignment: start;
+                        --product-swatches-alignment-mobile: start;
+                        --product-swatches-padding-block-start: 4px;
+                        --product-swatches-padding-block-end: 0px;
+                        --product-swatches-padding-inline-start: 0px;
+                        --product-swatches-padding-inline-end: 0px;
+                      "
+                    >
+                      {% render 'variant-swatches', product_resource: product %}
+                    </product-swatches>
+                  {% endif %}
+                </div>
+              </product-card>
             {% endfor %}
           {% else %}
             {% for i in (1..5) %}
@@ -353,9 +390,13 @@
 
 /* Price */
 .fcs-card-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
   font-size: var(--fcs-price-size);
   font-weight: var(--fcs-price-weight);
-  color: var(--fcs-muted);
+  color: #111111;
   margin: 0 !important;
   padding: 0 !important;
   font-weight: 700;
@@ -364,9 +405,27 @@
 
 /* Compare Price */
 .fcs-price-compare {
-  color: var(--fcs-compare-color);
-  opacity: 0.7;
-  margin-right: 6px;
+  color: #718096;
+  font-weight: 400;
+  font-size: 0.9em;
+  text-decoration: line-through;
+  text-decoration-color: #94a3b8;
+  margin-right: 0;
+  white-space: nowrap;
+}
+
+.fcs-price-current {
+  color: #111111;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.fcs-price-discount {
+  color: #15803d;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 /* View All Button */
@@ -447,31 +506,10 @@
     right: 10px;
   }
 
-  .fcs-card-title {
-    font-size: 14px;
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-    width: 100%;
-    margin: 0 0 5px !important;
-    margin-top: 0 !important;
-    margin-bottom: 5px !important;
-    padding: 0 !important;
-    text-align: left !important;
-  }
 .timeline-tabs{
   padding-top: 0px !important;
   padding-bottom: 30px !important;
 }
-  .fcs-card-price {
-    font-size: var(--fcs-price-size-mobile);
-    color: var(--fcs-muted);
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-  }
 
   .fcs-view-all-btn {
     width: var(--fcs-btn-width-mobile);

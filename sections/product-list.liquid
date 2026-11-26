@@ -335,6 +335,29 @@
     text-align: left !important;
   }
 
+  #product-list-{{ section.id }} .product-card .compare-at-price,
+  #product-list-{{ section.id }} .product-card .price-item--regular {
+    color: #718096 !important;
+    font-weight: 400 !important;
+    font-size: 11.5px !important;
+    text-decoration: line-through !important;
+    text-decoration-color: #94a3b8 !important;
+    text-decoration-thickness: 1px !important;
+  }
+
+  #product-list-{{ section.id }} .product-card .price-item--sale {
+    color: #111111 !important;
+    font-weight: 700 !important;
+  }
+
+  #product-list-{{ section.id }} .product-card .price-item__discount {
+    color: #15803d !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    white-space: nowrap !important;
+  }
+
   /* Wishlist Icon Positioning */
   #product-list-{{ section.id }} .hulk-wishlist-card-btn-wrapper {
     position: absolute !important;
@@ -383,23 +406,77 @@
     #product-list-{{ section.id }} a.contents.user-select-text p,
     #product-list-{{ section.id }} .product-grid__card a[ref="productTitleLink"] p,
     #product-list-{{ section.id }} .product-card .text-block :is(h1, h2, h3, h4, h5, h6, p) {
-      font-size: {{ section.settings.card_title_font_size_mobile | default: 14 }}px !important;
+      font-size: 15px !important;
+      line-height: 1.35 !important;
+      min-height: 2.7em !important;
+      max-height: 2.7em !important;
       margin-top: 5px !important;
-      margin-bottom: 5px !important;
+      margin-bottom: 0 !important;
     }
 
     #product-list-{{ section.id }} product-price,
     #product-list-{{ section.id }} .product-card product-price,
     #product-list-{{ section.id }} .product-card .product-price {
-      margin-top: 0 !important;
+      margin-top: 6px !important;
+      margin-bottom: 6px !important;
+      display: block !important;
+      width: 100% !important;
     }
 
     #product-list-{{ section.id }} product-price .price,
     #product-list-{{ section.id }} .product-card .price,
-    #product-list-{{ section.id }} .product-card .price__regular,
-    #product-list-{{ section.id }} .product-card .price__sale {
-      font-size: {{ section.settings.card_price_font_size_mobile | default: 14 }}px !important;
+    #product-list-{{ section.id }} .product-card .price__regular .price,
+    #product-list-{{ section.id }} .product-card .price__sale .price-item--sale {
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      color: #111111 !important;
+      line-height: 1.2 !important;
       margin-top: 0 !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .price__sale {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      column-gap: 6px !important;
+      row-gap: 4px !important;
+      align-items: center !important;
+      white-space: normal !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .price__sale .price-item__group:has(.price-item--sale) {
+      flex: 0 0 100% !important;
+      width: 100% !important;
+      display: block !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .price__sale .price-item__group:has(.compare-at-price) {
+      flex: 0 0 auto !important;
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .compare-at-price,
+    #product-list-{{ section.id }} .product-card .price-item--regular {
+      font-size: 12px !important;
+      font-weight: 400 !important;
+      color: #718096 !important;
+      margin-right: 0 !important;
+    }
+
+    #product-list-{{ section.id }} .product-card .price-item__discount {
+      flex: 0 0 auto !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      font-size: 10.5px !important;
+      font-weight: 700 !important;
+      color: #15803d !important;
+      background-color: #ecfdf5 !important;
+      border: 1px solid #bbf7d0 !important;
+      padding: 2px 6px !important;
+      border-radius: 2px !important;
+      line-height: 1.1 !important;
+      letter-spacing: 0.3px !important;
+      white-space: nowrap !important;
     }
 
     #product-list-{{ section.id }} .slideshow-control {

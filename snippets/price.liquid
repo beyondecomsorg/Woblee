@@ -15,6 +15,16 @@
   assign raw_price = selected_variant.price
   assign raw_compare_at_price = selected_variant.compare_at_price
 
+  if raw_compare_at_price == blank or raw_compare_at_price <= raw_price
+    if product_resource.compare_at_price > product_resource.price
+      assign raw_price = product_resource.price
+      assign raw_compare_at_price = product_resource.compare_at_price
+    elsif product_resource.compare_at_price_max > product_resource.price_min
+      assign raw_price = product_resource.price_min
+      assign raw_compare_at_price = product_resource.compare_at_price_max
+    endif
+  endif
+
   assign show_compare_price = false
   if raw_compare_at_price > raw_price
     assign show_compare_price = true
@@ -69,8 +79,10 @@
 
   # Discount percentage
   assign discount_percentage = 0
-  if show_compare_price
-    assign discount_percentage = raw_compare_at_price | minus: raw_price | times: 100 | divided_by: raw_compare_at_price | round
+  if show_compare_price and raw_compare_at_price > 0
+    assign discount_diff = raw_compare_at_price | minus: raw_price
+    assign discount_half = raw_compare_at_price | divided_by: 2
+    assign discount_percentage = discount_diff | times: 100 | plus: discount_half | divided_by: raw_compare_at_price
   endif
 -%}
 
@@ -87,24 +99,43 @@
       <span class="visually-hidden">{{ 'content.price_range' | t }}&nbsp;</span>
       <span class="price">{{ price_min }} - {{ price_max }}</span>
     </span>
+    {% if show_compare_price and discount_percentage > 0 %}
+      <span class="price-item__discount" aria-label="{{ discount_percentage }} percent off">
+        {{ discount_percentage }}% OFF
+      </span>
+    {% endif %}
 
   {% else %}
     {% comment %} Standard pricing display {% endcomment %}
     {% if show_compare_price %}
       <div class="price__sale">
-        <span class="price-item__group">
-          <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
-          <span class="price-item--regular compare-at-price">{{- compare_at_price -}}</span>
-        </span>
+        {% if show_sale_price_first %}
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
+            <span class="price-item--sale price">{{ price | default: '&nbsp;' }}</span>
+          </span>
 
-        <span class="price-item__group">
-          <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
-          <span class="price-item--sale price">{{ price | default: '&nbsp;' }}</span>
-        </span>
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+            <span class="price-item--regular compare-at-price">{{- compare_at_price -}}</span>
+          </span>
+        {% else %}
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_regular' | t }}&nbsp;</span>
+            <span class="price-item--regular compare-at-price">{{- compare_at_price -}}</span>
+          </span>
 
-        {% comment %} <span class="price-item__discount">
-          {{ discount_percentage }}% OFF
-        </span> {% endcomment %}
+          <span class="price-item__group">
+            <span class="visually-hidden">{{ 'content.price_sale' | t }}&nbsp;</span>
+            <span class="price-item--sale price">{{ price | default: '&nbsp;' }}</span>
+          </span>
+        {% endif %}
+
+        {% if discount_percentage > 0 %}
+          <span class="price-item__discount" aria-label="{{ discount_percentage }} percent off">
+            {{ discount_percentage }}% OFF
+          </span>
+        {% endif %}
       </div>
     {% else %}
       <div class="price__regular">
