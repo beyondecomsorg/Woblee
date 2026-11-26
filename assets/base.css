@@ -4335,8 +4335,9 @@ product-recommendations:has([data-has-recommendations='false']) {
   align-items: baseline;
 }
 
-.price-item--sale {
-  color: #0c4168;
+.price-item--sale,
+.price__regular .price {
+  color: #111111;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -4377,7 +4378,7 @@ a[ref="productTitleLink"] p {
   .price-item--sale {
     font-size: 14px;
     font-weight: 700;
-    color: #0c4168;
+    color: #111111;
   }
 
   .compare-at-price,
