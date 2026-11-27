@@ -1998,6 +1998,7 @@
         },
         "marketplace_meesho": {
           "type": "marketplace",
+          "disabled": true,
           "settings": {
             "title": "Meesho",
             "preset_logo": "meesho",
