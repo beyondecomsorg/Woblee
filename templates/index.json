@@ -94,6 +94,7 @@
         },
         "slide_GNFgNq": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DIWALI_ABC-03_jpg.jpg",
             "image_focal_point": "center center",
