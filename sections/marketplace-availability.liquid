@@ -187,8 +187,9 @@
 
   /* 3 Equal-Width Containers / Cards horizontally on Desktop */
   #marketplace-availability-{{ sec_id }} .marketplace-availability__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    {% comment %} grid-template-columns: repeat(3, minmax(0, 1fr)); {% endcomment %}
+     justify-content: center;
     gap: 24px;
     max-width: 960px;
     margin: 0 auto;
